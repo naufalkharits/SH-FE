@@ -1,5 +1,3 @@
-import React from "react";
-
 const ProductCard = () => {
     return (
         <div className="w-44 space-y-2 rounded-md bg-white p-2 drop-shadow-low">

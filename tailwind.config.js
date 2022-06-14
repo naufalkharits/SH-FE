@@ -48,7 +48,6 @@ module.exports = {
         'high': '0px 0px 10px rgba(0, 0, 0, 0.15)',
       }
     },
-    
   },
   plugins: [],
 }

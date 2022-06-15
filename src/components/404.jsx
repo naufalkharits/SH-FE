@@ -10,7 +10,7 @@ const Error = () => {
 
             <Link
                 to="/"
-                className="text rounded-2xl border border-primary-purple-04 py-2 px-4 shadow-md hover:bg-primary-purple-04 hover:text-white"
+                className="text rounded-2xl border border-primary-purple-04 py-2 px-4 shadow-md hover:bg-primary-purple-05 hover:text-white"
             >
                 Go Home
             </Link>

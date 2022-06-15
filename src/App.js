@@ -1,5 +1,3 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./layouts/Main";
 import Home from "./pages/Home";
@@ -21,21 +19,14 @@ function App() {
                         path="product/:productId"
                         element={<DetailProduct />}
                     />
-                    <Route 
-                        path="product/add"
-                        element={<Infoproduk />}
-                    />
-                                        <Route 
-                        path="user/add"
-                        element={<InfoProfil />}
-                    />
+                    <Route path="product/add" element={<Infoproduk />} />
+                    <Route path="user/add" element={<InfoProfil />} />
                 </Route>
                 <Route element={<Auth />}>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                 </Route>
                 <Route path="*" element={<Error />} />
-
             </Routes>
         </BrowserRouter>
     );

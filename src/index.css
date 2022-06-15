@@ -4,12 +4,3 @@
 
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
-
-@layer components {
-    .arrow svg {
-        transition: color 300ms;
-    }
-    .arrow svg:hover {
-        color: #68edff;
-    }
-}

@@ -1,4 +1,4 @@
-const InfoProduct = () => {
+const InfoProfil = () => {
     return (
         <div className="justify-center items-center bg-white w-2/6 gap-6 h-fit">
             <form id="add-form" className="justify-center items-center bg-white">
@@ -61,4 +61,4 @@ const InfoProduct = () => {
     );
 };
 
-export default InfoProduct;
+export default InfoProfil;

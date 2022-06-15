@@ -2,24 +2,6 @@ import React from "react";
 
 const DetailProduct = () => {
     return (
-        // <div className="bg-white w-full min-h-screen flex justify-center p-5">
-        //     <div className="flex space-x-4">
-        //         {/* Card */}
-        //         <div className="card w-0 p-2 bg-white rounded-xl">
-        //             <div className="card">
-        //             <img src=".\..\public\img\jam2.png" alt="" className=""/>
-        //             <div className="">
-        //                 <h3>Deskripsi</h3>
-        //                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas optio consequatur dolore, odit quo suscipit. Omnis, sapiente? Sunt magni corrupti autem fuga cupiditate impedit nulla in, minus delectus provident temporibus?</p>
-        //             </div>
-        //             </div>
-        //         </div>
-        //         <div >
-                    
-        //         </div>
-        //     </div>
-        // </div>
-
         <div className="flex justify-center gap-4 m-4">
             <div className="w-2/6 space-y-4">
                 <img src="/img/jam2.png" alt="" className="justify-center w-full" />
@@ -48,9 +30,6 @@ const DetailProduct = () => {
             </div>
             
         </div>
-
-        
-
     );
 };
 

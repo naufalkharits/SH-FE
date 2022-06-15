@@ -5,7 +5,7 @@ const Category = () => {
     return (
         <>
             <div className="mb-4 font-bold">Telusuri Kategori</div>
-            <ScrollingCarousel rightIcon={"right"} leftIcon={"left"}>
+            <ScrollingCarousel leftIcon={"<"} rightIcon={">"}>
                 <div className="flex items-center gap-2 rounded-xl bg-primary-purple-04 py-3 px-6 text-white">
                     <FiSearch />
                     <span>Semua</span>

@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./layouts/Main";
 import Home from "./pages/Home";
-import DetailProduct from "./components/DetailProduct";
+import DetailProduct from "./pages/DetailProduct";
 import Error from "./components/404";
 import Auth from "./layouts/Auth";
 import Login from "./pages/Login";

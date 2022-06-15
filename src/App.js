@@ -8,6 +8,7 @@ import Error from "./components/404";
 import Auth from "./layouts/Auth";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Infoproduk from "./pages/Infoproduk";
 
 function App() {
     return (
@@ -18,6 +19,10 @@ function App() {
                     <Route
                         path="product/:productId"
                         element={<DetailProduct />}
+                    />
+                    <Route 
+                        path="product/add"
+                        element={<Infoproduk />}
                     />
                 </Route>
                 <Route element={<Auth />}>

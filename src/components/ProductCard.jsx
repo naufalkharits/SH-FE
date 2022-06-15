@@ -1,6 +1,6 @@
 const ProductCard = () => {
     return (
-        <div className="w-44 cursor-pointer space-y-2 rounded-md bg-white p-2 shadow-md">
+        <div className="w-44 cursor-pointer space-y-2 rounded-md border border-neutral-200 bg-white p-2 shadow-md">
             <img className="w-full" src="/img/jam.png" alt="" />
             <div>
                 <div className="truncate font-medium">Jam Tangan Casio</div>

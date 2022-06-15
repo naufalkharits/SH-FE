@@ -5,6 +5,9 @@ import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import DetailProduct from "./components/DetailProduct";
 import Error from "./components/404";
+import Auth from "./layouts/Auth";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
     return (
@@ -16,6 +19,10 @@ function App() {
                         path="product/:productId"
                         element={<DetailProduct />}
                     />
+                </Route>
+                <Route element={<Auth />}>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
                 </Route>
                 <Route path="*" element={<Error />} />
             </Routes>

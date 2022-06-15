@@ -9,7 +9,7 @@ const MobileMenu = () => {
 
     return (
         <>
-            <Popover.Button className="rounded-2xl p-2 hover:bg-gray sm:hidden">
+            <Popover.Button className="rounded-2xl bg-gray p-2 sm:hidden">
                 <FiMenu className="h-8 w-8 " />
             </Popover.Button>
             <Transition
@@ -39,7 +39,10 @@ const MobileMenu = () => {
                             </div>
                             <Search />
                         </div>
-                        <Link to="/login" className="flex w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-neutral-01 ">
+                        <Link
+                            to="/login"
+                            className="flex  w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-neutral-01 hover:bg-primary-purple-05 "
+                        >
                             <FiLogIn className="h-5 w-5" />
                             <span>Masuk</span>
                         </Link>

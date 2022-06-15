@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import { FiLogIn, FiMenu, FiX } from "react-icons/fi";
 import Search from "./Search";
@@ -39,10 +39,10 @@ const MobileMenu = () => {
                             </div>
                             <Search />
                         </div>
-                        <button className="flex w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-neutral-01 ">
+                        <Link to="/login" className="flex w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-neutral-01 ">
                             <FiLogIn className="h-5 w-5" />
                             <span>Masuk</span>
-                        </button>
+                        </Link>
                     </div>
                 </Popover.Panel>
             </Transition>

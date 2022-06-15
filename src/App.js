@@ -1,11 +1,9 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import DetailProduct from "./components/DetailProduct";
-import JualButton from "./components/JualButton";
 import Main from "./layouts/Main";
 import Home from "./pages/Home";
+import DetailProduct from "./components/DetailProduct";
 import Error from "./components/404";
 
 function App() {

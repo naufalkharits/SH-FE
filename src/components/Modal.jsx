@@ -4,7 +4,7 @@ const Modal = () => {
 
     return (
         <>
-            <div className="w-3/12 sm:mx-auto space-y-4 border h-fit bg-neutral-01 rounded-xl">
+            <div className="w-3/12 sm:mx-auto space-y-4 h-fit bg-neutral-01 rounded-xl">
                 
                 <div className="mx-8 space-y-4 my-6">
                     <div className="">

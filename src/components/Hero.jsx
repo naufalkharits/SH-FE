@@ -4,10 +4,11 @@ import banner1 from "../images/banner-1.png";
 import banner2 from "../images/banner-2.png";
 import banner3 from "../images/banner-3.png";
 import banner4 from "../images/banner-4.png";
+import banner5 from "../images/banner-5.png";
 
 const Hero = () => {
     const [imageIndex, setImageIndex] = useState(0);
-    const images = [banner1, banner2, banner3, banner4];
+    const images = [banner1, banner2, banner3, banner4, banner5];
 
     const settings = {
         centerMode: true,

@@ -22,8 +22,8 @@ const Infoproduk = () => {
       </div>
       <div className="space-y-2">
         <label className="block">Category</label>
-        <label class="relative block">
-          <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
+        <label className="relative block">
+          <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
             <FiChevronDown />
           </span>
           <select className=" w-full rounded-2xl appearance-none border border-neutral-02 bg-neutral-01 py-3 pr-10 pl-3 focus:outline-none text-neutral-03 sm:text-sm">

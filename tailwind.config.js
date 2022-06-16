@@ -42,6 +42,10 @@ module.exports = {
         'neutral-02' : '#D0D0D0',
         'neutral-01' : '#FFFFFF',
         'gray' : '#EEEEEE'
+      },
+      boxShadow: {
+        'low': '0px 0px 4px rgba(0, 0, 0, 0.15)',
+        'high' : '0px 0px 10px rgba(0, 0, 0, 0.15)'
       }
     },
   },

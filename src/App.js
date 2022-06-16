@@ -12,6 +12,8 @@ import Register from "./pages/Register";
 import Infoproduk from "./pages/Infoproduk";
 import InfoProfil from "./pages/InfoProfil";
 import ManageProduct from "./pages/ManageProduct";
+import InfoPenawar from "./pages/InfoPenawar";
+import Topbar from "./components/Topbar";
 
 function App() {
     return (
@@ -32,6 +34,9 @@ function App() {
                         element={<ModalStatus />}
                     />
                     <Route path="product/modaltawar" element={<ModalTawar />} />
+                </Route>
+                <Route element={<Topbar />}>
+                    <Route path="/user/infopenawar" element={<InfoPenawar />} />
                 </Route>
                 <Route element={<Auth />}>
                     <Route path="/login" element={<Login />} />

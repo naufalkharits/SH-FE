@@ -14,7 +14,7 @@ const ModalStatus = () => {
                     <div className="flex space-y-4 items-center">
                         <IoEllipseOutline/>
                         <div className="mx-4">
-                            <div className="text-sm font-normal">Perbarui status penjualan produkmu</div>
+                            <div className="text-sm font-normal">Berhasil terjual</div>
                             <div className="text-sm font-normal text-neutral-03">Kamu telah sepakat menjual produk ini kepada pembeli</div>
                         </div>
                     </div>

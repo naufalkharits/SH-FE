@@ -3,6 +3,7 @@ import Category from "../components/Category";
 import Hero from "../components/Hero";
 import JualButton from "../components/JualButton";
 import ProductCard from "../components/ProductCard";
+import ProductCardTesting from "../components/ProductCard-testing";
 
 const Home = () => {
     return (
@@ -12,35 +13,15 @@ const Home = () => {
                 <Category />
                 <div className="-m-4 flex flex-wrap">
                     <ProductCard />
+                    <ProductCardTesting />
                     <ProductCard />
+                    <ProductCardTesting />
                     <ProductCard />
+                    <ProductCardTesting />
                     <ProductCard />
+                    <ProductCardTesting />
                     <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
-                    <ProductCard />
+                    <ProductCardTesting />
                 </div>
             </div>
             <JualButton />

@@ -5,7 +5,11 @@ const DetailProduct = () => {
         <div className="container mx-auto px-4">
             <div className="m-4 flex gap-4">
                 <div className="w-2/3 space-y-4">
-                    <img className="w-full" src="/img/jam2.png" alt="" />
+                    <img
+                        className="w-full"
+                        src="/img/detail-jam-2.png"
+                        alt=""
+                    />
                     <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow">
                         <div className="font-medium">Deskripsi</div>
                         <p className="text-sm text-neutral-03">

@@ -3,6 +3,7 @@ import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import DetailProduct from "./pages/DetailProduct";
 import Error from "./components/404";
+import Modal from "./components/Modal"
 import Auth from "./layouts/Auth";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -21,6 +22,7 @@ function App() {
                     />
                     <Route path="product/add" element={<Infoproduk />} />
                     <Route path="user/add" element={<InfoProfil />} />
+                    <Route path="product/modal" element={<Modal />}/>
                 </Route>
                 <Route element={<Auth />}>
                     <Route path="/login" element={<Login />} />

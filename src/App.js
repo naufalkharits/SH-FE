@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Infoproduk from "./pages/Infoproduk";
 import InfoProfil from "./pages/InfoProfil";
+import ManageProduct from "./pages/ManageProduct";
 
 function App() {
     return (
@@ -23,10 +24,14 @@ function App() {
                         element={<DetailProduct />}
                     />
                     <Route path="product/add" element={<Infoproduk />} />
+                    <Route path="/manage-product" element={<ManageProduct />} />
                     <Route path="user/add" element={<InfoProfil />} />
-                    <Route path="product/modal" element={<Modal />}/>
-                    <Route path="product/modalstatus" element={<ModalStatus />}/>
-                    <Route path="product/modaltawar" element={<ModalTawar />}/>
+                    <Route path="product/modal" element={<Modal />} />
+                    <Route
+                        path="product/modalstatus"
+                        element={<ModalStatus />}
+                    />
+                    <Route path="product/modaltawar" element={<ModalTawar />} />
                 </Route>
                 <Route element={<Auth />}>
                     <Route path="/login" element={<Login />} />

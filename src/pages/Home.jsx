@@ -3,45 +3,26 @@ import Category from "../components/Category";
 import Hero from "../components/Hero";
 import JualButton from "../components/JualButton";
 import ProductCard from "../components/ProductCard";
+import ProductCardTesting from "../components/ProductCard-testing";
 
 const Home = () => {
     return (
         <>
             <Hero />
-            <div className="container my-8 mx-auto px-4">
+            <div className="container my-8 mx-auto space-y-4 px-4">
                 <Category />
-            </div>
-            <div className="container my-8 mx-auto flex flex-wrap justify-center gap-4 px-4">
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+                <div className="-m-4 flex flex-wrap">
+                    <ProductCard />
+                    <ProductCardTesting />
+                    <ProductCard />
+                    <ProductCardTesting />
+                    <ProductCard />
+                    <ProductCardTesting />
+                    <ProductCard />
+                    <ProductCardTesting />
+                    <ProductCard />
+                    <ProductCardTesting />
+                </div>
             </div>
             <JualButton />
         </>

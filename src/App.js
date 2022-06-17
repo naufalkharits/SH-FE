@@ -28,13 +28,11 @@ function App() {
                         path="product/:productId"
                         element={<DetailProduct />}
                     />
-                    <Route path="product/add" element={<Infoproduk />} />
                     <Route path="manage-product" element={<ManageProduct />}>
                         <Route index element={<AllProduct />} />
                         <Route path="wishlisted" element={<Wishlisted />} />
                         <Route path="sold" element={<Sold />} />
                     </Route>
-                    <Route path="user/add" element={<InfoProfil />} />
                     <Route path="product/modal" element={<Modal />} />
                     <Route
                         path="product/modalstatus"
@@ -43,7 +41,9 @@ function App() {
                     <Route path="product/modaltawar" element={<ModalTawar />} />
                 </Route>
                 <Route element={<Topbar />}>
-                    <Route path="/user/infopenawar" element={<InfoPenawar />} />
+                    <Route path="product/add" element={<Infoproduk />} />
+                    <Route path="user/add" element={<InfoProfil />} />
+                    <Route path="user/infopenawar" element={<InfoPenawar />} />
                 </Route>
                 <Route element={<Auth />}>
                     <Route path="/login" element={<Login />} />

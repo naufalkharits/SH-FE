@@ -18,7 +18,7 @@ const Topbar = () => {
                         }}
                     />
                     <FiArrowLeft className="h-6 w-6 cursor-pointer sm:hidden"/>
-                    <div className="font-normal">{location.pathname === '/user/infopenawar' ? "Info Penawar" : ""}</div>
+                    <div className="font-normal">{location.pathname === '/user/infopenawar' ? "Info Penawar" : location.pathname === '/user/add' ? "Lengkapi Info Akun" : location.pathname === '/product/add' ? "Lengkapi Detail Produk" : ""}</div>
                     <div className="h-6 w-6 sm:w-[99px]"></div>
                 </div>
             </nav>

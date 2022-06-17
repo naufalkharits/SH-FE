@@ -4,7 +4,7 @@ import { FiBell } from "react-icons/fi";
 
 const Notification = () => {
     return (
-        <Popover className="relative z-10">
+        <Popover className="relative z-10 hidden sm:inline-block">
             <Popover.Button className="flex justify-center focus:outline-none">
                 <FiBell className="h-6 w-6 text-primary-purple-04" />
             </Popover.Button>

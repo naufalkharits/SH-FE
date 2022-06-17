@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { FiUser } from "react-icons/fi";
+import { FiLogOut, FiUser } from "react-icons/fi";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -8,7 +8,7 @@ function classNames(...classes) {
 
 const UserButton = () => {
     return (
-        <Menu as="div" className="relative z-10">
+        <Menu as="div" className="relative z-10 hidden sm:inline-block">
             <div>
                 <Menu.Button className="flex justify-center">
                     <FiUser className="h-6 w-6" />
@@ -24,26 +24,23 @@ const UserButton = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <Menu.Items className="absolute right-0 mt-2 w-56 rounded-2xl bg-white shadow-md ring-1 ring-neutral-02 ring-opacity-20 focus:outline-none">
-                    <div className="py-1">
-                        <form method="POST" action="#">
-                            <Menu.Item>
-                                {({ active }) => (
-                                    <button
-                                        type="submit"
-                                        className={classNames(
-                                            active
-                                                ? "bg-gray-100 text-gray-900"
-                                                : "text-gray-700",
-                                            "block w-full px-4 py-2 text-left text-sm"
-                                        )}
-                                    >
-                                        Logout
-                                    </button>
-                                )}
-                            </Menu.Item>
-                        </form>
-                    </div>
+                <Menu.Items className="absolute right-0 mt-2 w-56 overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-neutral-02 ring-opacity-20">
+                    <form method="POST" action="#">
+                        <Menu.Item>
+                            {({ active }) => (
+                                <button
+                                    type="submit"
+                                    className={classNames(
+                                        active ? "bg-gray" : "",
+                                        "flex w-full items-center justify-center gap-2 p-4"
+                                    )}
+                                >
+                                    <FiLogOut />
+                                    Logout
+                                </button>
+                            )}
+                        </Menu.Item>
+                    </form>
                 </Menu.Items>
             </Transition>
         </Menu>

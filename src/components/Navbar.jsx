@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <Popover>
             <nav className="bg-white shadow">
-                <div className="container mx-auto flex items-center justify-between p-4">
+                <div className="container mx-auto flex items-center justify-between gap-8 p-4">
                     <DesktopMenu />
                 </div>
             </nav>

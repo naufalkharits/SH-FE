@@ -12,7 +12,7 @@ const Modal = () => {
                                 <AiOutlineClose />
                             </div>
                             <h3 className="font-medium text-sm">Masukkan Harga Tawarmu</h3>
-                            <h3 className="text-neutral-03 text-sm">Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi penjual.</h3>
+                            <h3 className="text-neutral-03 text-sm">Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu akan segera dihubungi penjual.</h3>
                             <div className="w-full bg-gray h-fit rounded-2xl shadow-high">
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-4 p-4">

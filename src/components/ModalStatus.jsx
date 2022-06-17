@@ -8,21 +8,21 @@ const ModalStatus = () => {
         <div className="bg-gray-bg opacity-80 fixed inset-0 ">
             <div className="flex h-screen justify-center items-center">
                 <div className="sm:w-[360px] w-full sm:mx-auto space-y-4 h-fit bg-neutral-01 rounded-xl">
-                    <div className="mx-8 space-y-4 my-6">
+                    <div className="mx-8 space-y-4 my-6 ">
                         <div className="flex justify-end">
                             <AiOutlineClose />
                         </div>
                         <div className="text-sm font-medium">Perbarui status penjualan produkmu</div>
-                        <div className="flex space-y-4 items-center">
+                        <div className="flex items-start">
                             <IoEllipseOutline/>
-                            <div className="mx-4">
+                            <div className="mx-4 items-start">
                                 <div className="text-sm font-normal">Berhasil terjual</div>
                                 <div className="text-sm font-normal text-neutral-03">Kamu telah sepakat menjual produk ini kepada pembeli</div>
                             </div>
                         </div>
-                        <div className="flex space-y-4 items-center">
+                        <div className="flex items-start py-2">
                             <IoEllipseOutline/>
-                            <div className="mx-4">
+                            <div className="mx-4 items-start">
                                 <div className="text-sm font-normal">Batalkan transaksi</div>
                                 <div className="text-sm font-normal text-neutral-03">Kamu membatalkan transaksi produk ini dengan pembeli</div>
                             </div>

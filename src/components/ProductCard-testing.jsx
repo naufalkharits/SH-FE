@@ -8,7 +8,7 @@ const ProductCardTesting = () => {
             <div
                 className="cursor-pointer space-y-2 rounded-md border border-neutral-200 bg-white p-2 shadow-md"
                 onClick={() => {
-                    navigate("product/1");
+                    navigate("/product/1");
                 }}
             >
                 <img className="w-full" src="/img/jam-2.png" alt="" />

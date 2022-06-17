@@ -14,6 +14,9 @@ import InfoProfil from "./pages/InfoProfil";
 import ManageProduct from "./pages/ManageProduct";
 import InfoPenawar from "./pages/InfoPenawar";
 import Topbar from "./components/Topbar";
+import AllProduct from "./components/AllProduct";
+import Wishlisted from "./components/Wishlisted";
+import Sold from "./components/Sold";
 
 function App() {
     return (
@@ -26,7 +29,11 @@ function App() {
                         element={<DetailProduct />}
                     />
                     <Route path="product/add" element={<Infoproduk />} />
-                    <Route path="/manage-product" element={<ManageProduct />} />
+                    <Route path="manage-product" element={<ManageProduct />}>
+                        <Route index element={<AllProduct />} />
+                        <Route path="wishlisted" element={<Wishlisted />} />
+                        <Route path="sold" element={<Sold />} />
+                    </Route>
                     <Route path="user/add" element={<InfoProfil />} />
                     <Route path="product/modal" element={<Modal />} />
                     <Route

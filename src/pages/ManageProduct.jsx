@@ -1,9 +1,11 @@
+import { Outlet } from "react-router-dom";
 import AddProductCard from "../components/AddProductCard";
 import CategorySellerCard from "../components/CategorySellerCard";
 import CategorySeller from "../components/CategorySeller";
 import ProductCard from "../components/ProductCard";
 import ProductCardTesting from "../components/ProductCard-testing";
 import ProfileCard from "../components/ProfileCard";
+import AllProduct from "../components/AllProduct";
 
 const ManageProduct = () => {
     return (
@@ -18,14 +20,7 @@ const ManageProduct = () => {
                     <CategorySeller />
                 </div>
                 <div className="flex flex-wrap sm:w-2/3 md:w-3/4 lg:w-4/5 xl:w-5/6">
-                    <AddProductCard />
-                    <ProductCard />
-                    <ProductCardTesting />
-                    <ProductCard />
-                    <ProductCardTesting />
-                    <ProductCard />
-                    <ProductCardTesting />
-                    <ProductCard />
+                    <Outlet />
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { mockapi } from "../../app/api";
+import { mockapi } from "./api";
 
 // register
 export const register = createAsyncThunk(
@@ -60,22 +60,22 @@ export const authSlice = createSlice({
             state.error = action.payload.message;
         },
         // register
-        [register.pending]: (state) => {
-            state.loading = "pending";
-            state.error = "";
-        },
-        [register.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            localStorage.setItem(
-                "profile",
-                JSON.stringify({ ...action.payload })
-            );
-            state.user = action.payload;
-        },
-        [register.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.error = action.payload.message;
-        },
+        // [register.pending]: (state) => {
+        //     state.loading = "pending";
+        //     state.error = "";
+        // },
+        // [register.fulfilled]: (state, action) => {
+        //     state.loading = "idle";
+        //     localStorage.setItem(
+        //         "profile",
+        //         JSON.stringify({ ...action.payload })
+        //     );
+        //     state.user = action.payload;
+        // },
+        // [register.rejected]: (state, action) => {
+        //     state.loading = "idle";
+        //     state.error = action.payload.message;
+        // },
     },
 });
 

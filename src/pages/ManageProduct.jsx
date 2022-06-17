@@ -1,11 +1,7 @@
 import { Outlet } from "react-router-dom";
-import AddProductCard from "../components/AddProductCard";
 import CategorySellerCard from "../components/CategorySellerCard";
 import CategorySeller from "../components/CategorySeller";
-import ProductCard from "../components/ProductCard";
-import ProductCardTesting from "../components/ProductCard-testing";
 import ProfileCard from "../components/ProfileCard";
-import AllProduct from "../components/AllProduct";
 
 const ManageProduct = () => {
     return (

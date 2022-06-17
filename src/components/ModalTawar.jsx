@@ -13,7 +13,7 @@ const Modal = () => {
                             </div>
                             <h3 className="font-medium text-sm">Masukkan Harga Tawarmu</h3>
                             <h3 className="text-neutral-03 text-sm">Harga tawaranmu akan diketahui penual, jika penjual cocok kamu akan segera dihubungi penjual.</h3>
-                            <div className="w-full bg-gray h-fit rounded-2xl shadow-xl">
+                            <div className="w-full bg-gray h-fit rounded-2xl shadow-high">
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-4 p-4">
                                         <img alt="" src="/img/jam-2.png" className="w-12 h-12 rounded-xl" />
@@ -26,9 +26,9 @@ const Modal = () => {
                             </div>
 
                             <div>
-                                <div className="text-xs font-normal">Harga Tawar</div>
+                                <div className="text-xs font-normal pb-1 ">Harga Tawar</div>
                                 <input
-                                        className="w-full py-3 px-4 rounded-2xl border border-neutral-02 focus:outline-none text-neutral-03 text-sm"
+                                        className="w-full py-3 px-4 rounded-2xl border border-neutral-02 focus:outline-none text-neutral-03 shadow-high text-sm"
                                         type="text"
                                         placeholder="Rp 0,00"
                                 />

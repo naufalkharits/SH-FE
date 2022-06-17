@@ -1,17 +1,30 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts, productsSelectors } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
 
 const DetailProduct = () => {
+    const { productId } = useParams();
+    const dispatch = useDispatch();
+    const product = useSelector((state) =>
+        productsSelectors.selectById(state, productId)
+    );
+
+    useEffect(() => {
+        dispatch(fetchProducts);
+    }, [dispatch]);
+
     return (
         <div className="container mx-auto px-4 xl:px-32 2xl:px-64">
-            <div className="m-4 flex flex-col gap-4 sm:flex-row">
+            <div
+                className="m-4 flex flex-col gap-4 sm:flex-row"
+                key={product.id}
+            >
                 <div className="space-y-4 sm:w-2/3 lg:w-3/4">
-                    <img
-                        className="w-full"
-                        src="/img/detail-jam-2.png"
-                        alt=""
-                    />
+                    <img className="w-full" src={product.pictures} alt="" />
                     <div className="hidden space-y-4 rounded-2xl border border-neutral-200 p-4 shadow sm:block">
-                        <div className="font-medium">Deskripsi</div>
+                        <div className="font-medium">{product.description}</div>
                         <p className="text-sm text-neutral-03">
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Tempora nostrum nisi labore nesciunt
@@ -31,9 +44,9 @@ const DetailProduct = () => {
                 <div className="space-y-4 sm:w-1/3 sm:space-y-6 lg:w-1/4">
                     <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-md">
                         <div className="mb-4 space-y-2">
-                            <div>Jam Tangan Casio</div>
+                            <div>{product.name}</div>
                             <div className="text-sm text-neutral-03">
-                                Aksesoris
+                                {product.category}
                             </div>
                         </div>
                         <div className="mb-6">Rp. 250.000</div>

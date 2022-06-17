@@ -73,6 +73,7 @@ const productsSlice = createSlice({
     name: "products",
     initialState: productsAdapter.getInitialState({
         loading: "idle",
+        error: "",
     }),
     reducers: {
         // addProduct: (state, action) => {
@@ -99,41 +100,42 @@ const productsSlice = createSlice({
         // fetch product
         [fetchProducts.pending]: (state) => {
             state.loading = "pending";
+            state.error = "";
         },
         [fetchProducts.fulfilled]: (state, action) => {
             productsAdapter.setAll(state, action.payload.products);
             state.loading = "idle";
         },
-        [fetchProducts.rejected]: (state, action) => {
+        [fetchProducts.rejected]: (state) => {
             state.loading = "idle";
-            console.log("ERROR");
+            state.error = "ERROR";
         },
         // insert product
-        [insertProduct.pending]: (state) => {
-            state.loading = "pending";
-        },
-        [insertProduct.fulfilled]: (state, action) => {
-            productsAdapter.addOne(state, action.payload);
-            state.loading = "idle";
-        },
+        // [insertProduct.pending]: (state) => {
+        //     state.loading = "pending";
+        // },
+        // [insertProduct.fulfilled]: (state, action) => {
+        //     productsAdapter.addOne(state, action.payload);
+        //     state.loading = "idle";
+        // },
         // update product
-        [updateProduct.pending]: (state) => {
-            state.loading = "pending";
-        },
-        [updateProduct.fulfilled]: (state, action) => {
-            productsAdapter.updateOne(state, {
-                id: action.payload.id,
-                updates: action.payload,
-            });
-            state.loading = "idle";
-        },
+        // [updateProduct.pending]: (state) => {
+        //     state.loading = "pending";
+        // },
+        // [updateProduct.fulfilled]: (state, action) => {
+        //     productsAdapter.updateOne(state, {
+        //         id: action.payload.id,
+        //         updates: action.payload,
+        //     });
+        //     state.loading = "idle";
+        // },
         // update product
-        [deleteProduct.pending]: (state) => {
-            state.loading = "pending";
-        },
-        [deleteProduct.fulfilled]: (state, action) => {
-            productsAdapter.removeOne(state, action.payload);
-        },
+        // [deleteProduct.pending]: (state) => {
+        //     state.loading = "pending";
+        // },
+        // [deleteProduct.fulfilled]: (state, action) => {
+        //     productsAdapter.removeOne(state, action.payload);
+        // },
     },
 });
 

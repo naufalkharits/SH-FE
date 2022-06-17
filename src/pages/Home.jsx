@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../redux/productsSlice";
-import CategoryBuyer from "../components/CategoryBuyer";
 import Hero from "../components/Hero";
-import JualButton from "../components/JualButton";
+import CategoryBuyer from "../components/CategoryBuyer";
 import ProductCard from "../components/ProductCard";
-import ProductCardTesting from "../components/ProductCard-testing";
+import JualButton from "../components/JualButton";
+// import ProductCardTesting from "../components/ProductCard-testing";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -25,9 +25,11 @@ const Home = () => {
                 <div className="-m-4 flex flex-wrap">
                     {products.map((product) => (
                         <ProductCard
+                            key={product.id}
                             id={product.id}
                             name={product.name}
                             price={product.price}
+                            pictures={product.pictures[0]}
                         />
                     ))}
                 </div>

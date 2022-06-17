@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ id, name, price }) => {
+const ProductCard = ({ id, name, price, pictures }) => {
     const navigate = useNavigate();
 
     return (
@@ -9,10 +9,10 @@ const ProductCard = ({ id, name, price }) => {
                 className="cursor-pointer space-y-2 rounded-md border border-neutral-200 p-2 shadow-md"
                 key={id}
                 onClick={() => {
-                    navigate("/product/1");
+                    navigate(`/product/${id}`);
                 }}
             >
-                <img className="w-full" src="/img/jam-1.png" alt="" />
+                <img className="w-full" src={pictures} alt="" />
                 <div>
                     <div className="truncate font-medium">{name}</div>
                     <div className="text-sm text-neutral-03">Aksesoris</div>

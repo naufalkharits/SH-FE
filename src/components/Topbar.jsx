@@ -7,7 +7,7 @@ const Topbar = () => {
 
     return (
         <>
-            <nav className="flex bg-white shadow h-[84px] items-center">
+            <nav className="flex bg-white sm:shadow h-[84px] items-center">
                 <div className="container mx-auto flex items-center justify-between p-4">
                     <img
                         className="hidden h-8 cursor-pointer sm:inline"

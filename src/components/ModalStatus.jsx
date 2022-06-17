@@ -27,7 +27,7 @@ const ModalStatus = () => {
                                 <div className="text-sm font-normal text-neutral-03">Kamu membatalkan transaksi produk ini dengan pembeli</div>
                             </div>
                         </div>
-                        <button className="bg-primary-purple-04 w-full h-12 text-white rounded-xl flex justify-center items-center text-sm font-medium">
+                        <button className="bg-primary-purple-04 w-full h-12 text-white rounded-xl flex justify-center items-center text-sm font-medium ">
                             Kirim
                         </button>
                     </div>

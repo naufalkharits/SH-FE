@@ -6,7 +6,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { insertProduct } from "../redux/productsSlice";
 
 const Infoproduk = () => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [price, setPrice] = useState();

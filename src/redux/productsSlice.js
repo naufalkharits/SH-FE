@@ -26,10 +26,14 @@ export const fetchProducts = createAsyncThunk(
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
     async ({ name, price, category, description, pictures }) => {
+        console.log(name);
+        console.log(price);
+        console.log(category);
+        console.log(description);
         console.log(pictures);
 
         // firebase setup
-        const imageRef = ref(storage, "");
+        // const imageRef = ref(storage, "");
 
         // firebase upload
         // await uploadBytes(imageRef, image).then((snapshot) => {

@@ -25,25 +25,27 @@ export const fetchProducts = createAsyncThunk(
 
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async ({ name, price, image }) => {
-        console.log(image);
+    async ({ name, price, category, description, pictures }) => {
+        console.log(pictures);
 
         // firebase setup
         const imageRef = ref(storage, "");
 
         // firebase upload
-        await uploadBytes(imageRef, image).then((snapshot) => {
-            // firebase get uploaded url
-            getDownloadURL(snapshot.ref).then(async (url) => {
-                // upload to database
-                const respone = await server.post("/products", {
-                    name,
-                    price,
-                    image: url,
-                });
-                return respone.data;
-            });
+        // await uploadBytes(imageRef, image).then((snapshot) => {
+        // firebase get uploaded url
+        // getDownloadURL(snapshot.ref).then(async (url) => {
+        // upload to database
+        const respone = await server.post("/product", {
+            name,
+            price,
+            category,
+            description,
+            pictures,
         });
+        return respone.data;
+        // });
+        // });
     }
 );
 

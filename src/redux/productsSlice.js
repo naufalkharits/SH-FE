@@ -8,6 +8,13 @@ import { v4 } from "uuid";
 import { server } from "./api";
 import { storage } from "./firebase";
 
+export const fetchProductById = createAsyncThunk(
+    "products/fetchProductById",
+    async (productId) => {
+        const respone = await server.get(`/product/${productId}`);
+        return respone.data;
+    }
+);
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async () => {
@@ -89,7 +96,20 @@ const productsSlice = createSlice({
         // },
     },
     extraReducers: {
-        // fetch product
+        // fetch productbyid
+        [fetchProductById.pending]: (state) => {
+            state.loading = "pending";
+            state.error = "";
+        },
+        [fetchProductById.fulfilled]: (state, action) => {
+            productsAdapter.setOne(state, action.payload.product);
+            state.loading = "idle";
+        },
+        [fetchProductById.rejected]: (state) => {
+            state.loading = "idle";
+            state.error = "ERROR";
+        },
+        // fetch products
         [fetchProducts.pending]: (state) => {
             state.loading = "pending";
             state.error = "";

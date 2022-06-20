@@ -37,14 +37,14 @@ const Modal = () => {
                         </div>
                     </div>
                     
-                    <button className="bg-primary-purple-04 sm:w-[296px] w-full h-12 text-white rounded-xl flex justify-end items-center space-x-20 pr-5">
-                        <div></div>
-                        <div className="text-sm">Hubungi via Whatsapp</div>
-                        <div><BsWhatsapp /></div>
+                    <button className="bg-primary-purple-04 sm:w-[296px] w-full h-12 text-white rounded-xl flex justify-between items-center">
+                        {/* <div></div> */}
+                        <div className="text-sm w-5/6">Hubungi via Whatsapp</div>
+                        <div className="w-1/6 mx-auto"><BsWhatsapp /></div>
                     </button>
                 </div>
             </div>
-                                    </div>
+            </div>
         </div>
                 
         </>

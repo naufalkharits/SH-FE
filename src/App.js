@@ -17,6 +17,7 @@ import Topbar from "./components/Topbar";
 import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
+import BuyerWishlist from "./pages/BuyerWishlist"
 
 function App() {
     return (
@@ -33,11 +34,9 @@ function App() {
                         <Route path="wishlisted" element={<Wishlisted />} />
                         <Route path="sold" element={<Sold />} />
                     </Route>
+                    <Route path="buyer-wishlist" element={<BuyerWishlist/>}/>
                     <Route path="product/modal" element={<Modal />} />
-                    <Route
-                        path="product/modalstatus"
-                        element={<ModalStatus />}
-                    />
+                    <Route path="product/modalstatus" element={<ModalStatus />}/>
                     <Route path="product/modaltawar" element={<ModalTawar />} />
                 </Route>
                 <Route element={<Topbar />}>

@@ -91,7 +91,7 @@ const Sold = () => {
                 <div className="h-48 w-full">
                     <Line options={options} data={data} />
                 </div>
-                <table className="whitespace-no-wrap w-full table-auto text-left">
+                {/* <table className="whitespace-no-wrap w-full table-auto text-left">
                     <thead>
                         <tr>
                             <th className="title-font text-gray-900 bg-gray-100 rounded-tl rounded-bl px-4 py-3 text-sm font-medium tracking-wider">
@@ -173,7 +173,7 @@ const Sold = () => {
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> */}
             </div>
         </div>
     );

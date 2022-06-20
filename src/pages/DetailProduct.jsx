@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById, productsSelectors } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
+import { AiOutlineHeart } from "react-icons/ai";
 
 const DetailProduct = () => {
     const { productId } = useParams();
@@ -67,6 +68,9 @@ const DetailProduct = () => {
                                 </button>
                             </div>
                             <ProfileCard />
+                            <div className="flex items-center justify-center rounded-2xl border border-neutral-200 p-4 shadow">
+                                <AiOutlineHeart />
+                            </div>
                         </div>
                         <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow sm:hidden">
                             <div className="font-medium">Deskripsi</div>

@@ -3,19 +3,10 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 import { server } from "./api";
-
-export const uploadImage = createAsyncThunk(
-    "products/fetchProducts",
-    async () => {
-        try {
-            const respone = await server.get("/products");
-            return respone.data;
-        } catch (error) {
-            return error;
-        }
-    }
-);
+import { storage } from "./firebase";
 
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
@@ -26,32 +17,33 @@ export const fetchProducts = createAsyncThunk(
 );
 
 export const insertProduct = createAsyncThunk(
-    "products/saveProduct",
-    async ({ name, seat, color, year, price, description, image }) => {
+    "products/insertProduct",
+    async ({ name, price, image }) => {
         console.log(image);
-        const formData = new FormData();
-        formData.append("file", image);
-        formData.append("upload_preset", "nvqdlovn");
-        const respone = await server.post(formData).then(async (respone) => {
-            console.log(respone.data.secure_url);
-            await server.post("/products", {
-                name,
-                seat,
-                color,
-                year,
-                price,
-                description,
-                image: respone.data.secure_url,
+
+        // firebase setup
+        const imageRef = ref(storage, "");
+
+        // firebase upload
+        await uploadBytes(imageRef, image).then((snapshot) => {
+            // firebase get uploaded url
+            getDownloadURL(snapshot.ref).then(async (url) => {
+                // upload to database
+                const respone = await server.post("/products", {
+                    name,
+                    price,
+                    image: url,
+                });
+                return respone.data;
             });
         });
-        return respone.data;
     }
 );
 
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async ({ vehicleId, name, price }) => {
-        const respone = await server.put(`/products/${vehicleId}`, {
+    async ({ productId, name, price }) => {
+        const respone = await server.put(`/products/${productId}`, {
             name,
             price,
         });

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // server
 export const server = axios.create({
-    baseURL: "https://final-project-binar.herokuapp.com",
+    baseURL: process.env.REACT_APP_SERVER_API,
 });
 // mockapi
 export const mockapi = axios.create({

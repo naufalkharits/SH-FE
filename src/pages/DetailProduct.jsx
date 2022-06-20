@@ -12,6 +12,7 @@ const DetailProduct = () => {
     );
 
     useEffect(() => {
+        console.log(productId);
         dispatch(fetchProducts);
     }, [dispatch]);
 

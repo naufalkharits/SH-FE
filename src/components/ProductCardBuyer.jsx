@@ -9,7 +9,7 @@ const ProductCard = ({ id, name, price, pictures }) => {
                 className="cursor-pointer space-y-2 rounded-md border border-neutral-200 p-2 shadow-md"
                 key={id}
                 onClick={() => {
-                    navigate(`/product/${id}`);
+                    navigate(`/buy-product/${id}`);
                 }}
             >
                 <img className="w-full" src={pictures} alt="" />

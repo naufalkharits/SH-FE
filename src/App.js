@@ -18,6 +18,7 @@ import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
 import BuyerWishlist from "./pages/BuyerWishlist"
+import DetailProductBuyer from "./pages/DetailProductBuyer"
 
 function App() {
     return (
@@ -28,6 +29,10 @@ function App() {
                     <Route
                         path="product/:productId"
                         element={<DetailProduct />}
+                    />
+                    <Route
+                        path="buy-product/:productId"
+                        element={<DetailProductBuyer />}
                     />
                     <Route path="manage-product" element={<ManageProduct />}>
                         <Route index element={<AllProduct />} />

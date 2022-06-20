@@ -8,7 +8,7 @@ import ListWishlist from "../components/ListWishlist"
 
 const ManageProduct = () => {
     const dispatch = useDispatch();
-    const products = useSelector(productsSelectors.selectAll);
+    // const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
         dispatch(fetchProducts());

@@ -19,6 +19,7 @@ import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
 import BuyerWishlist from "./pages/BuyerWishlist"
 import DetailProductBuyer from "./pages/DetailProductBuyer"
+import History from "./pages/History";
 
 function App() {
     return (
@@ -40,6 +41,7 @@ function App() {
                         <Route path="sold" element={<Sold />} />
                     </Route>
                     <Route path="buyer-wishlist" element={<BuyerWishlist/>}/>
+                    <Route path="user/history" element={<History />} />
                     <Route path="product/modal" element={<Modal />} />
                     <Route path="product/modalstatus" element={<ModalStatus />}/>
                     <Route path="product/modaltawar" element={<ModalTawar />} />

@@ -8,14 +8,19 @@ const Infoproduk = () => {
   const [category, setCategory] = useState('')
   const [description, setDescription] = useState('')
 
-  console.log(price);
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const data = {name, price, category, description};
+    console.log(data);
+  }
 
   return (
     <div className="flex justify-between w-full md:w-full lg:w-[1024px] mx-auto mt-4 sm:mt-10">
       <div className="hidden sm:block lg:mr-20 sm:ml-10 sm:mr-10">
         <FiArrowLeft className="text-3xl" />
       </div>
-      <form className="space-y-4 px-5 w-full" method="POST" action="/product">
+      <form className="space-y-4 px-5 w-full" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <label className="block">Nama Produk</label>
           <input

@@ -75,9 +75,9 @@ const productsSlice = createSlice({
         error: "",
     }),
     reducers: {
-        // addProduct: (state, action) => {
-        //     state.push(action.payload);
-        // },
+        addProduct: (state, action) => {
+            state.push(action.payload);
+        },
         // editProduct: (state, action) => {
         //     const { id, name, price, image } = action.payload;
         //     const existingVehicle = state.find((product) => product.id === id);
@@ -123,13 +123,13 @@ const productsSlice = createSlice({
             state.error = "ERROR";
         },
         // insert product
-        // [insertProduct.pending]: (state) => {
-        //     state.loading = "pending";
-        // },
-        // [insertProduct.fulfilled]: (state, action) => {
-        //     productsAdapter.addOne(state, action.payload);
-        //     state.loading = "idle";
-        // },
+        [insertProduct.pending]: (state) => {
+            state.loading = "pending";
+        },
+        [insertProduct.fulfilled]: (state, action) => {
+            productsAdapter.addOne(state, action.payload);
+            state.loading = "idle";
+        },
         // update product
         // [updateProduct.pending]: (state) => {
         //     state.loading = "pending";

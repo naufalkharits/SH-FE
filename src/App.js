@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import DetailProduct from "./pages/DetailProduct";
@@ -17,9 +17,10 @@ import Topbar from "./components/Topbar";
 import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
-import BuyerWishlist from "./pages/BuyerWishlist"
 import DetailProductBuyer from "./pages/DetailProductBuyer"
-import History from "./pages/History";
+import UserProfile from "./pages/UserProfile";
+import HistoryTransaksi from "./components/HistoryTransaksi";
+import ListWishlist from "./components/ListWishlist"
 
 function App() {
     return (
@@ -40,10 +41,13 @@ function App() {
                         <Route path="wishlisted" element={<Wishlisted />} />
                         <Route path="sold" element={<Sold />} />
                     </Route>
-                    <Route path="buyer-wishlist" element={<BuyerWishlist/>}/>
-                    <Route path="user/history" element={<History />} />
+                    <Route path="user/profile" element={<UserProfile />}>
+                        <Route index element={<Navigate to={"history"} />} />
+                        <Route path="history" element={<HistoryTransaksi />} />
+                        <Route path="wishlist" element={<ListWishlist />} />
+                    </Route>
                     <Route path="product/modal" element={<Modal />} />
-                    <Route path="product/modalstatus" element={<ModalStatus />}/>
+                    <Route path="product/modalstatus" element={<ModalStatus />} />
                     <Route path="product/modaltawar" element={<ModalTawar />} />
                 </Route>
                 <Route element={<Topbar />}>

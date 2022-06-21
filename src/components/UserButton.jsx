@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { FiLogOut, FiUser } from "react-icons/fi";
+import { FiEdit3, FiLogOut, FiUser } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
@@ -28,16 +29,32 @@ const UserButton = () => {
                     <form method="POST" action="#">
                         <Menu.Item>
                             {({ active }) => (
-                                <button
-                                    type="submit"
-                                    className={classNames(
-                                        active ? "bg-gray" : "",
-                                        "flex w-full items-center justify-center gap-2 p-4"
-                                    )}
-                                >
-                                    <FiLogOut />
-                                    Logout
-                                </button>
+                                <>
+                                    <Link to={"user/profile"}>
+
+                                        <button
+                                            type="submit"
+                                            className={classNames(
+                                                active ? "bg-gray" : "",
+                                                "flex w-full items-center justify-center gap-2 p-4"
+                                            )}
+                                        >
+                                            <FiEdit3 />
+                                            Akun Saya
+                                        </button>
+                                    </Link>
+
+                                    <button
+                                        type="submit"
+                                        className={classNames(
+                                            active ? "bg-gray" : "",
+                                            "flex w-full items-center justify-center gap-2 p-4"
+                                        )}
+                                    >
+                                        <FiLogOut />
+                                        Logout
+                                    </button>
+                                </>
                             )}
                         </Menu.Item>
                     </form>

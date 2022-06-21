@@ -106,6 +106,7 @@ const productsSlice = createSlice({
         [fetchProductById.pending]: (state) => {
             state.loading = "pending";
             state.error = "";
+            productsAdapter.removeAll(state);
         },
         [fetchProductById.fulfilled]: (state, action) => {
             productsAdapter.setOne(state, action.payload.product);

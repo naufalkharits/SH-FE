@@ -17,7 +17,7 @@ const Notification = () => {
                 leaveFrom="transform scale-100 opacity-100"
                 leaveTo="transform scale-95 opacity-0"
             >
-                <Popover.Panel className="absolute right-0 mt-2 w-[32rem] space-y-4 rounded-2xl bg-white p-6 shadow-md ring-1 ring-neutral-02 ring-opacity-20">
+                <Popover.Panel className="absolute right-0 mt-2 w-[32rem] space-y-4 rounded-2xl bg-white p-6 shadow-md ring-1 ring-neutral-02 ring-opacity-20 focus:outline-none">
                     <div className="flex items-start gap-4">
                         <img src="/img/user.png" alt="" />
                         <div className="w-full space-y-1">
@@ -46,6 +46,9 @@ const Notification = () => {
                             <div>Rp 250.000</div>
                             <div>Ditawar Rp 200.000</div>
                         </div>
+                    </div>
+                    <div className="cursor-pointer text-primary-purple-04 hover:text-primary-purple-05">
+                        Lihat Selengkapnya
                     </div>
                 </Popover.Panel>
             </Transition>

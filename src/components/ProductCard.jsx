@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ id, name, price, pictures }) => {
+const ProductCard = ({ id, name, price, category, pictures }) => {
     const navigate = useNavigate();
 
     return (
@@ -15,7 +15,7 @@ const ProductCard = ({ id, name, price, pictures }) => {
                 <img className="w-full" src={pictures} alt="" />
                 <div>
                     <div className="truncate font-medium">{name}</div>
-                    <div className="text-sm text-neutral-03">Aksesoris</div>
+                    <div className="text-sm text-neutral-03">{category}</div>
                 </div>
                 <div>{price}</div>
             </div>

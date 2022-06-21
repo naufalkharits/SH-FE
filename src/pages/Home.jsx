@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../redux/productsSlice";
 import Hero from "../components/Hero";
-import CategoryBuyer from "../components/CategoryBuyer";
 import ProductCard from "../components/ProductCard";
 import JualButton from "../components/JualButton";
+import Category from "../components/Category";
 // import ProductCardTesting from "../components/ProductCard-testing";
 
 const Home = () => {
@@ -19,7 +19,7 @@ const Home = () => {
         <>
             <Hero />
             <div className="container mx-auto p-4">
-                <CategoryBuyer />
+                <Category />
             </div>
             <div className="container mx-auto space-y-4 p-4">
                 <div className="-m-4 flex flex-wrap">
@@ -29,6 +29,7 @@ const Home = () => {
                             id={product.id}
                             name={product.name}
                             price={product.price}
+                            category={product.category}
                             pictures={product.pictures[0]}
                         />
                     ))}

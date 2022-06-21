@@ -28,10 +28,8 @@ const DetailProduct = () => {
                             <Carousel
                                 infiniteLoop
                                 emulateTouch={true}
-                                autoPlay={true}
                                 showThumbs={false}
                                 showStatus={false}
-                                showIndicators={false}
                             >
                                 <img
                                     className="w-full rounded-2xl"

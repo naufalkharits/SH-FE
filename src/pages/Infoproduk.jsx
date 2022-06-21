@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FiPlus, FiChevronDown } from "react-icons/fi";
@@ -8,25 +8,43 @@ import { insertProduct } from "../redux/productsSlice";
 const Infoproduk = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [name, setName] = useState("");
-    const [price, setPrice] = useState();
-    const [category, setCategory] = useState("");
-    const [description, setDescription] = useState("");
-    const [pictures, setPictures] = useState(null);
+    const [formValue, setFormValue] = useState({
+        name: "",
+        price: 0,
+        category: "",
+        description: "",
+    });
+    const [formData, setFormData] = useState("");
+    const { name, price, category, description } = formValue;
 
-    const handleSubmit = (e) => {
+    const onPictChange = (e) => {
+        const file = e.target.files;
+        for (let index of file) {
+            formData.append("pictures", index);
+        }
+    };
+
+    const onFormChange = (e) => {
+        setFormValue({
+            ...formValue,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const onSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(
-            insertProduct({
-                name,
-                price,
-                category,
-                description,
-                pictures,
-            })
-        );
+        formData.set("name", name);
+        formData.set("price", price);
+        formData.set("category", category);
+        formData.set("description", description);
+
+        dispatch(insertProduct(formData));
     };
+
+    useEffect(() => {
+        setFormData(new FormData());
+    }, []);
 
     return (
         <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
@@ -38,15 +56,15 @@ const Infoproduk = () => {
                     }}
                 />
             </div>
-            <form className="w-full space-y-4 px-5" onSubmit={handleSubmit}>
+            <form className="w-full space-y-4 px-5" onSubmit={onSubmit}>
                 <div className="space-y-2">
                     <label className="block">Nama Produk</label>
                     <input
                         className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="text"
                         placeholder="Nama Produk"
-                        id="name"
-                        onChange={(e) => setName(e.target.value)}
+                        name="name"
+                        onChange={onFormChange}
                     />
                 </div>
                 <div className="space-y-2">
@@ -55,8 +73,8 @@ const Infoproduk = () => {
                         className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="number"
                         placeholder="Rp 0,00"
-                        id="price"
-                        onChange={(e) => setPrice(e.target.value)}
+                        name="price"
+                        onChange={onFormChange}
                     />
                 </div>
                 <div className="space-y-2">
@@ -67,8 +85,8 @@ const Infoproduk = () => {
                         </span>
                         <select
                             className=" w-full appearance-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 pr-10 pl-3 focus:outline-none"
-                            id="category"
-                            onChange={(e) => setCategory(e.target.value)}
+                            name="category"
+                            onChange={onFormChange}
                         >
                             <option value="">Pilih Kategori</option>
                             <option value="Automotive">Automotive</option>
@@ -82,12 +100,11 @@ const Infoproduk = () => {
                 <div className="space-y-2">
                     <label className="block">Deskripsi</label>
                     <textarea
-                        id="description"
-                        name=""
+                        name="description"
                         rows="2"
                         className="w-full resize-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         placeholder="Contoh: Jalan Ikan Hiu 33"
-                        onChange={(e) => setDescription(e.target.value)}
+                        onChange={onFormChange}
                     />
                 </div>
                 <div className="space-y-2">
@@ -100,11 +117,10 @@ const Infoproduk = () => {
                             className="hidden h-full w-full"
                             type="file"
                             id="file"
-                            accept="image/png, image/jpeg"
+                            name="pictures"
+                            accept="image/png, image/jpeg, image/jpg"
                             multiple
-                            onChange={(e) => {
-                                setPictures(e.target.files[0]);
-                            }}
+                            onChange={onPictChange}
                         />
                         <FiPlus />
                     </label>

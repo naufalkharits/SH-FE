@@ -25,12 +25,13 @@ export const fetchProducts = createAsyncThunk(
 
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async ({ name, price, category, description, pictures }) => {
-        console.log(name);
-        console.log(price);
-        console.log(category);
-        console.log(description);
-        console.log(pictures);
+    async (formData) => {
+        console.log(formData);
+        // console.log(name);
+        // console.log(price);
+        // console.log(category);
+        // console.log(description);
+        // console.log(pictures);
 
         // firebase setup
         // const imageRef = ref(storage, "");
@@ -40,13 +41,7 @@ export const insertProduct = createAsyncThunk(
         // firebase get uploaded url
         // getDownloadURL(snapshot.ref).then(async (url) => {
         // upload to database
-        const respone = await server.post("/product", {
-            name,
-            price,
-            category,
-            description,
-            pictures,
-        });
+        const respone = await server.post("/product", formData);
         return respone.data;
         // });
         // });
@@ -120,6 +115,7 @@ const productsSlice = createSlice({
         [fetchProducts.pending]: (state) => {
             state.loading = "pending";
             state.error = "";
+            productsAdapter.removeAll(state);
         },
         [fetchProducts.fulfilled]: (state, action) => {
             productsAdapter.setAll(state, action.payload.products);

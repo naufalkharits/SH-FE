@@ -1,15 +1,20 @@
 import {AiOutlineClose} from "react-icons/ai"
 
-const Modal = () => {
+const Modal = ({ setModalOn, setChoice }) => {
+    const handleCancelClick = () => {
+        setChoice(false)
+        setModalOn(false)
+    }
+
     return (
         <>
-        <div className="bg-gray-bg opacity-80 fixed inset-0 ">
+        <div className="bg-gray-bg fixed inset-0 ">
             <div className="flex h-screen justify-center items-center">
                     <div className="sm:w-[360px] w-full sm:mx-auto space-y-4 h-fit bg-neutral-01 rounded-xl">
                         
                         <div className="mx-8 space-y-4 my-6">
                             <div className="flex justify-end">
-                                <AiOutlineClose />
+                                <AiOutlineClose onClick={handleCancelClick}/>
                             </div>
                             <h3 className="font-medium text-sm">Masukkan Harga Tawarmu</h3>
                             <h3 className="text-neutral-03 text-sm">Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu akan segera dihubungi penjual.</h3>

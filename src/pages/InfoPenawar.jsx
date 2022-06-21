@@ -1,8 +1,16 @@
 import React from "react";
 import orang from "../images/orang.png";
 import { FiArrowLeft } from 'react-icons/fi'
+import Modal from "../components/Modal";
+import { useState } from "react";
 
 const InfoPenawar = () => {
+    const [modalOn, setModalOn] = useState(false);
+    const [choice, setChoice] = useState(false)
+
+    const clicked = () => {
+        setModalOn(true)
+    }
     return (
         <div className="flex justify-between w-full md:w-full lg:w-[1024px] mx-auto mt-4 sm:mt-10">
             <div className="hidden sm:block lg:mr-20 sm:ml-10 sm:mr-10">
@@ -35,7 +43,7 @@ const InfoPenawar = () => {
                             <button className="mr-4 w-1/3 rounded-2xl border border-primary-purple-04 py-2">
                                 Tolak
                             </button>
-                            <button className="w-1/3 rounded-2xl bg-primary-purple-04 py-2 text-white">
+                            <button onClick={clicked} className="w-1/3 rounded-2xl bg-primary-purple-04 py-2 text-white">
                                 Terima
                             </button>
                         </div>
@@ -44,7 +52,10 @@ const InfoPenawar = () => {
                 <div className="h-px bg-[#E5E5E5]"></div>
             </div>
             <div className="hidden sm:block h-[30px] w-[30px] lg:ml-20 sm:ml-10 sm:mr-10"></div>
+            {modalOn && < Modal setModalOn={setModalOn} setChoice={setChoice} />}
+
         </div>
+        
     );
 };
 

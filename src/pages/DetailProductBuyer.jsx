@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../redux/productsSlice";
 import ProfileCardBuyer from "../components/ProfileCardBuyer";
 import { AiOutlineHeart } from "react-icons/ai";
+import { useState } from "react";
+import ModalTawar from "../components/ModalTawar";
 
 const DetailProduct = () => {
     const { productId } = useParams();
@@ -15,6 +17,13 @@ const DetailProduct = () => {
     useEffect(() => {
         dispatch(fetchProducts);
     }, [dispatch]);
+
+    const [modalOn, setModalOn] = useState(false);
+    const [choice, setChoice] = useState(false)
+
+    const clicked = () => {
+        setModalOn(true)
+    }
 
     return (
         <div className="container mx-auto px-4 xl:px-32 2xl:px-64">
@@ -51,7 +60,7 @@ const DetailProduct = () => {
                             </div>
                         </div>
                         <div className="mb-6">Rp. 250.000</div>
-                        <button className="mb-4 hidden w-full rounded-2xl text-sm sm:h-[48px] bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
+                        <button onClick={clicked} className="mb-4 hidden w-full rounded-2xl text-sm sm:h-[48px] bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                         Saya tertarik dan ingin nego
                         </button>
                         
@@ -78,6 +87,7 @@ const DetailProduct = () => {
                     </p>
                 </div>
             </div>
+            {modalOn && < ModalTawar setModalOn={setModalOn} setChoice={setChoice} />}
         </div>
     );
 };

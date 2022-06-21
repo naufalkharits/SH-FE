@@ -5,7 +5,7 @@ import { FiPlus, FiChevronDown } from "react-icons/fi";
 import { FiArrowLeft } from "react-icons/fi";
 import { insertProduct } from "../redux/productsSlice";
 
-const Infoproduk = () => {
+const AddProduct = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [formValue, setFormValue] = useState({
@@ -15,7 +15,6 @@ const Infoproduk = () => {
         description: "",
     });
     const [formData, setFormData] = useState("");
-    const { name, price, category, description } = formValue;
 
     const onPictChange = (e) => {
         const file = e.target.files;
@@ -34,12 +33,14 @@ const Infoproduk = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        formData.set("name", name);
-        formData.set("price", price);
-        formData.set("category", category);
-        formData.set("description", description);
+        formData.set("name", formValue.name);
+        formData.set("price", formValue.price);
+        formData.set("category", formValue.category);
+        formData.set("description", formValue.description);
 
         dispatch(insertProduct(formData));
+
+        navigate("/manage-product");
     };
 
     useEffect(() => {
@@ -139,4 +140,4 @@ const Infoproduk = () => {
     );
 };
 
-export default Infoproduk;
+export default AddProduct;

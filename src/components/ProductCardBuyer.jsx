@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const ProductCard = ({ id, name, price, pictures }) => {
+const ProductCardBuyer = ({ id, name, price, pictures }) => {
     const navigate = useNavigate();
 
     return (
@@ -18,12 +18,12 @@ const ProductCard = ({ id, name, price, pictures }) => {
                     <div className="text-sm text-neutral-03">Aksesoris</div>
                 </div>
                 <div>{price}</div>
-                <button className="bg-primary-purple-04 w-full h-12 text-white rounded-xl flex justify-center items-center text-sm font-medium ">
-                Beli
+                <button className="flex h-12 w-full items-center justify-center rounded-xl bg-primary-purple-04 text-sm font-medium text-white ">
+                    Beli
                 </button>
             </div>
         </div>
     );
 };
 
-export default ProductCard;
+export default ProductCardBuyer;

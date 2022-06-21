@@ -109,6 +109,7 @@ const productsSlice = createSlice({
         // insert product
         [insertProduct.pending]: (state) => {
             state.loading = "pending";
+            productsAdapter.removeAll(state);
         },
         [insertProduct.fulfilled]: (state, action) => {
             productsAdapter.addOne(state, action.payload);

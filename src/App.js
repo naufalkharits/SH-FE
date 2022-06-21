@@ -9,7 +9,7 @@ import ModalTawar from "./components/ModalTawar";
 import Auth from "./layouts/Auth";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Infoproduk from "./pages/Infoproduk";
+import AddProduct from "./pages/AddProduct";
 import InfoProfil from "./pages/InfoProfil";
 import ManageProduct from "./pages/ManageProduct";
 import InfoPenawar from "./pages/InfoPenawar";
@@ -17,10 +17,10 @@ import Topbar from "./components/Topbar";
 import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
-import DetailProductBuyer from "./pages/DetailProductBuyer"
+import DetailProductBuyer from "./pages/DetailProductBuyer";
 import UserProfile from "./pages/UserProfile";
 import HistoryTransaksi from "./components/HistoryTransaksi";
-import ListWishlist from "./components/ListWishlist"
+import ListWishlist from "./components/ListWishlist";
 
 function App() {
     return (
@@ -47,13 +47,19 @@ function App() {
                         <Route path="wishlist" element={<ListWishlist />} />
                     </Route>
                     <Route path="product/modal" element={<Modal />} />
-                    <Route path="product/modalstatus" element={<ModalStatus />} />
+                    <Route
+                        path="product/modalstatus"
+                        element={<ModalStatus />}
+                    />
                     <Route path="product/modaltawar" element={<ModalTawar />} />
                 </Route>
                 <Route element={<Topbar />}>
-                    <Route path="product/add" element={<Infoproduk />} />
-                    <Route path="user/add" element={<InfoProfil />} />
-                    <Route path="user/infopenawar" element={<InfoPenawar />} />
+                    <Route
+                        path="/manage-product/add"
+                        element={<AddProduct />}
+                    />
+                    <Route path="/user/add" element={<InfoProfil />} />
+                    <Route path="/user/infopenawar" element={<InfoPenawar />} />
                 </Route>
                 <Route element={<Auth />}>
                     <Route path="/login" element={<Login />} />

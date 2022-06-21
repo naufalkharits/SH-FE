@@ -6,7 +6,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { insertProduct } from "../redux/productsSlice";
 
 const Infoproduk = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [name, setName] = useState("");
     const [price, setPrice] = useState();
@@ -31,7 +31,12 @@ const Infoproduk = () => {
     return (
         <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
             <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
-                <FiArrowLeft className="text-3xl" />
+                <FiArrowLeft
+                    className="cursor-pointer text-3xl"
+                    onClick={() => {
+                        navigate(-1);
+                    }}
+                />
             </div>
             <form className="w-full space-y-4 px-5" onSubmit={handleSubmit}>
                 <div className="space-y-2">
@@ -88,7 +93,7 @@ const Infoproduk = () => {
                 <div className="space-y-2">
                     <label className="block">Foto Produk</label>
                     <label
-                        className="flex h-24 w-24 items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
+                        className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
                         htmlFor="file"
                     >
                         <input
@@ -105,10 +110,10 @@ const Infoproduk = () => {
                     </label>
                 </div>
                 <div className="flex justify-between">
-                    <button className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04  py-3 font-medium">
+                    <button className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04 py-3 font-medium hover:bg-primary-purple-05 hover:text-white">
                         Preview
                     </button>
-                    <button className="sm:w-74 w-[48%] rounded-xl bg-primary-purple-04 py-3 font-medium text-white">
+                    <button className="sm:w-74 w-[48%] rounded-xl bg-primary-purple-04 py-3 font-medium text-white hover:bg-primary-purple-05">
                         Terbitkan
                     </button>
                 </div>

@@ -21,6 +21,7 @@ import DetailProductBuyer from "./pages/DetailProductBuyer";
 import UserProfile from "./pages/UserProfile";
 import HistoryTransaksi from "./components/HistoryTransaksi";
 import ListWishlist from "./components/ListWishlist";
+import EditProduct from "./pages/EditProduct";
 
 function App() {
     return (
@@ -57,6 +58,10 @@ function App() {
                     <Route
                         path="/manage-product/add"
                         element={<AddProduct />}
+                    />
+                    <Route
+                        path="/manage-product/edit/:productId"
+                        element={<EditProduct />}
                     />
                     <Route path="/user/add" element={<InfoProfil />} />
                     <Route path="/user/infopenawar" element={<InfoPenawar />} />

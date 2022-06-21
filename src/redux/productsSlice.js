@@ -31,11 +31,8 @@ export const insertProduct = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async ({ productId, name, price }) => {
-        const respone = await server.put(`/products/${productId}`, {
-            name,
-            price,
-        });
+    async (productId, formData) => {
+        const respone = await server.put(`/product/${productId}`, formData);
         return respone.data;
     }
 );
@@ -85,8 +82,8 @@ const productsSlice = createSlice({
             productsAdapter.removeAll(state);
         },
         [fetchProductById.fulfilled]: (state, action) => {
-            productsAdapter.setOne(state, action.payload.product);
             state.loading = "idle";
+            productsAdapter.setOne(state, action.payload.product);
         },
         [fetchProductById.rejected]: (state) => {
             state.loading = "idle";
@@ -99,8 +96,8 @@ const productsSlice = createSlice({
             productsAdapter.removeAll(state);
         },
         [fetchProducts.fulfilled]: (state, action) => {
-            productsAdapter.setAll(state, action.payload.products);
             state.loading = "idle";
+            productsAdapter.setAll(state, action.payload.products);
         },
         [fetchProducts.rejected]: (state) => {
             state.loading = "idle";
@@ -112,8 +109,8 @@ const productsSlice = createSlice({
             productsAdapter.removeAll(state);
         },
         [insertProduct.fulfilled]: (state, action) => {
-            productsAdapter.addOne(state, action.payload);
             state.loading = "idle";
+            productsAdapter.addOne(state, action.payload);
         },
         // update product
         // [updateProduct.pending]: (state) => {

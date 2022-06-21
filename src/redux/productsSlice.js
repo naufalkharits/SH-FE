@@ -3,10 +3,7 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { v4 } from "uuid";
 import { server } from "./api";
-import { storage } from "./firebase";
 
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
@@ -27,24 +24,8 @@ export const insertProduct = createAsyncThunk(
     "products/insertProduct",
     async (formData) => {
         console.log(formData);
-        // console.log(name);
-        // console.log(price);
-        // console.log(category);
-        // console.log(description);
-        // console.log(pictures);
-
-        // firebase setup
-        // const imageRef = ref(storage, "");
-
-        // firebase upload
-        // await uploadBytes(imageRef, image).then((snapshot) => {
-        // firebase get uploaded url
-        // getDownloadURL(snapshot.ref).then(async (url) => {
-        // upload to database
         const respone = await server.post("/product", formData);
         return respone.data;
-        // });
-        // });
     }
 );
 

@@ -11,7 +11,6 @@ const DetailProduct = () => {
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        console.log(products);
         dispatch(fetchProductById(productId));
     }, [dispatch]);
 

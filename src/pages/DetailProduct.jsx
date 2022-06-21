@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 import { fetchProductById, productsSelectors } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -23,11 +25,30 @@ const DetailProduct = () => {
                 >
                     <div className="m-4 flex flex-col gap-4 sm:flex-row">
                         <div className="space-y-4 sm:w-2/3 lg:w-3/4">
-                            <img
-                                className="w-full"
-                                src={product.pictures}
-                                alt=""
-                            />
+                            <Carousel
+                                infiniteLoop
+                                emulateTouch={true}
+                                autoPlay={true}
+                                showThumbs={false}
+                                showStatus={false}
+                                showIndicators={false}
+                            >
+                                <img
+                                    className="w-full rounded-2xl"
+                                    src={product.pictures[0]}
+                                    alt=""
+                                />
+                                <img
+                                    className="w-full rounded-2xl"
+                                    src={product.pictures[1]}
+                                    alt=""
+                                />
+                                <img
+                                    className="w-full rounded-2xl"
+                                    src={product.pictures[2]}
+                                    alt=""
+                                />
+                            </Carousel>
                             <div className="hidden space-y-4 rounded-2xl border border-neutral-200 p-4 shadow sm:block">
                                 <div className="font-medium">
                                     {product.description}

@@ -31,12 +31,12 @@ const Hero = () => {
             <div className="my-4 sm:hidden">
                 <Carousel
                     infiniteLoop
-                    // centerMode={true}
-                    // centerSlidePercentage={60}
+                    emulateTouch={true}
                     autoPlay={true}
                     showArrows={false}
                     showThumbs={false}
                     showStatus={false}
+                    showIndicators={false}
                 >
                     <img className="px-4" src={banner1} alt="" />
                     <img className="px-4" src={banner2} alt="" />

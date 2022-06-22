@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../redux/productsSlice";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
-import JualButton from "../components/JualButton";
+import SellButton from "../components/SellButton";
 import Category from "../components/Category";
 // import ProductCardTesting from "../components/ProductCard-testing";
 
@@ -35,7 +35,7 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-            <JualButton />
+            <SellButton />
         </>
     );
 };

@@ -22,6 +22,7 @@ import UserProfile from "./pages/UserProfile";
 import HistoryTransaksi from "./components/HistoryTransaksi";
 import ListWishlist from "./components/ListWishlist";
 import EditProduct from "./pages/EditProduct";
+import Notification from "./pages/Notification";
 
 function App() {
     return (
@@ -54,6 +55,7 @@ function App() {
                     />
                     <Route path="product/modaltawar" element={<ModalTawar />} />
                 </Route>
+                <Route path="/notification" element={<Notification />} />
                 <Route element={<Topbar />}>
                     <Route
                         path="/manage-product/add"

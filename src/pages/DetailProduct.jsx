@@ -22,10 +22,10 @@ const DetailProduct = () => {
     return (
         <>
             <div
-                className="container mx-auto px-4 xl:px-32 2xl:px-64"
+                className="container mx-auto p-4 xl:px-32 2xl:px-64"
                 key={product?.id}
             >
-                <div className="m-4 flex flex-col gap-4 sm:flex-row">
+                <div className="flex flex-col gap-4 sm:flex-row">
                     <div className="space-y-4 sm:w-2/3 lg:w-3/4">
                         <Carousel
                             infiniteLoop

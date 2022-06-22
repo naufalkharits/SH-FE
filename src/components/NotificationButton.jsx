@@ -1,8 +1,9 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import { FiBell } from "react-icons/fi";
 
-const Notification = () => {
+const NotificationButton = () => {
     return (
         <Popover className="relative z-10 hidden sm:inline-block">
             <Popover.Button className="flex justify-center focus:outline-none">
@@ -47,13 +48,16 @@ const Notification = () => {
                             <div>Ditawar Rp 200.000</div>
                         </div>
                     </div>
-                    <div className="cursor-pointer text-primary-purple-04 hover:text-primary-purple-05">
+                    <Link
+                        to="/notification"
+                        className="inline-block cursor-pointer text-primary-purple-04 hover:text-primary-purple-05"
+                    >
                         Lihat Selengkapnya
-                    </div>
+                    </Link>
                 </Popover.Panel>
             </Transition>
         </Popover>
     );
 };
 
-export default Notification;
+export default NotificationButton;

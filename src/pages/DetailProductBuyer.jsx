@@ -27,13 +27,13 @@ const DetailProductBuyer = () => {
 
     return (
         <div
-            className="container mx-auto px-4 xl:px-32 2xl:px-64"
+            className="container mx-auto p-4 xl:px-32 2xl:px-64"
             key={product?.id}
         >
-            <div className="m-4 flex flex-col gap-4 sm:flex-row">
-                <div className="space-y-4 sm:w-2/3 lg:w-3/4">
+            <div className="flex flex-col gap-4 sm:flex-row">
+                <div className="space-y-4 sm:w-3/5 md:w-2/3 lg:w-3/4">
                     <img className="w-full" src={product?.pictures} alt="" />
-                    <div className="hidden space-y-4 rounded-2xl border border-neutral-200 p-4 shadow sm:block">
+                    <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                         <div className="font-medium">Deskripsi</div>
                         <p className="text-sm text-neutral-03">
                             {product?.description}
@@ -47,28 +47,28 @@ const DetailProductBuyer = () => {
                         </p>
                     </div>
                 </div>
-                <div className="space-y-4 sm:w-1/3 sm:space-y-6 lg:w-1/4">
-                    <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-md">
+                <div className="space-y-4 sm:w-2/5 sm:space-y-6 md:w-1/3 lg:w-1/4">
+                    <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                         <div className="mb-4 space-y-2">
                             <div>{product?.name}</div>
                             <div className="text-sm text-neutral-03">
                                 {product?.category}
                             </div>
                         </div>
-                        <div className="mb-6">Rp. 250.000</div>
+                        <div className="mb-6">{product?.price}</div>
                         <button
                             onClick={clicked}
-                            className="mb-4 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-sm text-white hover:bg-primary-purple-05 sm:block sm:h-[48px]"
+                            className="hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
                         >
                             Saya tertarik dan ingin nego
                         </button>
                     </div>
                     <ProfileCardBuyer />
-                    <div className="flex items-center justify-center rounded-2xl border border-neutral-200 p-4 shadow">
+                    <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                         <AiOutlineHeart />
                     </div>
                 </div>
-                <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow sm:hidden">
+                <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:hidden">
                     <div className="font-medium">Deskripsi</div>
                     <p className="text-sm text-neutral-03">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.

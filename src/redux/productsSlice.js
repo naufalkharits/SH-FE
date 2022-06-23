@@ -22,9 +22,12 @@ export const fetchProducts = createAsyncThunk(
 
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async (formData) => {
+    async (formData, category) => {
         console.log(formData);
-        const respone = await server.post("/product", formData);
+        const respone = await server.post(
+            `/product?category=${category}`,
+            formData
+        );
         return respone.data;
     }
 );
@@ -52,10 +55,12 @@ const productsSlice = createSlice({
     initialState: productsAdapter.getInitialState({
         loading: "idle",
         error: "",
+        keyword: "",
+        category: "",
     }),
     reducers: {
-        addProduct: (state, action) => {
-            state.push(action.payload);
+        categoryQuery: (state, action) => {
+            state.category = action.payload;
         },
         // editProduct: (state, action) => {
         //     const { id, name, price, image } = action.payload;
@@ -136,5 +141,7 @@ const productsSlice = createSlice({
 export const productsSelectors = productsAdapter.getSelectors(
     (state) => state.products
 );
+
+export const { categoryQuery } = productsSlice.actions;
 
 export default productsSlice.reducer;

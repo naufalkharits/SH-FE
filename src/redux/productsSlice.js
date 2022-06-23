@@ -42,7 +42,7 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async (id) => {
-        await server.delete(`/products/${id}`);
+        await server.delete(`/product/${id}`);
         return id;
     }
 );
@@ -120,23 +120,23 @@ const productsSlice = createSlice({
             productsAdapter.addOne(state, action.payload);
         },
         // update product
-        // [updateProduct.pending]: (state) => {
-        //     state.loading = "pending";
-        // },
-        // [updateProduct.fulfilled]: (state, action) => {
-        //     productsAdapter.updateOne(state, {
-        //         id: action.payload.id,
-        //         updates: action.payload,
-        //     });
-        //     state.loading = "idle";
-        // },
-        // update product
-        // [deleteProduct.pending]: (state) => {
-        //     state.loading = "pending";
-        // },
-        // [deleteProduct.fulfilled]: (state, action) => {
-        //     productsAdapter.removeOne(state, action.payload);
-        // },
+        [updateProduct.pending]: (state) => {
+            state.loading = "pending";
+        },
+        [updateProduct.fulfilled]: (state, action) => {
+            productsAdapter.updateOne(state, {
+                id: action.payload.id,
+                updates: action.payload,
+            });
+            state.loading = "idle";
+        },
+        // delete product
+        [deleteProduct.pending]: (state) => {
+            state.loading = "pending";
+        },
+        [deleteProduct.fulfilled]: (state, action) => {
+            productsAdapter.removeOne(state, action.payload);
+        },
     },
 });
 

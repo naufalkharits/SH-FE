@@ -48,8 +48,10 @@ const EditProduct = () => {
 
         dispatch(updateProduct(productId, formData));
 
-        navigate("/manage-product");
+        // navigate("/manage-product");
     };
+
+    console.log(formValue); 
 
     useEffect(() => {
         setFormData(new FormData());
@@ -75,9 +77,8 @@ const EditProduct = () => {
                     <input
                         className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="text"
-                        placeholder="Nama Produk"
+                        placeholder={product?.name}
                         name="name"
-                        value={product?.name}
                         onChange={onFormChange}
                     />
                 </div>
@@ -86,9 +87,8 @@ const EditProduct = () => {
                     <input
                         className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="number"
-                        placeholder="Rp 0,00"
+                        placeholder={product?.price}
                         name="price"
-                        value={product?.price}
                         onChange={onFormChange}
                     />
                 </div>
@@ -118,8 +118,7 @@ const EditProduct = () => {
                         name="description"
                         rows="2"
                         className="w-full resize-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
-                        placeholder="Contoh: Jalan Ikan Hiu 33"
-                        value={product?.description}
+                        placeholder={product?.description}
                         onChange={onFormChange}
                     />
                 </div>

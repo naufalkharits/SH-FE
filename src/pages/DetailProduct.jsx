@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { fetchProductById, productsSelectors } from "../redux/productsSlice";
+import { deleteProduct, fetchProductById, productsSelectors } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
 import { AiOutlineHeart } from "react-icons/ai";
 
@@ -14,6 +14,14 @@ const DetailProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+
+        dispatch(deleteProduct(productId))
+
+        navigate("/manage-product");
+    }
 
     useEffect(() => {
         dispatch(fetchProductById(productId));
@@ -76,7 +84,7 @@ const DetailProduct = () => {
                                 Terbitkan
                             </button>
                             <button
-                                className="hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
+                                className="mb-4 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
                                 onClick={() => {
                                     navigate(
                                         `/manage-product/edit/${product?.id}`
@@ -84,6 +92,11 @@ const DetailProduct = () => {
                                 }}
                             >
                                 Edit
+                            </button>
+                            <button
+                                className="hidden w-full rounded-2xl bg-alert-danger p-2 text-white hover:bg-red-700 sm:block"
+                                onClick={handleDelete}>
+                                Delete
                             </button>
                         </div>
                         <ProfileCard />

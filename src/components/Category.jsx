@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ScrollingCarousel } from "@trendyol-js/react-carousel";
 import { categoryQuery } from "../redux/productsSlice";
 import { FiSearch } from "react-icons/fi";
 
 const Category = () => {
     const dispatch = useDispatch();
+    const { category } = useSelector((state) => state.products);
     const onClick = (query) => dispatch(categoryQuery(query));
 
     return (
@@ -12,14 +13,24 @@ const Category = () => {
             <div className="mb-4 font-bold">Telusuri Kategori</div>
             <ScrollingCarousel>
                 <div
-                    className="flex items-center gap-2 rounded-xl bg-primary-purple-04 py-3 px-6 text-white"
-                    onClick={() => onClick("")}
+                    className={`${
+                        category === ""
+                            ? "bg-primary-purple-04 text-white "
+                            : "bg-primary-purple-01 "
+                    }flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                    onClick={() => {
+                        onClick("");
+                    }}
                 >
                     <FiSearch />
                     <span>Semua</span>
                 </div>
                 <div
-                    className="ml-4 flex cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
+                    className={`${
+                        category === "Hobi"
+                            ? "bg-primary-purple-04 text-white "
+                            : "bg-primary-purple-01 "
+                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Hobi");
                     }}
@@ -28,7 +39,11 @@ const Category = () => {
                     <span>Hobi</span>
                 </div>
                 <div
-                    className="ml-4 flex cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
+                    className={`${
+                        category === "Kendaraan"
+                            ? "bg-primary-purple-04 text-white "
+                            : "bg-primary-purple-01 "
+                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Kendaraan");
                     }}
@@ -37,7 +52,11 @@ const Category = () => {
                     <span>Kendaraan</span>
                 </div>
                 <div
-                    className="ml-4 flex cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
+                    className={`${
+                        category === "Baju"
+                            ? "bg-primary-purple-04 text-white "
+                            : "bg-primary-purple-01 "
+                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Baju");
                     }}
@@ -46,7 +65,11 @@ const Category = () => {
                     <span>Baju</span>
                 </div>
                 <div
-                    className="ml-4 flex cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
+                    className={`${
+                        category === "Elektronik"
+                            ? "bg-primary-purple-04 text-white "
+                            : "bg-primary-purple-01 "
+                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Elektronik");
                     }}
@@ -55,7 +78,11 @@ const Category = () => {
                     <span>Elektronik</span>
                 </div>
                 <div
-                    className="ml-4 flex cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
+                    className={`${
+                        category === "Kesehatan"
+                            ? "bg-primary-purple-04 text-white "
+                            : "bg-primary-purple-01 "
+                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Kesehatan");
                     }}

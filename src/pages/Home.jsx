@@ -9,11 +9,12 @@ import Category from "../components/Category";
 
 const Home = () => {
     const dispatch = useDispatch();
+    const { category } = useSelector((state) => state.products);
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+        dispatch(fetchProducts(category));
+    }, [category, dispatch]);
 
     return (
         <>

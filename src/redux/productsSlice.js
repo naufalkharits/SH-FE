@@ -14,20 +14,17 @@ export const fetchProductById = createAsyncThunk(
 );
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
-    async () => {
-        const respone = await server.get("/product");
+    async (category) => {
+        const respone = await server.get(`/product?category=${category}`);
         return respone.data;
     }
 );
 
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async (formData, category) => {
+    async (formData) => {
         console.log(formData);
-        const respone = await server.post(
-            `/product?category=${category}`,
-            formData
-        );
+        const respone = await server.post("/product", formData);
         return respone.data;
     }
 );

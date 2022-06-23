@@ -27,29 +27,29 @@ const Category = () => {
                 </div>
                 <div
                     className={`${
-                        category === "Hobi"
+                        category === "Automotive"
                             ? "bg-primary-purple-04 text-white "
                             : "bg-primary-purple-01 "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
-                        onClick("Hobi");
+                        onClick("Automotive");
                     }}
                 >
                     <FiSearch />
-                    <span>Hobi</span>
+                    <span>Automotive</span>
                 </div>
                 <div
                     className={`${
-                        category === "Kendaraan"
+                        category === "Property"
                             ? "bg-primary-purple-04 text-white "
                             : "bg-primary-purple-01 "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
-                        onClick("Kendaraan");
+                        onClick("Property");
                     }}
                 >
                     <FiSearch />
-                    <span>Kendaraan</span>
+                    <span>Property</span>
                 </div>
                 <div
                     className={`${
@@ -66,29 +66,42 @@ const Category = () => {
                 </div>
                 <div
                     className={`${
-                        category === "Elektronik"
+                        category === "Electronic"
                             ? "bg-primary-purple-04 text-white "
                             : "bg-primary-purple-01 "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
-                        onClick("Elektronik");
+                        onClick("Electronic");
                     }}
                 >
                     <FiSearch />
-                    <span>Elektronik</span>
+                    <span>Electronic</span>
                 </div>
                 <div
                     className={`${
-                        category === "Kesehatan"
+                        category === "Sport"
                             ? "bg-primary-purple-04 text-white "
                             : "bg-primary-purple-01 "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
-                        onClick("Kesehatan");
+                        onClick("Sport");
                     }}
                 >
                     <FiSearch />
-                    <span>Kesehatan</span>
+                    <span>Sport</span>
+                </div>
+                <div
+                    className={`${
+                        category === "Office"
+                            ? "bg-primary-purple-04 text-white "
+                            : "bg-primary-purple-01 "
+                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                    onClick={() => {
+                        onClick("Office");
+                    }}
+                >
+                    <FiSearch />
+                    <span>Office</span>
                 </div>
             </ScrollingCarousel>
         </>

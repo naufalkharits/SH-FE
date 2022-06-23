@@ -12,7 +12,7 @@ const UserButton = () => {
         <Menu as="div" className="relative z-10 hidden sm:inline-block">
             <div>
                 <Menu.Button className="flex justify-center">
-                    <FiUser className="h-6 w-6" />
+                    <FiUser className="h-6 w-6 hover:text-primary-purple-05" />
                 </Menu.Button>
             </div>
 
@@ -27,33 +27,35 @@ const UserButton = () => {
             >
                 <Menu.Items className="absolute right-0 mt-2 w-56 overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-neutral-02 ring-opacity-20">
                     <form method="POST" action="#">
-                        <Menu.Item>
+                        <Menu.Item as="div" className="space-y-4 p-4">
                             {({ active }) => (
                                 <>
-                                    <Link to={"user/profile"}>
-
-                                        <button
-                                            type="submit"
-                                            className={classNames(
-                                                active ? "bg-gray" : "",
-                                                "flex w-full items-center justify-center gap-2 p-4"
-                                            )}
-                                        >
-                                            <FiEdit3 />
-                                            Akun Saya
-                                        </button>
-                                    </Link>
-
-                                    <button
+                                    <Link
+                                        to="/user/profile"
                                         type="submit"
                                         className={classNames(
-                                            active ? "bg-gray" : "",
-                                            "flex w-full items-center justify-center gap-2 p-4"
+                                            active
+                                                ? "hover:text-primary-purple-05"
+                                                : "",
+                                            "flex w-full items-center justify-center gap-2"
+                                        )}
+                                    >
+                                        <FiEdit3 />
+                                        Akun Saya
+                                    </Link>
+                                    <Link
+                                        to=""
+                                        type="submit"
+                                        className={classNames(
+                                            active
+                                                ? "hover:text-primary-purple-05"
+                                                : "",
+                                            "flex w-full items-center justify-center gap-2"
                                         )}
                                     >
                                         <FiLogOut />
                                         Logout
-                                    </button>
+                                    </Link>
                                 </>
                             )}
                         </Menu.Item>

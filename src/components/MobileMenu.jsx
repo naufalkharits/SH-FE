@@ -38,6 +38,29 @@ const MobileMenu = () => {
                                 </Popover.Button>
                             </div>
                             <Search />
+                            <div className="mt-4 space-y-1 font-medium">
+                                <Link
+                                    to="/notification"
+                                    className="block rounded-md p-2 hover:bg-gray"
+                                    href="#"
+                                >
+                                    Notifikasi
+                                </Link>
+                                <Link
+                                    to="/manage-product"
+                                    className="block rounded-md p-2 hover:bg-gray"
+                                    href="#"
+                                >
+                                    Daftar Jual
+                                </Link>
+                                <Link
+                                    to="/user/profile"
+                                    className="block rounded-md p-2 hover:bg-gray"
+                                    href="#"
+                                >
+                                    Akun Saya
+                                </Link>
+                            </div>
                         </div>
                         <Link
                             to="/login"

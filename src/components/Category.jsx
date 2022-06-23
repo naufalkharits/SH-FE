@@ -15,8 +15,8 @@ const Category = () => {
                 <div
                     className={`${
                         category === ""
-                            ? "bg-primary-purple-04 text-white "
-                            : "bg-primary-purple-01 "
+                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
+                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
                     }flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("");
@@ -28,8 +28,8 @@ const Category = () => {
                 <div
                     className={`${
                         category === "Automotive"
-                            ? "bg-primary-purple-04 text-white "
-                            : "bg-primary-purple-01 "
+                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
+                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Automotive");
@@ -41,8 +41,8 @@ const Category = () => {
                 <div
                     className={`${
                         category === "Property"
-                            ? "bg-primary-purple-04 text-white "
-                            : "bg-primary-purple-01 "
+                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
+                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Property");
@@ -54,8 +54,8 @@ const Category = () => {
                 <div
                     className={`${
                         category === "Electronic"
-                            ? "bg-primary-purple-04 text-white "
-                            : "bg-primary-purple-01 "
+                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
+                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Electronic");
@@ -67,8 +67,8 @@ const Category = () => {
                 <div
                     className={`${
                         category === "Sport"
-                            ? "bg-primary-purple-04 text-white "
-                            : "bg-primary-purple-01 "
+                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
+                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Sport");
@@ -80,8 +80,8 @@ const Category = () => {
                 <div
                     className={`${
                         category === "Office"
-                            ? "bg-primary-purple-04 text-white "
-                            : "bg-primary-purple-01 "
+                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
+                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
                     }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
                     onClick={() => {
                         onClick("Office");

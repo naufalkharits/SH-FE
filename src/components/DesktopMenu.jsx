@@ -23,7 +23,12 @@ const DesktopMenu = () => {
                 <Search />
             </div>
             <div className="flex items-center gap-6">
-                <FiList className="hidden h-6 w-6 text-primary-purple-04 sm:block" />
+                <FiList
+                    className="hidden h-6 w-6 cursor-pointer hover:text-primary-purple-05 sm:block"
+                    onClick={() => {
+                        navigate("/manage-product");
+                    }}
+                />
                 <NotificationButton />
                 <UserButton />
                 <Link

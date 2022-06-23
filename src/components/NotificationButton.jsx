@@ -7,7 +7,7 @@ const NotificationButton = () => {
     return (
         <Popover className="relative z-10 hidden sm:inline-block">
             <Popover.Button className="flex justify-center focus:outline-none">
-                <FiBell className="h-6 w-6 text-primary-purple-04" />
+                <FiBell className="h-6 w-6 hover:text-primary-purple-05" />
             </Popover.Button>
             <Transition
                 as={Fragment}

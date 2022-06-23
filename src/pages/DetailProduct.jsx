@@ -1,9 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import { deleteProduct, fetchProductById, productsSelectors } from "../redux/productsSlice";
+import {
+    deleteProduct,
+    fetchProductById,
+    productsSelectors,
+} from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
 import { AiOutlineHeart } from "react-icons/ai";
 
@@ -14,24 +18,42 @@ const DetailProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
+    const [formValue, setFormValue] = useState({
+        name: "",
+        price: 0,
+        category: "",
+        description: "",
+        pictures: [],
+    });
 
     const handleDelete = (e) => {
         e.preventDefault();
 
-        dispatch(deleteProduct(productId))
+        dispatch(deleteProduct(productId));
 
         navigate("/manage-product");
-    }
+    };
 
     useEffect(() => {
         dispatch(fetchProductById(productId));
     }, [productId, dispatch]);
 
+    useEffect(() => {
+        product &&
+            setFormValue({
+                name: product.name,
+                price: product.price,
+                category: product.category,
+                description: product.description,
+                pictures: product.pictures,
+            });
+    }, [product]);
+
     return (
         <>
             <div
                 className="container mx-auto p-4 xl:px-32 2xl:px-64"
-                key={product?.id}
+                key={formValue.productId}
             >
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <div className="space-y-4 sm:w-2/3 lg:w-3/4">
@@ -43,24 +65,24 @@ const DetailProduct = () => {
                         >
                             <img
                                 className="w-full rounded-2xl"
-                                src={product?.pictures[0]}
+                                src={formValue.pictures[0]}
                                 alt=""
                             />
                             <img
                                 className="w-full rounded-2xl"
-                                src={product?.pictures[1]}
+                                src={formValue.pictures[1]}
                                 alt=""
                             />
                             <img
                                 className="w-full rounded-2xl"
-                                src={product?.pictures[2]}
+                                src={formValue.pictures[2]}
                                 alt=""
                             />
                         </Carousel>
                         <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                             <div className="font-medium">Deskripsi</div>
                             <p className="text-sm text-neutral-03">
-                                {product?.description}
+                                {formValue.description}
                             </p>
                             <p className="text-sm text-neutral-03">
                                 Lorem ipsum dolor sit amet consectetur
@@ -74,9 +96,9 @@ const DetailProduct = () => {
                     <div className="space-y-4 sm:w-1/3 sm:space-y-6 lg:w-1/4">
                         <div className="rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div className="mb-4 space-y-2">
-                                <div>{product?.name}</div>
+                                <div>{formValue.name}</div>
                                 <div className="text-sm text-neutral-03">
-                                    {product?.category}
+                                    {formValue.category}
                                 </div>
                             </div>
                             <div className="mb-6">Rp. 250.000</div>
@@ -87,7 +109,7 @@ const DetailProduct = () => {
                                 className="mb-4 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
                                 onClick={() => {
                                     navigate(
-                                        `/manage-product/edit/${product?.id}`
+                                        `/manage-product/edit/${formValue.productId}`
                                     );
                                 }}
                             >
@@ -95,7 +117,8 @@ const DetailProduct = () => {
                             </button>
                             <button
                                 className="hidden w-full rounded-2xl bg-alert-danger p-2 text-white hover:bg-red-700 sm:block"
-                                onClick={handleDelete}>
+                                onClick={handleDelete}
+                            >
                                 Delete
                             </button>
                         </div>

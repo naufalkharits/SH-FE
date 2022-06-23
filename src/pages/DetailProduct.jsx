@@ -53,7 +53,7 @@ const DetailProduct = () => {
         <>
             <div
                 className="container mx-auto p-4 xl:px-32 2xl:px-64"
-                key={formValue.productId}
+                key={productId}
             >
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <div className="space-y-4 sm:w-2/3 lg:w-3/4">
@@ -109,7 +109,7 @@ const DetailProduct = () => {
                                 className="mb-4 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
                                 onClick={() => {
                                     navigate(
-                                        `/manage-product/edit/${formValue.productId}`
+                                        `/manage-product/edit/${productId}`
                                     );
                                 }}
                             >

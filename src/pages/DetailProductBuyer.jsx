@@ -45,7 +45,7 @@ const DetailProductBuyer = () => {
     return (
         <div
             className="container mx-auto p-4 xl:px-32 2xl:px-64"
-            key={formValue.productId}
+            key={productId}
         >
             <div className="flex flex-col gap-4 sm:flex-row">
                 <div className="space-y-4 sm:w-3/5 md:w-2/3 lg:w-3/4">

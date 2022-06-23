@@ -31,7 +31,7 @@ const EditProduct = () => {
         }
     };
 
-    const onFormChange = (e) => {
+    const onChange = (e) => {
         setFormValue({
             ...formValue,
             [e.target.name]: e.target.value,
@@ -46,22 +46,30 @@ const EditProduct = () => {
         formData.set("category", formValue.category);
         formData.set("description", formValue.description);
 
-        dispatch(updateProduct(productId, formData));
+        dispatch(updateProduct({ productId, formData }));
 
         // navigate("/manage-product");
     };
-
-    console.log(formValue); 
 
     useEffect(() => {
         setFormData(new FormData());
         dispatch(fetchProductById(productId));
     }, [productId, dispatch]);
 
+    useEffect(() => {
+        product &&
+            setFormValue({
+                name: product.name,
+                price: product.price,
+                category: product.category,
+                description: product.description,
+            });
+    }, [product]);
+
     return (
         <div
             className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]"
-            key={product?.id}
+            // key={formValue.id}
         >
             <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                 <FiArrowLeft
@@ -77,9 +85,10 @@ const EditProduct = () => {
                     <input
                         className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="text"
-                        placeholder={product?.name}
+                        placeholder="Nama Produk"
                         name="name"
-                        onChange={onFormChange}
+                        value={formValue.name}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="space-y-2">
@@ -87,9 +96,10 @@ const EditProduct = () => {
                     <input
                         className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="number"
-                        placeholder={product?.price}
+                        placeholder="Rp 0,00"
                         name="price"
-                        onChange={onFormChange}
+                        value={formValue.price}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="space-y-2">
@@ -101,7 +111,8 @@ const EditProduct = () => {
                         <select
                             className=" w-full appearance-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 pr-10 pl-3 focus:outline-none"
                             name="category"
-                            onChange={onFormChange}
+                            value={formValue.category}
+                            onChange={onChange}
                         >
                             <option value="">Pilih Kategori</option>
                             <option value="Automotive">Automotive</option>
@@ -115,11 +126,12 @@ const EditProduct = () => {
                 <div className="space-y-2">
                     <label className="block">Deskripsi</label>
                     <textarea
-                        name="description"
                         rows="2"
                         className="w-full resize-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
-                        placeholder={product?.description}
-                        onChange={onFormChange}
+                        placeholder="Contoh: Jalan Ikan Hiu 33"
+                        name="description"
+                        value={formValue.description}
+                        onChange={onChange}
                     />
                 </div>
                 <div className="space-y-2">

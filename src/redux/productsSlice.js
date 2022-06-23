@@ -33,7 +33,7 @@ export const insertProduct = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async (productId, formData) => {
+    async ({ productId, formData }) => {
         const respone = await server.put(`/product/${productId}`, formData);
         return respone.data;
     }

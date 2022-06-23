@@ -16,7 +16,7 @@ const CategoryBuyer = () => {
                 </Link>
                 <Link
                     to="/user/profile/wishlist"
-                    className={location.pathname === "/user/profile/history" ? "ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6" : "ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-04 text-white py-3 px-6"}
+                    className={location.pathname === "/user/profile/wishlist" ? "ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-04 text-white py-3 px-6" : "ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"}
                 >
                     <FiHeart />
                     <span>Diminati</span>

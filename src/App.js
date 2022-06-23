@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import DetailProduct from "./pages/DetailProduct";
@@ -23,6 +23,7 @@ import HistoryTransaksi from "./components/HistoryTransaksi";
 import ListWishlist from "./components/ListWishlist";
 import EditProduct from "./pages/EditProduct";
 import Notification from "./pages/Notification";
+import UserText from "./components/UserText";
 
 function App() {
     return (
@@ -44,7 +45,7 @@ function App() {
                         <Route path="sold" element={<Sold />} />
                     </Route>
                     <Route path="user/profile" element={<UserProfile />}>
-                        <Route index element={<Navigate to={"history"} />} />
+                        <Route index element={<UserText />} />
                         <Route path="history" element={<HistoryTransaksi />} />
                         <Route path="wishlist" element={<ListWishlist />} />
                     </Route>

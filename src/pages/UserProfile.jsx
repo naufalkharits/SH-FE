@@ -1,13 +1,15 @@
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import CategoryBuyer from '../components/CategoryBuyer';
 import CategoryBuyerCard from '../components/CategoryBuyerCard';
 import ProfileCardBuyer from '../components/ProfileCardBuyer';
 
 const UserProfile = () => {
-  return (
-    <div className="container mx-auto p-4">
+    return (
+        <div className="container mx-auto p-4">
             <div className="mb-4 space-y-6 sm:mb-2">
-                <div className="text-xl font-bold">Akun Saya</div>
+                <Link to={'/user/profile'}>
+                    <div className="text-xl font-bold">Akun Saya</div>
+                </Link>
                 <ProfileCardBuyer />
             </div>
             <div className="flex flex-col sm:flex-row">
@@ -20,7 +22,7 @@ const UserProfile = () => {
                 </div>
             </div>
         </div>
-  )
+    )
 }
 
 export default UserProfile

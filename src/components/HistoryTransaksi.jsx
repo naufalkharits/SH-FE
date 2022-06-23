@@ -1,5 +1,4 @@
 import React from 'react'
-import orang from "../images/orang.png";
 const HistoryTransaksi = () => {
     return (
         <div className="w-full space-y-7 px-5 mt-4">

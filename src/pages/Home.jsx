@@ -9,12 +9,13 @@ import Category from "../components/Category";
 
 const Home = () => {
     const dispatch = useDispatch();
+    const { keyword } = useSelector((state) => state.products);
     const { category } = useSelector((state) => state.products);
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        dispatch(fetchProducts(category));
-    }, [category, dispatch]);
+        dispatch(fetchProducts({ keyword, category }));
+    }, [keyword, category, dispatch]);
 
     return (
         <>
@@ -24,16 +25,18 @@ const Home = () => {
             </div>
             <div className="container mx-auto space-y-4 p-4">
                 <div className="-m-4 flex flex-wrap">
-                    {products.map((product) => (
-                        <ProductCard
-                            key={product.id}
-                            id={product.id}
-                            name={product.name}
-                            price={product.price}
-                            category={product.category}
-                            pictures={product.pictures[0]}
-                        />
-                    ))}
+                    {products
+                        // .filter((product) => product.name.includes(keyword))
+                        .map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                id={product.id}
+                                name={product.name}
+                                price={product.price}
+                                category={product.category}
+                                pictures={product.pictures[0]}
+                            />
+                        ))}
                 </div>
             </div>
             <SellButton />

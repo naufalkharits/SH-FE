@@ -14,8 +14,10 @@ export const fetchProductById = createAsyncThunk(
 );
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
-    async (category) => {
-        const respone = await server.get(`/product?category=${category}`);
+    async ({ keyword, category }) => {
+        const respone = await server.get(
+            `/product?keyword=${keyword}&category=${category}`
+        );
         return respone.data;
     }
 );
@@ -56,6 +58,9 @@ const productsSlice = createSlice({
         category: "",
     }),
     reducers: {
+        keywordQuery: (state, action) => {
+            state.keyword = action.payload;
+        },
         categoryQuery: (state, action) => {
             state.category = action.payload;
         },
@@ -139,6 +144,6 @@ export const productsSelectors = productsAdapter.getSelectors(
     (state) => state.products
 );
 
-export const { categoryQuery } = productsSlice.actions;
+export const { keywordQuery, categoryQuery } = productsSlice.actions;
 
 export default productsSlice.reducer;

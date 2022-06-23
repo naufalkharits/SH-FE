@@ -57,7 +57,7 @@ const DetailProduct = () => {
                                 alt=""
                             />
                         </Carousel>
-                        <div className="hidden space-y-4 rounded-2xl border border-neutral-200 p-4 shadow sm:block">
+                        <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                             <div className="font-medium">Deskripsi</div>
                             <p className="text-sm text-neutral-03">
                                 {product?.description}
@@ -72,7 +72,7 @@ const DetailProduct = () => {
                         </div>
                     </div>
                     <div className="space-y-4 sm:w-1/3 sm:space-y-6 lg:w-1/4">
-                        <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-md">
+                        <div className="rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div className="mb-4 space-y-2">
                                 <div>{product?.name}</div>
                                 <div className="text-sm text-neutral-03">
@@ -104,7 +104,7 @@ const DetailProduct = () => {
                             <AiOutlineHeart />
                         </div>
                     </div>
-                    <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow sm:hidden">
+                    <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:hidden">
                         <div className="font-medium">Deskripsi</div>
                         <p className="text-sm text-neutral-03">
                             Lorem ipsum dolor sit amet consectetur adipisicing

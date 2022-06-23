@@ -53,19 +53,6 @@ const Category = () => {
                 </div>
                 <div
                     className={`${
-                        category === "Baju"
-                            ? "bg-primary-purple-04 text-white "
-                            : "bg-primary-purple-01 "
-                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
-                    onClick={() => {
-                        onClick("Baju");
-                    }}
-                >
-                    <FiSearch />
-                    <span>Baju</span>
-                </div>
-                <div
-                    className={`${
                         category === "Electronic"
                             ? "bg-primary-purple-04 text-white "
                             : "bg-primary-purple-01 "

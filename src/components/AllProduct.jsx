@@ -6,11 +6,13 @@ import ProductCard from "./ProductCard";
 
 const AllProduct = () => {
     const dispatch = useDispatch();
+    const { keyword } = useSelector((state) => state.products);
+    const { category } = useSelector((state) => state.products);
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+        dispatch(fetchProducts({ keyword, category }));
+    }, [keyword, category, dispatch]);
     return (
         <>
             <AddProductCard />

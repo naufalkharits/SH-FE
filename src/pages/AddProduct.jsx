@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FiPlus, FiChevronDown } from "react-icons/fi";
 import { FiArrowLeft } from "react-icons/fi";
 import { insertProduct } from "../redux/productsSlice";
@@ -8,6 +8,7 @@ import { insertProduct } from "../redux/productsSlice";
 const AddProduct = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { loading } = useSelector((state) => state.products);
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
@@ -38,9 +39,7 @@ const AddProduct = () => {
         formData.set("category", formValue.category);
         formData.set("description", formValue.description);
 
-        dispatch(insertProduct(formData));
-
-        navigate("/manage-product");
+        dispatch(insertProduct({ formData, loading, navigate }));
     };
 
     useEffect(() => {

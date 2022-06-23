@@ -63,21 +63,13 @@ const DetailProduct = () => {
                             showThumbs={false}
                             showStatus={false}
                         >
-                            <img
-                                className="w-full rounded-2xl"
-                                src={formValue.pictures[0]}
-                                alt=""
-                            />
-                            <img
-                                className="w-full rounded-2xl"
-                                src={formValue.pictures[1]}
-                                alt=""
-                            />
-                            <img
-                                className="w-full rounded-2xl"
-                                src={formValue.pictures[2]}
-                                alt=""
-                            />
+                            {formValue.pictures.map((picture) => (
+                                <img
+                                    className="w-full rounded-2xl"
+                                    src={picture}
+                                    alt=""
+                                />
+                            ))}
                         </Carousel>
                         <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                             <div className="font-medium">Deskripsi</div>

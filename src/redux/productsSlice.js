@@ -24,18 +24,23 @@ export const fetchProducts = createAsyncThunk(
 
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async (formData) => {
-        console.log(formData);
+    async ({ formData, loading, navigate }) => {
+        for (const pair of formData.entries()) {
+            console.log(`${pair[0]}, ${pair[1]}`);
+        }
         const respone = await server.post("/product", formData);
-        return respone.data;
+        return respone.data.then(navigate("/manage-product"));
     }
 );
 
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async ({ productId, formData }) => {
+    async ({ productId, formData, loading, navigate }) => {
+        for (const pair of formData.entries()) {
+            console.log(`${pair[0]}, ${pair[1]}`);
+        }
         const respone = await server.put(`/product/${productId}`, formData);
-        return respone.data;
+        return respone.data.then(navigate("/manage-product"));
     }
 );
 
@@ -58,6 +63,9 @@ const productsSlice = createSlice({
         category: "",
     }),
     reducers: {
+        setLoading: (state, action) => {
+            state.loading = action.payload;
+        },
         keywordQuery: (state, action) => {
             state.keyword = action.payload;
         },
@@ -113,29 +121,42 @@ const productsSlice = createSlice({
         // insert product
         [insertProduct.pending]: (state) => {
             state.loading = "pending";
+            state.error = "";
             productsAdapter.removeAll(state);
         },
         [insertProduct.fulfilled]: (state, action) => {
             state.loading = "idle";
-            productsAdapter.addOne(state, action.payload);
+            productsAdapter.addOne(state, action.payload.product);
         },
         // update product
         [updateProduct.pending]: (state) => {
             state.loading = "pending";
+            state.error = "";
+            productsAdapter.removeAll(state);
         },
         [updateProduct.fulfilled]: (state, action) => {
-            productsAdapter.updateOne(state, {
-                id: action.payload.id,
-                updates: action.payload,
-            });
             state.loading = "idle";
+            productsAdapter.updateOne(state, {
+                id: action.payload.updatedProduct.id,
+                updates: action.payload.updatedProduct,
+            });
+        },
+        [updateProduct.rejected]: (state) => {
+            state.loading = "idle";
+            state.error = "ERROR";
         },
         // delete product
         [deleteProduct.pending]: (state) => {
             state.loading = "pending";
+            state.error = "";
+            productsAdapter.removeAll(state);
         },
         [deleteProduct.fulfilled]: (state, action) => {
             productsAdapter.removeOne(state, action.payload);
+        },
+        [deleteProduct.rejected]: (state) => {
+            state.loading = "idle";
+            state.error = "ERROR";
         },
     },
 });
@@ -144,6 +165,7 @@ export const productsSelectors = productsAdapter.getSelectors(
     (state) => state.products
 );
 
-export const { keywordQuery, categoryQuery } = productsSlice.actions;
+export const { setLoading, keywordQuery, categoryQuery } =
+    productsSlice.actions;
 
 export default productsSlice.reducer;

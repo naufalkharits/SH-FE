@@ -16,11 +16,13 @@ const EditProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
+    const { loading } = useSelector((state) => state.products);
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
         category: "",
         description: "",
+        pictures: [],
     });
     const [formData, setFormData] = useState("");
 
@@ -45,10 +47,14 @@ const EditProduct = () => {
         formData.set("price", formValue.price);
         formData.set("category", formValue.category);
         formData.set("description", formValue.description);
+        if (formData.has("pictures") === false) {
+            const file = formValue.pictures;
+            for (let index of file) {
+                formData.append("pictures", index);
+            }
+        }
 
-        dispatch(updateProduct({ productId, formData }));
-
-        // navigate("/manage-product");
+        dispatch(updateProduct({ productId, formData, loading, navigate }));
     };
 
     useEffect(() => {
@@ -63,6 +69,7 @@ const EditProduct = () => {
                 price: product.price,
                 category: product.category,
                 description: product.description,
+                pictures: product.pictures,
             });
     }, [product]);
 

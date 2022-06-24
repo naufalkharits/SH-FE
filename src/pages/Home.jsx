@@ -31,7 +31,7 @@ const Home = () => {
     return (
         <>
             <Hero />
-            <div className="container mx-auto p-4">
+            <div className="container mx-auto hidden p-4 sm:block">
                 <Category />
             </div>
             <div className="container mx-auto space-y-4 p-4">

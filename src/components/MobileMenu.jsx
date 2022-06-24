@@ -9,7 +9,7 @@ const MobileMenu = () => {
 
     return (
         <>
-            <Popover.Button className="rounded-2xl bg-gray p-2 sm:hidden">
+            <Popover.Button className="rounded-2xl bg-white p-2 sm:hidden sm:bg-gray">
                 <FiMenu className="h-8 w-8 " />
             </Popover.Button>
             <Transition

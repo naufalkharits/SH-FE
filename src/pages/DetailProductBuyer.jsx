@@ -18,6 +18,7 @@ const DetailProductBuyer = () => {
         price: 0,
         category: "",
         description: "",
+        pictures: [],
     });
 
     useEffect(() => {

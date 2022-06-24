@@ -17,14 +17,16 @@ const AllProduct = () => {
         <>
             <AddProductCard />
             {products.map((product) => (
-                <ProductCard
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    price={product.price}
-                    category={product.category}
-                    pictures={product.pictures[0]}
-                />
+                <div className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4">
+                    <ProductCard
+                        key={product.id}
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        category={product.category}
+                        pictures={product.pictures[0]}
+                    />
+                </div>
             ))}
         </>
     );

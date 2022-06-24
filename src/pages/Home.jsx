@@ -26,7 +26,7 @@ const Home = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <>
@@ -39,14 +39,16 @@ const Home = () => {
                     {products
                         // .filter((product) => product.name.includes(keyword))
                         .map((product) => (
-                            <ProductCard
-                                key={product.id}
-                                id={product.id}
-                                name={product.name}
-                                price={product.price}
-                                category={product.category}
-                                pictures={product.pictures[0]}
-                            />
+                            <div className="w-1/2 p-4 md:w-1/3 lg:w-1/4 xl:w-1/5">
+                                <ProductCard
+                                    key={product.id}
+                                    id={product.id}
+                                    name={product.name}
+                                    price={product.price}
+                                    category={product.category}
+                                    pictures={product.pictures[0]}
+                                />
+                            </div>
                         ))}
                 </div>
             </div>

@@ -9,7 +9,8 @@ import {
     productsSelectors,
 } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
-import { AiOutlineHeart } from "react-icons/ai";
+import PublishButton from "../components/PublishButton";
+import { FiHeart } from "react-icons/fi";
 
 const DetailProduct = () => {
     const navigate = useNavigate();
@@ -65,7 +66,7 @@ const DetailProduct = () => {
                         >
                             {formValue.pictures.map((picture) => (
                                 <img
-                                    className="w-full rounded-2xl"
+                                    className="h-[32rem] w-full rounded-2xl object-cover object-center"
                                     src={picture}
                                     alt=""
                                 />
@@ -93,8 +94,8 @@ const DetailProduct = () => {
                                     {formValue.category}
                                 </div>
                             </div>
-                            <div className="mb-6">Rp. 250.000</div>
-                            <button className="mb-4 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
+                            <div className="">{formValue.price}</div>
+                            <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                 Terbitkan
                             </button>
                             <button
@@ -114,10 +115,10 @@ const DetailProduct = () => {
                                 Delete
                             </button>
                         </div>
-                        <ProfileCard />
-                        <div className="flex items-center justify-center rounded-2xl border border-neutral-200 p-4 shadow">
-                            <AiOutlineHeart />
+                        <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                            <FiHeart className="h-5 w-5" />
                         </div>
+                        <ProfileCard />
                     </div>
                     <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:hidden">
                         <div className="font-medium">Deskripsi</div>
@@ -138,6 +139,7 @@ const DetailProduct = () => {
                     </div>
                 </div>
             </div>
+            <PublishButton />
         </>
     );
 };

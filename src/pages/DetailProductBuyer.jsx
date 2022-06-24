@@ -49,7 +49,11 @@ const DetailProductBuyer = () => {
         >
             <div className="flex flex-col gap-4 sm:flex-row">
                 <div className="space-y-4 sm:w-3/5 md:w-2/3 lg:w-3/4">
-                    <img className="w-full" src={formValue.pictures} alt="" />
+                    <img
+                        className="w-full"
+                        src={formValue.pictures[0]}
+                        alt=""
+                    />
                     <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                         <div className="font-medium">Deskripsi</div>
                         <p className="text-sm text-neutral-03">

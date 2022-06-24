@@ -73,7 +73,7 @@ const data = {
 
 const Sold = () => {
     return (
-        <div className="w-full p-4">
+        <div className="w-full sm:p-4">
             <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
                 <div className="font-medium">Statisti Tokomu</div>
                 <div className="flex items-center gap-4">

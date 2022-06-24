@@ -90,7 +90,7 @@ const EditProduct = () => {
                 <div className="space-y-2">
                     <label className="block">Nama Produk</label>
                     <input
-                        className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
+                        className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="text"
                         placeholder="Nama Produk"
                         name="name"
@@ -101,7 +101,7 @@ const EditProduct = () => {
                 <div className="space-y-2">
                     <label className="block">Harga Produk</label>
                     <input
-                        className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
+                        className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none"
                         type="number"
                         placeholder="Rp 0,00"
                         name="price"
@@ -116,7 +116,7 @@ const EditProduct = () => {
                             <FiChevronDown />
                         </span>
                         <select
-                            className=" w-full appearance-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 pr-10 pl-3 focus:outline-none"
+                            className=" w-full appearance-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3.5 pr-10 pl-3 focus:outline-none"
                             name="category"
                             value={formValue.category}
                             onChange={onChange}

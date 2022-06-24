@@ -4,6 +4,7 @@ import { FiDollarSign, FiHeart, FiSettings } from "react-icons/fi";
 
 const DesktopUserMenu = () => {
     const location = useLocation();
+
     return (
         <div className="mt-4 hidden h-fit rounded-2xl border border-neutral-200 p-6 shadow-md sm:block">
             {/* <div className="mb-6 font-medium">Menu</div> */}

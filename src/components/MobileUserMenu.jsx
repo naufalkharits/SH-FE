@@ -4,6 +4,7 @@ import { FiDollarSign, FiHeart, FiSettings } from "react-icons/fi";
 
 const MobileUserMenu = () => {
     const location = useLocation();
+
     return (
         <div className="sm:hidden">
             <ScrollingCarousel leftIcon={"<"} rightIcon={">"}>

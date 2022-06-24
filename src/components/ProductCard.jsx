@@ -12,7 +12,7 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
             }}
         >
             <img
-                className="h-48 w-full object-cover object-center"
+                className="h-48 w-full rounded object-cover object-center"
                 src={pictures}
                 alt=""
             />

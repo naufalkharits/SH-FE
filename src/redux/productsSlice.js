@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import { server } from "./api";
 
+// fetch product by id
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
     async (productId) => {
@@ -12,6 +13,8 @@ export const fetchProductById = createAsyncThunk(
         return respone.data;
     }
 );
+
+// fetch all product
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async ({ keyword, category }) => {
@@ -22,6 +25,7 @@ export const fetchProducts = createAsyncThunk(
     }
 );
 
+// insert product
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
     async ({ formData, loading, navigate }) => {
@@ -33,6 +37,7 @@ export const insertProduct = createAsyncThunk(
     }
 );
 
+// update product
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
     async ({ productId, formData, loading, navigate }) => {
@@ -44,6 +49,7 @@ export const updateProduct = createAsyncThunk(
     }
 );
 
+// delete product
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async (id) => {
@@ -90,7 +96,7 @@ const productsSlice = createSlice({
         // },
     },
     extraReducers: {
-        // fetch productbyid
+        // fetch product by id
         [fetchProductById.pending]: (state) => {
             state.loading = "pending";
             state.error = "";
@@ -104,7 +110,8 @@ const productsSlice = createSlice({
             state.loading = "idle";
             state.error = "ERROR";
         },
-        // fetch products
+
+        // fetch all product
         [fetchProducts.pending]: (state) => {
             state.loading = "pending";
             state.error = "";
@@ -118,6 +125,7 @@ const productsSlice = createSlice({
             state.loading = "idle";
             state.error = "ERROR";
         },
+
         // insert product
         [insertProduct.pending]: (state) => {
             state.loading = "pending";
@@ -128,6 +136,7 @@ const productsSlice = createSlice({
             state.loading = "idle";
             productsAdapter.addOne(state, action.payload.product);
         },
+
         // update product
         [updateProduct.pending]: (state) => {
             state.loading = "pending";
@@ -145,6 +154,7 @@ const productsSlice = createSlice({
             state.loading = "idle";
             state.error = "ERROR";
         },
+
         // delete product
         [deleteProduct.pending]: (state) => {
             state.loading = "pending";

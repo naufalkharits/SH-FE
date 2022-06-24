@@ -1,15 +1,22 @@
 import { Fragment } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import { FiLogIn, FiMenu, FiX } from "react-icons/fi";
 import Search from "./Search";
 
 const MobileMenu = () => {
+    const location = useLocation();
     const navigate = useNavigate();
 
     return (
         <>
-            <Popover.Button className="rounded-2xl bg-white p-2 sm:hidden sm:bg-gray">
+            <Popover.Button
+                className={
+                    location.pathname === "/"
+                        ? `rounded-2xl bg-white p-2 sm:hidden sm:bg-gray`
+                        : `rounded-2xl bg-gray p-2 sm:hidden`
+                }
+            >
                 <FiMenu className="h-8 w-8 " />
             </Popover.Button>
             <Transition

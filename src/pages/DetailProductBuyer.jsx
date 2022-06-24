@@ -28,7 +28,7 @@ const DetailProductBuyer = () => {
     const [modalOn, setModalOn] = useState(false);
     const [choice, setChoice] = useState(false);
 
-    const clicked = () => {
+    const onClick = () => {
         setModalOn(true);
     };
 
@@ -44,21 +44,61 @@ const DetailProductBuyer = () => {
     }, [product]);
 
     return (
-        <div
-            className="container mx-auto p-4 xl:px-32 2xl:px-64"
-            key={productId}
-        >
-            <div className="flex flex-col gap-4 sm:flex-row">
-                <div className="space-y-4 sm:w-3/5 md:w-2/3 lg:w-3/4">
-                    <img
-                        className="w-full"
-                        src={formValue.pictures[0]}
-                        alt=""
-                    />
-                    <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
+        <>
+            <div
+                className="container mx-auto p-4 xl:px-32 2xl:px-64"
+                key={productId}
+            >
+                <div className="flex flex-col gap-4 sm:flex-row">
+                    <div className="space-y-4 sm:w-3/5 md:w-2/3 lg:w-3/4">
+                        <img
+                            className="w-full"
+                            src={formValue.pictures[0]}
+                            alt=""
+                        />
+                        <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
+                            <div className="font-medium">Deskripsi</div>
+                            <p className="text-sm text-neutral-03">
+                                {formValue.description}
+                            </p>
+                            <p className="text-sm text-neutral-03">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Asperiores consequatur
+                                incidunt, nobis dolore, minus rerum, nisi unde
+                                sint corrupti suscipit obcaecati dolores odio
+                                qui ut error eius iusto alias deleniti?
+                            </p>
+                        </div>
+                    </div>
+                    <div className="space-y-4 sm:w-2/5 sm:space-y-6 md:w-1/3 lg:w-1/4">
+                        <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                            <div className="mb-4 space-y-2">
+                                <div>{formValue.name}</div>
+                                <div className="text-sm text-neutral-03">
+                                    {formValue.category}
+                                </div>
+                            </div>
+                            <div className="mb-6">{formValue.price}</div>
+                            <button
+                                onClick={onClick}
+                                className="hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                            >
+                                Saya tertarik dan ingin nego
+                            </button>
+                        </div>
+                        <ProfileCardBuyer />
+                        <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                            <AiOutlineHeart />
+                        </div>
+                    </div>
+                    <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:hidden">
                         <div className="font-medium">Deskripsi</div>
                         <p className="text-sm text-neutral-03">
-                            {formValue.description}
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Tempora nostrum nisi labore nesciunt
+                            necessitatibus, debitis quibusdam veritatis. Ratione
+                            impedit architecto maxime dolores in commodi
+                            praesentium repellat, soluta vel odit id!
                         </p>
                         <p className="text-sm text-neutral-03">
                             Lorem ipsum dolor sit amet consectetur adipisicing
@@ -69,48 +109,21 @@ const DetailProductBuyer = () => {
                         </p>
                     </div>
                 </div>
-                <div className="space-y-4 sm:w-2/5 sm:space-y-6 md:w-1/3 lg:w-1/4">
-                    <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-                        <div className="mb-4 space-y-2">
-                            <div>{formValue.name}</div>
-                            <div className="text-sm text-neutral-03">
-                                {formValue.category}
-                            </div>
-                        </div>
-                        <div className="mb-6">{formValue.price}</div>
-                        <button
-                            onClick={clicked}
-                            className="hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
-                        >
-                            Saya tertarik dan ingin nego
-                        </button>
-                    </div>
-                    <ProfileCardBuyer />
-                    <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-                        <AiOutlineHeart />
-                    </div>
-                </div>
-                <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:hidden">
-                    <div className="font-medium">Deskripsi</div>
-                    <p className="text-sm text-neutral-03">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Tempora nostrum nisi labore nesciunt necessitatibus,
-                        debitis quibusdam veritatis. Ratione impedit architecto
-                        maxime dolores in commodi praesentium repellat, soluta
-                        vel odit id!
-                    </p>
-                    <p className="text-sm text-neutral-03">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Asperiores consequatur incidunt, nobis dolore, minus
-                        rerum, nisi unde sint corrupti suscipit obcaecati
-                        dolores odio qui ut error eius iusto alias deleniti?
-                    </p>
-                </div>
+                {modalOn && (
+                    <ModalTawar setModalOn={setModalOn} setChoice={setChoice} />
+                )}
             </div>
-            {modalOn && (
-                <ModalTawar setModalOn={setModalOn} setChoice={setChoice} />
-            )}
-        </div>
+            <button
+                className={
+                    modalOn === true
+                        ? `hidden`
+                        : `fixed inset-x-0 bottom-8 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-neutral-01 shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05 sm:hidden`
+                }
+                onClick={onClick}
+            >
+                <span>Saya Tertarik dan ingin Nego</span>
+            </button>
+        </>
     );
 };
 

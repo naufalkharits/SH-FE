@@ -1,45 +1,60 @@
-import {AiOutlineClose} from "react-icons/ai"
+import { AiOutlineClose } from "react-icons/ai";
 
 const Modal = ({ setModalOn, setChoice }) => {
     const handleCancelClick = () => {
-        setChoice(false)
-        setModalOn(false)
-    }
+        setChoice(false);
+        setModalOn(false);
+    };
 
     return (
         <>
-        <div className="bg-gray-bg fixed inset-0 ">
-            <div className="flex h-screen justify-center items-center">
-                    <div className="sm:w-[360px] w-full sm:mx-auto space-y-4 h-fit bg-neutral-01 rounded-xl">
-                        
-                        <div className="mx-8 space-y-4 my-6">
+            <div className="fixed inset-0 bg-gray-bg ">
+                <div className="flex h-screen items-center justify-center">
+                    <div className="mx-auto h-fit w-[360px] space-y-4 rounded-xl bg-neutral-01">
+                        <div className="mx-8 my-6 space-y-4">
                             <div className="flex justify-end">
-                                <AiOutlineClose onClick={handleCancelClick}/>
+                                <AiOutlineClose onClick={handleCancelClick} />
                             </div>
-                            <h3 className="font-medium text-sm">Masukkan Harga Tawarmu</h3>
-                            <h3 className="text-neutral-03 text-sm">Harga tawaranmu akan diketahui penjual, jika penjual cocok kamu akan segera dihubungi penjual.</h3>
-                            <div className="w-full bg-gray h-fit rounded-2xl shadow-high">
+                            <h3 className="text-sm font-medium">
+                                Masukkan Harga Tawarmu
+                            </h3>
+                            <h3 className="text-sm text-neutral-03">
+                                Harga tawaranmu akan diketahui penjual, jika
+                                penjual cocok kamu akan segera dihubungi
+                                penjual.
+                            </h3>
+                            <div className="h-fit w-full rounded-2xl bg-gray shadow-high">
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-4 p-4">
-                                        <img alt="" src="/img/jam-2.png" className="w-12 h-12 rounded-xl" />
+                                        <img
+                                            alt=""
+                                            src="/img/jam-2.png"
+                                            className="h-12 w-12 rounded-xl"
+                                        />
                                         <div className="space-y-1">
-                                            <div className="text-sm font-medium">Jam Tangan Casio</div>
-                                            <div className="text-sm">Rp 250.000</div>
+                                            <div className="text-sm font-medium">
+                                                Jam Tangan Casio
+                                            </div>
+                                            <div className="text-sm">
+                                                Rp 250.000
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div>
-                                <div className="text-xs font-normal pb-1 ">Harga Tawar</div>
+                                <div className="pb-1 text-xs font-normal ">
+                                    Harga Tawar
+                                </div>
                                 <input
-                                        className="w-full py-3 px-4 rounded-2xl border border-neutral-02 focus:outline-none text-neutral-03 shadow-high text-sm"
-                                        type="text"
-                                        placeholder="Rp 0,00"
+                                    className="w-full rounded-2xl border border-neutral-02 py-3 px-4 text-sm text-neutral-03 shadow-high focus:outline-none"
+                                    type="text"
+                                    placeholder="Rp 0,00"
                                 />
                             </div>
-                            
-                            <button className="bg-primary-purple-04 w-full h-12 text-white rounded-xl flex justify-center items-center space-x-20 px-5 text-sm">
+
+                            <button className="flex h-12 w-full items-center justify-center space-x-20 rounded-xl bg-primary-purple-04 px-5 text-sm text-white">
                                 Kirim
                             </button>
                         </div>

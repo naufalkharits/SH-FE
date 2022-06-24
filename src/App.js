@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import DetailProduct from "./pages/DetailProduct";
-import Error from "./components/404";
+import Error from "./pages/404";
 import Modal from "./components/Modal";
 import ModalStatus from "./components/ModalStatus";
 import ModalTawar from "./components/ModalTawar";

@@ -1,8 +1,29 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/authSlice";
 import { FiArrowLeft } from "react-icons/fi";
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [formValue, setFormValue] = useState({
+        email: "",
+        password: "",
+    });
+
+    const onChange = (e) => {
+        setFormValue({
+            ...formValue,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        dispatch(login({ formValue, navigate }));
+    };
 
     return (
         <div className="space-y-8 bg-white p-8 sm:p-14">
@@ -13,9 +34,7 @@ const Login = () => {
                 }}
             />
             <div className="text-2xl font-bold">Masuk</div>
-            <form
-            // onSubmit={onFormSubmit}
-            >
+            <form onSubmit={onSubmit}>
                 <div className="mb-4 space-y-2">
                     <label className="block">Email</label>
                     <input
@@ -25,7 +44,7 @@ const Login = () => {
                         name="email"
                         // value={email}
                         placeholder="Contoh: johndee@gmail.com"
-                        // onChange={onInputChange}
+                        onChange={onChange}
                         required
                     />
                 </div>
@@ -38,7 +57,7 @@ const Login = () => {
                         name="password"
                         // value={password}
                         placeholder="Masukkan password"
-                        // onChange={onInputChange}
+                        onChange={onChange}
                         required
                     />
                 </div>

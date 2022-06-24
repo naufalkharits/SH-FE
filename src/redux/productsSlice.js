@@ -78,22 +78,6 @@ const productsSlice = createSlice({
         categoryQuery: (state, action) => {
             state.category = action.payload;
         },
-        // editProduct: (state, action) => {
-        //     const { id, name, price, image } = action.payload;
-        //     const existingVehicle = state.find((product) => product.id === id);
-        //     if (existingVehicle) {
-        //         existingVehicle.name = name;
-        //         existingVehicle.price = price;
-        //         existingVehicle.image = image;
-        //     }
-        // },
-        // deleteProduct: (state, action) => {
-        //     const { id } = action.payload;
-        //     const existingVehicle = state.find((product) => product.id === id);
-        //     if (existingVehicle) {
-        //         return state.filter((product) => product.id !== id);
-        //     }
-        // },
     },
     extraReducers: {
         // fetch product by id

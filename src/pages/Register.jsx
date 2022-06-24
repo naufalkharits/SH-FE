@@ -1,8 +1,29 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/authSlice";
 import { FiArrowLeft } from "react-icons/fi";
 
 const Register = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [formValue, setFormValue] = useState({
+        email: "",
+        password: "",
+    });
+
+    const onChange = (e) => {
+        setFormValue({
+            ...formValue,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        dispatch(register({ formValue, navigate }));
+    };
 
     return (
         <div className="space-y-8 bg-white p-8 sm:p-14">
@@ -13,9 +34,7 @@ const Register = () => {
                 }}
             />
             <div className="text-2xl font-bold">Daftar</div>
-            <form
-            // onSubmit={onFormSubmit}
-            >
+            <form onSubmit={onSubmit}>
                 <div className="mb-4 space-y-2">
                     <label className="block">Nama</label>
                     <input
@@ -25,8 +44,8 @@ const Register = () => {
                         name="nama"
                         // value={nama}
                         placeholder="Nama Lengkap"
-                        // onChange={onInputChange}
-                        required
+                        // onChange={onChange}
+                        // required
                     />
                 </div>
                 <div className="mb-4 space-y-2">
@@ -38,7 +57,7 @@ const Register = () => {
                         name="email"
                         // value={email}
                         placeholder="Contoh: johndee@gmail.com"
-                        // onChange={onInputChange}
+                        onChange={onChange}
                         required
                     />
                 </div>
@@ -51,7 +70,7 @@ const Register = () => {
                         name="password"
                         // value={password}
                         placeholder="Masukkan password"
-                        // onChange={onInputChange}
+                        onChange={onChange}
                         required
                     />
                 </div>

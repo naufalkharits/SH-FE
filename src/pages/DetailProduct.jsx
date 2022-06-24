@@ -9,7 +9,7 @@ import {
     productsSelectors,
 } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
-import PublishButton from "../components/PublishButton";
+import PublishButton from "../components/buttons/PublishButton";
 import { FiHeart } from "react-icons/fi";
 
 const DetailProduct = () => {

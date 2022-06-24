@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../redux/productsSlice";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
-import SellButton from "../components/SellButton";
+import SellButton from "../components/buttons/SellButton";
 import Category from "../components/Category";
 // import ProductCardTesting from "../components/ProductCard-testing";
 

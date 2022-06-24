@@ -7,6 +7,7 @@ export const register = createAsyncThunk(
     async ({ formValue, navigate }, thunkAPI) => {
         try {
             const response = await server.post("/auth/register", formValue);
+            console.log(response.data);
             return response.data.then(navigate("/"));
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -17,11 +18,10 @@ export const register = createAsyncThunk(
 // login
 export const login = createAsyncThunk(
     "auth/login",
-    async ({ formValue, toast, navigate }, thunkAPI) => {
+    async ({ formValue, navigate }, thunkAPI) => {
         try {
             const response = await server.post("/auth/login", formValue);
-            toast.success("Login Successfully");
-            return response.data;
+            return response.data.then(navigate("/"));
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
@@ -52,7 +52,7 @@ export const authSlice = createSlice({
         },
         [login.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = action.payload.message;
+            state.error = action.payload;
         },
         // register
         [register.pending]: (state) => {
@@ -69,7 +69,7 @@ export const authSlice = createSlice({
         },
         [register.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = action.payload.message;
+            state.error = action.payload;
         },
     },
 });

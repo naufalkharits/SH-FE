@@ -10,7 +10,7 @@ const Category = () => {
 
     return (
         <>
-            <div className="mb-4 font-bold">Telusuri Kategori</div>
+            <div className="font-medium sm:font-bold">Telusuri Kategori</div>
             <ScrollingCarousel>
                 <div
                     className={`${

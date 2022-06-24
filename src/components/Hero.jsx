@@ -28,7 +28,7 @@ const Hero = () => {
                     <img className="px-4" src={banner5} alt="" />
                 </Carousel>
             </div>
-            <div className="my-4 sm:hidden">
+            {/* <div className="my-4 sm:hidden">
                 <Carousel
                     infiniteLoop
                     emulateTouch={true}
@@ -44,7 +44,7 @@ const Hero = () => {
                     <img className="px-4" src={banner4} alt="" />
                     <img className="px-4" src={banner5} alt="" />
                 </Carousel>
-            </div>
+            </div> */}
         </>
     );
 };

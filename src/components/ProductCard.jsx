@@ -6,7 +6,6 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
     return (
         <div
             className="cursor-pointer space-y-2 rounded-md p-2 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10"
-            key={id}
             onClick={() => {
                 navigate(`/product/${id}`);
             }}

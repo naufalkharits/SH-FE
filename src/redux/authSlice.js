@@ -8,8 +8,9 @@ export const register = createAsyncThunk(
         try {
             const response = await server.post("/auth/register", formValue);
             console.log(response.data);
-            return response.data.then(navigate("/"));
+            return response.data;
         } catch (error) {
+            console.log(error.response.data);
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
@@ -21,8 +22,10 @@ export const login = createAsyncThunk(
     async ({ formValue, navigate }, thunkAPI) => {
         try {
             const response = await server.post("/auth/login", formValue);
-            return response.data.then(navigate("/"));
+            console.log(response.data);
+            return response.data;
         } catch (error) {
+            console.log(error.response.data);
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
@@ -33,41 +36,36 @@ export const authSlice = createSlice({
     initialState: {
         user: null,
         loading: "idle",
-        error: "",
+        error: null,
     },
     // reducers: {},
     extraReducers: {
-        // login
-        [login.pending]: (state) => {
-            state.loading = "pending";
-            state.error = "";
-        },
-        [login.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            // localStorage.setItem(
-            //     "profile",
-            //     JSON.stringify({ ...action.payload })
-            // );
-            state.user = action.payload;
-        },
-        [login.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.error = action.payload;
-        },
         // register
         [register.pending]: (state) => {
             state.loading = "pending";
-            state.error = "";
+            state.error = null;
         },
         [register.fulfilled]: (state, action) => {
             state.loading = "idle";
-            // localStorage.setItem(
-            //     "profile",
-            //     JSON.stringify({ ...action.payload })
-            // );
+            state.error = null;
             state.user = action.payload;
+            localStorage.setItem("user", JSON.stringify(action.payload));
         },
         [register.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
+
+        // login
+        [login.pending]: (state) => {
+            state.loading = "pending";
+        },
+        [login.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            localStorage.setItem("user", JSON.stringify(action.payload));
+            state.user = action.payload;
+        },
+        [login.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

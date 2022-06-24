@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/authSlice";
 import { FiArrowLeft } from "react-icons/fi";
+import { CgSpinner } from "react-icons/cg";
 
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { loading } = useSelector((state) => state.auth);
     const [formValue, setFormValue] = useState({
         email: "",
         password: "",
@@ -23,6 +25,10 @@ const Login = () => {
         e.preventDefault();
 
         dispatch(login({ formValue, navigate }));
+    };
+
+    const className = (...classes) => {
+        return classes.filter(Boolean).join(" ");
     };
 
     return (
@@ -62,10 +68,22 @@ const Login = () => {
                     />
                 </div>
                 <button
-                    className="w-full rounded-2xl bg-primary-purple-04 py-3 px-4 font-bold text-white hover:bg-primary-purple-05"
+                    className={className(
+                        loading === "pending"
+                            ? "flex items-center justify-center gap-2"
+                            : "",
+                        "w-full rounded-2xl bg-primary-purple-04 py-3 px-4 font-bold text-white hover:bg-primary-purple-05"
+                    )}
                     type="submit"
                 >
-                    Masuk
+                    {loading === "pending" ? (
+                        <>
+                            <CgSpinner className="animate-spin" />
+                            <span>Processing...</span>
+                        </>
+                    ) : (
+                        <span>Masuk</span>
+                    )}
                 </button>
             </form>
             <p className="text-sm">

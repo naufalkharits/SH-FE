@@ -64,7 +64,7 @@ const productsSlice = createSlice({
     name: "products",
     initialState: productsAdapter.getInitialState({
         loading: "idle",
-        error: "",
+        error: null,
         keyword: "",
         category: "",
     }),
@@ -83,48 +83,52 @@ const productsSlice = createSlice({
         // fetch product by id
         [fetchProductById.pending]: (state) => {
             state.loading = "pending";
-            state.error = "";
+            state.error = null;
             productsAdapter.removeAll(state);
         },
         [fetchProductById.fulfilled]: (state, action) => {
             state.loading = "idle";
             productsAdapter.setOne(state, action.payload.product);
         },
-        [fetchProductById.rejected]: (state) => {
+        [fetchProductById.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = "ERROR";
+            state.error = action.payload;
         },
 
         // fetch all product
         [fetchProducts.pending]: (state) => {
             state.loading = "pending";
-            state.error = "";
+            state.error = null;
             productsAdapter.removeAll(state);
         },
         [fetchProducts.fulfilled]: (state, action) => {
             state.loading = "idle";
             productsAdapter.setAll(state, action.payload.products);
         },
-        [fetchProducts.rejected]: (state) => {
+        [fetchProducts.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = "ERROR";
+            state.error = action.payload;
         },
 
         // insert product
         [insertProduct.pending]: (state) => {
             state.loading = "pending";
-            state.error = "";
+            state.error = null;
             productsAdapter.removeAll(state);
         },
         [insertProduct.fulfilled]: (state, action) => {
             state.loading = "idle";
             productsAdapter.addOne(state, action.payload.product);
         },
+        [insertProduct.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
 
         // update product
         [updateProduct.pending]: (state) => {
             state.loading = "pending";
-            state.error = "";
+            state.error = null;
             productsAdapter.removeAll(state);
         },
         [updateProduct.fulfilled]: (state, action) => {
@@ -134,23 +138,23 @@ const productsSlice = createSlice({
                 updates: action.payload.updatedProduct,
             });
         },
-        [updateProduct.rejected]: (state) => {
+        [updateProduct.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = "ERROR";
+            state.error = action.payload;
         },
 
         // delete product
         [deleteProduct.pending]: (state) => {
             state.loading = "pending";
-            state.error = "";
+            state.error = null;
             productsAdapter.removeAll(state);
         },
         [deleteProduct.fulfilled]: (state, action) => {
             productsAdapter.removeOne(state, action.payload);
         },
-        [deleteProduct.rejected]: (state) => {
+        [deleteProduct.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = "ERROR";
+            state.error = action.payload;
         },
     },
 });

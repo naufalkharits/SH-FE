@@ -39,9 +39,11 @@ const Home = () => {
                     {products
                         // .filter((product) => product.name.includes(keyword))
                         .map((product) => (
-                            <div className="w-1/2 p-4 md:w-1/3 lg:w-1/4 xl:w-1/5">
+                            <div
+                                className="w-1/2 p-4 md:w-1/3 lg:w-1/4 xl:w-1/5"
+                                key={product.id}
+                            >
                                 <ProductCard
-                                    key={product.id}
                                     id={product.id}
                                     name={product.name}
                                     price={product.price}

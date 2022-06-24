@@ -3,9 +3,9 @@ import { Menu, Transition } from "@headlessui/react";
 import { FiEdit3, FiLogOut, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-function classNames(...classes) {
+const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
-}
+};
 
 const UserButton = () => {
     return (
@@ -33,7 +33,7 @@ const UserButton = () => {
                                     <Link
                                         to="/user"
                                         type="submit"
-                                        className={classNames(
+                                        className={className(
                                             active
                                                 ? "hover:text-primary-purple-05"
                                                 : "",
@@ -46,7 +46,7 @@ const UserButton = () => {
                                     <Link
                                         to=""
                                         type="submit"
-                                        className={classNames(
+                                        className={className(
                                             active
                                                 ? "hover:text-primary-purple-05"
                                                 : "",

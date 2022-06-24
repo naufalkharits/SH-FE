@@ -9,20 +9,20 @@ const MobileUserMenu = () => {
         <div className="sm:hidden">
             <ScrollingCarousel leftIcon={"<"} rightIcon={">"}>
                 <Link
-                    to="/user/profile/history"
+                    to="/order-list"
                     className={
-                        location.pathname === "/user/profile/history"
+                        location.pathname === "/order-list"
                             ? "flex items-center gap-2 rounded-xl bg-primary-purple-04 py-3 px-6 text-white"
                             : "flex items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
                     }
                 >
                     <FiDollarSign />
-                    <span>History Transaksi</span>
+                    <span>Daftar Transaksi</span>
                 </Link>
                 <Link
-                    to="/user/profile/wishlist"
+                    to="/wishlist"
                     className={
-                        location.pathname === "/user/profile/wishlist"
+                        location.pathname === "/wishlist"
                             ? "ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-04 py-3 px-6 text-white"
                             : "ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
                     }
@@ -31,7 +31,7 @@ const MobileUserMenu = () => {
                     <span>Diminati</span>
                 </Link>
                 <Link
-                    to="/user/profile/setting"
+                    to="#"
                     className="ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
                 >
                     <FiSettings />

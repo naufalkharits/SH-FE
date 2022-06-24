@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import orang from "../images/orang.png";
 
 const ProfileCardBuyer = () => {
@@ -10,9 +11,12 @@ const ProfileCardBuyer = () => {
                     <div className="text-xs text-neutral-03">Kota</div>
                 </div>
             </div>
-            <button className="rounded-lg border border-primary-purple-04 py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white">
+            <Link
+                to="/user/profile"
+                className="rounded-lg border border-primary-purple-04 py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
+            >
                 Edit
-            </button>
+            </Link>
         </div>
     );
 };

@@ -44,9 +44,12 @@ function App() {
                         <Route path="wishlisted" element={<Wishlisted />} />
                         <Route path="sold" element={<Sold />} />
                     </Route>
-                    <Route path="user/profile" element={<UserProfile />}>
-                        <Route index element={<UserText />} />
-                        <Route path="history" element={<HistoryTransaksi />} />
+                    <Route element={<UserProfile />}>
+                        <Route path="user" element={<UserText />} />
+                        <Route
+                            path="order-list"
+                            element={<HistoryTransaksi />}
+                        />
                         <Route path="wishlist" element={<ListWishlist />} />
                     </Route>
                     <Route path="product/modal" element={<Modal />} />
@@ -66,7 +69,7 @@ function App() {
                         path="/manage-product/edit/:productId"
                         element={<EditProduct />}
                     />
-                    <Route path="/user/add" element={<InfoProfil />} />
+                    <Route path="/user/profile" element={<InfoProfil />} />
                     <Route path="/user/infopenawar" element={<InfoPenawar />} />
                 </Route>
                 <Route element={<Auth />}>

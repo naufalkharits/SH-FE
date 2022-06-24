@@ -31,7 +31,7 @@ const UserButton = () => {
                             {({ active }) => (
                                 <>
                                     <Link
-                                        to="/user/profile"
+                                        to="/user"
                                         type="submit"
                                         className={classNames(
                                             active

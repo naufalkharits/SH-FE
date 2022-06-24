@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import orang from "../images/orang.png";
 
 const ProfileCard = () => {
@@ -14,9 +14,12 @@ const ProfileCard = () => {
                 </div>
             </div>
             {location.pathname === "/manage-product" && (
-                <button className="rounded-lg border border-primary-purple-04 py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white">
+                <Link
+                    to="/user/add"
+                    className="rounded-lg border border-primary-purple-04 py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
+                >
                     Edit
-                </button>
+                </Link>
             )}
         </div>
     );

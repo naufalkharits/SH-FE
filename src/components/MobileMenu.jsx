@@ -28,7 +28,7 @@ const MobileMenu = () => {
                 leaveFrom="transform scale-100 opacity-100"
                 leaveTo="transform scale-95 opacity-0"
             >
-                <Popover.Panel className="absolute inset-x-0 top-0 z-50 p-2 md:hidden">
+                <Popover.Panel className="absolute inset-x-0 top-0 z-50 p-2 sm:hidden">
                     <div className="overflow-hidden rounded-md bg-white shadow">
                         <div className="p-2">
                             <div className="mb-4 flex items-center justify-between">
@@ -71,7 +71,7 @@ const MobileMenu = () => {
                         </div>
                         <Link
                             to="/login"
-                            className="flex  w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-neutral-01 hover:bg-primary-purple-05 "
+                            className="flex  w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-white hover:bg-primary-purple-05 "
                         >
                             <FiLogIn className="h-5 w-5" />
                             <span>Masuk</span>

@@ -1,5 +1,7 @@
+import { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/autoplay";
 import banner1 from "../images/banner-1.png";
 import banner2 from "../images/banner-2.png";
 import banner3 from "../images/banner-3.png";
@@ -10,10 +12,15 @@ const Hero = () => {
     return (
         <Swiper
             className="my-8 hidden sm:block"
+            modules={[Autoplay]}
             centeredSlides={true}
             slidesPerView={2}
             loop={true}
             grabCursor={true}
+            autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+            }}
         >
             <SwiperSlide>
                 {({ isActive }) => (

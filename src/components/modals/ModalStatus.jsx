@@ -25,7 +25,7 @@ const ModalStatus = ({ setModalOn, setChoice }) => {
                             <div className="flex">
                                 <div className="flex h-5 items-center">
                                     <input
-                                        className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04"
+                                        className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
                                         type="radio"
                                         name="radio"
                                     />
@@ -43,7 +43,7 @@ const ModalStatus = ({ setModalOn, setChoice }) => {
                             <div className="flex">
                                 <div className="flex h-5 items-center">
                                     <input
-                                        className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04"
+                                        className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
                                         type="radio"
                                         name="radio"
                                     />

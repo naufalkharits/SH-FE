@@ -21,7 +21,7 @@ const Navbar = () => {
                         : "bg-white shadow"
                 }
             >
-                <div className="container mx-auto flex items-center justify-between gap-8 p-4">
+                <div className="container mx-auto flex items-center gap-8 p-4 sm:justify-between">
                     <DesktopMenu />
                 </div>
                 {location.pathname === "/" && (

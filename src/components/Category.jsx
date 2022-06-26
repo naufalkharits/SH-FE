@@ -3,6 +3,10 @@ import { ScrollingCarousel } from "@trendyol-js/react-carousel";
 import { categoryQuery } from "../redux/productsSlice";
 import { FiSearch } from "react-icons/fi";
 
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
+
 const Category = () => {
     const dispatch = useDispatch();
     const { category } = useSelector((state) => state.products);
@@ -10,14 +14,17 @@ const Category = () => {
 
     return (
         <>
-            <div className="font-medium sm:font-bold">Telusuri Kategori</div>
-            <ScrollingCarousel>
+            <div className="mb-4 font-medium sm:font-bold">
+                Telusuri Kategori
+            </div>
+            <ScrollingCarousel leftIcon={false} rightIcon={false}>
                 <div
-                    className={`${
+                    className={className(
                         category === ""
-                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
-                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
-                    }flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                            ? "bg-primary-purple-04 text-white"
+                            : "bg-primary-purple-01 hover:text-white",
+                        "flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                    )}
                     onClick={() => {
                         onClick("");
                     }}
@@ -26,11 +33,12 @@ const Category = () => {
                     <span>Semua</span>
                 </div>
                 <div
-                    className={`${
+                    className={className(
                         category === "Automotive"
-                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
-                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
-                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                            ? "bg-primary-purple-04 text-white"
+                            : "bg-primary-purple-01 hover:text-white",
+                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                    )}
                     onClick={() => {
                         onClick("Automotive");
                     }}
@@ -39,11 +47,12 @@ const Category = () => {
                     <span>Automotive</span>
                 </div>
                 <div
-                    className={`${
+                    className={className(
                         category === "Property"
-                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
-                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
-                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                            ? "bg-primary-purple-04 text-white"
+                            : "bg-primary-purple-01 hover:text-white",
+                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                    )}
                     onClick={() => {
                         onClick("Property");
                     }}
@@ -52,11 +61,12 @@ const Category = () => {
                     <span>Property</span>
                 </div>
                 <div
-                    className={`${
+                    className={className(
                         category === "Electronic"
-                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
-                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
-                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                            ? "bg-primary-purple-04 text-white"
+                            : "bg-primary-purple-01 hover:text-white",
+                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                    )}
                     onClick={() => {
                         onClick("Electronic");
                     }}
@@ -65,11 +75,12 @@ const Category = () => {
                     <span>Electronic</span>
                 </div>
                 <div
-                    className={`${
+                    className={className(
                         category === "Sport"
-                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
-                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
-                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                            ? "bg-primary-purple-04 text-white"
+                            : "bg-primary-purple-01 hover:text-white",
+                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                    )}
                     onClick={() => {
                         onClick("Sport");
                     }}
@@ -78,11 +89,12 @@ const Category = () => {
                     <span>Sport</span>
                 </div>
                 <div
-                    className={`${
+                    className={className(
                         category === "Office"
-                            ? "bg-primary-purple-04 text-white hover:bg-primary-purple-05 "
-                            : "bg-primary-purple-01 hover:bg-primary-purple-05 hover:text-white "
-                    }ml-4 flex cursor-pointer items-center gap-2 rounded-xl py-3 px-6`}
+                            ? "bg-primary-purple-04 text-white"
+                            : "bg-primary-purple-01 hover:text-white",
+                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                    )}
                     onClick={() => {
                         onClick("Office");
                     }}

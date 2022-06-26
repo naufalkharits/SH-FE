@@ -7,7 +7,7 @@ const MobileUserMenu = () => {
 
     return (
         <div className="sm:hidden">
-            <ScrollingCarousel leftIcon={"<"} rightIcon={">"}>
+            <ScrollingCarousel leftIcon={false} rightIcon={false}>
                 <Link
                     to="/order-list"
                     className={

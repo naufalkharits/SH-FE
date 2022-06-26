@@ -1,18 +1,24 @@
+import { useLocation, useParams } from "react-router-dom";
 import { Popover } from "@headlessui/react";
-import { useLocation } from "react-router-dom";
 import Category from "./Category";
 import DesktopMenu from "./DesktopMenu";
 
 const Navbar = () => {
+    const { productId } = useParams();
     const location = useLocation();
 
     return (
-        <Popover>
+        <Popover
+            className={
+                location.pathname === `/product/${productId}` &&
+                "hidden sm:block"
+            }
+        >
             <nav
                 className={
                     location.pathname === "/"
-                        ? `bg-gradient-to-b from-[#FFE9CA] to-white sm:bg-white sm:bg-none sm:shadow`
-                        : `bg-white shadow`
+                        ? "bg-gradient-to-b from-[#FFE9CA] to-white sm:bg-none sm:shadow"
+                        : "bg-white shadow"
                 }
             >
                 <div className="container mx-auto flex items-center justify-between gap-8 p-4">

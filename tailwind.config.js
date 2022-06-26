@@ -4,23 +4,7 @@ module.exports = {
   theme: {
     extend:{
       screens: {
-        'xs': {'max' : '425px'},
         '3xl': '1600px',
-
-        // 'sm': '640px',
-        // => @media (min-width: 640px) { ... }
-
-        // 'md': '768px',
-        // => @media (min-width: 768px) { ... }
-
-        // 'lg': '1024px',
-        // => @media (min-width: 1024px) { ... }
-
-        // 'xl': '1280px',
-        // => @media (min-width: 1280px) { ... }
-
-        // '2xl': '1536px',
-        // => @media (min-width: 1536px) { ... }
       },
       colors: {
         'primary-purple-05' : '#4B1979',
@@ -40,17 +24,10 @@ module.exports = {
         'neutral-04' : '#3C3C3C',
         'neutral-03' : '#8A8A8A',
         'neutral-02' : '#D0D0D0',
-        'neutral-01' : '#FFFFFF',
         'gray' : '#EEEEEE',
         'gray-bg' : 'rgba(0, 0, 0, 0.6)'
       },
-      boxShadow: {
-        'low': '0px 0px 4px rgba(0, 0, 0, 0.15)',
-        'high' : '0px 0px 10px rgba(0, 0, 0, 0.15)'
-      }
     },
   },
-  plugins: [
-    // require("daisyui")
-  ],
+  plugins: [],
 }

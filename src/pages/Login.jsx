@@ -5,6 +5,10 @@ import { login } from "../redux/authSlice";
 import { FiArrowLeft } from "react-icons/fi";
 import { CgSpinner } from "react-icons/cg";
 
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
+
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -25,10 +29,6 @@ const Login = () => {
         e.preventDefault();
 
         dispatch(login({ formValue, navigate }));
-    };
-
-    const className = (...classes) => {
-        return classes.filter(Boolean).join(" ");
     };
 
     return (

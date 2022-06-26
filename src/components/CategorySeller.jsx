@@ -5,7 +5,7 @@ import { FiBox, FiDollarSign, FiHeart } from "react-icons/fi";
 const CategorySeller = () => {
     return (
         <div className="mb-4 sm:hidden">
-            <ScrollingCarousel leftIcon={"<"} rightIcon={">"}>
+            <ScrollingCarousel leftIcon={false} rightIcon={false}>
                 <Link
                     to="/manage-product"
                     className="flex items-center gap-2 rounded-xl bg-primary-purple-04 py-3 px-6 text-white"

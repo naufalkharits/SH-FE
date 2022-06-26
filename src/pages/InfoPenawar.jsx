@@ -1,23 +1,23 @@
 import React from "react";
 import orang from "../images/orang.png";
-import { FiArrowLeft } from 'react-icons/fi'
-import Modal from "../components/Modal";
+import { FiArrowLeft } from "react-icons/fi";
+import ModalBerhasil from "../components/modals/ModalBerhasil";
 import { useState } from "react";
 
 const InfoPenawar = () => {
     const [modalOn, setModalOn] = useState(false);
-    const [choice, setChoice] = useState(false)
+    const [choice, setChoice] = useState(false);
 
     const clicked = () => {
-        setModalOn(true)
-    }
+        setModalOn(true);
+    };
     return (
-        <div className="flex justify-between w-full md:w-full lg:w-[1024px] mx-auto mt-4 sm:mt-10">
-            <div className="hidden sm:block lg:mr-20 sm:ml-10 sm:mr-10">
-                <FiArrowLeft className="text-3xl"/>
+        <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
+            <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
+                <FiArrowLeft className="text-3xl" />
             </div>
             <div className="w-full space-y-7 px-4">
-                <div className="flex items-center gap-6 rounded-2xl border border-neutral-200 p-4 shadow-low">
+                <div className="shadow-low flex items-center gap-6 rounded-2xl border border-neutral-200 p-4">
                     <img src={orang} alt="" />
                     <div className="space-y-1">
                         <div>Nama Pembeli</div>
@@ -43,7 +43,10 @@ const InfoPenawar = () => {
                             <button className="mr-4 w-1/3 rounded-2xl border border-primary-purple-04 py-2">
                                 Tolak
                             </button>
-                            <button onClick={clicked} className="w-1/3 rounded-2xl bg-primary-purple-04 py-2 text-white">
+                            <button
+                                onClick={clicked}
+                                className="w-1/3 rounded-2xl bg-primary-purple-04 py-2 text-white"
+                            >
                                 Terima
                             </button>
                         </div>
@@ -51,11 +54,11 @@ const InfoPenawar = () => {
                 </div>
                 <div className="h-px bg-[#E5E5E5]"></div>
             </div>
-            <div className="hidden sm:block h-[30px] w-[30px] lg:ml-20 sm:ml-10 sm:mr-10"></div>
-            {modalOn && < Modal setModalOn={setModalOn} setChoice={setChoice} />}
-
+            <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>
+            {modalOn && (
+                <ModalBerhasil setModalOn={setModalOn} setChoice={setChoice} />
+            )}
         </div>
-        
     );
 };
 

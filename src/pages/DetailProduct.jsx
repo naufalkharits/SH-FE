@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import {
     deleteProduct,
     fetchProductById,
@@ -11,6 +11,7 @@ import {
 import ProfileCard from "../components/ProfileCard";
 import PublishButton from "../components/buttons/PublishButton";
 import { FiHeart } from "react-icons/fi";
+import BackButton from "../components/buttons/BackButton";
 
 const DetailProduct = () => {
     const navigate = useNavigate();
@@ -52,42 +53,37 @@ const DetailProduct = () => {
 
     return (
         <>
-            <div
-                className="container mx-auto p-4 xl:px-32 2xl:px-64"
-                key={productId}
-            >
+            <BackButton />
+            <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <div className="space-y-4 sm:w-2/3 lg:w-3/4">
-                        <Carousel
-                            infiniteLoop
-                            emulateTouch={true}
-                            showThumbs={false}
-                            showStatus={false}
-                        >
+                        <Swiper>
                             {formValue.pictures.map((picture) => (
-                                <img
-                                    className="h-[32rem] w-full rounded-2xl object-cover object-center"
-                                    src={picture}
-                                    alt=""
-                                />
+                                <SwiperSlide key={picture}>
+                                    <img
+                                        className="h-[32rem] w-full object-cover object-center sm:rounded-2xl"
+                                        src={picture}
+                                        alt=""
+                                    />
+                                </SwiperSlide>
                             ))}
-                        </Carousel>
+                        </Swiper>
                         <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                             <div className="font-medium">Deskripsi</div>
                             <p className="text-sm text-neutral-03">
                                 {formValue.description}
                             </p>
-                            <p className="text-sm text-neutral-03">
+                            {/* <p className="text-sm text-neutral-03">
                                 Lorem ipsum dolor sit amet consectetur
                                 adipisicing elit. Asperiores consequatur
                                 incidunt, nobis dolore, minus rerum, nisi unde
                                 sint corrupti suscipit obcaecati dolores odio
                                 qui ut error eius iusto alias deleniti?
-                            </p>
+                            </p> */}
                         </div>
                     </div>
-                    <div className="space-y-4 sm:w-1/3 sm:space-y-6 lg:w-1/4">
-                        <div className="rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                    <div className="relative z-10 -mt-16 space-y-4 px-4 sm:-mt-0 sm:w-1/3 sm:space-y-6 sm:px-0 lg:w-1/4">
+                        <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div className="mb-4 space-y-2">
                                 <div>{formValue.name}</div>
                                 <div className="text-sm text-neutral-03">
@@ -120,22 +116,20 @@ const DetailProduct = () => {
                         </div>
                         <ProfileCard />
                     </div>
-                    <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:hidden">
-                        <div className="font-medium">Deskripsi</div>
-                        <p className="text-sm text-neutral-03">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Tempora nostrum nisi labore nesciunt
-                            necessitatibus, debitis quibusdam veritatis. Ratione
-                            impedit architecto maxime dolores in commodi
-                            praesentium repellat, soluta vel odit id!
-                        </p>
-                        <p className="text-sm text-neutral-03">
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Asperiores consequatur incidunt, nobis dolore,
-                            minus rerum, nisi unde sint corrupti suscipit
-                            obcaecati dolores odio qui ut error eius iusto alias
-                            deleniti?
-                        </p>
+                    <div className="mb-8 px-4 sm:hidden sm:px-0">
+                        <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                            <div className="font-medium">Deskripsi</div>
+                            <p className="text-sm text-neutral-03">
+                                {formValue.description}
+                            </p>
+                            {/* <p className="text-sm text-neutral-03">
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Asperiores consequatur
+                                incidunt, nobis dolore, minus rerum, nisi unde
+                                sint corrupti suscipit obcaecati dolores odio
+                                qui ut error eius iusto alias deleniti?
+                            </p> */}
+                        </div>
                     </div>
                 </div>
             </div>

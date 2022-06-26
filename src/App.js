@@ -3,9 +3,9 @@ import Main from "./layouts/Main";
 import Home from "./pages/Home";
 import DetailProduct from "./pages/DetailProduct";
 import Error from "./pages/404";
-import Modal from "./components/Modal";
-import ModalStatus from "./components/ModalStatus";
-import ModalTawar from "./components/ModalTawar";
+import ModalBerhasil from "./components/modals/ModalBerhasil";
+import ModalStatus from "./components/modals/ModalStatus";
+import ModalTawar from "./components/modals/ModalTawar";
 import Auth from "./layouts/Auth";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -52,12 +52,6 @@ function App() {
                         />
                         <Route path="wishlist" element={<ListWishlist />} />
                     </Route>
-                    <Route path="product/modal" element={<Modal />} />
-                    <Route
-                        path="product/modalstatus"
-                        element={<ModalStatus />}
-                    />
-                    <Route path="product/modaltawar" element={<ModalTawar />} />
                 </Route>
                 <Route path="/notification" element={<Notification />} />
                 <Route element={<Topbar />}>
@@ -76,6 +70,9 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                 </Route>
+                <Route path="test/modalberhasil" element={<ModalBerhasil />} />
+                <Route path="test/modalstatus" element={<ModalStatus />} />
+                <Route path="test/modaltawar" element={<ModalTawar />} />
                 <Route path="*" element={<Error />} />
             </Routes>
         </BrowserRouter>

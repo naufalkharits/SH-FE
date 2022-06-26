@@ -33,7 +33,7 @@ const DesktopMenu = () => {
                 <UserButton />
                 <Link
                     to="/login"
-                    className="hidden items-center gap-2 rounded-xl bg-primary-purple-04 py-3.5 px-4 font-semibold text-neutral-01  hover:bg-primary-purple-05 sm:flex"
+                    className="hidden items-center gap-2 rounded-xl bg-primary-purple-04 py-3.5 px-4 font-semibold text-white  hover:bg-primary-purple-05 sm:flex"
                 >
                     <FiLogIn className="h-5 w-5" />
                     <span>Masuk</span>

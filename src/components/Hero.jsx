@@ -1,5 +1,5 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import banner1 from "../images/banner-1.png";
 import banner2 from "../images/banner-2.png";
 import banner3 from "../images/banner-3.png";
@@ -8,44 +8,69 @@ import banner5 from "../images/banner-5.png";
 
 const Hero = () => {
     return (
-        <>
-            <div className="my-4 hidden sm:block">
-                <Carousel
-                    infiniteLoop
-                    emulateTouch={true}
-                    centerMode={true}
-                    centerSlidePercentage={60}
-                    autoPlay={true}
-                    showArrows={false}
-                    showThumbs={false}
-                    showStatus={false}
-                    showIndicators={false}
-                >
-                    <img className="px-4" src={banner1} alt="" />
-                    <img className="px-4" src={banner2} alt="" />
-                    <img className="px-4" src={banner3} alt="" />
-                    <img className="px-4" src={banner4} alt="" />
-                    <img className="px-4" src={banner5} alt="" />
-                </Carousel>
-            </div>
-            {/* <div className="my-4 sm:hidden">
-                <Carousel
-                    infiniteLoop
-                    emulateTouch={true}
-                    autoPlay={true}
-                    showArrows={false}
-                    showThumbs={false}
-                    showStatus={false}
-                    showIndicators={false}
-                >
-                    <img className="px-4" src={banner1} alt="" />
-                    <img className="px-4" src={banner2} alt="" />
-                    <img className="px-4" src={banner3} alt="" />
-                    <img className="px-4" src={banner4} alt="" />
-                    <img className="px-4" src={banner5} alt="" />
-                </Carousel>
-            </div> */}
-        </>
+        <Swiper
+            className="my-8 hidden sm:block"
+            centeredSlides={true}
+            slidesPerView={2}
+            loop={true}
+            grabCursor={true}
+        >
+            <SwiperSlide>
+                {({ isActive }) => (
+                    <img
+                        className={
+                            isActive ? "duration-700" : "scale-75 duration-700"
+                        }
+                        src={banner1}
+                        alt=""
+                    />
+                )}
+            </SwiperSlide>
+            <SwiperSlide>
+                {({ isActive }) => (
+                    <img
+                        className={
+                            isActive ? "duration-700" : "scale-75 duration-700"
+                        }
+                        src={banner2}
+                        alt=""
+                    />
+                )}
+            </SwiperSlide>
+            <SwiperSlide>
+                {({ isActive }) => (
+                    <img
+                        className={
+                            isActive ? "duration-700" : "scale-75 duration-700"
+                        }
+                        src={banner3}
+                        alt=""
+                    />
+                )}
+            </SwiperSlide>
+            <SwiperSlide>
+                {({ isActive }) => (
+                    <img
+                        className={
+                            isActive ? "duration-700" : "scale-75 duration-700"
+                        }
+                        src={banner4}
+                        alt=""
+                    />
+                )}
+            </SwiperSlide>
+            <SwiperSlide>
+                {({ isActive }) => (
+                    <img
+                        className={
+                            isActive ? "duration-700" : "scale-75 duration-700"
+                        }
+                        src={banner5}
+                        alt=""
+                    />
+                )}
+            </SwiperSlide>
+        </Swiper>
     );
 };
 

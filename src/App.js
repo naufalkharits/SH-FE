@@ -24,22 +24,35 @@ import ListWishlist from "./components/ListWishlist";
 import EditProduct from "./pages/EditProduct";
 import Notification from "./pages/Notification";
 import UserText from "./components/UserText";
+import RequireAuth from "./middlewares/RequireAuth";
+import UnrequireAuth from "./middlewares/UnrequireAuth";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Main />}>
-                    <Route index element={<Home />} />
+                {/* public */}
+                <Route path="*" element={<Error />} />
+                <Route element={<Main />}>
+                    <Route path="/" element={<Home />} />
                     <Route
-                        path="product/:productId"
+                        path="/product/:productId"
                         element={<DetailProduct />}
                     />
                     <Route
-                        path="buy-product/:productId"
+                        path="/buy-product/:productId"
                         element={<DetailProductBuyer />}
                     />
-                    <Route path="manage-product" element={<ManageProduct />}>
+                </Route>
+                {/* required */}
+                <Route
+                    element={
+                        <RequireAuth>
+                            <Main />
+                        </RequireAuth>
+                    }
+                >
+                    <Route path="/manage-product" element={<ManageProduct />}>
                         <Route index element={<AllProduct />} />
                         <Route path="wishlisted" element={<Wishlisted />} />
                         <Route path="sold" element={<Sold />} />
@@ -47,10 +60,10 @@ function App() {
                     <Route element={<UserProfile />}>
                         <Route path="user" element={<UserText />} />
                         <Route
-                            path="order-list"
+                            path="/order-list"
                             element={<HistoryTransaksi />}
                         />
-                        <Route path="wishlist" element={<ListWishlist />} />
+                        <Route path="/wishlist" element={<ListWishlist />} />
                     </Route>
                 </Route>
                 <Route path="/notification" element={<Notification />} />
@@ -66,14 +79,21 @@ function App() {
                     <Route path="/user/profile" element={<InfoProfil />} />
                     <Route path="/user/infopenawar" element={<InfoPenawar />} />
                 </Route>
-                <Route element={<Auth />}>
+                <Route
+                    element={
+                        <UnrequireAuth>
+                            <Auth />
+                        </UnrequireAuth>
+                    }
+                >
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                 </Route>
                 <Route path="test/modalberhasil" element={<ModalBerhasil />} />
                 <Route path="test/modalstatus" element={<ModalStatus />} />
                 <Route path="test/modaltawar" element={<ModalTawar />} />
-                <Route path="*" element={<Error />} />
+
+                {/* unrequired */}
             </Routes>
         </BrowserRouter>
     );

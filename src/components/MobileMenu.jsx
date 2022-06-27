@@ -1,12 +1,16 @@
 import { Fragment } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../redux/authSlice";
 import { Popover, Transition } from "@headlessui/react";
-import { FiLogIn, FiMenu, FiX } from "react-icons/fi";
+import { FiLogIn, FiLogOut, FiMenu, FiX } from "react-icons/fi";
 import Search from "./Search";
 
 const MobileMenu = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user } = useSelector((state) => state.auth);
 
     return (
         <>
@@ -69,13 +73,30 @@ const MobileMenu = () => {
                                 </Link>
                             </div>
                         </div>
-                        <Link
-                            to="/login"
-                            className="flex  w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-white hover:bg-primary-purple-05 "
+                        <button
+                            className="flex w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-white hover:bg-primary-purple-05"
+                            onClick={() => {
+                                if (user) {
+                                    dispatch(logout());
+                                }
+
+                                if (!user) {
+                                    navigate("/login");
+                                }
+                            }}
                         >
-                            <FiLogIn className="h-5 w-5" />
-                            <span>Masuk</span>
-                        </Link>
+                            {user ? (
+                                <>
+                                    <FiLogOut className="h-5 w-5" />
+                                    <span>Logout</span>
+                                </>
+                            ) : (
+                                <>
+                                    <FiLogIn className="h-5 w-5" />
+                                    <span>Masuk</span>
+                                </>
+                            )}
+                        </button>
                     </div>
                 </Popover.Panel>
             </Transition>

@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { FiList, FiLogIn } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import Search from "./Search";
@@ -7,6 +8,7 @@ import UserButton from "./UserButton";
 
 const DesktopMenu = () => {
     const navigate = useNavigate();
+    const { user } = useSelector((state) => state.auth);
 
     return (
         <>
@@ -20,24 +22,34 @@ const DesktopMenu = () => {
                     }}
                 />
                 <MobileMenu />
+                <div className="hidden sm:block">
+                    <Search />
+                </div>
             </div>
-            <Search />
+            <div className="w-full sm:hidden">
+                <Search />
+            </div>
             <div className="hidden items-center gap-6 sm:flex">
-                <FiList
-                    className="h-6 w-6 cursor-pointer hover:text-primary-purple-05"
-                    onClick={() => {
-                        navigate("/manage-product");
-                    }}
-                />
-                <NotificationButton />
-                <UserButton />
-                <Link
-                    to="/login"
-                    className="flex items-center gap-2 rounded-xl bg-primary-purple-04 py-3.5 px-4 font-semibold  text-white hover:bg-primary-purple-05"
-                >
-                    <FiLogIn className="h-5 w-5" />
-                    <span>Masuk</span>
-                </Link>
+                {user ? (
+                    <>
+                        <FiList
+                            className="h-6 w-6 cursor-pointer hover:text-primary-purple-05"
+                            onClick={() => {
+                                navigate("/manage-product");
+                            }}
+                        />
+                        <NotificationButton />
+                        <UserButton />
+                    </>
+                ) : (
+                    <Link
+                        to="/login"
+                        className="flex items-center gap-2 rounded-xl bg-primary-purple-04 py-3.5 px-4 font-semibold  text-white hover:bg-primary-purple-05"
+                    >
+                        <FiLogIn className="h-5 w-5" />
+                        <span>Masuk</span>
+                    </Link>
+                )}
             </div>
         </>
     );

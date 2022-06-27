@@ -41,7 +41,12 @@ export const authSlice = createSlice({
         loading: "idle",
         error: null,
     },
-    // reducers: {},
+    reducers: {
+        logout: (state, action) => {
+            localStorage.removeItem("user");
+            state.user = null;
+        },
+    },
     extraReducers: {
         // register
         [register.pending]: (state) => {
@@ -62,6 +67,7 @@ export const authSlice = createSlice({
         // login
         [login.pending]: (state) => {
             state.loading = "pending";
+            state.error = null;
         },
         [login.fulfilled]: (state, action) => {
             state.loading = "idle";
@@ -74,5 +80,7 @@ export const authSlice = createSlice({
         },
     },
 });
+
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

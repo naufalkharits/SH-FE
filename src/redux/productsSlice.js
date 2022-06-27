@@ -17,9 +17,9 @@ export const fetchProductById = createAsyncThunk(
 // fetch all product
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
-    async ({ keyword, category }) => {
+    async ({ keyword, category, offset }) => {
         const respone = await server.get(
-            `/product?keyword=${keyword}&category=${category}`
+            `/product?keyword=${keyword}&category=${category}&limit=5&offset=${offset}`
         );
         return respone.data;
     }
@@ -67,6 +67,7 @@ const productsSlice = createSlice({
         error: null,
         keyword: "",
         category: "",
+        offset: 0,
     }),
     reducers: {
         setLoading: (state, action) => {
@@ -78,6 +79,12 @@ const productsSlice = createSlice({
         categoryQuery: (state, action) => {
             state.category = action.payload;
         },
+        setOffsetIncrement: (state, action) => {
+            state.offset = state.offset + action.payload;
+        },
+        setOffsetDecrement: (state, action) => {
+            state.offset = state.offset - action.payload;
+        }
     },
     extraReducers: {
         // fetch product by id
@@ -163,7 +170,7 @@ export const productsSelectors = productsAdapter.getSelectors(
     (state) => state.products
 );
 
-export const { setLoading, keywordQuery, categoryQuery } =
+export const { setLoading, keywordQuery, categoryQuery, setOffsetIncrement, setOffsetDecrement } =
     productsSlice.actions;
 
 export default productsSlice.reducer;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, productsSelectors } from "../redux/productsSlice";
+import { fetchProducts, productsSelectors, setOffsetDecrement, setOffsetIncrement } from "../redux/productsSlice";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import SellButton from "../components/buttons/SellButton";
@@ -11,11 +11,12 @@ const Home = () => {
     const dispatch = useDispatch();
     const { keyword } = useSelector((state) => state.products);
     const { category } = useSelector((state) => state.products);
+    const { offset } = useSelector((state) => state.products);
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        dispatch(fetchProducts({ keyword, category }));
-    }, [keyword, category, dispatch]);
+        dispatch(fetchProducts({ keyword, category, offset }));
+    }, [keyword, category, offset, dispatch]);
 
     // const [posts, setPosts] = useState([]);
     // const [loading, setLoading] = useState(false);
@@ -53,6 +54,8 @@ const Home = () => {
                             </div>
                         ))}
                 </div>
+                <button onClick={() => {dispatch(setOffsetIncrement(5))}}> + </button>
+                <button onClick={() => {dispatch(setOffsetDecrement(5))}}> - </button>
             </div>
             <SellButton />
         </>

@@ -5,6 +5,8 @@ import {
 } from "@reduxjs/toolkit";
 import { server, closedServer } from "./api";
 
+const page = JSON.parse(localStorage.getItem("page"));
+
 // fetch product by id
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
@@ -19,7 +21,7 @@ export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async ({ keyword, category, offset }) => {
         const respone = await server.get(
-            `/product?keyword=${keyword}&category=${category}&limit=5&offset=${offset}`
+            `/product?keyword=${keyword}&category=${category}&limit=10&offset=${offset}`
         );
         return respone.data;
     }
@@ -67,7 +69,7 @@ const productsSlice = createSlice({
         error: null,
         keyword: "",
         category: "",
-        offset: 0,
+        offset: page ? page : 0,
     }),
     reducers: {
         setLoading: (state, action) => {
@@ -81,9 +83,11 @@ const productsSlice = createSlice({
         },
         setOffsetIncrement: (state, action) => {
             state.offset = state.offset + action.payload;
+            localStorage.setItem("page", JSON.stringify(state.offset));
         },
         setOffsetDecrement: (state, action) => {
             state.offset = state.offset - action.payload;
+            localStorage.setItem("page", JSON.stringify(state.offset));
         }
     },
     extraReducers: {

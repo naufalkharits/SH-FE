@@ -9,9 +9,8 @@ import Category from "../components/Category";
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { keyword } = useSelector((state) => state.products);
-    const { category } = useSelector((state) => state.products);
-    const { offset } = useSelector((state) => state.products);
+    const { keyword, category, offset } = useSelector((state) => state.products);
+
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
@@ -54,8 +53,9 @@ const Home = () => {
                             </div>
                         ))}
                 </div>
-                <button onClick={() => {dispatch(setOffsetIncrement(5))}}> + </button>
-                <button onClick={() => {dispatch(setOffsetDecrement(5))}}> - </button>
+                {offset > 0 && <button onClick={() => {dispatch(setOffsetDecrement(10))}}> - </button> }
+                <button onClick={() => {dispatch(setOffsetIncrement(10))}}> + </button>
+                <button onClick={() => {dispatch(setOffsetIncrement(4))}}> 4 </button>
             </div>
             <SellButton />
         </>

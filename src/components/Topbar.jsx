@@ -1,9 +1,10 @@
 import { FiArrowLeft } from "react-icons/fi";
-import { useNavigate, Outlet, useLocation } from "react-router-dom";
+import { useNavigate, Outlet, useLocation, useParams } from "react-router-dom";
 
 const Topbar = () => {
     const navigate = useNavigate()
     const location = useLocation();
+    const { productId } = useParams();
 
     return (
         <>
@@ -23,7 +24,7 @@ const Topbar = () => {
                         onClick={() => {
                             navigate(-1);
                         }} />
-                    <div className="font-normal">{location.pathname === '/user/infopenawar' ? "Info Penawar" : location.pathname === '/user/add' ? "Lengkapi Info Akun" : location.pathname === '/manage-product/add' ? "Lengkapi Detail Produk" : ""}</div>
+                    <div className="font-normal">{location.pathname === '/user/infopenawar' ? "Info Penawar" : location.pathname === '/user/add' ? "Lengkapi Info Akun" : location.pathname === '/manage-product/add' ? "Lengkapi Detail Produk" : location.pathname === `/manage-product/edit/${productId}` ? "Edit Detail Produk" : ""}</div>
                     <div className="h-6 w-6 sm:w-[99px]"></div>
                 </div>
             </nav>

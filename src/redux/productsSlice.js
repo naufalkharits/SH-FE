@@ -3,7 +3,7 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit";
-import { server } from "./api";
+import { server, closedServer } from "./api";
 
 // fetch product by id
 export const fetchProductById = createAsyncThunk(
@@ -32,7 +32,7 @@ export const insertProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const respone = await server.post("/product", formData);
+        const respone = await closedServer.post("/product", formData);
         return respone.data.then(navigate("/manage-product"));
     }
 );
@@ -44,7 +44,7 @@ export const updateProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const respone = await server.put(`/product/${productId}`, formData);
+        const respone = await closedServer.put(`/product/${productId}`, formData);
         return respone.data.then(navigate("/manage-product"));
     }
 );
@@ -53,7 +53,7 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async (id) => {
-        await server.delete(`/product/${id}`);
+        await closedServer.delete(`/product/${id}`);
         return id;
     }
 );

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { server } from "./api";
+import { openServer } from "./api";
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -9,7 +9,7 @@ export const register = createAsyncThunk(
     "auth/register",
     async ({ formValue, navigate }, thunkAPI) => {
         try {
-            const response = await server.post("/auth/register", formValue);
+            const response = await openServer.post("/auth/register", formValue);
             console.log(response.data);
             return response.data;
         } catch (error) {
@@ -24,7 +24,7 @@ export const login = createAsyncThunk(
     "auth/login",
     async ({ formValue, navigate }, thunkAPI) => {
         try {
-            const response = await server.post("/auth/login", formValue);
+            const response = await openServer.post("/auth/login", formValue);
             console.log(response.data);
             return response.data;
         } catch (error) {

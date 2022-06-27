@@ -33,6 +33,9 @@ function App() {
             <Routes>
                 {/* public */}
                 <Route path="*" element={<Error />} />
+                <Route path="test/modalberhasil" element={<ModalBerhasil />} />
+                <Route path="test/modalstatus" element={<ModalStatus />} />
+                <Route path="test/modaltawar" element={<ModalTawar />} />
                 <Route element={<Main />}>
                     <Route path="/" element={<Home />} />
                     <Route
@@ -44,56 +47,55 @@ function App() {
                         element={<DetailProductBuyer />}
                     />
                 </Route>
+
                 {/* required */}
-                <Route
-                    element={
-                        <RequireAuth>
-                            <Main />
-                        </RequireAuth>
-                    }
-                >
-                    <Route path="/manage-product" element={<ManageProduct />}>
-                        <Route index element={<AllProduct />} />
-                        <Route path="wishlisted" element={<Wishlisted />} />
-                        <Route path="sold" element={<Sold />} />
-                    </Route>
-                    <Route element={<UserProfile />}>
-                        <Route path="user" element={<UserText />} />
+                <Route element={<RequireAuth />}>
+                    <Route path="/notification" element={<Notification />} />
+                    <Route element={<Main />}>
                         <Route
-                            path="/order-list"
-                            element={<HistoryTransaksi />}
+                            path="/manage-product"
+                            element={<ManageProduct />}
+                        >
+                            <Route index element={<AllProduct />} />
+                            <Route path="wishlisted" element={<Wishlisted />} />
+                            <Route path="sold" element={<Sold />} />
+                        </Route>
+                        <Route element={<UserProfile />}>
+                            <Route path="user" element={<UserText />} />
+                            <Route
+                                path="/order-list"
+                                element={<HistoryTransaksi />}
+                            />
+                            <Route
+                                path="/wishlist"
+                                element={<ListWishlist />}
+                            />
+                        </Route>
+                    </Route>
+                    <Route element={<Topbar />}>
+                        <Route
+                            path="/manage-product/add"
+                            element={<AddProduct />}
                         />
-                        <Route path="/wishlist" element={<ListWishlist />} />
+                        <Route
+                            path="/manage-product/edit/:productId"
+                            element={<EditProduct />}
+                        />
+                        <Route path="/user/profile" element={<InfoProfil />} />
+                        <Route
+                            path="/user/infopenawar"
+                            element={<InfoPenawar />}
+                        />
                     </Route>
                 </Route>
-                <Route path="/notification" element={<Notification />} />
-                <Route element={<Topbar />}>
-                    <Route
-                        path="/manage-product/add"
-                        element={<AddProduct />}
-                    />
-                    <Route
-                        path="/manage-product/edit/:productId"
-                        element={<EditProduct />}
-                    />
-                    <Route path="/user/profile" element={<InfoProfil />} />
-                    <Route path="/user/infopenawar" element={<InfoPenawar />} />
-                </Route>
-                <Route
-                    element={
-                        <UnrequireAuth>
-                            <Auth />
-                        </UnrequireAuth>
-                    }
-                >
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                </Route>
-                <Route path="test/modalberhasil" element={<ModalBerhasil />} />
-                <Route path="test/modalstatus" element={<ModalStatus />} />
-                <Route path="test/modaltawar" element={<ModalTawar />} />
 
                 {/* unrequired */}
+                <Route element={<UnrequireAuth />}>
+                    <Route element={<Auth />}>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Route>
+                </Route>
             </Routes>
         </BrowserRouter>
     );

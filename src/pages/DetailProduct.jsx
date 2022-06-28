@@ -82,7 +82,7 @@ const DetailProduct = () => {
                             </p> */}
                         </div>
                     </div>
-                    <div className="relative z-10 -mt-16 space-y-4 px-4 sm:-mt-0 sm:w-1/3 sm:space-y-6 sm:px-0 lg:w-1/4">
+                    <div className="relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:w-1/3 sm:space-y-6 sm:px-0 lg:w-1/4">
                         <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div className="mb-4 space-y-2">
                                 <div>{formValue.name}</div>

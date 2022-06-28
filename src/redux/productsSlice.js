@@ -3,15 +3,16 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit";
-import { openServer, closedServer } from "./api";
+import { server } from "./api";
 
+const user = JSON.parse(localStorage.getItem("user"));
 const page = JSON.parse(localStorage.getItem("page"));
 
 // fetch product by id
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
     async (productId) => {
-        const respone = await openServer.get(`/product/${productId}`);
+        const respone = await server.get(`/product/${productId}`);
         return respone.data;
     }
 );
@@ -20,7 +21,7 @@ export const fetchProductById = createAsyncThunk(
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async ({ keyword, category, offset }) => {
-        const respone = await openServer.get(
+        const respone = await server.get(
             `/product?keyword=${keyword}&category=${category}&limit=10&offset=${offset}`
         );
         return respone.data;
@@ -34,7 +35,11 @@ export const insertProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const respone = await closedServer.post("/product", formData);
+        const respone = await server.post("/product", formData, {
+            headers: {
+                Authorization: user.accessToken,
+            },
+        });
         return respone.data.then(navigate("/manage-product"));
     }
 );
@@ -46,10 +51,11 @@ export const updateProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const respone = await closedServer.put(
-            `/product/${productId}`,
-            formData
-        );
+        const respone = await server.put(`/product/${productId}`, formData, {
+            headers: {
+                Authorization: user.accessToken,
+            },
+        });
         return respone.data.then(navigate("/manage-product"));
     }
 );
@@ -58,7 +64,11 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async (id) => {
-        await closedServer.delete(`/product/${id}`);
+        await server.delete(`/product/${id}`, {
+            headers: {
+                Authorization: user.accessToken,
+            },
+        });
         return id;
     }
 );

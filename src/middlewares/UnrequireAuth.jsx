@@ -7,10 +7,10 @@ const UnrequireAuth = () => {
     const { user } = useSelector((state) => state.auth);
     const from = location.state?.from?.pathname || "/";
 
-    useEffect(() => {
-        console.log(location);
-        console.log(from);
-    }, []);
+    // useEffect(() => {
+    //     console.log(location);
+    //     console.log(from);
+    // }, []);
 
     return user ? (
         <Navigate to={from} replace state={{ from: location }} />

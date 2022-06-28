@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, productsSelectors, setOffsetDecrement, setOffsetIncrement } from "../redux/productsSlice";
+import {
+    fetchProducts,
+    productsSelectors,
+    setOffsetDecrement,
+    setOffsetIncrement,
+} from "../redux/productsSlice";
 import Hero from "../components/Hero";
 import ProductCard from "../components/ProductCard";
 import SellButton from "../components/buttons/SellButton";
@@ -9,7 +14,9 @@ import Category from "../components/Category";
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { keyword, category, offset } = useSelector((state) => state.products);
+    const { keyword, category, offset } = useSelector(
+        (state) => state.products
+    );
 
     const products = useSelector(productsSelectors.selectAll);
 
@@ -53,9 +60,32 @@ const Home = () => {
                             </div>
                         ))}
                 </div>
-                {offset > 0 && <button onClick={() => {dispatch(setOffsetDecrement(10))}}> - </button> }
-                <button onClick={() => {dispatch(setOffsetIncrement(10))}}> + </button>
-                <button onClick={() => {dispatch(setOffsetIncrement(4))}}> 4 </button>
+                {offset > 0 && (
+                    <button
+                        onClick={() => {
+                            dispatch(setOffsetDecrement(10));
+                        }}
+                    >
+                        {" "}
+                        -{" "}
+                    </button>
+                )}
+                <button
+                    onClick={() => {
+                        dispatch(setOffsetIncrement(10));
+                    }}
+                >
+                    {" "}
+                    +{" "}
+                </button>
+                <button
+                    onClick={() => {
+                        dispatch(setOffsetIncrement(4));
+                    }}
+                >
+                    {" "}
+                    4{" "}
+                </button>
             </div>
             <SellButton />
         </>

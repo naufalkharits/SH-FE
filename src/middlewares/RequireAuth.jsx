@@ -10,7 +10,7 @@ const RequireAuth = () => {
     const { checkMe } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        dispatch(me(user.accessToken));
+        if (user) dispatch(me(user.accessToken));
         if (!checkMe) dispatch(refresh());
     }, [user, checkMe, dispatch]);
 

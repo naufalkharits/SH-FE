@@ -10,8 +10,8 @@ import {
 } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
 import PublishButton from "../components/buttons/PublishButton";
-import { FiHeart } from "react-icons/fi";
 import BackButton from "../components/buttons/BackButton";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
 
 const className = (...classes) => {
@@ -33,6 +33,8 @@ const DetailProduct = () => {
         description: "",
         pictures: [],
     });
+
+    const [isHovered, setIsHovered] = useState(false);
 
     const handleDelete = (e) => {
         e.preventDefault();
@@ -111,7 +113,7 @@ const DetailProduct = () => {
                             <button
                                 className={className(
                                     process === "pending" ? "gap-2" : "",
-                                    "hidden w-full items-center justify-center rounded-2xl bg-alert-danger p-2 text-white hover:bg-red-700 sm:flex"
+                                    "hidden w-full items-center justify-center rounded-2xl bg-red-500 p-2 text-white hover:bg-red-600 sm:flex"
                                 )}
                                 type="submit"
                                 onClick={handleDelete}
@@ -127,7 +129,20 @@ const DetailProduct = () => {
                             </button>
                         </div>
                         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-                            <FiHeart className="h-5 w-5" />
+                            <div
+                                onMouseEnter={() => {
+                                    setIsHovered(true);
+                                }}
+                                onMouseLeave={() => {
+                                    setIsHovered(false);
+                                }}
+                            >
+                                {isHovered ? (
+                                    <FaHeart className="h-5 w-5 text-red-600" />
+                                ) : (
+                                    <FaRegHeart className="h-5 w-5" />
+                                )}
+                            </div>
                         </div>
                         <ProfileCard />
                     </div>

@@ -38,7 +38,6 @@ export const register = createAsyncThunk(
     async ({ formValue, navigate }, thunkAPI) => {
         try {
             const response = await server.post("/auth/register", formValue);
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error.response.data);
@@ -53,7 +52,6 @@ export const login = createAsyncThunk(
     async ({ formValue, navigate }, thunkAPI) => {
         try {
             const response = await server.post("/auth/login", formValue);
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error.response.data);

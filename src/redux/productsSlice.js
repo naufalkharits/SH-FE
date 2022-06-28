@@ -102,6 +102,10 @@ const productsSlice = createSlice({
             state.offset = state.offset - action.payload;
             localStorage.setItem("page", JSON.stringify(state.offset));
         },
+        resetPageOffset: (state, action) => {
+            state.offset = 0;
+            localStorage.setItem("page", JSON.stringify(0));
+        },
     },
     extraReducers: {
         // fetch product by id
@@ -193,6 +197,7 @@ export const {
     categoryQuery,
     setOffsetIncrement,
     setOffsetDecrement,
+    resetPageOffset,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

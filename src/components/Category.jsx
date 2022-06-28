@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollingCarousel } from "@trendyol-js/react-carousel";
-import { categoryQuery } from "../redux/productsSlice";
+import { categoryQuery, resetPageOffset } from "../redux/productsSlice";
 import { FiSearch } from "react-icons/fi";
 
 const className = (...classes) => {
@@ -10,7 +10,10 @@ const className = (...classes) => {
 const Category = () => {
     const dispatch = useDispatch();
     const { category } = useSelector((state) => state.products);
-    const onClick = (query) => dispatch(categoryQuery(query));
+    const onClick = (query) => {
+        dispatch(categoryQuery(query));
+        dispatch(resetPageOffset());
+    };
 
     return (
         <>

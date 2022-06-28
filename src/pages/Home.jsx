@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     fetchProducts,
@@ -7,10 +7,9 @@ import {
     setOffsetIncrement,
 } from "../redux/productsSlice";
 import Hero from "../components/Hero";
+import Category from "../components/Category";
 import ProductCard from "../components/ProductCard";
 import SellButton from "../components/buttons/SellButton";
-import Category from "../components/Category";
-// import ProductCardTesting from "../components/ProductCard-testing";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -23,17 +22,6 @@ const Home = () => {
     useEffect(() => {
         dispatch(fetchProducts({ keyword, category, offset }));
     }, [keyword, category, offset, dispatch]);
-
-    // const [posts, setPosts] = useState([]);
-    // const [loading, setLoading] = useState(false);
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [postsPerPage] = useState(10);
-
-    // const indexOfLastPost = currentPage * postsPerPage;
-    // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    // const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
-    // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <>

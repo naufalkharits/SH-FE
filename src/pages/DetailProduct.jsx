@@ -12,11 +12,17 @@ import ProfileCard from "../components/ProfileCard";
 import PublishButton from "../components/buttons/PublishButton";
 import { FiHeart } from "react-icons/fi";
 import BackButton from "../components/buttons/BackButton";
+import { CgSpinner } from "react-icons/cg";
+
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
 
 const DetailProduct = () => {
     const navigate = useNavigate();
     const { productId } = useParams();
     const dispatch = useDispatch();
+    const { process } = useSelector((state) => state.products);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
@@ -31,9 +37,7 @@ const DetailProduct = () => {
     const handleDelete = (e) => {
         e.preventDefault();
 
-        dispatch(deleteProduct(productId));
-
-        navigate("/manage-product");
+        dispatch(deleteProduct({ productId, process, navigate }));
     };
 
     useEffect(() => {
@@ -105,10 +109,21 @@ const DetailProduct = () => {
                                 Edit
                             </button>
                             <button
-                                className="hidden w-full rounded-2xl bg-alert-danger p-2 text-white hover:bg-red-700 sm:block"
+                                className={className(
+                                    process === "pending" ? "gap-2" : "",
+                                    "hidden w-full items-center justify-center rounded-2xl bg-alert-danger p-2 text-white hover:bg-red-700 sm:flex"
+                                )}
+                                type="submit"
                                 onClick={handleDelete}
                             >
-                                Delete
+                                {process === "pending" ? (
+                                    <>
+                                        <CgSpinner className="animate-spin" />
+                                        <span>Deleting...</span>
+                                    </>
+                                ) : (
+                                    <span>Delete</span>
+                                )}
                             </button>
                         </div>
                         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">

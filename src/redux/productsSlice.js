@@ -31,7 +31,7 @@ export const fetchProducts = createAsyncThunk(
 // insert product
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async ({ formData, loading, navigate }) => {
+    async ({ formData, process, navigate }) => {
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
@@ -40,6 +40,7 @@ export const insertProduct = createAsyncThunk(
                 Authorization: user.accessToken,
             },
         });
+        if (process === "idle") navigate("/manage-product");
         return respone.data;
     }
 );
@@ -47,7 +48,7 @@ export const insertProduct = createAsyncThunk(
 // update product
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async ({ productId, formData, loading, navigate }) => {
+    async ({ productId, formData, process, navigate }) => {
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
@@ -56,6 +57,7 @@ export const updateProduct = createAsyncThunk(
                 Authorization: user.accessToken,
             },
         });
+        if (process === "idle") navigate("/manage-product");
         return respone.data;
     }
 );
@@ -63,13 +65,14 @@ export const updateProduct = createAsyncThunk(
 // delete product
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
-    async (id) => {
-        await server.delete(`/product/${id}`, {
+    async ({ productId, process, navigate }) => {
+        await server.delete(`/product/${productId}`, {
             headers: {
                 Authorization: user.accessToken,
             },
         });
-        return id;
+        if (process === "idle") navigate("/manage-product");
+        return productId;
     }
 );
 
@@ -79,6 +82,7 @@ const productsSlice = createSlice({
     name: "products",
     initialState: productsAdapter.getInitialState({
         loading: "idle",
+        process: "idle",
         error: null,
         keyword: "",
         category: "",
@@ -140,48 +144,46 @@ const productsSlice = createSlice({
 
         // insert product
         [insertProduct.pending]: (state) => {
-            state.loading = "pending";
+            state.process = "pending";
             state.error = null;
             productsAdapter.removeAll(state);
         },
         [insertProduct.fulfilled]: (state, action) => {
-            state.loading = "idle";
+            state.process = "idle";
             productsAdapter.addOne(state, action.payload.product);
         },
         [insertProduct.rejected]: (state, action) => {
-            state.loading = "idle";
+            state.process = "idle";
             state.error = action.payload;
         },
 
         // update product
         [updateProduct.pending]: (state) => {
-            state.loading = "pending";
+            state.process = "pending";
             state.error = null;
             productsAdapter.removeAll(state);
         },
         [updateProduct.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            productsAdapter.updateOne(state, {
-                id: action.payload.updatedProduct.id,
-                updates: action.payload.updatedProduct,
-            });
+            state.process = "idle";
+            productsAdapter.addOne(state, action.payload.updatedProduct);
         },
         [updateProduct.rejected]: (state, action) => {
-            state.loading = "idle";
+            state.process = "idle";
             state.error = action.payload;
         },
 
         // delete product
         [deleteProduct.pending]: (state) => {
-            state.loading = "pending";
+            state.process = "pending";
             state.error = null;
             productsAdapter.removeAll(state);
         },
         [deleteProduct.fulfilled]: (state, action) => {
+            state.process = "idle";
             productsAdapter.removeOne(state, action.payload);
         },
         [deleteProduct.rejected]: (state, action) => {
-            state.loading = "idle";
+            state.process = "idle";
             state.error = action.payload;
         },
     },

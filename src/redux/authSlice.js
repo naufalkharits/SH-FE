@@ -12,7 +12,6 @@ export const refresh = createAsyncThunk("auth/refresh", async (thunkAPI) => {
         });
         return response.data;
     } catch (error) {
-        console.log(error.response.data);
         return thunkAPI.rejectWithValue(error.response.data);
     }
 });
@@ -27,7 +26,6 @@ export const me = createAsyncThunk("auth/me", async (accessToken, thunkAPI) => {
         });
         return response.data;
     } catch (error) {
-        console.log(error.response.data);
         return thunkAPI.rejectWithValue(error.response.data);
     }
 });
@@ -64,7 +62,7 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
-        checkMe: true,
+        checkMe: false,
         loading: "idle",
         error: null,
     },

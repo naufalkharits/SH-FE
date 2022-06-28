@@ -4,11 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { FiPlus, FiChevronDown } from "react-icons/fi";
 import { FiArrowLeft } from "react-icons/fi";
 import { insertProduct } from "../redux/productsSlice";
+import { CgSpinner } from "react-icons/cg";
+
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
 
 const AddProduct = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { loading } = useSelector((state) => state.products);
+    const { process } = useSelector((state) => state.products);
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
@@ -39,7 +44,7 @@ const AddProduct = () => {
         formData.set("category", formValue.category);
         formData.set("description", formValue.description);
 
-        dispatch(insertProduct({ formData, loading, navigate }));
+        dispatch(insertProduct({ formData, process, navigate }));
     };
 
     useEffect(() => {
@@ -84,7 +89,7 @@ const AddProduct = () => {
                             <FiChevronDown />
                         </span>
                         <select
-                            className=" w-full appearance-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 pr-10 pl-3 focus:outline-none"
+                            className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 py-3 pr-10 pl-3 focus:outline-none"
                             name="category"
                             onChange={onFormChange}
                         >
@@ -102,7 +107,7 @@ const AddProduct = () => {
                     <textarea
                         name="description"
                         rows="2"
-                        className="w-full resize-none rounded-2xl border border-neutral-02 bg-neutral-01 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
+                        className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                         placeholder="Contoh: Jalan Ikan Hiu 33"
                         onChange={onFormChange}
                     />
@@ -129,8 +134,23 @@ const AddProduct = () => {
                     <button className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04 py-3 font-medium hover:bg-primary-purple-05 hover:text-white">
                         Preview
                     </button>
-                    <button className="sm:w-74 w-[48%] rounded-xl bg-primary-purple-04 py-3 font-medium text-white hover:bg-primary-purple-05">
-                        Terbitkan
+                    <button
+                        className={className(
+                            process === "pending"
+                                ? "flex items-center justify-center gap-2"
+                                : "",
+                            "sm:w-74 w-[48%] rounded-xl bg-primary-purple-04 py-3 font-medium text-white hover:bg-primary-purple-05"
+                        )}
+                        type="submit"
+                    >
+                        {process === "pending" ? (
+                            <>
+                                <CgSpinner className="animate-spin" />
+                                <span>Adding...</span>
+                            </>
+                        ) : (
+                            <span>Terbitkan</span>
+                        )}
                     </button>
                 </div>
             </form>

@@ -4,6 +4,34 @@ import { server } from "./api";
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
 
+// refresh
+export const refresh = createAsyncThunk("auth/refresh", async (thunkAPI) => {
+    try {
+        const response = await server.post("/auth/refresh", {
+            refreshToken: user.refreshToken,
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error.response.data);
+        return thunkAPI.rejectWithValue(error.response.data);
+    }
+});
+
+// checkMe
+export const me = createAsyncThunk("auth/me", async (accessToken, thunkAPI) => {
+    try {
+        const response = await server.get("/auth/me", {
+            headers: {
+                Authorization: accessToken,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error.response.data);
+        return thunkAPI.rejectWithValue(error.response.data);
+    }
+});
+
 // register
 export const register = createAsyncThunk(
     "auth/register",
@@ -38,6 +66,7 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
+        checkMe: true,
         loading: "idle",
         error: null,
     },
@@ -48,6 +77,38 @@ export const authSlice = createSlice({
         },
     },
     extraReducers: {
+        // refresh
+        [refresh.pending]: (state) => {
+            state.loading = "pending";
+            state.errorRefresh = null;
+        },
+        [refresh.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.error = null;
+            localStorage.setItem("user", JSON.stringify(action.payload));
+            state.user = action.payload;
+        },
+        [refresh.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.errorRefresh = action.payload;
+        },
+
+        // checkMe
+        [me.pending]: (state) => {
+            state.loading = "pending";
+            state.error = null;
+        },
+        [me.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.error = null;
+            state.checkMe = true;
+        },
+        [me.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+            state.checkMe = false;
+        },
+
         // register
         [register.pending]: (state) => {
             state.loading = "pending";
@@ -56,8 +117,8 @@ export const authSlice = createSlice({
         [register.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.error = null;
-            state.user = action.payload;
             localStorage.setItem("user", JSON.stringify(action.payload));
+            state.user = action.payload;
         },
         [register.rejected]: (state, action) => {
             state.loading = "idle";

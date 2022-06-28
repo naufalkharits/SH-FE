@@ -6,20 +6,20 @@ import ProductCard from "./ProductCard";
 
 const AllProduct = () => {
     const dispatch = useDispatch();
-    const { keyword } = useSelector((state) => state.products);
-    const { category } = useSelector((state) => state.products);
+    const { keyword, category, offset } = useSelector(
+        (state) => state.products
+    );
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        dispatch(fetchProducts({ keyword, category }));
-    }, [keyword, category, dispatch]);
+        dispatch(fetchProducts({ keyword, category, offset }));
+    }, [keyword, category, offset, dispatch]);
     return (
         <>
             <AddProductCard />
             {products.map((product) => (
-                <div className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4">
+                <div className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4" key={product.id}>
                     <ProductCard
-                        key={product.id}
                         id={product.id}
                         name={product.name}
                         price={product.price}

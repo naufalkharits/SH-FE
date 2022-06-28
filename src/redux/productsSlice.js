@@ -40,7 +40,7 @@ export const insertProduct = createAsyncThunk(
                 Authorization: user.accessToken,
             },
         });
-        return respone.data.then(navigate("/manage-product"));
+        return respone.data;
     }
 );
 
@@ -56,7 +56,7 @@ export const updateProduct = createAsyncThunk(
                 Authorization: user.accessToken,
             },
         });
-        return respone.data.then(navigate("/manage-product"));
+        return respone.data;
     }
 );
 

@@ -6,20 +6,20 @@ import { me } from "../redux/authSlice";
 
 const ProfileCard = () => {
     const location = useLocation();
-    const { user, biodata } = useSelector((state) => state.auth);
-    const dispatch = useDispatch();
+    // const { user, biodata } = useSelector((state) => state.auth);
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(me(user.accessToken));
-    }, [user, dispatch]);
+    // useEffect(() => {
+    //     dispatch(me(user.accessToken));
+    // }, [user, dispatch]);
 
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
             <div className="flex items-center gap-4">
-                <img src={biodata.picture} alt="" className="w-12 h-12 rounded-xl"/>
+                <img src={orang} alt="" className="w-12 h-12 rounded-xl"/>
                 <div className="space-y-1">
-                    <div>{biodata.name}</div>
-                    <div className="text-xs text-neutral-03">{biodata.city}</div>
+                    <div>Nama</div>
+                    <div className="text-xs text-neutral-03">Kota</div>
                 </div>
             </div>
             {location.pathname === "/manage-product" && (

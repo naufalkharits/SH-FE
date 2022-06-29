@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollingCarousel } from "@trendyol-js/react-carousel";
-import { categoryQuery, resetPageOffset } from "../redux/productsSlice";
+import {
+    categoryQuery,
+    fetchCategories,
+    resetPageOffset,
+} from "../redux/productsSlice";
 import { FiSearch } from "react-icons/fi";
 
 const className = (...classes) => {
@@ -9,11 +14,22 @@ const className = (...classes) => {
 
 const Category = () => {
     const dispatch = useDispatch();
+    const { categories } = useSelector((state) => state.products);
     const { category } = useSelector((state) => state.products);
+    const [formValue, setFormValue] = useState([]);
+
     const onClick = (query) => {
         dispatch(categoryQuery(query));
         dispatch(resetPageOffset());
     };
+
+    useEffect(() => {
+        dispatch(fetchCategories());
+    }, [dispatch]);
+
+    useEffect(() => {
+        categories && setFormValue(categories);
+    }, [categories]);
 
     return (
         <>
@@ -35,76 +51,23 @@ const Category = () => {
                     <FiSearch />
                     <span>Semua</span>
                 </div>
-                <div
-                    className={className(
-                        category === "Automotive"
-                            ? "bg-primary-purple-04 text-white"
-                            : "bg-primary-purple-01 hover:text-white",
-                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
-                    )}
-                    onClick={() => {
-                        onClick("Automotive");
-                    }}
-                >
-                    <FiSearch />
-                    <span>Automotive</span>
-                </div>
-                <div
-                    className={className(
-                        category === "Property"
-                            ? "bg-primary-purple-04 text-white"
-                            : "bg-primary-purple-01 hover:text-white",
-                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
-                    )}
-                    onClick={() => {
-                        onClick("Property");
-                    }}
-                >
-                    <FiSearch />
-                    <span>Property</span>
-                </div>
-                <div
-                    className={className(
-                        category === "Electronic"
-                            ? "bg-primary-purple-04 text-white"
-                            : "bg-primary-purple-01 hover:text-white",
-                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
-                    )}
-                    onClick={() => {
-                        onClick("Electronic");
-                    }}
-                >
-                    <FiSearch />
-                    <span>Electronic</span>
-                </div>
-                <div
-                    className={className(
-                        category === "Sport"
-                            ? "bg-primary-purple-04 text-white"
-                            : "bg-primary-purple-01 hover:text-white",
-                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
-                    )}
-                    onClick={() => {
-                        onClick("Sport");
-                    }}
-                >
-                    <FiSearch />
-                    <span>Sport</span>
-                </div>
-                <div
-                    className={className(
-                        category === "Office"
-                            ? "bg-primary-purple-04 text-white"
-                            : "bg-primary-purple-01 hover:text-white",
-                        "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
-                    )}
-                    onClick={() => {
-                        onClick("Office");
-                    }}
-                >
-                    <FiSearch />
-                    <span>Office</span>
-                </div>
+                {formValue.map((cat) => (
+                    <div
+                        key={cat}
+                        className={className(
+                            category === cat
+                                ? "bg-primary-purple-04 text-white"
+                                : "bg-primary-purple-01 hover:text-white",
+                            "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                        )}
+                        onClick={() => {
+                            onClick(cat);
+                        }}
+                    >
+                        <FiSearch />
+                        <span>{cat}</span>
+                    </div>
+                ))}
             </ScrollingCarousel>
         </>
     );

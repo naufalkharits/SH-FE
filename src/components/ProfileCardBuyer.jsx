@@ -1,14 +1,24 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import orang from "../images/orang.png";
+import { useEffect } from "react";
+import { me } from "../redux/authSlice";
 
 const ProfileCardBuyer = () => {
+    const { user, biodata } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(me(user.accessToken));
+    }, [user, dispatch]);
+
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
             <div className="flex items-center gap-4">
-                <img src={orang} alt="" />
+                <img src={biodata.picture} alt="" className="w-12 h-12 rounded-xl"/>
                 <div className="space-y-1">
-                    <div>Nama User</div>
-                    <div className="text-xs text-neutral-03">Kota</div>
+                    <div>{biodata.name}</div>
+                    <div className="text-xs text-neutral-03">{biodata.city}</div>
                 </div>
             </div>
             <Link

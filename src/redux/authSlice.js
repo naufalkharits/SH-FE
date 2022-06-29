@@ -58,10 +58,28 @@ export const login = createAsyncThunk(
     }
 );
 
+// update biodata
+export const updateBiodata = createAsyncThunk(
+    "biodata/updateBiodata",
+    async ({ formData, navigate }) => {
+        // for (const pair of formData.entries()) {
+        //     console.log(`${pair[0]}, ${pair[1]}`);
+        // }
+        const respone = await server.put(`/biodata`, formData, {
+            headers: {
+                Authorization: user.accessToken,
+            },
+        });
+        navigate("/user");
+        return respone.data;
+    }
+);
+
 export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
+        biodata: "",
         checkMe: null,
         loading: "idle",
         error: null,
@@ -92,10 +110,12 @@ export const authSlice = createSlice({
         // checkMe
         [me.pending]: (state) => {
             state.loading = "pending";
+            state.biodata = ""
         },
         [me.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.checkMe = true;
+            state.biodata = action.payload.user
         },
         [me.rejected]: (state, action) => {
             state.loading = "idle";
@@ -130,6 +150,21 @@ export const authSlice = createSlice({
         },
         [login.rejected]: (state, action) => {
             state.loading = "idle";
+            state.error = action.payload;
+        },
+
+        // update biodata
+        [updateBiodata.pending]: (state) => {
+            state.process = "pending";
+            state.error = null;
+            // productsAdapter.removeAll(state);
+        },
+        [updateBiodata.fulfilled]: (state, action) => {
+            state.process = "idle";
+            // productsAdapter.addOne(state, action.payload.updatedProduct);
+        },
+        [updateBiodata.rejected]: (state, action) => {
+            state.process = "idle";
             state.error = action.payload;
         },
     },

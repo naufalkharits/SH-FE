@@ -37,52 +37,37 @@ const Category = () => {
                 Telusuri Kategori
             </div>
             <ScrollingCarousel leftIcon={false} rightIcon={false}>
-                {category === "" ? (
+                <div
+                    className={className(
+                        category === ""
+                            ? "bg-primary-purple-04 text-white"
+                            : "bg-primary-purple-01 hover:text-white",
+                        "flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                    )}
+                    onClick={() => {
+                        onClick("");
+                    }}
+                >
+                    <FiSearch />
+                    <span>Semua</span>
+                </div>
+                {formValue.map((cat) => (
                     <div
-                        className="flex w-fit cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-04 py-3 px-6 text-white hover:bg-primary-purple-05"
+                        key={cat}
+                        className={className(
+                            category === cat
+                                ? "bg-primary-purple-04 text-white"
+                                : "bg-primary-purple-01 hover:text-white",
+                            "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
+                        )}
                         onClick={() => {
-                            onClick("");
+                            onClick(cat);
                         }}
                     >
                         <FiSearch />
-                        <span>Semua</span>
+                        <span>{cat}</span>
                     </div>
-                ) : (
-                    <div
-                        className="flex w-fit cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6 hover:bg-primary-purple-05 hover:text-white"
-                        onClick={() => {
-                            onClick("");
-                        }}
-                    >
-                        <FiSearch />
-                        <span>Semua</span>
-                    </div>
-                )}
-                {formValue.map((cat) =>
-                    category === cat ? (
-                        <div
-                            key={cat}
-                            className="ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-04 py-3 px-6 text-white hover:bg-primary-purple-05"
-                            onClick={() => {
-                                onClick(cat);
-                            }}
-                        >
-                            <FiSearch />
-                            <span>{cat}</span>
-                        </div>
-                    ) : (
-                        <div
-                            key={cat}
-                            className="ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6 hover:bg-primary-purple-05 hover:text-white"
-                            onClick={() => {
-                                onClick(cat);
-                            }}
-                        >
-                            <FiSearch />
-                            <span>{cat}</span>
-                        </div>
-                    )
-                )}
+                ))}
             </ScrollingCarousel>
         </>
     );

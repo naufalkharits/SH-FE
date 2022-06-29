@@ -24,8 +24,12 @@ const AddProduct = () => {
 
     const onPictChange = (e) => {
         const file = e.target.files;
-        for (let index of file) {
-            formData.append("pictures", index);
+        if (file.length > 3) {
+            console.log("gambar tidak boleh lebih dari 3")
+        } else {
+            for (let index of file) {
+                formData.append("pictures", index);
+            }
         }
     };
 

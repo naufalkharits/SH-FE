@@ -15,6 +15,7 @@ const Register = () => {
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.auth);
     const [formValue, setFormValue] = useState({
+        name: "",
         email: "",
         password: "",
     });
@@ -50,12 +51,11 @@ const Register = () => {
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="text"
-                            id="nama"
-                            name="nama"
-                            // value={nama}
+                            name="name"
+                            // value={name}
                             placeholder="Nama Lengkap"
-                            // onChange={onChange}
-                            // required
+                            onChange={onChange}
+                            required
                         />
                     </div>
                     <div className="mb-4 space-y-2">
@@ -63,7 +63,6 @@ const Register = () => {
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="text"
-                            id="email"
                             name="email"
                             // value={email}
                             placeholder="Contoh: johndee@gmail.com"
@@ -76,7 +75,6 @@ const Register = () => {
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="password"
-                            id="password"
                             name="password"
                             // value={password}
                             placeholder="Masukkan password"

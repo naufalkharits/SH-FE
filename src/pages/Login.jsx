@@ -50,7 +50,6 @@ const Login = () => {
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="text"
-                            id="email"
                             name="email"
                             // value={email}
                             placeholder="Contoh: johndee@gmail.com"
@@ -63,7 +62,6 @@ const Login = () => {
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="password"
-                            id="password"
                             name="password"
                             // value={password}
                             placeholder="Masukkan password"

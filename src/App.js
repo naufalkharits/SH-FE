@@ -26,26 +26,32 @@ import Notification from "./pages/Notification";
 import UserText from "./components/UserText";
 import RequireAuth from "./middlewares/RequireAuth";
 import UnrequireAuth from "./middlewares/UnrequireAuth";
+import Public from "./middlewares/Public";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
                 {/* public */}
-                <Route path="*" element={<Error />} />
-                <Route path="test/modalberhasil" element={<ModalBerhasil />} />
-                <Route path="test/modalstatus" element={<ModalStatus />} />
-                <Route path="test/modaltawar" element={<ModalTawar />} />
-                <Route element={<Main />}>
-                    <Route path="/" element={<Home />} />
+                <Route element={<Public />}>
+                    <Route path="*" element={<Error />} />
                     <Route
-                        path="/product/:productId"
-                        element={<DetailProduct />}
+                        path="test/modalberhasil"
+                        element={<ModalBerhasil />}
                     />
-                    <Route
-                        path="/buy-product/:productId"
-                        element={<DetailProductBuyer />}
-                    />
+                    <Route path="test/modalstatus" element={<ModalStatus />} />
+                    <Route path="test/modaltawar" element={<ModalTawar />} />
+                    <Route element={<Main />}>
+                        <Route path="/" element={<Home />} />
+                        <Route
+                            path="/product/:productId"
+                            element={<DetailProduct />}
+                        />
+                        <Route
+                            path="/buy-product/:productId"
+                            element={<DetailProductBuyer />}
+                        />
+                    </Route>
                 </Route>
 
                 {/* required */}

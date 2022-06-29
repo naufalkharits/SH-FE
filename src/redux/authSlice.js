@@ -62,7 +62,7 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
-        checkMe: false,
+        checkMe: null,
         loading: "idle",
         error: null,
     },
@@ -76,7 +76,7 @@ export const authSlice = createSlice({
         // refresh
         [refresh.pending]: (state) => {
             state.loading = "pending";
-            state.errorRefresh = null;
+            state.error = null;
         },
         [refresh.fulfilled]: (state, action) => {
             state.loading = "idle";
@@ -86,22 +86,19 @@ export const authSlice = createSlice({
         },
         [refresh.rejected]: (state, action) => {
             state.loading = "idle";
-            state.errorRefresh = action.payload;
+            state.error = action.payload;
         },
 
         // checkMe
         [me.pending]: (state) => {
             state.loading = "pending";
-            state.error = null;
         },
         [me.fulfilled]: (state, action) => {
             state.loading = "idle";
-            state.error = null;
             state.checkMe = true;
         },
         [me.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = action.payload;
             state.checkMe = false;
         },
 

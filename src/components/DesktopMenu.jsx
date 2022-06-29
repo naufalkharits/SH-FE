@@ -5,6 +5,7 @@ import MobileMenu from "./MobileMenu";
 import Search from "./Search";
 import NotificationButton from "./NotificationButton";
 import UserButton from "./UserButton";
+import SellerButton from "./SellerButton";
 
 const DesktopMenu = () => {
     const navigate = useNavigate();
@@ -32,12 +33,7 @@ const DesktopMenu = () => {
             <div className="hidden items-center gap-6 sm:flex">
                 {user ? (
                     <>
-                        <FiList
-                            className="h-6 w-6 cursor-pointer hover:text-primary-purple-05"
-                            onClick={() => {
-                                navigate("/manage-product");
-                            }}
-                        />
+                        <SellerButton />
                         <NotificationButton />
                         <UserButton />
                     </>

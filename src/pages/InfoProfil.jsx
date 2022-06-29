@@ -88,7 +88,6 @@ const InfoProfil = () => {
                                 type="file"
                                 id="file"
                                 accept="image/png, image/jpeg"
-                                multiple
                                 onChange={onPictChange}
                             />
                             <AiOutlineCamera className="text-3xl text-primary-purple-04" />

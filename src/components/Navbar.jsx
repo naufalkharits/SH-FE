@@ -10,8 +10,9 @@ const Navbar = () => {
     return (
         <Popover
             className={
-                location.pathname === `/product/${productId}` &&
-                "hidden sm:block"
+                location.pathname === `/product/${productId}`
+                    ? "hidden sm:block"
+                    : ""
             }
         >
             <nav

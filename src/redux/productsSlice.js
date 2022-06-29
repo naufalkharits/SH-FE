@@ -8,6 +8,15 @@ import { server } from "./api";
 const user = JSON.parse(localStorage.getItem("user"));
 const page = JSON.parse(localStorage.getItem("page"));
 
+// fetch all category
+export const fetchCategories = createAsyncThunk(
+    "products/fetchCategories",
+    async () => {
+        const { data } = await server.get("/category");
+        return data;
+    }
+);
+
 // fetch product by id
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
@@ -81,6 +90,7 @@ const productsAdapter = createEntityAdapter();
 const productsSlice = createSlice({
     name: "products",
     initialState: productsAdapter.getInitialState({
+        categories: null,
         loading: "idle",
         process: "idle",
         error: null,
@@ -112,6 +122,20 @@ const productsSlice = createSlice({
         },
     },
     extraReducers: {
+        // fetch all category
+        [fetchCategories.pending]: (state) => {
+            // state.loading = "pending";
+            // state.error = null;
+        },
+        [fetchCategories.fulfilled]: (state, action) => {
+            // state.loading = "idle";
+            state.categories = action.payload.categories;
+        },
+        [fetchCategories.rejected]: (state, action) => {
+            // state.loading = "idle";
+            // state.error = action.payload;
+        },
+
         // fetch product by id
         [fetchProductById.pending]: (state) => {
             state.loading = "pending";

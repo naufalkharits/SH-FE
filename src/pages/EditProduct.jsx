@@ -19,8 +19,6 @@ const EditProduct = () => {
     const { productId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [show, setShow] = useState(false)
-    const [error, setError] = useState("")
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
@@ -33,12 +31,14 @@ const EditProduct = () => {
         pictures: [],
     });
     const [formData, setFormData] = useState("");
+    const [show, setShow] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const onPictChange = (e) => {
+    const onFileChange = (e) => {
         const file = e.target.files;
         if (file.length > 3) {
             setShow(true);
-            setError("Gambar Tidak Boleh Lebih Dari 3");
+            setErrorMessage("Gambar Tidak Boleh Lebih Dari 3");
         } else {
             for (let index of file) {
                 formData.append("pictures", index);
@@ -88,11 +88,8 @@ const EditProduct = () => {
 
     return (
         <>
-            {error && <DangerToast show={show} message={error} />}
-            <div
-                className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]"
-            // key={formValue.id}
-            >
+            {errorMessage && <DangerToast show={show} message={errorMessage} />}
+            <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft
                         className="cursor-pointer text-3xl"
@@ -169,7 +166,7 @@ const EditProduct = () => {
                                 name="pictures"
                                 accept="image/png, image/jpeg, image/jpg"
                                 multiple
-                                onChange={onPictChange}
+                                onChange={onFileChange}
                             />
                             <FiPlus />
                         </label>

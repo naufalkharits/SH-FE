@@ -14,8 +14,6 @@ const className = (...classes) => {
 const AddProduct = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [show, setShow] = useState(false)
-    const [error, setError] = useState("")
     const { process } = useSelector((state) => state.products);
     const [formValue, setFormValue] = useState({
         name: "",
@@ -24,12 +22,14 @@ const AddProduct = () => {
         description: "",
     });
     const [formData, setFormData] = useState("");
+    const [show, setShow] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const onPictChange = (e) => {
+    const onFileChange = (e) => {
         const file = e.target.files;
         if (file.length > 3) {
             setShow(true);
-            setError("Gambar Tidak Boleh Lebih Dari 3");
+            setErrorMessage("Gambar Tidak Boleh Lebih Dari 3");
         } else {
             for (let index of file) {
                 formData.append("pictures", index);
@@ -37,7 +37,7 @@ const AddProduct = () => {
         }
     };
 
-    const onFormChange = (e) => {
+    const onChange = (e) => {
         setFormValue({
             ...formValue,
             [e.target.name]: e.target.value,
@@ -61,7 +61,7 @@ const AddProduct = () => {
 
     return (
         <>
-            {error && <DangerToast show={show} message={error} />}
+            {errorMessage && <DangerToast show={show} message={errorMessage} />}
             <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft
@@ -79,7 +79,7 @@ const AddProduct = () => {
                             type="text"
                             placeholder="Nama Produk"
                             name="name"
-                            onChange={onFormChange}
+                            onChange={onChange}
                         />
                     </div>
                     <div className="space-y-2">
@@ -89,7 +89,7 @@ const AddProduct = () => {
                             type="number"
                             placeholder="Rp 0,00"
                             name="price"
-                            onChange={onFormChange}
+                            onChange={onChange}
                         />
                     </div>
                     <div className="space-y-2">
@@ -101,7 +101,7 @@ const AddProduct = () => {
                             <select
                                 className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 py-3 pr-10 pl-3 focus:outline-none"
                                 name="category"
-                                onChange={onFormChange}
+                                onChange={onChange}
                             >
                                 <option value="">Pilih Kategori</option>
                                 <option value="Automotive">Automotive</option>
@@ -119,7 +119,7 @@ const AddProduct = () => {
                             rows="2"
                             className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                             placeholder="Contoh: Jalan Ikan Hiu 33"
-                            onChange={onFormChange}
+                            onChange={onChange}
                         />
                     </div>
                     <div className="space-y-2">
@@ -135,7 +135,7 @@ const AddProduct = () => {
                                 name="pictures"
                                 accept="image/png, image/jpeg, image/jpg"
                                 multiple
-                                onChange={onPictChange}
+                                onChange={onFileChange}
                             />
                             <FiPlus />
                         </label>

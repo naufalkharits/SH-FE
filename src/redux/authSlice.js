@@ -38,7 +38,7 @@ export const register = createAsyncThunk(
             const response = await server.post("/auth/register", formValue);
             return response.data;
         } catch (error) {
-            console.log(error.response.data);
+            // console.log(error.response.data);
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
@@ -52,7 +52,7 @@ export const login = createAsyncThunk(
             const response = await server.post("/auth/login", formValue);
             return response.data;
         } catch (error) {
-            console.log(error.response.data);
+            // console.log(error.response.data);
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
@@ -65,13 +65,13 @@ export const updateBiodata = createAsyncThunk(
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
-        const respone = await server.put(`/biodata`, formData, {
+        const response = await server.put(`/biodata`, formData, {
             headers: {
                 Authorization: user.accessToken,
             },
         });
         navigate("/user");
-        return respone.data;
+        return response.data;
     }
 );
 
@@ -110,12 +110,12 @@ export const authSlice = createSlice({
         // checkMe
         [me.pending]: (state) => {
             state.loading = "pending";
-            state.biodata = ""
+            state.biodata = "";
         },
         [me.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.checkMe = true;
-            state.biodata = action.payload.user
+            state.biodata = action.payload.user;
         },
         [me.rejected]: (state, action) => {
             state.loading = "idle";

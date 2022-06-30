@@ -1,7 +1,6 @@
 import { Fragment } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout } from "../redux/authSlice";
+import { logout } from "../../redux/authSlice";
 import { Menu, Transition } from "@headlessui/react";
 import { FiEdit3, FiLogOut, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -10,8 +9,7 @@ const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
-const UserButton = () => {
-    const navigate = useNavigate();
+const UserDropdown = () => {
     const dispatch = useDispatch();
 
     return (
@@ -70,4 +68,4 @@ const UserButton = () => {
     );
 };
 
-export default UserButton;
+export default UserDropdown;

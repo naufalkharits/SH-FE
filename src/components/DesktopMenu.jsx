@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FiList, FiLogIn } from "react-icons/fi";
+import { FiLogIn } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import Search from "./Search";
+import ListDropdown from "./dropdowns/ListDropdown";
 import NotificationButton from "./NotificationButton";
-import UserButton from "./UserButton";
-import SellerButton from "./SellerButton";
+import UserDropdown from "./dropdowns/UserDropdown";
 
 const DesktopMenu = () => {
     const navigate = useNavigate();
@@ -33,9 +33,9 @@ const DesktopMenu = () => {
             <div className="hidden items-center gap-6 sm:flex">
                 {user ? (
                     <>
-                        <SellerButton />
+                        <ListDropdown />
                         <NotificationButton />
-                        <UserButton />
+                        <UserDropdown />
                     </>
                 ) : (
                     <Link

@@ -1,14 +1,13 @@
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { FiEdit3, FiLogOut,  FiList } from "react-icons/fi";
+import { FiList } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
-const SellerButton = () => {
-
+const ListDropdown = () => {
     return (
         <Menu as="div" className="relative z-10 hidden sm:inline-block">
             <div>
@@ -36,10 +35,9 @@ const SellerButton = () => {
                                         active
                                             ? "hover:text-primary-purple-05"
                                             : "",
-                                        "flex w-full items-center justify-center gap-2"
+                                        "block text-center"
                                     )}
                                 >
-                                    
                                     Toko Saya
                                 </Link>
                                 <Link
@@ -48,10 +46,9 @@ const SellerButton = () => {
                                         active
                                             ? "hover:text-primary-purple-05"
                                             : "",
-                                        "flex w-full items-center justify-center gap-2"
+                                        "block text-center"
                                     )}
                                 >
-                                    
                                     Penawaran Saya
                                 </Link>
                             </>
@@ -63,4 +60,4 @@ const SellerButton = () => {
     );
 };
 
-export default SellerButton;
+export default ListDropdown;

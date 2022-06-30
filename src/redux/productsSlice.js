@@ -21,8 +21,8 @@ export const fetchCategories = createAsyncThunk(
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
     async (productId) => {
-        const respone = await server.get(`/product/${productId}`);
-        return respone.data;
+        const response = await server.get(`/product/${productId}`);
+        return response.data;
     }
 );
 
@@ -30,10 +30,10 @@ export const fetchProductById = createAsyncThunk(
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async ({ keyword, category, offset }) => {
-        const respone = await server.get(
+        const response = await server.get(
             `/product?keyword=${keyword}&category=${category}&limit=10&offset=${offset}`
         );
-        return respone.data;
+        return response.data;
     }
 );
 
@@ -44,13 +44,13 @@ export const insertProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const respone = await server.post("/product", formData, {
+        const response = await server.post("/product", formData, {
             headers: {
                 Authorization: user.accessToken,
             },
         });
         if (process === "idle") navigate("/manage-product");
-        return respone.data;
+        return response.data;
     }
 );
 
@@ -61,13 +61,13 @@ export const updateProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const respone = await server.put(`/product/${productId}`, formData, {
+        const response = await server.put(`/product/${productId}`, formData, {
             headers: {
                 Authorization: user.accessToken,
             },
         });
         if (process === "idle") navigate("/manage-product");
-        return respone.data;
+        return response.data;
     }
 );
 

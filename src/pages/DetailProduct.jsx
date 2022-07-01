@@ -14,6 +14,7 @@ import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
+import { addWishlistBuyer, deleteWishlistBuyer, getWishlistBuyer } from "../redux/wishlistSlice";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -28,6 +29,7 @@ const DetailProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
+    const { wishlists } = useSelector((state) => state.wishlist)
     const [formValue, setFormValue] = useState({
         id: null,
         name: "",
@@ -35,21 +37,34 @@ const DetailProduct = () => {
         category: "",
         description: "",
         pictures: [],
+        sellerId: null,
     });
 
     const [isHovered, setIsHovered] = useState(false);
     const [modalOn, setModalOn] = useState(false);
     const [choice, setChoice] = useState(false);
+    const [isWishlist, setIsWishlist] = useState(false)
 
     const handleDelete = (e) => {
-        e.preventDefault();
-
         dispatch(deleteProduct({ productId, process, navigate }));
     };
 
+    const handleWishlist = (e) => {
+        dispatch(addWishlistBuyer({ productId, navigate}));
+    };
+
+    const deleteWishlist = (e) => {
+        dispatch(deleteWishlistBuyer({productId, navigate}))
+    }
+
     useEffect(() => {
+        dispatch(getWishlistBuyer())
         dispatch(fetchProductById(productId));
     }, [productId, dispatch]);
+
+    // useEffect(() => {
+    //     setIsWishlist()
+    // }, [productId, dispatch]);
 
     useEffect(() => {
         product &&
@@ -60,6 +75,7 @@ const DetailProduct = () => {
                 category: product.category,
                 description: product.description,
                 pictures: product.pictures,
+                sellerId: product.seller_id,
             });
     }, [product]);
 
@@ -73,7 +89,7 @@ const DetailProduct = () => {
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <div
                         className={className(
-                            formValue.id === decodedAccess.id
+                            formValue.sellerId === decodedAccess.id
                                 ? "sm:w-2/3 lg:w-3/4"
                                 : "sm:w-3/5 lg:w-2/3",
                             "space-y-4"
@@ -106,7 +122,7 @@ const DetailProduct = () => {
                     </div>
                     <div
                         className={className(
-                            formValue.id === decodedAccess.id
+                            formValue.sellerId === decodedAccess.id
                                 ? "sm:w-1/3 lg:w-1/4"
                                 : "sm:w-2/5 lg:w-1/3",
                             "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
@@ -125,7 +141,7 @@ const DetailProduct = () => {
                                     currency: "IDR",
                                 }).format(formValue.price)}
                             </div>
-                            {formValue.id === decodedAccess.id ? (
+                            {formValue.sellerId === decodedAccess.id ? (
                                 <>
                                     <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                         Terbitkan
@@ -171,7 +187,9 @@ const DetailProduct = () => {
                                 </button>
                             )}
                         </div>
+                        {formValue.sellerId !== decodedAccess.id && (
                         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                            
                             <div
                                 onMouseEnter={() => {
                                     setIsHovered(true);
@@ -179,6 +197,7 @@ const DetailProduct = () => {
                                 onMouseLeave={() => {
                                     setIsHovered(false);
                                 }}
+                                onClick={handleWishlist}
                             >
                                 {isHovered ? (
                                     <FaHeart className="h-5 w-5 text-red-600" />
@@ -187,6 +206,7 @@ const DetailProduct = () => {
                                 )}
                             </div>
                         </div>
+                        )}
                         <ProfileCard />
                     </div>
                     <div className="mb-8 px-4 sm:hidden sm:px-0">
@@ -199,7 +219,7 @@ const DetailProduct = () => {
                     </div>
                 </div>
             </div>
-            {formValue.id === decodedAccess.id ? (
+            {formValue.sellerId === decodedAccess.id ? (
                 <PublishButton />
             ) : (
                 <button

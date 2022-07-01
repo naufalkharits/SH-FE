@@ -27,9 +27,9 @@ const AddProduct = () => {
 
     const onFileChange = (e) => {
         const file = e.target.files;
-        if (file.length > 3) {
+        if (file.length > 4) {
             setShow(true);
-            setErrorMessage("Gambar Tidak Boleh Lebih Dari 3");
+            setErrorMessage("Gambar Tidak Boleh Lebih Dari 4");
         } else {
             for (let index of file) {
                 formData.append("pictures", index);

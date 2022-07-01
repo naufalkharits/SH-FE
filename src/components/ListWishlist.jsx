@@ -2,34 +2,25 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../redux/productsSlice";
 import ProductCardBuyer from "../components/ProductCardBuyer";
+import { getWishlistBuyer } from "../redux/wishlistSlice";
 
 const ListWishlist = () => {
-    const dispatch = useDispatch();
-    const { keyword } = useSelector((state) => state.products);
-    const { category } = useSelector((state) => state.products);
-    const products = useSelector(productsSelectors.selectAll);
+    // const dispatch = useDispatch();
+    // const { wishlists } = useSelector((state) => state.wishlist);
 
-    useEffect(() => {
-        dispatch(fetchProducts({ keyword, category }));
-    }, [keyword, category, dispatch]);
+    // useEffect(() => {
+    //     dispatch(getWishlistBuyer());
+    // }, [dispatch]);
 
     return (
         <>
-            <div className="container mx-auto space-y-4 p-4">
+            {/* <div className="container mx-auto space-y-4 p-4">
                 <div className="-m-4 flex flex-wrap">
-                    {products.map((product) => (
-                        <ProductCardBuyer
-                            key={product.id}
-                            id={product.id}
-                            name={product.name}
-                            price={product.price}
-                            category={product.category}
-                            pictures={product.pictures[0]}
-                        />
-                        
+                    {wishlists?.map((wishlist) => (
+                        <div className="p-5" key={wishlist?.id}>{wishlist?.product_id}</div>                    
                     ))}
                 </div>
-            </div>
+            </div> */}
         </>
     );
 };

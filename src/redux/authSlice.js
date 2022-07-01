@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import jwtDecode from "jwt-decode";
 import { server } from "./api";
 
 // Get user from localStorage
@@ -79,6 +80,7 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
+        decodedAccess: user ? jwtDecode(user.accessToken) : "",
         biodata: "",
         checkMe: null,
         loading: "idle",

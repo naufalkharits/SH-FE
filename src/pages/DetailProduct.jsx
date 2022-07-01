@@ -11,6 +11,7 @@ import {
 import ProfileCard from "../components/ProfileCard";
 import PublishButton from "../components/buttons/PublishButton";
 import BackButton from "../components/buttons/BackButton";
+import ModalTawar from "../components/modals/ModalTawar";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
 
@@ -22,11 +23,13 @@ const DetailProduct = () => {
     const navigate = useNavigate();
     const { productId } = useParams();
     const dispatch = useDispatch();
+    const { decodedAccess } = useSelector((state) => state.auth);
     const { process } = useSelector((state) => state.products);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
     const [formValue, setFormValue] = useState({
+        id: null,
         name: "",
         price: 0,
         category: "",
@@ -35,6 +38,8 @@ const DetailProduct = () => {
     });
 
     const [isHovered, setIsHovered] = useState(false);
+    const [modalOn, setModalOn] = useState(false);
+    const [choice, setChoice] = useState(false);
 
     const handleDelete = (e) => {
         e.preventDefault();
@@ -49,6 +54,7 @@ const DetailProduct = () => {
     useEffect(() => {
         product &&
             setFormValue({
+                id: product.id,
                 name: product.name,
                 price: product.price,
                 category: product.category,
@@ -59,10 +65,20 @@ const DetailProduct = () => {
 
     return (
         <>
+            {modalOn && (
+                <ModalTawar setModalOn={setModalOn} setChoice={setChoice} />
+            )}
             <BackButton />
             <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">
                 <div className="flex flex-col gap-4 sm:flex-row">
-                    <div className="space-y-4 sm:w-2/3 lg:w-3/4">
+                    <div
+                        className={className(
+                            formValue.id === decodedAccess.id
+                                ? "sm:w-2/3 lg:w-3/4"
+                                : "sm:w-3/5 lg:w-2/3",
+                            "space-y-4"
+                        )}
+                    >
                         <Swiper>
                             {formValue.pictures.map((picture) => (
                                 <SwiperSlide key={picture}>
@@ -88,7 +104,14 @@ const DetailProduct = () => {
                             </p> */}
                         </div>
                     </div>
-                    <div className="relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:w-1/3 sm:space-y-6 sm:px-0 lg:w-1/4">
+                    <div
+                        className={className(
+                            formValue.id === decodedAccess.id
+                                ? "sm:w-1/3 lg:w-1/4"
+                                : "sm:w-2/5 lg:w-1/3",
+                            "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
+                        )}
+                    >
                         <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div className="mb-4 space-y-2">
                                 <div>{formValue.name}</div>
@@ -96,37 +119,57 @@ const DetailProduct = () => {
                                     {formValue.category}
                                 </div>
                             </div>
-                            <div className="">{formValue.price}</div>
-                            <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
-                                Terbitkan
-                            </button>
-                            <button
-                                className="mb-4 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
-                                onClick={() => {
-                                    navigate(
-                                        `/manage-product/edit/${productId}`
-                                    );
-                                }}
-                            >
-                                Edit
-                            </button>
-                            <button
-                                className={className(
-                                    process === "pending" ? "gap-2" : "",
-                                    "hidden w-full items-center justify-center rounded-2xl bg-red-500 p-2 text-white hover:bg-red-600 sm:flex"
-                                )}
-                                type="submit"
-                                onClick={handleDelete}
-                            >
-                                {process === "pending" ? (
-                                    <>
-                                        <CgSpinner className="animate-spin" />
-                                        <span>Deleting...</span>
-                                    </>
-                                ) : (
-                                    <span>Delete</span>
-                                )}
-                            </button>
+                            <div className="">
+                                {new Intl.NumberFormat("id-ID", {
+                                    style: "currency",
+                                    currency: "IDR",
+                                }).format(formValue.price)}
+                            </div>
+                            {formValue.id === decodedAccess.id ? (
+                                <>
+                                    <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
+                                        Terbitkan
+                                    </button>
+                                    <button
+                                        className="mb-4 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
+                                        onClick={() => {
+                                            navigate(
+                                                `/manage-product/edit/${productId}`
+                                            );
+                                        }}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        className={className(
+                                            process === "pending"
+                                                ? "gap-2"
+                                                : "",
+                                            "hidden w-full items-center justify-center rounded-2xl bg-red-500 p-2 text-white hover:bg-red-600 sm:flex"
+                                        )}
+                                        type="submit"
+                                        onClick={handleDelete}
+                                    >
+                                        {process === "pending" ? (
+                                            <>
+                                                <CgSpinner className="animate-spin" />
+                                                <span>Deleting...</span>
+                                            </>
+                                        ) : (
+                                            <span>Delete</span>
+                                        )}
+                                    </button>
+                                </>
+                            ) : (
+                                <button
+                                    className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                                    onClick={() => {
+                                        setModalOn(true);
+                                    }}
+                                >
+                                    Saya tertarik dan ingin nego
+                                </button>
+                            )}
                         </div>
                         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div
@@ -156,7 +199,21 @@ const DetailProduct = () => {
                     </div>
                 </div>
             </div>
-            <PublishButton />
+            {formValue.id === decodedAccess.id ? (
+                <PublishButton />
+            ) : (
+                <button
+                    className={className(
+                        modalOn === true ? "hidden" : "sm:hidden",
+                        "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
+                    )}
+                    onClick={() => {
+                        setModalOn(true);
+                    }}
+                >
+                    <span>Saya Tertarik dan ingin Nego</span>
+                </button>
+            )}
         </>
     );
 };

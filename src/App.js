@@ -27,6 +27,7 @@ import UserText from "./components/UserText";
 import RequireAuth from "./middlewares/RequireAuth";
 import UnrequireAuth from "./middlewares/UnrequireAuth";
 import Public from "./middlewares/Public";
+import PreviewProduct from "./pages/PreviewProduct"
 
 function App() {
     return (
@@ -86,6 +87,10 @@ function App() {
                         <Route
                             path="/manage-product/edit/:productId"
                             element={<EditProduct />}
+                        />
+                        <Route
+                            path="/manage-product/preview/:productId"
+                            element={<PreviewProduct />}
                         />
                         <Route path="/user/profile" element={<InfoProfil />} />
                         <Route

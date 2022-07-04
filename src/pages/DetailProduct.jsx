@@ -14,7 +14,11 @@ import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
-import { addWishlistBuyer, deleteWishlistBuyer, getWishlistById } from "../redux/wishlistSlice";
+import {
+    addWishlistBuyer,
+    deleteWishlistBuyer,
+    getWishlistById,
+} from "../redux/wishlistSlice";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -29,7 +33,7 @@ const DetailProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
-    const { isWishlist } = useSelector((state) => state.wishlist)
+    const { isWishlist } = useSelector((state) => state.wishlist);
     const [formValue, setFormValue] = useState({
         id: null,
         name: "",
@@ -53,11 +57,11 @@ const DetailProduct = () => {
     };
 
     const deleteWishlist = (e) => {
-        dispatch(deleteWishlistBuyer({ productId, navigate }))
-    }
+        dispatch(deleteWishlistBuyer({ productId, navigate }));
+    };
 
     useEffect(() => {
-        dispatch(getWishlistById(productId))
+        dispatch(getWishlistById(productId));
         dispatch(fetchProductById(productId));
     }, [productId, dispatch]);
 
@@ -197,7 +201,7 @@ const DetailProduct = () => {
                                         {isHovered ? (
                                             <FaRegHeart className="h-5 w-5" />
                                         ) : (
-                                            <FaHeart className="h-5 w-5 text-red-600" />
+                                            <FaHeart className="h-5 w-5 text-red-500" />
                                         )}
                                     </div>
                                 ) : (

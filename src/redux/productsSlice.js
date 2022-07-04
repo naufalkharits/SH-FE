@@ -46,7 +46,7 @@ export const insertProduct = createAsyncThunk(
         }
         const response = await server.post("/product", formData, {
             headers: {
-                Authorization: user.accessToken,
+                Authorization: user.accessToken.token,
             },
         });
         if (process === "idle") navigate("/manage-product");
@@ -63,7 +63,7 @@ export const updateProduct = createAsyncThunk(
         }
         const response = await server.put(`/product/${productId}`, formData, {
             headers: {
-                Authorization: user.accessToken,
+                Authorization: user.accessToken.token,
             },
         });
         if (process === "idle") navigate("/manage-product");
@@ -77,7 +77,7 @@ export const deleteProduct = createAsyncThunk(
     async ({ productId, process, navigate }) => {
         await server.delete(`/product/${productId}`, {
             headers: {
-                Authorization: user.accessToken,
+                Authorization: user.accessToken.token,
             },
         });
         if (process === "idle") navigate("/manage-product");

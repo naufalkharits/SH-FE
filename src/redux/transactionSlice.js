@@ -7,10 +7,9 @@ const user = JSON.parse(localStorage.getItem("user"));
 // post TransactionTawar
 export const addTransactionTawar = createAsyncThunk(
     "transaction/addTransactionTawar",
-    async ({ productId, price }) => {
-        const response = await server.post(`/transaction/${productId}`, {
-            price
-        }, {
+    async ({ productId, formData }) => {
+        const response = await server.post(`/transaction/${productId}`, formData, 
+        {
             headers: {
                 Authorization: user.accessToken.token,
             },

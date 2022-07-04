@@ -1,6 +1,34 @@
 import { FiX } from "react-icons/fi";
+import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { insertPrice } from "../../redux/productsSlice";
 
 const Modal = ({ setModalOn, setChoice }) => {
+    // const navigate = useNavigate();
+    // const dispatch = useDispatch();
+    const [formValue, setFormValue] = useState({
+        price: 0,
+    });
+    const [formData, setFormData] = useState("");
+
+    const onChange = (e) => {
+        setFormValue({
+            ...formValue,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+    //     formData.set("price", formValue.price);
+    //     dispatch(insertPrice({ formData, process, navigate }));
+    // };
+
+    useEffect(() => {
+        setFormData(new FormData());
+    }, []);
+
     const handleCancelClick = () => {
         setChoice(false);
         setModalOn(false);
@@ -12,6 +40,9 @@ const Modal = ({ setModalOn, setChoice }) => {
                 <div className="flex h-screen items-center justify-center">
                     {/* modal */}
                     <div className="h-fit w-96 rounded-2xl bg-white p-8">
+                    <form className="" 
+                    // onSubmit={onSubmit}
+                    >
                         <div className="space-y-6">
                             <div className="space-y-4">
                                 <div className="flex justify-end">
@@ -50,12 +81,14 @@ const Modal = ({ setModalOn, setChoice }) => {
                                     className="w-full rounded-2xl py-3.5 px-4 text-neutral-03 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none"
                                     type="number"
                                     placeholder="Rp 0,00"
+                                    onChange={onChange}
                                 />
                             </div>
                             <button className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05">
                                 Kirim
                             </button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>

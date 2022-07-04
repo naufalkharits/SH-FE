@@ -1,10 +1,14 @@
 import { FiX } from "react-icons/fi";
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { insertPrice } from "../../redux/productsSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { addTransactionTawar } from "../../redux/transactionSlice";
 
 const Modal = ({ setModalOn, setChoice }) => {
+    const { productId } = useParams();
+    const dispatch = useDispatch;
+    const [formData, setFormData] = useState("");
+
     const [formValue, setFormValue] = useState({
         price: 0,
     });
@@ -15,16 +19,22 @@ const Modal = ({ setModalOn, setChoice }) => {
             [e.target.name]: e.target.value,
         });
     };
-
-    const createNewPrice = e => {
-        e.preventDefault();
-        console.log(formValue);
-    }
+    
     
     const handleCancelClick = () => {
         setChoice(false);
         setModalOn(false);
     };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        formData.set("price", formValue.price);
+        dispatch(addTransactionTawar({ productId, formData}));
+    };
+
+    useEffect(() => {
+        setFormData(new FormData());
+    }, []);
 
     return (
         <>
@@ -33,7 +43,7 @@ const Modal = ({ setModalOn, setChoice }) => {
                     {/* modal */}
                     <div className="h-fit w-96 rounded-2xl bg-white p-8">
                     <form className="" 
-                    onSubmit={createNewPrice}
+                    onSubmit={onSubmit}
                     >
                         <div className="space-y-6">
                             <div className="space-y-4">
@@ -74,10 +84,10 @@ const Modal = ({ setModalOn, setChoice }) => {
                                     type="number"
                                     placeholder="Rp 0,00"
                                     onChange={onChange}
-                                    value={formValue.price}
+                                    // value={formValue.price}
                                 />
                             </div>
-                            <button className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05">
+                            <button type="submit" className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05">
                                 Kirim
                             </button>
                         </div>

@@ -17,7 +17,6 @@ import Topbar from "./components/Topbar";
 import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
-import DetailProductBuyer from "./pages/DetailProductBuyer";
 import UserProfile from "./pages/UserProfile";
 import HistoryTransaksi from "./components/HistoryTransaksi";
 import ListWishlist from "./components/ListWishlist";
@@ -47,10 +46,6 @@ function App() {
                         <Route
                             path="/product/:productId"
                             element={<DetailProduct />}
-                        />
-                        <Route
-                            path="/buy-product/:productId"
-                            element={<DetailProductBuyer />}
                         />
                     </Route>
                 </Route>

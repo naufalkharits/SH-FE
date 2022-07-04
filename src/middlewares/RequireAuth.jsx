@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import jwtDecode from "jwt-decode";
 import { logout, me, refresh } from "../redux/authSlice";
 
 const RequireAuth = () => {
     const { productId } = useParams();
     const location = useLocation();
     const dispatch = useDispatch();
-    const { user, checkMe, error } = useSelector((state) => state.auth);
-
-    const decoded = jwtDecode(user.accessToken);
+    const { user, decodedAccess, checkMe, error } = useSelector(
+        (state) => state.auth
+    );
 
     useEffect(() => {
         if (user) dispatch(me(user.accessToken));
@@ -18,14 +17,16 @@ const RequireAuth = () => {
         if (error) dispatch(logout());
     }, [user, checkMe, error, dispatch]);
 
-    return location.pathname === `/manage-product/edit/${productId}` ? (
-        user && decoded.id === productId ? (
-            <Outlet />
+    return user ? (
+        location.pathname === `/manage-product/edit/${productId}` ? (
+            decodedAccess.id === productId ? (
+                <Outlet />
+            ) : (
+                <Navigate to="/manage-product" replace />
+            )
         ) : (
-            <Navigate to="/manage-product" replace />
+            <Outlet />
         )
-    ) : user ? (
-        <Outlet />
     ) : (
         <Navigate to="/login" replace state={{ from: location }} />
     );

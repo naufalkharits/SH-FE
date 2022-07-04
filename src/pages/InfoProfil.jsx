@@ -36,16 +36,16 @@ const InfoProfil = () => {
     const onSubmit = (e) => {
         e.preventDefault();
 
-        formData.set("name", formValue.name);
-        formData.set("city", formValue.city);
-        formData.set("address", formValue.address);
-        formData.set("phone_number", formValue.phone_number);
-        if (formData.has("picture") === false) {
-            const file = formValue.picture;
-            for (let index of file) {
-                formData.append("picture", index);
-            }
-        }
+        formValue.name && formData.set("name", formValue.name);
+        formValue.city && formData.set("city", formValue.city);
+        formValue.address && formData.set("address", formValue.address);
+        formValue.phone_number && formData.set("phone_number", formValue.phone_number);
+        // if (formData.has("picture") === false) {
+        //     const file = formValue.picture;
+        //     for (let index of file) {
+        //         formData.append("picture", index);
+        //     }
+        // }
 
         dispatch(updateBiodata({ formData, navigate }));
     };

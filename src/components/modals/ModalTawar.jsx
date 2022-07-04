@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { addTransactionTawar } from "../../redux/transactionSlice";
 
-const Modal = ({ setModalOn, setChoice }) => {
+const ModalTawar = ({ setModalOn, setChoice }) => {
     const { productId } = useParams();
     const dispatch = useDispatch;
     const [formData, setFormData] = useState("");
@@ -99,4 +99,4 @@ const Modal = ({ setModalOn, setChoice }) => {
     );
 };
 
-export default Modal;
+export default ModalTawar;

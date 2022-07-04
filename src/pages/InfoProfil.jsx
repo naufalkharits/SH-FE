@@ -52,7 +52,7 @@ const InfoProfil = () => {
 
     useEffect(() => {
         setFormData(new FormData());
-        dispatch(me(user.accessToken));
+        dispatch(me(user.accessToken.token));
     }, [user, dispatch]);
 
     useEffect(() => {

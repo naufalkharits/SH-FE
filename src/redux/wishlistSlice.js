@@ -10,7 +10,7 @@ export const getWishlistBuyer = createAsyncThunk(
     async () => {
         const response = await server.get('/wishlist', {
             headers: {
-                Authorization: user.accessToken,
+                Authorization: user.accessToken.token,
             },
         });
         return response.data;
@@ -23,7 +23,7 @@ export const addWishlistBuyer = createAsyncThunk(
     async ({ productId, navigate }) => {
         const response = await server.post(`/wishlist/${productId}`, {}, {
             headers: {
-                Authorization: user.accessToken,
+                Authorization: user.accessToken.token,
             },
         });
         navigate(`/product/${productId}`);
@@ -37,7 +37,7 @@ export const deleteWishlistBuyer = createAsyncThunk(
     async ({ productId, navigate }) => {
         const response = await server.delete(`/wishlist/${productId}`, {}, {
             headers: {
-                Authorization: user.accessToken,
+                Authorization: user.accessToken.token,
             },
         });
         navigate(`/product/${productId}`);

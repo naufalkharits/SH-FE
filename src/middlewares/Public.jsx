@@ -8,7 +8,7 @@ const Public = () => {
     const { user, checkMe, error } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        if (user) dispatch(me(user.accessToken));
+        if (user) dispatch(me(user.accessToken.token));
         if (checkMe === false) dispatch(refresh());
         if (error) dispatch(logout());
     }, [user, checkMe, error, dispatch]);

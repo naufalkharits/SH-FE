@@ -9,7 +9,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 export const refresh = createAsyncThunk("auth/refresh", async (thunkAPI) => {
     try {
         const response = await server.post("/auth/refresh", {
-            refreshToken: user.refreshToken,
+            refreshToken: user.refreshToken.token,
         });
         return response.data;
     } catch (error) {
@@ -68,7 +68,7 @@ export const updateBiodata = createAsyncThunk(
         // }
         const response = await server.put(`/biodata`, formData, {
             headers: {
-                Authorization: user.accessToken,
+                Authorization: user.accessToken.token,
             },
         });
         navigate("/user");
@@ -80,7 +80,7 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
-        decodedAccess: user ? jwtDecode(user.accessToken) : "",
+        decodedAccess: user ? jwtDecode(user.accessToken.token) : "",
         biodata: "",
         checkMe: null,
         loading: "idle",

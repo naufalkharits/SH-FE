@@ -14,7 +14,7 @@ import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
-import { addWishlistBuyer, deleteWishlistBuyer, getWishlistBuyer } from "../redux/wishlistSlice";
+import { addWishlistBuyer, deleteWishlistBuyer, getWishlistById } from "../redux/wishlistSlice";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -29,7 +29,7 @@ const DetailProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
-    const { wishlists } = useSelector((state) => state.wishlist)
+    const { isWishlist } = useSelector((state) => state.wishlist)
     const [formValue, setFormValue] = useState({
         id: null,
         name: "",
@@ -43,28 +43,23 @@ const DetailProduct = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [modalOn, setModalOn] = useState(false);
     const [choice, setChoice] = useState(false);
-    const [isWishlist, setIsWishlist] = useState(false)
 
     const handleDelete = (e) => {
         dispatch(deleteProduct({ productId, process, navigate }));
     };
 
-    const handleWishlist = (e) => {
-        dispatch(addWishlistBuyer({ productId, navigate}));
+    const addWishlist = (e) => {
+        dispatch(addWishlistBuyer({ productId, navigate }));
     };
 
     const deleteWishlist = (e) => {
-        dispatch(deleteWishlistBuyer({productId, navigate}))
+        dispatch(deleteWishlistBuyer({ productId, navigate }))
     }
 
     useEffect(() => {
-        dispatch(getWishlistBuyer())
+        dispatch(getWishlistById(productId))
         dispatch(fetchProductById(productId));
     }, [productId, dispatch]);
-
-    // useEffect(() => {
-    //     setIsWishlist()
-    // }, [productId, dispatch]);
 
     useEffect(() => {
         product &&
@@ -188,24 +183,41 @@ const DetailProduct = () => {
                             )}
                         </div>
                         {formValue.sellerId !== decodedAccess.id && (
-                        <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-                            
-                            <div
-                                onMouseEnter={() => {
-                                    setIsHovered(true);
-                                }}
-                                onMouseLeave={() => {
-                                    setIsHovered(false);
-                                }}
-                                onClick={handleWishlist}
-                            >
-                                {isHovered ? (
-                                    <FaHeart className="h-5 w-5 text-red-600" />
+                            <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                                {isWishlist ? (
+                                    <div
+                                        onMouseEnter={() => {
+                                            setIsHovered(true);
+                                        }}
+                                        onMouseLeave={() => {
+                                            setIsHovered(false);
+                                        }}
+                                        onClick={deleteWishlist}
+                                    >
+                                        {isHovered ? (
+                                            <FaRegHeart className="h-5 w-5" />
+                                        ) : (
+                                            <FaHeart className="h-5 w-5 text-red-600" />
+                                        )}
+                                    </div>
                                 ) : (
-                                    <FaRegHeart className="h-5 w-5" />
+                                    <div
+                                        onMouseEnter={() => {
+                                            setIsHovered(true);
+                                        }}
+                                        onMouseLeave={() => {
+                                            setIsHovered(false);
+                                        }}
+                                        onClick={addWishlist}
+                                    >
+                                        {isHovered ? (
+                                            <FaHeart className="h-5 w-5 text-red-600" />
+                                        ) : (
+                                            <FaRegHeart className="h-5 w-5" />
+                                        )}
+                                    </div>
                                 )}
                             </div>
-                        </div>
                         )}
                         <ProfileCard />
                     </div>

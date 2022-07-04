@@ -17,16 +17,29 @@ export const getWishlistBuyer = createAsyncThunk(
     }
 )
 
+// get wishlist by id
+export const getWishlistById = createAsyncThunk(
+    "wishlist/getWishlistById",
+    async (productId) => {
+        const response = await server.get(`/wishlist/${productId}`, {
+            headers: {
+                Authorization: user.accessToken.token,
+            },
+        });
+        return response.data
+    }
+)
+
 // post wishlist buyer
 export const addWishlistBuyer = createAsyncThunk(
     "wishlist/addWishlistBuyer",
-    async ({ productId, navigate }) => {
+    async ({ productId }) => {
         const response = await server.post(`/wishlist/${productId}`, {}, {
             headers: {
                 Authorization: user.accessToken.token,
             },
         });
-        navigate(`/product/${productId}`);
+        window.location.reload()
         return response.data;
     }
 );
@@ -34,13 +47,13 @@ export const addWishlistBuyer = createAsyncThunk(
 // delete wishlist buyer
 export const deleteWishlistBuyer = createAsyncThunk(
     "wishlist/deleteWishlistBuyer",
-    async ({ productId, navigate }) => {
-        const response = await server.delete(`/wishlist/${productId}`, {}, {
+    async ({ productId }) => {
+        const response = await server.delete(`/wishlist/${productId}`, {
             headers: {
                 Authorization: user.accessToken.token,
             },
         });
-        navigate(`/product/${productId}`);
+        window.location.reload()
         return response.data;
     }
 );
@@ -50,6 +63,7 @@ export const wishlistSlice = createSlice({
     initialState: {
         message: "",
         wishlists: null,
+        isWishlist: false,
         loading: "idle",
         error: null,
     },
@@ -80,6 +94,20 @@ export const wishlistSlice = createSlice({
             state.wishlists = action.payload.wishlists;
         },
         [getWishlistBuyer.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
+        // getWishlistById
+        [getWishlistById.pending]: (state) => {
+            state.loading = "pending";
+            state.error = null;
+        },
+        [getWishlistById.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.error = null;
+            state.isWishlist = action.payload.isWishlist;
+        },
+        [getWishlistById.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

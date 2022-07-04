@@ -7,18 +7,23 @@ const user = JSON.parse(localStorage.getItem("user"));
 // post TransactionTawar
 export const addTransactionTawar = createAsyncThunk(
     "transaction/addTransactionTawar",
-    async ({ productId, formData }) => {
-        const response = await server.post(`/transaction/${productId}`, formData, 
-        {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
+    async ({ productId, price }) => {
+        // for (const pair of formData.entries()) {
+        //     console.log(`${pair[0]}, ${pair[1]}`);
+        // }
+        const response = await server.post(
+            `/transaction/${productId}`,
+            { price },
+            {
+                headers: {
+                    Authorization: user.accessToken.token,
+                },
+            }
+        );
         // window.location.reload()
         return response.data;
     }
 );
-
 
 export const transactionSlice = createSlice({
     name: "transaction",
@@ -27,8 +32,7 @@ export const transactionSlice = createSlice({
         loading: "idle",
         error: null,
     },
-    reducers: {
-    },
+    reducers: {},
     extraReducers: {
         // addTransactionTawar
         [addTransactionTawar.pending]: (state) => {

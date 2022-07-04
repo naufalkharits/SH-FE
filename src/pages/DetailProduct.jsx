@@ -8,17 +8,18 @@ import {
     fetchProductById,
     productsSelectors,
 } from "../redux/productsSlice";
+import {
+    addWishlistBuyer,
+    deleteWishlistBuyer,
+    getWishlistById,
+} from "../redux/wishlistSlice";
+import { addTransactionTawar } from "../redux/transactionSlice";
 import ProfileCard from "../components/ProfileCard";
 import PublishButton from "../components/buttons/PublishButton";
 import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
-import {
-    addWishlistBuyer,
-    deleteWishlistBuyer,
-    getWishlistById,
-} from "../redux/wishlistSlice";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -43,10 +44,10 @@ const DetailProduct = () => {
         pictures: [],
         sellerId: null,
     });
+    const [price, setPrice] = useState(0);
 
     const [isHovered, setIsHovered] = useState(false);
     const [modalOn, setModalOn] = useState(false);
-    const [choice, setChoice] = useState(false);
 
     const handleDelete = (e) => {
         dispatch(deleteProduct({ productId, process, navigate }));
@@ -58,6 +59,16 @@ const DetailProduct = () => {
 
     const deleteWishlist = (e) => {
         dispatch(deleteWishlistBuyer({ productId, navigate }));
+    };
+
+    // modal transaksi
+    const onChange = (e) => {
+        setPrice(e.target.value);
+    };
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        dispatch(addTransactionTawar({ productId, price }));
     };
 
     useEffect(() => {
@@ -81,7 +92,11 @@ const DetailProduct = () => {
     return (
         <>
             {modalOn && (
-                <ModalTawar setModalOn={setModalOn} setChoice={setChoice} />
+                <ModalTawar
+                    setModalOn={setModalOn}
+                    onChange={onChange}
+                    onSubmit={onSubmit}
+                />
             )}
             <BackButton />
             <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">

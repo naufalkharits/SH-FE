@@ -66,14 +66,14 @@ const Home = () => {
                     {" "}
                     +{" "}
                 </button>
-                <button
+                {/* <button
                     onClick={() => {
                         dispatch(setOffsetIncrement(4));
                     }}
                 >
                     {" "}
                     4{" "}
-                </button>
+                </button> */}
             </div>
             <SellButton />
         </>

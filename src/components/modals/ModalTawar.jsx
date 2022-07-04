@@ -5,12 +5,9 @@ import { useEffect, useState } from "react";
 // import { insertPrice } from "../../redux/productsSlice";
 
 const Modal = ({ setModalOn, setChoice }) => {
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
     const [formValue, setFormValue] = useState({
         price: 0,
     });
-    const [formData, setFormData] = useState("");
 
     const onChange = (e) => {
         setFormValue({
@@ -19,16 +16,11 @@ const Modal = ({ setModalOn, setChoice }) => {
         });
     };
 
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-    //     formData.set("price", formValue.price);
-    //     dispatch(insertPrice({ formData, process, navigate }));
-    // };
-
-    useEffect(() => {
-        setFormData(new FormData());
-    }, []);
-
+    const createNewPrice = e => {
+        e.preventDefault();
+        console.log(formValue);
+    }
+    
     const handleCancelClick = () => {
         setChoice(false);
         setModalOn(false);
@@ -41,7 +33,7 @@ const Modal = ({ setModalOn, setChoice }) => {
                     {/* modal */}
                     <div className="h-fit w-96 rounded-2xl bg-white p-8">
                     <form className="" 
-                    // onSubmit={onSubmit}
+                    onSubmit={createNewPrice}
                     >
                         <div className="space-y-6">
                             <div className="space-y-4">
@@ -82,6 +74,7 @@ const Modal = ({ setModalOn, setChoice }) => {
                                     type="number"
                                     placeholder="Rp 0,00"
                                     onChange={onChange}
+                                    value={formValue.price}
                                 />
                             </div>
                             <button className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05">

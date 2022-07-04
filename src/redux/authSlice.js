@@ -80,9 +80,19 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
-        decodedAccess: user ? jwtDecode(user.accessToken.token) : "",
+        decodedAccess: user ? jwtDecode(user.accessToken.token) : null,
+        decodedRefresh: user ? jwtDecode(user.refreshToken.token) : null,
+        // accessExp: user
+        //     ? Date.now() > new Date(decodedAccess * 1000 - 30 * 1000)
+        //         ? true
+        //         : false
+        //     : null,
+        // refreshExp: user
+        //     ? Date.now() > new Date(decodedRefresh * 1000 - 60 * 1000)
+        //         ? true
+        //         : false
+        //     : null,
         biodata: null,
-        checkMe: null,
         loading: "idle",
         error: null,
     },
@@ -116,12 +126,10 @@ export const authSlice = createSlice({
         },
         [me.fulfilled]: (state, action) => {
             state.loading = "idle";
-            state.checkMe = true;
             state.biodata = action.payload.user;
         },
         [me.rejected]: (state, action) => {
             state.loading = "idle";
-            state.checkMe = false;
         },
 
         // register
@@ -159,7 +167,7 @@ export const authSlice = createSlice({
         [updateBiodata.pending]: (state) => {
             state.process = "pending";
             state.error = null;
-            state.biodata = null
+            state.biodata = null;
         },
         [updateBiodata.fulfilled]: (state, action) => {
             state.process = "idle";

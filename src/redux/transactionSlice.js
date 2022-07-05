@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { server } from "./api";
-
-// Get user from localStorage
-const user = JSON.parse(localStorage.getItem("user"));
+import closedServer from "../utils/closedServer";
 
 // post TransactionTawar
 export const addTransactionTawar = createAsyncThunk(
@@ -11,15 +8,9 @@ export const addTransactionTawar = createAsyncThunk(
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
-        const response = await server.post(
-            `/transaction/${productId}`,
-            { price },
-            {
-                headers: {
-                    Authorization: user.accessToken.token,
-                },
-            }
-        );
+        const response = await closedServer.post(`/transaction/${productId}`, {
+            price,
+        });
         // window.location.reload()
         return response.data;
     }

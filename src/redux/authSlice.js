@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
+import openServer from "../utils/openServer";
 import closedServer from "../utils/closedServer";
-import { server } from "./api";
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -9,7 +9,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 // refresh
 // export const refresh = createAsyncThunk("auth/refresh", async (thunkAPI) => {
 //     try {
-//         const response = await server.post("/auth/refresh", {
+//         const response = await openServer.post("/auth/refresh", {
 //             refreshToken: user.refreshToken.token,
 //         });
 //         return response.data;
@@ -21,11 +21,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 // checkMe
 export const me = createAsyncThunk("auth/me", async (accessToken, thunkAPI) => {
     try {
-        const response = await closedServer.get("/auth/me", {
-            headers: {
-                Authorization: accessToken,
-            },
-        });
+        const response = await closedServer.get("/auth/me");
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data);
@@ -37,7 +33,7 @@ export const register = createAsyncThunk(
     "auth/register",
     async ({ formValue, navigate }, thunkAPI) => {
         try {
-            const response = await server.post("/auth/register", formValue);
+            const response = await openServer.post("/auth/register", formValue);
             return response.data;
         } catch (error) {
             // console.log(error.response.data);
@@ -51,7 +47,7 @@ export const login = createAsyncThunk(
     "auth/login",
     async ({ formValue, navigate }, thunkAPI) => {
         try {
-            const response = await server.post("/auth/login", formValue);
+            const response = await openServer.post("/auth/login", formValue);
             return response.data;
         } catch (error) {
             // console.log(error.response.data);
@@ -67,11 +63,7 @@ export const updateBiodata = createAsyncThunk(
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
-        const response = await closedServer.put(`/biodata`, formData, {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
+        const response = await closedServer.put(`/biodata`, formData);
         navigate("/user");
         return response.data;
     }

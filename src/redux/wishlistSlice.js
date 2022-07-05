@@ -1,45 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { server } from "./api";
-
-// Get user from localStorage
-const user = JSON.parse(localStorage.getItem("user"));
+import closedServer from "../utils/closedServer";
 
 // get wishlist buyer
 export const getWishlistBuyer = createAsyncThunk(
     "wishlist/getWishlistBuyer",
     async () => {
-        const response = await server.get('/wishlist', {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
+        const response = await closedServer.get("/wishlist");
         return response.data;
     }
-)
+);
 
 // get wishlist by id
 export const getWishlistById = createAsyncThunk(
     "wishlist/getWishlistById",
     async (productId) => {
-        const response = await server.get(`/wishlist/${productId}`, {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
-        return response.data
+        const response = await closedServer.get(`/wishlist/${productId}`);
+        return response.data;
     }
-)
+);
 
 // post wishlist buyer
 export const addWishlistBuyer = createAsyncThunk(
     "wishlist/addWishlistBuyer",
     async ({ productId }) => {
-        const response = await server.post(`/wishlist/${productId}`, {}, {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
-        window.location.reload()
+        const response = await closedServer.post(`/wishlist/${productId}`, {});
+        window.location.reload();
         return response.data;
     }
 );
@@ -48,12 +33,8 @@ export const addWishlistBuyer = createAsyncThunk(
 export const deleteWishlistBuyer = createAsyncThunk(
     "wishlist/deleteWishlistBuyer",
     async ({ productId }) => {
-        const response = await server.delete(`/wishlist/${productId}`, {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
-        window.location.reload()
+        const response = await closedServer.delete(`/wishlist/${productId}`);
+        window.location.reload();
         return response.data;
     }
 );
@@ -67,8 +48,7 @@ export const wishlistSlice = createSlice({
         loading: "idle",
         error: null,
     },
-    reducers: {
-    },
+    reducers: {},
     extraReducers: {
         // addWishlistBuyer
         [addWishlistBuyer.pending]: (state) => {

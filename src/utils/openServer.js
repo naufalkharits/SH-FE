@@ -11,17 +11,15 @@ let authTokens = localStorage.getItem("user")
     : null;
 
 // export
-const closedServer = axios.create({
+const openServer = axios.create({
     baseURL,
-    headers: { Authorization: authTokens?.accessToken?.token },
 });
 
-closedServer.interceptors.request.use(async (req) => {
+openServer.interceptors.request.use(async (req) => {
     if (!authTokens) {
         authTokens = localStorage.getItem("user")
             ? JSON.parse(localStorage.getItem("user"))
             : null;
-        req.headers.Authorization = authTokens?.accessToken?.token;
     }
 
     const decodedToken = jwtDecode(authTokens.accessToken.token);
@@ -34,8 +32,7 @@ closedServer.interceptors.request.use(async (req) => {
     });
 
     localStorage.setItem("user", JSON.stringify(response.data));
-    req.headers.Authorization = response.data.accessToken.token;
     return req;
 });
 
-export default closedServer;
+export default openServer;

@@ -3,17 +3,16 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit";
+import openServer from "../utils/openServer";
 import closedServer from "../utils/closedServer";
-import { server } from "./api";
 
-const user = JSON.parse(localStorage.getItem("user"));
 const page = JSON.parse(localStorage.getItem("page"));
 
 // fetch all category
 export const fetchCategories = createAsyncThunk(
     "products/fetchCategories",
     async () => {
-        const { data } = await server.get("/category");
+        const { data } = await openServer.get("/category");
         return data;
     }
 );
@@ -22,7 +21,7 @@ export const fetchCategories = createAsyncThunk(
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
     async (productId) => {
-        const response = await server.get(`/product/${productId}`);
+        const response = await openServer.get(`/product/${productId}`);
         return response.data;
     }
 );
@@ -31,7 +30,7 @@ export const fetchProductById = createAsyncThunk(
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
     async ({ keyword, category, offset }) => {
-        const response = await server.get(
+        const response = await openServer.get(
             `/product?keyword=${keyword}&category=${category}&limit=10&offset=${offset}`
         );
         return response.data;

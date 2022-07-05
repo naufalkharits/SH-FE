@@ -65,7 +65,7 @@ const MobileMenu = () => {
                                     Daftar Jual
                                 </Link>
                                 <Link
-                                    to="/user/profile"
+                                    to="/user"
                                     className="block rounded-md p-2 hover:bg-gray"
                                     href="#"
                                 >

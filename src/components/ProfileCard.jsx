@@ -10,7 +10,7 @@ const ProfileCard = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(me(user.accessToken.token));
+        dispatch(me(user?.accessToken.token));
     }, [user, dispatch]);
 
     return (

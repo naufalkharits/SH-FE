@@ -29,7 +29,7 @@ const DetailProduct = () => {
     const navigate = useNavigate();
     const { productId } = useParams();
     const dispatch = useDispatch();
-    const { decodedAccess } = useSelector((state) => state.auth);
+    const { biodata } = useSelector((state) => state.auth);
     const { process } = useSelector((state) => state.products);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
@@ -103,7 +103,7 @@ const DetailProduct = () => {
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <div
                         className={className(
-                            formValue.sellerId === decodedAccess.id
+                            formValue.sellerId === biodata?.id
                                 ? "sm:w-2/3 lg:w-3/4"
                                 : "sm:w-3/5 lg:w-2/3",
                             "space-y-4"
@@ -136,7 +136,7 @@ const DetailProduct = () => {
                     </div>
                     <div
                         className={className(
-                            formValue.sellerId === decodedAccess.id
+                            formValue.sellerId === biodata?.id
                                 ? "sm:w-1/3 lg:w-1/4"
                                 : "sm:w-2/5 lg:w-1/3",
                             "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
@@ -155,7 +155,7 @@ const DetailProduct = () => {
                                     currency: "IDR",
                                 }).format(formValue.price)}
                             </div>
-                            {formValue.sellerId === decodedAccess.id ? (
+                            {formValue.sellerId === biodata?.id ? (
                                 <>
                                     <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                         Terbitkan
@@ -201,7 +201,7 @@ const DetailProduct = () => {
                                 </button>
                             )}
                         </div>
-                        {formValue.sellerId !== decodedAccess.id && (
+                        {formValue.sellerId !== biodata?.id && (
                             <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                                 {isWishlist ? (
                                     <div
@@ -250,7 +250,7 @@ const DetailProduct = () => {
                     </div>
                 </div>
             </div>
-            {formValue.sellerId === decodedAccess.id ? (
+            {formValue.sellerId === biodata?.id ? (
                 <PublishButton />
             ) : (
                 <button

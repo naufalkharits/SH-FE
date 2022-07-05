@@ -3,6 +3,7 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit";
+import closedServer from "../utils/closedServer";
 import { server } from "./api";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -44,11 +45,7 @@ export const insertProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const response = await server.post("/product", formData, {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
+        const response = await closedServer.post("/product", formData);
         if (process === "idle") navigate("/manage-product");
         return response.data;
     }
@@ -61,11 +58,10 @@ export const updateProduct = createAsyncThunk(
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);
         }
-        const response = await server.put(`/product/${productId}`, formData, {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
+        const response = await closedServer.put(
+            `/product/${productId}`,
+            formData
+        );
         if (process === "idle") navigate("/manage-product");
         return response.data;
     }
@@ -75,11 +71,7 @@ export const updateProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async ({ productId, process, navigate }) => {
-        await server.delete(`/product/${productId}`, {
-            headers: {
-                Authorization: user.accessToken.token,
-            },
-        });
+        await closedServer.delete(`/product/${productId}`);
         if (process === "idle") navigate("/manage-product");
         return productId;
     }

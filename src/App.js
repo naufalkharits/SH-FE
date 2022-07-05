@@ -1,39 +1,43 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+// layouts
 import Main from "./layouts/Main";
-import Home from "./pages/Home";
-import DetailProduct from "./pages/DetailProduct";
-import Error from "./pages/404";
-import ModalBerhasil from "./components/modals/ModalBerhasil";
-import ModalStatus from "./components/modals/ModalStatus";
-import ModalTawar from "./components/modals/ModalTawar";
 import Auth from "./layouts/Auth";
+// pages
+import Home from "./pages/Home";
+import UserProfile from "./pages/UserProfile";
+import EditProduct from "./pages/EditProduct";
+import Notification from "./pages/Notification";
+import PreviewProduct from "./pages/PreviewProduct";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddProduct from "./pages/AddProduct";
 import InfoProfil from "./pages/InfoProfil";
 import ManageProduct from "./pages/ManageProduct";
 import InfoPenawar from "./pages/InfoPenawar";
+import DetailProduct from "./pages/DetailProduct";
+import Error from "./pages/404";
+// middlewares
+import PublicRoutes from "./middlewares/PublicRoutes";
+import AuthRoutes from "./middlewares/AuthRoutes";
+import UnauthRoutes from "./middlewares/UnauthRoutes";
+// misc
+import ModalBerhasil from "./components/modals/ModalBerhasil";
+import ModalStatus from "./components/modals/ModalStatus";
+import ModalTawar from "./components/modals/ModalTawar";
 import Topbar from "./components/Topbar";
 import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
-import UserProfile from "./pages/UserProfile";
 import HistoryTransaksi from "./components/HistoryTransaksi";
 import ListWishlist from "./components/ListWishlist";
-import EditProduct from "./pages/EditProduct";
-import Notification from "./pages/Notification";
 import UserText from "./components/UserText";
-import RequireAuth from "./middlewares/RequireAuth";
-import UnrequireAuth from "./middlewares/UnrequireAuth";
-import Public from "./middlewares/Public";
-import PreviewProduct from "./pages/PreviewProduct"
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                {/* public */}
-                <Route element={<Public />}>
+                {/* publicRoutes */}
+                <Route element={<PublicRoutes />}>
                     <Route path="*" element={<Error />} />
                     <Route
                         path="test/modalberhasil"
@@ -50,8 +54,8 @@ function App() {
                     </Route>
                 </Route>
 
-                {/* required */}
-                <Route element={<RequireAuth />}>
+                {/* authRoutes */}
+                <Route element={<AuthRoutes />}>
                     <Route path="/notification" element={<Notification />} />
                     <Route element={<Main />}>
                         <Route
@@ -95,8 +99,8 @@ function App() {
                     </Route>
                 </Route>
 
-                {/* unrequired */}
-                <Route element={<UnrequireAuth />}>
+                {/* unauthRoutes */}
+                <Route element={<UnauthRoutes />}>
                     <Route element={<Auth />}>
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />

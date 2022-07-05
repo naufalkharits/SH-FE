@@ -1,26 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
+import closedServer from "../utils/closedServer";
 import { server } from "./api";
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
 
 // refresh
-export const refresh = createAsyncThunk("auth/refresh", async (thunkAPI) => {
-    try {
-        const response = await server.post("/auth/refresh", {
-            refreshToken: user.refreshToken.token,
-        });
-        return response.data;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data);
-    }
-});
+// export const refresh = createAsyncThunk("auth/refresh", async (thunkAPI) => {
+//     try {
+//         const response = await server.post("/auth/refresh", {
+//             refreshToken: user.refreshToken.token,
+//         });
+//         return response.data;
+//     } catch (error) {
+//         return thunkAPI.rejectWithValue(error.response.data);
+//     }
+// });
 
 // checkMe
 export const me = createAsyncThunk("auth/me", async (accessToken, thunkAPI) => {
     try {
-        const response = await server.get("/auth/me", {
+        const response = await closedServer.get("/auth/me", {
             headers: {
                 Authorization: accessToken,
             },
@@ -66,7 +67,7 @@ export const updateBiodata = createAsyncThunk(
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
-        const response = await server.put(`/biodata`, formData, {
+        const response = await closedServer.put(`/biodata`, formData, {
             headers: {
                 Authorization: user.accessToken.token,
             },
@@ -104,20 +105,20 @@ export const authSlice = createSlice({
     },
     extraReducers: {
         // refresh
-        [refresh.pending]: (state) => {
-            state.loading = "pending";
-            state.error = null;
-        },
-        [refresh.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            state.error = null;
-            localStorage.setItem("user", JSON.stringify(action.payload));
-            state.user = action.payload;
-        },
-        [refresh.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.error = action.payload;
-        },
+        // [refresh.pending]: (state) => {
+        //     state.loading = "pending";
+        //     state.error = null;
+        // },
+        // [refresh.fulfilled]: (state, action) => {
+        //     state.loading = "idle";
+        //     state.error = null;
+        //     localStorage.setItem("user", JSON.stringify(action.payload));
+        //     state.user = action.payload;
+        // },
+        // [refresh.rejected]: (state, action) => {
+        //     state.loading = "idle";
+        //     state.error = action.payload;
+        // },
 
         // checkMe
         [me.pending]: (state) => {

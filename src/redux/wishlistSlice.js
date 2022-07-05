@@ -24,7 +24,6 @@ export const addWishlistBuyer = createAsyncThunk(
     "wishlist/addWishlistBuyer",
     async ({ productId }) => {
         const response = await closedServer.post(`/wishlist/${productId}`, {});
-        window.location.reload();
         return response.data;
     }
 );
@@ -34,7 +33,6 @@ export const deleteWishlistBuyer = createAsyncThunk(
     "wishlist/deleteWishlistBuyer",
     async ({ productId }) => {
         const response = await closedServer.delete(`/wishlist/${productId}`);
-        window.location.reload();
         return response.data;
     }
 );
@@ -58,6 +56,7 @@ export const wishlistSlice = createSlice({
         [addWishlistBuyer.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.error = null;
+            state.isWishlist = true;
         },
         [addWishlistBuyer.rejected]: (state, action) => {
             state.loading = "idle";
@@ -67,6 +66,7 @@ export const wishlistSlice = createSlice({
         [getWishlistBuyer.pending]: (state) => {
             state.loading = "pending";
             state.error = null;
+            state.wishlists = null;
         },
         [getWishlistBuyer.fulfilled]: (state, action) => {
             state.loading = "idle";
@@ -81,6 +81,7 @@ export const wishlistSlice = createSlice({
         [getWishlistById.pending]: (state) => {
             state.loading = "pending";
             state.error = null;
+            state.isWishlist = false;
         },
         [getWishlistById.fulfilled]: (state, action) => {
             state.loading = "idle";
@@ -99,7 +100,7 @@ export const wishlistSlice = createSlice({
         [deleteWishlistBuyer.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.error = null;
-            state.wishlists = null;
+            state.isWishlist = false;
             state.message = action.payload.message;
         },
         [deleteWishlistBuyer.rejected]: (state, action) => {

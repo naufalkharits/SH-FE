@@ -56,6 +56,16 @@ export const login = createAsyncThunk(
     }
 );
 
+// get biodata
+export const getBiodata = createAsyncThunk(
+    "biodata/getBiodata",
+    async ( userId ) => {
+        const response = await openServer.get(`/biodata/${userId}`);
+        // navigate("/user");
+        return response.data;
+    }
+);
+
 // update biodata
 export const updateBiodata = createAsyncThunk(
     "biodata/updateBiodata",
@@ -93,6 +103,9 @@ export const authSlice = createSlice({
         logout: (state, action) => {
             localStorage.removeItem("user");
             state.user = null;
+            state.biodata = null;
+            state.decodedAccess = null;
+            state.decodedRefresh = null;
         },
     },
     extraReducers: {
@@ -123,6 +136,7 @@ export const authSlice = createSlice({
         },
         [me.rejected]: (state, action) => {
             state.loading = "idle";
+            state.error = action.payload;
         },
 
         // register
@@ -150,9 +164,26 @@ export const authSlice = createSlice({
             state.loading = "idle";
             localStorage.setItem("user", JSON.stringify(action.payload));
             state.user = action.payload;
+            state.decodedAccess = jwtDecode(action.payload.accessToken.token);
+            state.decodedRefresh = jwtDecode(action.payload.refreshToken.token);
         },
         [login.rejected]: (state, action) => {
             state.loading = "idle";
+            state.error = action.payload;
+        },
+
+        // get biodata
+        [getBiodata.pending]: (state) => {
+            state.process = "pending";
+            state.error = null;
+            state.biodata = null;
+        },
+        [getBiodata.fulfilled]: (state, action) => {
+            state.process = "idle";
+            state.biodata = action.payload.biodata;
+        },
+        [getBiodata.rejected]: (state, action) => {
+            state.process = "idle";
             state.error = action.payload;
         },
 

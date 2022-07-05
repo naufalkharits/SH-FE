@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import orang from "../images/orang.png";
 import { useEffect } from "react";
-import { me } from "../redux/authSlice";
+import { getBiodata } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png"
 
 const ProfileCard = () => {
-    const { user, biodata } = useSelector((state) => state.auth);
+    const { decodedAccess, biodata } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(me(user?.accessToken.token));
-    }, [user, dispatch]);
+        decodedAccess &&
+        dispatch(getBiodata(decodedAccess.id));
+    }, [decodedAccess, dispatch]);
 
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">

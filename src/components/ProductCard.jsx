@@ -20,10 +20,7 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                 <div className="text-sm text-neutral-03">{category}</div>
             </div>
             <div>
-                {new Intl.NumberFormat("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                }).format(price)}
+                Rp {price.toLocaleString('id-ID')}
             </div>
         </div>
     );

@@ -15,24 +15,24 @@ const openServer = axios.create({
     baseURL,
 });
 
-openServer.interceptors.request.use(async (req) => {
-    if (!authTokens) {
-        authTokens = localStorage.getItem("user")
-            ? JSON.parse(localStorage.getItem("user"))
-            : null;
-    }
+// openServer.interceptors.request.use(async (req) => {
+//     if (!authTokens) {
+//         authTokens = localStorage.getItem("user")
+//             ? JSON.parse(localStorage.getItem("user"))
+//             : null;
+//     }
 
-    const decodedToken = jwtDecode(authTokens.accessToken.token);
-    const isTokenExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
+//     const decodedToken = jwtDecode(authTokens.accessToken.token);
+//     const isTokenExpired = dayjs.unix(decodedToken.exp).diff(dayjs()) < 1;
 
-    if (!isTokenExpired) return req;
+//     if (!isTokenExpired) return req;
 
-    const response = await axios.post(`${baseURL}/auth/refresh`, {
-        refreshToken: authTokens.refreshToken.token,
-    });
+//     const response = await axios.post(`${baseURL}/auth/refresh`, {
+//         refreshToken: authTokens.refreshToken.token,
+//     });
 
-    localStorage.setItem("user", JSON.stringify(response.data));
-    return req;
-});
+//     localStorage.setItem("user", JSON.stringify(response.data));
+//     return req;
+// });
 
 export default openServer;

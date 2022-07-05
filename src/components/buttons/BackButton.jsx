@@ -6,7 +6,7 @@ const BackButton = () => {
 
     return (
         <FiChevronLeft
-            className="absolute left-8 top-8 z-50 h-8 w-8 cursor-pointer rounded-full p-2 shadow-lg ring-1 ring-black ring-opacity-5 hover:bg-gray sm:hidden"
+            className="absolute left-8 top-8 z-50 h-8 w-8 cursor-pointer rounded-full bg-white p-2 shadow-lg ring-1 ring-black ring-opacity-5 hover:bg-gray sm:hidden"
             onClick={() => {
                 navigate(-1);
             }}

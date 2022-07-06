@@ -6,6 +6,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { insertProduct } from "../redux/productsSlice";
 import { CgSpinner } from "react-icons/cg";
 import DangerToast from "../components/toasts/DangerToast";
+import { fetchCategories } from "../redux/categoriesSlice";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -24,16 +25,27 @@ const AddProduct = () => {
     const [formData, setFormData] = useState("");
     const [show, setShow] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const { categories } = useSelector(
+        (state) => state.categories
+    );
+    const [formCategory, setFormCategory] = useState([]);
+
+    const [picture, setPicture] = useState([])
 
     const onFileChange = (e) => {
         const file = e.target.files;
+        const fileArray = Array.from(file)
         if (file.length > 4) {
             setShow(true);
             setErrorMessage("Gambar Tidak Boleh Lebih Dari 4");
         } else {
+            const imageArray = fileArray.map((file) => {
+                return URL.createObjectURL(file)
+            })
             for (let index of file) {
                 formData.append("pictures", index);
             }
+            setPicture(imageArray);
         }
     };
 
@@ -57,7 +69,12 @@ const AddProduct = () => {
 
     useEffect(() => {
         setFormData(new FormData());
-    }, []);
+        categories && setFormCategory(categories);
+    }, [categories]);
+
+    useEffect(() => {
+        dispatch(fetchCategories());
+    }, [dispatch]);
 
     return (
         <>
@@ -104,11 +121,9 @@ const AddProduct = () => {
                                 onChange={onChange}
                             >
                                 <option value="">Pilih Kategori</option>
-                                <option value="Automotive">Automotive</option>
-                                <option value="Property">Property</option>
-                                <option value="Electronic">Electronic</option>
-                                <option value="Sport">Sport</option>
-                                <option value="Office">Office</option>
+                                {formCategory.map((category) => (
+                                    <option value={category} key={category}>{category}</option>
+                                ))}
                             </select>
                         </label>
                     </div>
@@ -124,21 +139,28 @@ const AddProduct = () => {
                     </div>
                     <div className="space-y-2">
                         <label className="block">Foto Produk</label>
-                        <label
-                            className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
-                            htmlFor="file"
-                        >
-                            <input
-                                className="hidden h-full w-full"
-                                type="file"
-                                id="file"
-                                name="pictures"
-                                accept="image/png, image/jpeg, image/jpg"
-                                multiple
-                                onChange={onFileChange}
-                            />
-                            <FiPlus />
-                        </label>
+                        <div className="flex flex-wrap">
+                            {picture &&
+                                picture.map((image) => (
+                                    <img key={image} src={image} alt="" className="h-24 w-24 object-contain mr-4" />
+                                ))
+                            }
+                            <label
+                                className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
+                                htmlFor="file"
+                            >
+                                <input
+                                    className="hidden h-full w-full"
+                                    type="file"
+                                    id="file"
+                                    name="pictures"
+                                    accept="image/png, image/jpeg, image/jpg"
+                                    multiple
+                                    onChange={onFileChange}
+                                />
+                                <FiPlus />
+                            </label>
+                        </div>
                     </div>
                     <div className="flex justify-between">
                         <button className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04 py-3 font-medium hover:bg-primary-purple-05 hover:text-white">

@@ -13,9 +13,8 @@ import SellButton from "../components/buttons/SellButton";
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { keyword, category, offset } = useSelector(
-        (state) => state.products
-    );
+    const { keyword, offset } = useSelector((state) => state.products);
+    const { category } = useSelector((state) => state.categories);
 
     const products = useSelector(productsSelectors.selectAll);
 

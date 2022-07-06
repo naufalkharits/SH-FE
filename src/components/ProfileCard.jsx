@@ -32,7 +32,7 @@ const ProfileCard = () => {
                     <div
                         className={
                             loading === "pending"
-                                ? "h-3 w-16 animate-pulse rounded-xl bg-gray"
+                                ? "h-3 w-16 animate-pulse rounded-md bg-gray"
                                 : ""
                         }
                     >
@@ -41,7 +41,7 @@ const ProfileCard = () => {
                     <div
                         className={
                             loading === "pending"
-                                ? "h-2 w-12 animate-pulse rounded-xl bg-gray"
+                                ? "h-2 w-12 animate-pulse rounded-md bg-gray"
                                 : "text-xs text-neutral-03"
                         }
                     >

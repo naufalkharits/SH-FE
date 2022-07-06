@@ -89,11 +89,15 @@ const DetailProduct = () => {
                             </Swiper>
                         )}
                         <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
-                            <div className="font-medium">Deskripsi</div>
+                            {loading === "pending" ? (
+                                <div className="h-4 w-12 animate-pulse rounded-md bg-gray"></div>
+                            ) : (
+                                <div className="font-medium">Deskripsi</div>
+                            )}
                             <p
                                 className={
                                     loading === "pending"
-                                        ? "h-3 w-64 animate-pulse rounded-xl bg-gray"
+                                        ? "h-3 w-64 animate-pulse rounded-md bg-gray"
                                         : "text-sm text-neutral-03"
                                 }
                             >
@@ -114,7 +118,7 @@ const DetailProduct = () => {
                                 <div
                                     className={
                                         loading === "pending"
-                                            ? "h-4 w-24 animate-pulse rounded-xl bg-gray"
+                                            ? "h-4 w-32 animate-pulse rounded-md bg-gray"
                                             : ""
                                     }
                                 >
@@ -123,7 +127,7 @@ const DetailProduct = () => {
                                 <div
                                     className={
                                         loading === "pending"
-                                            ? "h-3 w-16 animate-pulse rounded-xl bg-gray"
+                                            ? "h-3 w-16 animate-pulse rounded-md bg-gray"
                                             : "text-sm text-neutral-03"
                                     }
                                 >
@@ -131,14 +135,14 @@ const DetailProduct = () => {
                                 </div>
                             </div>
                             {loading === "pending" ? (
-                                <div className="h-4 w-20 animate-pulse rounded-xl bg-gray"></div>
+                                <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
                             ) : (
                                 <div>
                                     Rp {product?.price.toLocaleString("id-ID")}
                                 </div>
                             )}
                             {loading === "pending" ? (
-                                <></>
+                                <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
                             ) : product?.seller_id === biodata?.id ? (
                                 <>
                                     <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
@@ -192,8 +196,18 @@ const DetailProduct = () => {
                     </div>
                     <div className="mb-8 px-4 sm:hidden sm:px-0">
                         <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-                            <div className="font-medium">Deskripsi</div>
-                            <p className="text-sm text-neutral-03">
+                            {loading === "pending" ? (
+                                <div className="h-4 w-12 animate-pulse rounded-md bg-gray"></div>
+                            ) : (
+                                <div className="font-medium">Deskripsi</div>
+                            )}
+                            <p
+                                className={
+                                    loading === "pending"
+                                        ? "h-3 w-64 animate-pulse rounded-md bg-gray"
+                                        : "text-sm text-neutral-03"
+                                }
+                            >
                                 {product?.description}
                             </p>
                         </div>

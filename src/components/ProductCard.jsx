@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ProductSkeleton from "./skeletons/ProductSkeleton";
+// import ProductSkeleton from "./skeletons/ProductSkeleton";
 
 const ProductCard = ({ id, name, price, category, pictures }) => {
     const navigate = useNavigate();
@@ -10,9 +10,9 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
 
     return (
         <>
-        {loading === "pending" ? (
+        {/* {loading === "pending" ? (
             <ProductSkeleton />
-        ) : (
+        ) : ( */}
             <>
         <div
             className="cursor-pointer space-y-2 rounded-md p-2 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10"
@@ -34,7 +34,7 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
             </div>
         </div>
         </>
-        )}
+        {/* )} */}
         </>
     );
 };

@@ -8,19 +8,14 @@ import {
     fetchProductById,
     productsSelectors,
 } from "../redux/productsSlice";
-import {
-    addWishlistBuyer,
-    deleteWishlistBuyer,
-    getWishlistById,
-} from "../redux/wishlistSlice";
+import { getWishlistById } from "../redux/wishlistSlice";
 import { addTransactionTawar } from "../redux/transactionSlice";
 import ProfileCard from "../components/ProfileCard";
 import PublishButton from "../components/buttons/PublishButton";
 import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { CgSpinner } from "react-icons/cg";
 import WishlistButton from "../components/buttons/WishlistButton";
+import { CgSpinner } from "react-icons/cg";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -104,13 +99,6 @@ const DetailProduct = () => {
                             >
                                 {product?.description}
                             </p>
-                            {/* <p className="text-sm text-neutral-03">
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Asperiores consequatur
-                                incidunt, nobis dolore, minus rerum, nisi unde
-                                sint corrupti suscipit obcaecati dolores odio
-                                qui ut error eius iusto alias deleniti?
-                            </p> */}
                         </div>
                     </div>
                     <div

@@ -31,22 +31,20 @@ const Home = () => {
             </div>
             <div className="container mx-auto space-y-4 p-4">
                 <div className="-m-4 flex flex-wrap">
-                    {products
-                        // .filter((product) => product.name.includes(keyword))
-                        .map((product) => (
-                            <div
-                                className="w-1/2 p-4 md:w-1/3 lg:w-1/4 xl:w-1/5"
-                                key={product.id}
-                            >
-                                <ProductCard
-                                    id={product.id}
-                                    name={product.name}
-                                    price={product.price}
-                                    category={product.category}
-                                    pictures={product.pictures[0]}
-                                />
-                            </div>
-                        ))}
+                    {products.map((product) => (
+                        <div
+                            className="w-1/2 p-4 md:w-1/3 lg:w-1/4 xl:w-1/5"
+                            key={product.id}
+                        >
+                            <ProductCard
+                                id={product.id}
+                                name={product.name}
+                                price={product.price}
+                                category={product.category}
+                                pictures={product.pictures[0]}
+                            />
+                        </div>
+                    ))}
                 </div>
                 {offset > 0 && (
                     <button

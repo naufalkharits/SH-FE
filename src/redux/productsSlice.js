@@ -8,15 +8,6 @@ import closedServer from "../utils/closedServer";
 
 const page = JSON.parse(localStorage.getItem("page"));
 
-// fetch all category
-export const fetchCategories = createAsyncThunk(
-    "products/fetchCategories",
-    async () => {
-        const { data } = await openServer.get("/category");
-        return data;
-    }
-);
-
 // fetch product by id
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
@@ -90,9 +81,9 @@ const productsSlice = createSlice({
         offset: page ? page : 0,
     }),
     reducers: {
-        setLoading: (state, action) => {
-            state.loading = action.payload;
-        },
+        // setLoading: (state, action) => {
+        //     state.loading = action.payload;
+        // },
         keywordQuery: (state, action) => {
             state.keyword = action.payload;
         },
@@ -113,20 +104,6 @@ const productsSlice = createSlice({
         },
     },
     extraReducers: {
-        // fetch all category
-        [fetchCategories.pending]: (state) => {
-            // state.loading = "pending";
-            // state.error = null;
-        },
-        [fetchCategories.fulfilled]: (state, action) => {
-            // state.loading = "idle";
-            state.categories = action.payload.categories;
-        },
-        [fetchCategories.rejected]: (state, action) => {
-            // state.loading = "idle";
-            // state.error = action.payload;
-        },
-
         // fetch product by id
         [fetchProductById.pending]: (state) => {
             state.loading = "pending";

@@ -18,6 +18,8 @@ const Home = () => {
 
     const products = useSelector(productsSelectors.selectAll);
 
+    const limit = 10
+
     useEffect(() => {
         dispatch(fetchProducts({ keyword, category, offset }));
     }, [keyword, category, offset, dispatch]);
@@ -55,22 +57,17 @@ const Home = () => {
                         -{" "}
                     </button>
                 )}
-                <button
-                    onClick={() => {
-                        dispatch(setOffsetIncrement(10));
-                    }}
-                >
-                    {" "}
-                    +{" "}
-                </button>
-                {/* <button
-                    onClick={() => {
-                        dispatch(setOffsetIncrement(4));
-                    }}
-                >
-                    {" "}
-                    4{" "}
-                </button> */}
+                {products.length % limit === 0 && (
+
+                    <button
+                        onClick={() => {
+                            dispatch(setOffsetIncrement(10));
+                        }}
+                    >
+                        {" "}
+                        +{" "}
+                    </button>
+                )}
             </div>
             <SellButton />
         </>

@@ -30,20 +30,12 @@ const DetailProduct = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
     const { biodata } = useSelector((state) => state.auth);
-    const { process } = useSelector((state) => state.products);
+    const { process, loading } = useSelector((state) => state.products);
+    const { isWishlist } = useSelector((state) => state.wishlist);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
-    const { isWishlist } = useSelector((state) => state.wishlist);
-    const [formValue, setFormValue] = useState({
-        id: null,
-        name: "",
-        price: 0,
-        category: "",
-        description: "",
-        pictures: [],
-        sellerId: null,
-    });
+
     const [price, setPrice] = useState(0);
 
     const [isHovered, setIsHovered] = useState(false);
@@ -76,19 +68,6 @@ const DetailProduct = () => {
         dispatch(fetchProductById(productId));
     }, [productId, dispatch]);
 
-    useEffect(() => {
-        product &&
-            setFormValue({
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                category: product.category,
-                description: product.description,
-                pictures: product.pictures,
-                sellerId: product.seller_id,
-            });
-    }, [product]);
-
     return (
         <>
             {modalOn && (
@@ -103,27 +82,37 @@ const DetailProduct = () => {
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <div
                         className={className(
-                            formValue.sellerId === biodata?.id
+                            product?.seller_id === biodata?.id
                                 ? "sm:w-2/3 lg:w-3/4"
                                 : "sm:w-3/5 lg:w-2/3",
                             "space-y-4"
                         )}
                     >
-                        <Swiper>
-                            {formValue.pictures.map((picture) => (
-                                <SwiperSlide key={picture}>
-                                    <img
-                                        className="h-[32rem] w-full object-cover object-center sm:rounded-2xl"
-                                        src={picture}
-                                        alt=""
-                                    />
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+                        {loading === "pending" ? (
+                            <div className="h-[32rem] w-full animate-pulse bg-gray sm:rounded-2xl"></div>
+                        ) : (
+                            <Swiper>
+                                {product?.pictures.map((picture) => (
+                                    <SwiperSlide key={picture}>
+                                        <img
+                                            className="h-[32rem] w-full object-cover object-center sm:rounded-2xl"
+                                            src={picture}
+                                            alt=""
+                                        />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        )}
                         <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                             <div className="font-medium">Deskripsi</div>
-                            <p className="text-sm text-neutral-03">
-                                {formValue.description}
+                            <p
+                                className={
+                                    loading === "pending"
+                                        ? "h-3 w-64 animate-pulse rounded-xl bg-gray"
+                                        : "text-sm text-neutral-03"
+                                }
+                            >
+                                {product?.description}
                             </p>
                             {/* <p className="text-sm text-neutral-03">
                                 Lorem ipsum dolor sit amet consectetur
@@ -136,7 +125,7 @@ const DetailProduct = () => {
                     </div>
                     <div
                         className={className(
-                            formValue.sellerId === biodata?.id
+                            product?.seller_id === biodata?.id
                                 ? "sm:w-1/3 lg:w-1/4"
                                 : "sm:w-2/5 lg:w-1/3",
                             "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
@@ -144,18 +133,35 @@ const DetailProduct = () => {
                     >
                         <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div className="mb-4 space-y-2">
-                                <div>{formValue.name}</div>
-                                <div className="text-sm text-neutral-03">
-                                    {formValue.category}
+                                <div
+                                    className={
+                                        loading === "pending"
+                                            ? "h-4 w-24 animate-pulse rounded-xl bg-gray"
+                                            : ""
+                                    }
+                                >
+                                    {product?.name}
+                                </div>
+                                <div
+                                    className={
+                                        loading === "pending"
+                                            ? "h-3 w-16 animate-pulse rounded-xl bg-gray"
+                                            : "text-sm text-neutral-03"
+                                    }
+                                >
+                                    {product?.category}
                                 </div>
                             </div>
-                            <div className="">
-                                {new Intl.NumberFormat("id-ID", {
-                                    style: "currency",
-                                    currency: "IDR",
-                                }).format(formValue.price)}
-                            </div>
-                            {formValue.sellerId === biodata?.id ? (
+                            {loading === "pending" ? (
+                                <div className="h-4 w-20 animate-pulse rounded-xl bg-gray"></div>
+                            ) : (
+                                <div>
+                                    Rp {product?.price.toLocaleString("id-ID")}
+                                </div>
+                            )}
+                            {loading === "pending" ? (
+                                <></>
+                            ) : product?.seller_id === biodata?.id ? (
                                 <>
                                     <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                         Terbitkan
@@ -201,7 +207,7 @@ const DetailProduct = () => {
                                 </button>
                             )}
                         </div>
-                        {formValue.sellerId !== biodata?.id && (
+                        {product?.seller_id !== biodata?.id && (
                             <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                                 {isWishlist ? (
                                     <div
@@ -244,13 +250,13 @@ const DetailProduct = () => {
                         <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div className="font-medium">Deskripsi</div>
                             <p className="text-sm text-neutral-03">
-                                {formValue.description}
+                                {product?.description}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-            {formValue.sellerId === biodata?.id ? (
+            {product?.seller_id === biodata?.id ? (
                 <PublishButton />
             ) : (
                 <button

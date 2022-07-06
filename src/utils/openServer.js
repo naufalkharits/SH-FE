@@ -4,7 +4,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import dayjs from "dayjs";
 
-const baseURL = process.env.REACT_APP_SERVER_API;
+const baseURL = process.env.REACT_APP_SERVER_URL;
 
 let authTokens = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))

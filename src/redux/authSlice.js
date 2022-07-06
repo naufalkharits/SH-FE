@@ -59,7 +59,7 @@ export const login = createAsyncThunk(
 // get biodata
 export const getBiodata = createAsyncThunk(
     "biodata/getBiodata",
-    async ( userId ) => {
+    async (userId) => {
         const response = await openServer.get(`/biodata/${userId}`);
         // navigate("/user");
         return response.data;
@@ -174,31 +174,31 @@ export const authSlice = createSlice({
 
         // get biodata
         [getBiodata.pending]: (state) => {
-            state.process = "pending";
+            state.loading = "pending";
             state.error = null;
             state.biodata = null;
         },
         [getBiodata.fulfilled]: (state, action) => {
-            state.process = "idle";
+            state.loading = "idle";
             state.biodata = action.payload.biodata;
         },
         [getBiodata.rejected]: (state, action) => {
-            state.process = "idle";
+            state.loading = "idle";
             state.error = action.payload;
         },
 
         // update biodata
         [updateBiodata.pending]: (state) => {
-            state.process = "pending";
+            state.loading = "pending";
             state.error = null;
             state.biodata = null;
         },
         [updateBiodata.fulfilled]: (state, action) => {
-            state.process = "idle";
+            state.loading = "idle";
             state.biodata = action.payload.updatedBiodata;
         },
         [updateBiodata.rejected]: (state, action) => {
-            state.process = "idle";
+            state.loading = "idle";
             state.error = action.payload;
         },
     },

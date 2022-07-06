@@ -1,4 +1,4 @@
-const CategorySkeleton = () => {
+const ProductSkeleton = () => {
     return (
         <>
             <div className="h-72 w-72 animate-pulse rounded-xl bg-gray"></div>
@@ -10,4 +10,4 @@ const CategorySkeleton = () => {
     );
 };
 
-export default CategorySkeleton;
+export default ProductSkeleton;

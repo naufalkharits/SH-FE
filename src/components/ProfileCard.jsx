@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import orang from "../images/orang.png";
 import { useEffect } from "react";
 import { getBiodata } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";

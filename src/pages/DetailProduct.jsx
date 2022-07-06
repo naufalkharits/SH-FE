@@ -20,6 +20,7 @@ import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { CgSpinner } from "react-icons/cg";
+import WishlistButton from "../components/buttons/WishlistButton";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -31,26 +32,15 @@ const DetailProduct = () => {
     const dispatch = useDispatch();
     const { biodata } = useSelector((state) => state.auth);
     const { process, loading } = useSelector((state) => state.products);
-    const { isWishlist } = useSelector((state) => state.wishlist);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
 
+    const [isModalOn, setIsModalOn] = useState(false);
     const [price, setPrice] = useState(0);
 
-    const [isHovered, setIsHovered] = useState(false);
-    const [modalOn, setModalOn] = useState(false);
-
-    const handleDelete = (e) => {
+    const handleDelete = () => {
         dispatch(deleteProduct({ productId, process, navigate }));
-    };
-
-    const addWishlist = (e) => {
-        dispatch(addWishlistBuyer({ productId, navigate }));
-    };
-
-    const deleteWishlist = (e) => {
-        dispatch(deleteWishlistBuyer({ productId, navigate }));
     };
 
     // modal transaksi
@@ -70,9 +60,9 @@ const DetailProduct = () => {
 
     return (
         <>
-            {modalOn && (
+            {isModalOn && (
                 <ModalTawar
-                    setModalOn={setModalOn}
+                    setIsModalOn={setIsModalOn}
                     onChange={onChange}
                     onSubmit={onSubmit}
                 />
@@ -200,7 +190,7 @@ const DetailProduct = () => {
                                 <button
                                     className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
                                     onClick={() => {
-                                        setModalOn(true);
+                                        setIsModalOn(true);
                                     }}
                                 >
                                     Saya tertarik dan ingin nego
@@ -208,41 +198,7 @@ const DetailProduct = () => {
                             )}
                         </div>
                         {product?.seller_id !== biodata?.id && (
-                            <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-                                {isWishlist ? (
-                                    <div
-                                        onMouseEnter={() => {
-                                            setIsHovered(true);
-                                        }}
-                                        onMouseLeave={() => {
-                                            setIsHovered(false);
-                                        }}
-                                        onClick={deleteWishlist}
-                                    >
-                                        {isHovered ? (
-                                            <FaRegHeart className="h-5 w-5" />
-                                        ) : (
-                                            <FaHeart className="h-5 w-5 text-red-500" />
-                                        )}
-                                    </div>
-                                ) : (
-                                    <div
-                                        onMouseEnter={() => {
-                                            setIsHovered(true);
-                                        }}
-                                        onMouseLeave={() => {
-                                            setIsHovered(false);
-                                        }}
-                                        onClick={addWishlist}
-                                    >
-                                        {isHovered ? (
-                                            <FaHeart className="h-5 w-5 text-red-600" />
-                                        ) : (
-                                            <FaRegHeart className="h-5 w-5" />
-                                        )}
-                                    </div>
-                                )}
-                            </div>
+                            <WishlistButton />
                         )}
                         <ProfileCard />
                     </div>
@@ -261,11 +217,11 @@ const DetailProduct = () => {
             ) : (
                 <button
                     className={className(
-                        modalOn === true ? "hidden" : "sm:hidden",
+                        isModalOn === true ? "hidden" : "sm:hidden",
                         "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
                     )}
                     onClick={() => {
-                        setModalOn(true);
+                        setIsModalOn(true);
                     }}
                 >
                     <span>Saya Tertarik dan ingin Nego</span>

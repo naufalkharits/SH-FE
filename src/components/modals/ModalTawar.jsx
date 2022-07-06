@@ -1,8 +1,8 @@
 import { FiX } from "react-icons/fi";
 
-const Modal = ({ setModalOn, onChange, onSubmit }) => {
+const Modal = ({ setIsModalOn, onChange, onSubmit }) => {
     const handleCancelClick = () => {
-        setModalOn(false);
+        setIsModalOn(false);
     };
 
     return (

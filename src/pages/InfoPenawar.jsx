@@ -1,16 +1,20 @@
-import React from "react";
+import { React, useEffect} from "react";
 import orang from "../images/orang.png";
 import { FiArrowLeft } from "react-icons/fi";
 import ModalBerhasil from "../components/modals/ModalBerhasil";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import TransactionCard from "../components/TransactionCard";
 
 const InfoPenawar = () => {
+    const dispatch = useDispatch();
     const [modalOn, setModalOn] = useState(false);
     const [choice, setChoice] = useState(false);
 
     const clicked = () => {
         setModalOn(true);
     };
+
     return (
         <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
             <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
@@ -25,7 +29,17 @@ const InfoPenawar = () => {
                     </div>
                 </div>
                 <p className="font-medium">Daftar Produkmu yang Ditawar</p>
-                <div className="flex gap-6 rounded-xl">
+                
+                <>
+                
+                        <div
+                            className="w-full"
+                        >
+                            <TransactionCard/>
+                        </div>
+                </>
+
+                {/* <div className="flex gap-6 rounded-xl">
                     <img
                         src="/img/jam-2.png"
                         alt=""
@@ -51,7 +65,8 @@ const InfoPenawar = () => {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div> */}
+
                 <div className="h-px bg-[#E5E5E5]"></div>
             </div>
             <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>

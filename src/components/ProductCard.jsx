@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import ProductSkeleton from "./skeletons/ProductSkeleton";
 
 const ProductCard = ({ id, name, price, category, pictures }) => {
     const navigate = useNavigate();
-     const {  loading } = useSelector(
-        (state) => state.products
-    );
+    // const {  loading } = useSelector(
+    //     (state) => state.products
+    // );
 
     return (
         <>

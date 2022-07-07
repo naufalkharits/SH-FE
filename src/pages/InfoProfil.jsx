@@ -24,6 +24,10 @@ const InfoProfil = () => {
         for (let index of file) {
             formData.append("picture", index);
         }
+        setFormValue({
+            ...formValue,
+            picture: URL.createObjectURL(file[0])
+        });
     };
 
     const onChange = (e) => {
@@ -79,19 +83,35 @@ const InfoProfil = () => {
             <form className="w-full space-y-4 px-5" onSubmit={onSubmit}>
                 <div className="mb-8 items-center gap-6  space-y-6 ">
                     <div className="flex items-center justify-center space-y-2">
-                        <label
-                            className="flex h-24 w-24 items-center justify-center rounded-xl border border-neutral-02 bg-primary-purple-01 text-neutral-03"
-                            htmlFor="file"
-                        >
-                            <input
-                                className="hidden h-full w-full"
-                                type="file"
-                                id="file"
-                                accept="image/png, image/jpeg"
-                                onChange={onPictChange}
-                            />
-                            <AiOutlineCamera className="text-3xl text-primary-purple-04" />
-                        </label>
+                        {formValue.picture ?
+                            <label
+                                className="flex h-24 w-24 items-center justify-center rounded-xl"
+                                htmlFor="file"
+                            >
+                                <input
+                                    className="hidden h-full w-full"
+                                    type="file"
+                                    id="file"
+                                    accept="image/png, image/jpeg"
+                                    onChange={onPictChange}
+                                />
+                                <img src={formValue.picture} alt="" />
+                            </label>
+                            :
+                            <label
+                                className="flex h-24 w-24 items-center justify-center rounded-xl border border-neutral-02 bg-primary-purple-01 text-neutral-03"
+                                htmlFor="file"
+                            >
+                                <input
+                                    className="hidden h-full w-full"
+                                    type="file"
+                                    id="file"
+                                    accept="image/png, image/jpeg"
+                                    onChange={onPictChange}
+                                />
+                                <AiOutlineCamera className="text-3xl text-primary-purple-04" />
+                            </label>
+                        }
                     </div>
 
                     <div className="space-y-2">

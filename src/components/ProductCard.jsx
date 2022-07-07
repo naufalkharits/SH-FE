@@ -23,11 +23,11 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                 </div>
                 <div>Rp {price.toLocaleString("id-ID")}</div>
                 {
-                    (location.patname = "/wishlist" && (
+                    location.pathname === "/wishlist" && (
                         <button className="w-full rounded-2xl border border-primary-purple-04 p-2 font-medium hover:bg-primary-purple-05 hover:text-white ">
                             Beli
                         </button>
-                    ))
+                    )
                 }
             </div>
         </>

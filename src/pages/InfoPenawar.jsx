@@ -1,13 +1,15 @@
-import { React, useEffect} from "react";
+import { React, useEffect } from "react";
 import orang from "../images/orang.png";
 import { FiArrowLeft } from "react-icons/fi";
 import ModalBerhasil from "../components/modals/ModalBerhasil";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TransactionCard from "../components/TransactionCard";
+import { useNavigate } from "react-router-dom";
 
 const InfoPenawar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [modalOn, setModalOn] = useState(false);
     const [choice, setChoice] = useState(false);
 
@@ -18,7 +20,12 @@ const InfoPenawar = () => {
     return (
         <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
             <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
-                <FiArrowLeft className="text-3xl" />
+                <FiArrowLeft
+                    className="cursor-pointer text-3xl"
+                    onClick={() => {
+                        navigate(-1);
+                    }}
+                />
             </div>
             <div className="w-full space-y-7 px-4">
                 <div className="shadow-low flex items-center gap-6 rounded-2xl border border-neutral-200 p-4">
@@ -29,15 +36,12 @@ const InfoPenawar = () => {
                     </div>
                 </div>
                 <p className="font-medium">Daftar Produkmu yang Ditawar</p>
-                
-                <>
-                
-                        <div
-                            className="w-full"
-                        >
-                            <TransactionCard/>
-                        </div>
-                </>
+
+                <div
+                    className="w-full"
+                >
+                    <TransactionCard />
+                </div>
 
                 {/* <div className="flex gap-6 rounded-xl">
                     <img
@@ -66,8 +70,6 @@ const InfoPenawar = () => {
                         </div>
                     </div>
                 </div> */}
-
-                <div className="h-px bg-[#E5E5E5]"></div>
             </div>
             <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>
             {modalOn && (

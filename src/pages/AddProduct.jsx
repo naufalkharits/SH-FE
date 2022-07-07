@@ -38,6 +38,9 @@ const AddProduct = () => {
         if (file.length > 4) {
             setShow(true);
             setErrorMessage("Gambar Tidak Boleh Lebih Dari 4");
+            setTimeout(() => {
+                setShow(false);
+            }, 2000);
         } else {
             const imageArray = fileArray.map((file) => {
                 return URL.createObjectURL(file)
@@ -78,7 +81,7 @@ const AddProduct = () => {
 
     return (
         <>
-            {errorMessage && <DangerToast show={show} message={errorMessage} />}
+            {show && <DangerToast show={show} message={errorMessage} />}
             <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft

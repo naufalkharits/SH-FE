@@ -37,15 +37,15 @@ const EditProduct = () => {
     const { categories } = useSelector((state) => state.categories);
     const [formCategory, setFormCategory] = useState([]);
 
-    const [picture, setPicture] = useState([]);
-
     const onFileChange = (e) => {
         const file = e.target.files;
         const fileArray = Array.from(file);
-        console.log(file.length);
         if (file.length > 4) {
             setShow(true);
             setErrorMessage("Gambar Tidak Boleh Lebih Dari 4");
+            setTimeout(() => {
+                setShow(false);
+            }, 2000);
         } else {
             const imageArray = fileArray.map((file) => {
                 return URL.createObjectURL(file);
@@ -104,7 +104,7 @@ const EditProduct = () => {
 
     return (
         <>
-            {errorMessage && <DangerToast show={show} message={errorMessage} />}
+            {show && <DangerToast show={show} message={errorMessage} />}
             <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft

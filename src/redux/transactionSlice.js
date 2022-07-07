@@ -17,12 +17,12 @@ export const addTransactionTawar = createAsyncThunk(
     }
 );
 
-// fetch all product
+// fetch all transaction
 export const fetchTransactionTawar = createAsyncThunk(
     "transaction/fetchTransactionTawar",
-    async ({ productId, price, offset }) => {
-        const response = await openServer.get(
-            `/transaction?productId=${productId}&price=${price}&limit=10&offset=${offset}`
+    async ({ status, as }) => {
+        const response = await closedServer.get(
+            `/transaction?status=${status}&as=${as}`
         );
         return response.data;
     }
@@ -32,11 +32,11 @@ const transactionAdapter = createEntityAdapter();
 
 export const transactionSlice = createSlice({
     name: "transaction",
-    initialState: {
+    initialState: transactionAdapter.getInitialState ({
         data: null,
         loading: "idle",
         error: null,
-    },
+    }),
     reducers: {},
     extraReducers: {
         // addTransactionTawar
@@ -54,7 +54,7 @@ export const transactionSlice = createSlice({
             state.error = action.payload;
         },
 
-        // fetch all product
+        // fetch all transaction
         [fetchTransactionTawar.pending]: (state) => {
             state.loading = "pending";
             state.error = null;
@@ -62,7 +62,7 @@ export const transactionSlice = createSlice({
         },
         [fetchTransactionTawar.fulfilled]: (state, action) => {
             state.loading = "idle";
-            transactionAdapter.setAll(state, action.payload.products);
+            transactionAdapter.setAll(state, action.payload.transactions);
         },
         [fetchTransactionTawar.rejected]: (state, action) => {
             state.loading = "idle";
@@ -72,7 +72,7 @@ export const transactionSlice = createSlice({
 });
 
 export const transactionSelectors = transactionAdapter.getSelectors(
-    (state) => state.products
+    (state) => state.transaction
 );
 
 export default transactionSlice.reducer;

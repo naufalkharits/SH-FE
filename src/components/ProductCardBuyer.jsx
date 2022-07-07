@@ -7,12 +7,15 @@ const ProductCardBuyer = ({ id, name, price, category, pictures }) => {
         <div className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4">
             <div
                 className="cursor-pointer space-y-2 rounded-md border border-neutral-200 p-2 shadow-md"
-                key={id}
                 onClick={() => {
                     navigate(`/buy-product/${id}`);
                 }}
             >
-                <img className="h-48 w-full rounded object-cover object-center" src={pictures} alt="" />
+                <img
+                    className="h-48 w-full rounded object-cover object-center"
+                    src={pictures}
+                    alt=""
+                />
                 <div>
                     <div className="truncate font-medium">{name}</div>
                     <div className="text-sm text-neutral-03">{category}</div>

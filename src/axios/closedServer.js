@@ -21,8 +21,10 @@ closedServer.interceptors.request.use(async (config) => {
     const accessToken = store.getState().auth.user.accessToken.token;
     const decodedAccess = store.getState().auth.decodedAccess.exp;
 
-    const isRefreshExpired = dayjs.unix(decodedRefresh).diff(dayjs()) < 1;
-    const isAccessExpired = dayjs.unix(decodedAccess).diff(dayjs()) < 1;
+    const isRefreshExpired =
+        dayjs.unix(store.getState().auth.decodedRefresh.exp).diff(dayjs()) < 1;
+    const isAccessExpired =
+        dayjs.unix(store.getState().auth.decodedAccess.exp).diff(dayjs()) < 1;
 
     if (isRefreshExpired) {
         store.dispatch(logout());
@@ -30,16 +32,18 @@ closedServer.interceptors.request.use(async (config) => {
     }
 
     if (!isAccessExpired) {
-        config.headers.Authorization = accessToken;
+        config.headers.Authorization =
+            store.getState().auth.user.accessToken.token;
         return config;
     }
 
     if (isAccessExpired) {
-        config.headers.refreshToken = refreshToken;
         const response = await axios.post(`${baseURL}/auth/refresh`, {
-            refreshToken,
+            refreshToken: store.getState().auth.user.refreshToken.token,
         });
         store.dispatch(setUser(response.data));
+        config.headers.Authorization =
+            store.getState().auth.user.accessToken.token;
         return config;
     }
 });

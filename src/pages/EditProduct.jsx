@@ -34,29 +34,28 @@ const EditProduct = () => {
     const [formData, setFormData] = useState("");
     const [show, setShow] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const { categories } = useSelector(
-        (state) => state.categories
-    );
+    const { categories } = useSelector((state) => state.categories);
     const [formCategory, setFormCategory] = useState([]);
 
-    const [picture, setPicture] = useState([])
+    const [picture, setPicture] = useState([]);
 
     const onFileChange = (e) => {
         const file = e.target.files;
-        const fileArray = Array.from(file)
+        const fileArray = Array.from(file);
+        console.log(file.length);
         if (file.length > 4) {
             setShow(true);
             setErrorMessage("Gambar Tidak Boleh Lebih Dari 4");
         } else {
             const imageArray = fileArray.map((file) => {
-                return URL.createObjectURL(file)
-            })
+                return URL.createObjectURL(file);
+            });
             for (let index of file) {
                 formData.append("pictures", index);
             }
             setFormValue({
                 ...formValue,
-                pictures: imageArray
+                pictures: imageArray,
             });
         }
     };
@@ -152,7 +151,9 @@ const EditProduct = () => {
                             >
                                 <option value="">Pilih Kategori</option>
                                 {formCategory.map((category) => (
-                                    <option value={category} key={category}>{category}</option>
+                                    <option value={category} key={category}>
+                                        {category}
+                                    </option>
                                 ))}
                             </select>
                         </label>
@@ -173,9 +174,13 @@ const EditProduct = () => {
                         <div className="flex flex-wrap">
                             {formValue.pictures &&
                                 formValue.pictures.map((image) => (
-                                    <img key={image} src={image} alt="" className="h-24 w-24 object-contain mr-4" />
-                                ))
-                            }
+                                    <img
+                                        key={image}
+                                        src={image}
+                                        alt=""
+                                        className="mr-4 h-24 w-24 object-contain"
+                                    />
+                                ))}
 
                             <label
                                 className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"

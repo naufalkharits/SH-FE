@@ -16,11 +16,6 @@ const closedServer = axios.create({
 });
 
 closedServer.interceptors.request.use(async (config) => {
-    const refreshToken = store.getState().auth.user.refreshToken.token;
-    const decodedRefresh = store.getState().auth.decodedRefresh.exp;
-    const accessToken = store.getState().auth.user.accessToken.token;
-    const decodedAccess = store.getState().auth.decodedAccess.exp;
-
     const isRefreshExpired =
         dayjs.unix(store.getState().auth.decodedRefresh.exp).diff(dayjs()) < 1;
     const isAccessExpired =

@@ -11,59 +11,79 @@ const page = JSON.parse(localStorage.getItem("page"));
 // fetch product by id
 export const fetchProductById = createAsyncThunk(
     "products/fetchProductById",
-    async (productId) => {
-        const response = await openServer.get(`/product/${productId}`);
-        return response.data;
+    async (productId, thunkAPI) => {
+        try {
+            const response = await openServer.get(`/product/${productId}`);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
 // fetch all product
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
-    async ({ keyword, category, offset }) => {
-        const response = await openServer.get(
-            `/product?keyword=${keyword}&category=${category}&limit=10&offset=${offset}`
-        );
-        return response.data;
+    async ({ keyword, category, offset }, thunkAPI) => {
+        try {
+            const response = await openServer.get(
+                `/product?keyword=${keyword}&category=${category}&limit=10&offset=${offset}`
+            );
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
 // insert product
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async ({ formData, process, navigate }) => {
-        for (const pair of formData.entries()) {
-            console.log(`${pair[0]}, ${pair[1]}`);
+    async ({ formData, process, navigate }, thunkAPI) => {
+        // for (const pair of formData.entries()) {
+        //     console.log(`${pair[0]}, ${pair[1]}`);
+        // }
+        try {
+            const response = await closedServer.post("/product", formData);
+            if (process === "idle") navigate("/manage-product");
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
         }
-        const response = await closedServer.post("/product", formData);
-        if (process === "idle") navigate("/manage-product");
-        return response.data;
     }
 );
 
 // update product
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async ({ productId, formData, process, navigate }) => {
-        for (const pair of formData.entries()) {
-            console.log(`${pair[0]}, ${pair[1]}`);
+    async ({ productId, formData, process, navigate }, thunkAPI) => {
+        // for (const pair of formData.entries()) {
+        //     console.log(`${pair[0]}, ${pair[1]}`);
+        // }
+        try {
+            const response = await closedServer.put(
+                `/product/${productId}`,
+                formData
+            );
+            navigate("/manage-product");
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
         }
-        const response = await closedServer.put(
-            `/product/${productId}`,
-            formData
-        );
-        if (process === "idle") navigate("/manage-product");
-        return response.data;
     }
 );
 
 // delete product
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
-    async ({ productId, process, navigate }) => {
-        await closedServer.delete(`/product/${productId}`);
-        if (process === "idle") navigate("/manage-product");
-        return productId;
+    async ({ productId, process, navigate }, thunkAPI) => {
+        try {
+            await closedServer.delete(`/product/${productId}`);
+            navigate("/manage-product");
+            return productId;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
@@ -107,11 +127,11 @@ const productsSlice = createSlice({
         // fetch product by id
         [fetchProductById.pending]: (state) => {
             state.loading = "pending";
-            state.error = null;
             productsAdapter.removeAll(state);
         },
         [fetchProductById.fulfilled]: (state, action) => {
             state.loading = "idle";
+            state.error = null;
             productsAdapter.setOne(state, action.payload.product);
         },
         [fetchProductById.rejected]: (state, action) => {
@@ -122,11 +142,11 @@ const productsSlice = createSlice({
         // fetch all product
         [fetchProducts.pending]: (state) => {
             state.loading = "pending";
-            state.error = null;
             productsAdapter.removeAll(state);
         },
         [fetchProducts.fulfilled]: (state, action) => {
             state.loading = "idle";
+            state.error = null;
             productsAdapter.setAll(state, action.payload.products);
         },
         [fetchProducts.rejected]: (state, action) => {
@@ -137,11 +157,11 @@ const productsSlice = createSlice({
         // insert product
         [insertProduct.pending]: (state) => {
             state.process = "pending";
-            state.error = null;
             productsAdapter.removeAll(state);
         },
         [insertProduct.fulfilled]: (state, action) => {
             state.process = "idle";
+            state.error = null;
             productsAdapter.addOne(state, action.payload.product);
         },
         [insertProduct.rejected]: (state, action) => {
@@ -152,7 +172,6 @@ const productsSlice = createSlice({
         // update product
         [updateProduct.pending]: (state) => {
             state.process = "pending";
-            state.error = null;
             productsAdapter.removeAll(state);
         },
         [updateProduct.fulfilled]: (state, action) => {
@@ -167,11 +186,11 @@ const productsSlice = createSlice({
         // delete product
         [deleteProduct.pending]: (state) => {
             state.process = "pending";
-            state.error = null;
             productsAdapter.removeAll(state);
         },
         [deleteProduct.fulfilled]: (state, action) => {
             state.process = "idle";
+            state.error = null;
             productsAdapter.removeOne(state, action.payload);
         },
         [deleteProduct.rejected]: (state, action) => {

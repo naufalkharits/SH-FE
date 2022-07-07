@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import openServer from "../utils/openServer";
+import openServer from "../axios/openServer";
 
 // fetch all category
 export const fetchCategories = createAsyncThunk(

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
-import openServer from "../utils/openServer";
-import closedServer from "../utils/closedServer";
+import openServer from "../axios/openServer";
+import closedServer from "../axios/closedServer";
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -9,9 +9,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 // refresh
 // export const refresh = createAsyncThunk("auth/refresh", async (thunkAPI) => {
 //     try {
-//         const response = await openServer.post("/auth/refresh", {
-//             refreshToken: user.refreshToken.token,
-//         });
+//         const response = await closedServer.post("/auth/refresh");
 //         return response.data;
 //     } catch (error) {
 //         return thunkAPI.rejectWithValue(error.response.data);
@@ -36,7 +34,6 @@ export const register = createAsyncThunk(
             const response = await openServer.post("/auth/register", formValue);
             return response.data;
         } catch (error) {
-            // console.log(error.response.data);
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
@@ -50,7 +47,6 @@ export const login = createAsyncThunk(
             const response = await openServer.post("/auth/login", formValue);
             return response.data;
         } catch (error) {
-            // console.log(error.response.data);
             return thunkAPI.rejectWithValue(error.response.data);
         }
     }
@@ -61,7 +57,6 @@ export const getBiodata = createAsyncThunk(
     "biodata/getBiodata",
     async (userId) => {
         const response = await openServer.get(`/biodata/${userId}`);
-        // navigate("/user");
         return response.data;
     }
 );
@@ -100,6 +95,10 @@ export const authSlice = createSlice({
         error: null,
     },
     reducers: {
+        setUser: (state, action) => {
+            localStorage.setItem("user", JSON.stringify(action.payload));
+            state.user = action.payload;
+        },
         logout: (state, action) => {
             localStorage.removeItem("user");
             state.user = null;
@@ -204,6 +203,6 @@ export const authSlice = createSlice({
     },
 });
 
-export const { logout } = authSlice.actions;
+export const { setUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;

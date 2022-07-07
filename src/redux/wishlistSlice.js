@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import closedServer from "../utils/closedServer";
+import closedServer from "../axios/closedServer";
 
 // get wishlist buyer
 export const getWishlistBuyer = createAsyncThunk(

@@ -3,8 +3,8 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit";
-import openServer from "../utils/openServer";
-import closedServer from "../utils/closedServer";
+import openServer from "../axios/openServer";
+import closedServer from "../axios/closedServer";
 
 const page = JSON.parse(localStorage.getItem("page"));
 

@@ -1,17 +1,22 @@
 import { useEffect } from "react";
-import { fetchTransactionTawar, transactionSelectors } from "../redux/transactionSlice";
+import {
+    fetchTransactionTawar,
+    transactionSelectors,
+} from "../redux/transactionSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
+import dayjs from "dayjs";
+import IDR from "../utils/IDR";
 
 const TransactionCard = () => {
     const dispatch = useDispatch();
     const [status] = useState("");
     const [as] = useState("seller");
 
-    var moment = require('moment');
+    // var moment = require("moment");
 
-    const transaction = useSelector(transactionSelectors.selectAll)
+    const transaction = useSelector(transactionSelectors.selectAll);
 
     // const clicked = () => {
     //     setModalOn(true);
@@ -24,7 +29,7 @@ const TransactionCard = () => {
     return (
         <>
             {transaction?.map((tx) => (
-                <div key={tx.id} className="space-y-6 mb-5">
+                <div key={tx.id} className="mb-5 space-y-6">
                     <div className="flex gap-6 rounded-xl">
                         <Swiper className="h-14 w-16 rounded-xl object-cover">
                             {tx.product.pictures.map((picture) => (
@@ -45,31 +50,36 @@ const TransactionCard = () => {
                         <div className="w-full space-y-1">
                             <div className="flex justify-between text-xs text-neutral-03">
                                 <p>{tx.status}</p>
-                                <p>{moment(tx.updatedAt).format('D MMM, HH:mm')}</p>
+                                <p>
+                                    {dayjs(tx.updatedAt).format("D MMM, HH:mm")}
+                                </p>
                             </div>
                             <p className="">{tx?.product.name}</p>
-                            <p className="">Rp. {tx?.product.price.toLocaleString("id-ID")}</p>
-                            <p className="">Ditawar Rp. {tx?.price.toLocaleString("id-ID")}</p>
+                            <p className="">
+                                <IDR price={tx?.product.price} />
+                            </p>
+                            <p className="">
+                                Ditawar <IDR price={tx?.price} />
+                            </p>
                         </div>
                     </div>
-                    {tx.status === "PENDING" &&
-                        <div className="flex sm:justify-end justify-evenly">
-                            <button className="mr-4 sm:w-[28%] w-[45%] rounded-2xl border border-primary-purple-04 py-2">
+                    {tx.status === "PENDING" && (
+                        <div className="flex justify-evenly sm:justify-end">
+                            <button className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
                                 Tolak
                             </button>
                             <button
                                 // onClick={clicked}
-                                className="sm:w-[28%] w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white"
+                                className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
                             >
                                 Terima
                             </button>
                         </div>
-                    }
+                    )}
                     <div className="h-px bg-[#E5E5E5]"></div>
                 </div>
             ))}
         </>
-
     );
 };
 

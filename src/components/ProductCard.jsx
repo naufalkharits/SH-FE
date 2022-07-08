@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import IDR from "../utils/IDR";
 
 const ProductCard = ({ id, name, price, category, pictures }) => {
     const location = useLocation();
@@ -21,14 +22,14 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                     <div className="truncate font-medium">{name}</div>
                     <div className="text-sm text-neutral-03">{category}</div>
                 </div>
-                <div>Rp {price.toLocaleString("id-ID")}</div>
-                {
-                    location.pathname === "/wishlist" && (
-                        <button className="w-full rounded-2xl border border-primary-purple-04 p-2 font-medium hover:bg-primary-purple-05 hover:text-white ">
-                            Beli
-                        </button>
-                    )
-                }
+                <div>
+                    <IDR price={price} />
+                </div>
+                {location.pathname === "/wishlist" && (
+                    <button className="w-full rounded-2xl border border-primary-purple-04 p-2 font-medium hover:bg-primary-purple-05 hover:text-white ">
+                        Beli
+                    </button>
+                )}
             </div>
         </>
     );

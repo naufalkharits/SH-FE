@@ -16,6 +16,7 @@ import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import WishlistButton from "../components/buttons/WishlistButton";
 import { CgSpinner } from "react-icons/cg";
+import IDR from "../utils/IDR";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -144,10 +145,7 @@ const DetailProduct = () => {
                                         <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
                                     ) : (
                                         <div>
-                                            Rp{" "}
-                                            {product?.price.toLocaleString(
-                                                "id-ID"
-                                            )}
+                                            <IDR price={product?.price} />
                                         </div>
                                     )}
                                     {loading === "pending" ? (

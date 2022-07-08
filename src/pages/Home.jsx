@@ -15,18 +15,23 @@ import ProductSkeleton from "../components/skeletons/ProductSkeleton";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
 const Home = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
-    const [searchParams, setSearchParams] = useSearchParams({ page: 0 });
+    const products = useSelector(productsSelectors.selectAll);
     const { keyword, offset, loading } = useSelector((state) => state.products);
     const { category } = useSelector((state) => state.categories);
-
-    const products = useSelector(productsSelectors.selectAll);
 
     const limit = 10;
 
     useEffect(() => {
-        console.log(Number(searchParams.get("page")));
-        dispatch(fetchProducts({ keyword, category, offset }));
+        Number(searchParams.get("page")) === 1 && setSearchParams();
+        dispatch(
+            fetchProducts({
+                keyword,
+                category,
+                offset: Number(searchParams.get("offset")),
+            })
+        );
     }, [searchParams, keyword, category, offset, dispatch]);
 
     return (
@@ -72,6 +77,10 @@ const Home = () => {
                                                   Number(
                                                       searchParams.get("page")
                                                   ) - 1,
+                                              offset:
+                                                  Number(
+                                                      searchParams.get("offset")
+                                                  ) - 10,
                                           });
                                 }}
                             />
@@ -84,12 +93,17 @@ const Home = () => {
                                     Number(searchParams.get("page")) === 0
                                         ? setSearchParams({
                                               page: 2,
+                                              offset: 10,
                                           })
                                         : setSearchParams({
                                               page:
                                                   Number(
                                                       searchParams.get("page")
                                                   ) + 1,
+                                              offset:
+                                                  Number(
+                                                      searchParams.get("offset")
+                                                  ) + 10,
                                           });
                                 }}
                             />

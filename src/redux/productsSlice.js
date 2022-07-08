@@ -6,7 +6,9 @@ import {
 import openServer from "../axios/openServer";
 import closedServer from "../axios/closedServer";
 
-const page = JSON.parse(localStorage.getItem("page"));
+const params = new URLSearchParams(document.location.search);
+const page = Number(params.get("page"));
+const offset = Number(params.get("offset"));
 
 // fetch product by id
 export const fetchProductById = createAsyncThunk(
@@ -98,7 +100,7 @@ const productsSlice = createSlice({
         error: null,
         keyword: "",
         category: "",
-        offset: page ? page : 0,
+        offset: page ? (offset ? offset : 0) : 0,
     }),
     reducers: {
         // setLoading: (state, action) => {
@@ -112,15 +114,12 @@ const productsSlice = createSlice({
         },
         setOffsetIncrement: (state, action) => {
             state.offset = state.offset + action.payload;
-            localStorage.setItem("page", JSON.stringify(state.offset));
         },
         setOffsetDecrement: (state, action) => {
             state.offset = state.offset - action.payload;
-            localStorage.setItem("page", JSON.stringify(state.offset));
         },
         resetPageOffset: (state, action) => {
             state.offset = 0;
-            localStorage.setItem("page", JSON.stringify(0));
         },
     },
     extraReducers: {

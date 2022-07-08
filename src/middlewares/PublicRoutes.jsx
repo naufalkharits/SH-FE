@@ -5,13 +5,13 @@ import { logout } from "../redux/authSlice";
 
 const Public = () => {
     const dispatch = useDispatch();
-    const { user, isRefreshExp } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.auth);
 
-    useEffect(() => {
-        if (user) {
-            isRefreshExp && dispatch(logout());
-        }
-    }, [user, isRefreshExp, dispatch]);
+    // useEffect(() => {
+    //     if (user) {
+    //         isRefreshExp && dispatch(logout());
+    //     }
+    // }, [user, isRefreshExp, dispatch]);
 
     return <Outlet />;
 };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import dayjs from "dayjs";
 import { setUser, logout } from "../redux/authSlice";
 
 let store;
@@ -15,18 +16,23 @@ const closedServer = axios.create({
 });
 
 closedServer.interceptors.request.use(async (config) => {
-    if (store.getState().auth.isRefreshExp) {
+    const isRefreshExpired =
+        dayjs(store.getState().auth.unixRefreshExp).diff(dayjs()) < 1;
+    const isAccessExpired =
+        dayjs(store.getState().auth.unixAccessExp).diff(dayjs()) < 1;
+
+    if (isRefreshExpired) {
         store.dispatch(logout());
         return config;
     }
 
-    if (!store.getState().auth.isAccessExp) {
+    if (!isAccessExpired) {
         config.headers.Authorization =
             store.getState().auth.user.accessToken.token;
         return config;
     }
 
-    if (store.getState().auth.isAccessExp) {
+    if (isAccessExpired) {
         const response = await axios.post(`${baseURL}/auth/refresh`, {
             refreshToken: store.getState().auth.user.refreshToken.token,
         });

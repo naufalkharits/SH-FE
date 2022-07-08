@@ -91,6 +91,12 @@ export const authSlice = createSlice({
         setUser: (state, action) => {
             localStorage.setItem("user", JSON.stringify(action.payload));
             state.user = action.payload;
+            state.unixRefreshExp = dayjs(
+                action.payload.refreshToken.expiredAt
+            ).unix();
+            state.unixAccessExp = dayjs(
+                action.payload.accessToken.expiredAt
+            ).unix();
         },
         logout: (state, action) => {
             localStorage.removeItem("user");

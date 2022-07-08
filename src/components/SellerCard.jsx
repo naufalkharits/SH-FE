@@ -4,14 +4,15 @@ import { useEffect } from "react";
 import { getBiodata } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";
 
-const ProfileCard = ({ user, seller_id, id }) => {
-    const navigate = useNavigate();
+const SellerCard = () => {
     const dispatch = useDispatch();
-    const { biodata, loading } = useSelector((state) => state.auth);
+    const { biodata, decodedAccess, loading } = useSelector(
+        (state) => state.auth
+    );
 
     useEffect(() => {
-        seller_id && dispatch(getBiodata(seller_id));
-    }, [seller_id, dispatch]);
+        decodedAccess && dispatch(getBiodata(decodedAccess.id));
+    }, [decodedAccess, dispatch]);
 
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
@@ -50,19 +51,15 @@ const ProfileCard = ({ user, seller_id, id }) => {
             {loading === "pending" ? (
                 <></>
             ) : (
-                <>
-                    {user && seller_id === id && (
-                        <Link
-                            to="/user/profile"
-                            className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
-                        >
-                            Edit
-                        </Link>
-                    )}
-                </>
+                <Link
+                    to="/user/profile"
+                    className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
+                >
+                    Edit
+                </Link>
             )}
         </div>
     );
 };
 
-export default ProfileCard;
+export default SellerCard;

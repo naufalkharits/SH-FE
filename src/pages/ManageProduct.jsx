@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
 import CategorySellerCard from "../components/CategorySellerCard";
 import CategorySeller from "../components/CategorySeller";
-import ProfileCard from "../components/ProfileCard";
+import SellerCard from "../components/SellerCard";
 
 const ManageProduct = () => {
     return (
         <div className="container mx-auto p-4">
             <div className="mb-4 space-y-6 sm:mb-2">
                 <div className="text-xl font-bold">Daftar Jual Saya</div>
-                <ProfileCard />
+                <SellerCard />
             </div>
             <div className="flex flex-col sm:flex-row">
                 <div className="sm:w-1/3 md:w-1/4 lg:w-1/5 xl:w-1/6">

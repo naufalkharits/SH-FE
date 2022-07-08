@@ -16,28 +16,28 @@ const openServer = axios.create({
 });
 
 openServer.interceptors.request.use(async (config) => {
-    if (store.getState().auth.user) {
-        const isRefreshExpired =
-            dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs()) < 1;
-        const isAccessExpired =
-            dayjs.unix(store.getState().auth.unixAccessExp).diff(dayjs()) < 1;
+    // if (store.getState().auth.user) {
+    //     const isRefreshExpired =
+    //         dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs()) < 1;
+    //     const isAccessExpired =
+    //         dayjs.unix(store.getState().auth.unixAccessExp).diff(dayjs()) < 1;
 
-        if (isRefreshExpired) {
-            store.dispatch(logout());
-            return config;
-        }
+    //     if (isRefreshExpired) {
+    //         store.dispatch(logout());
+    //         return config;
+    //     }
 
-        if (isAccessExpired) {
-            const response = await axios.post(`${baseURL}/auth/refresh`, {
-                refreshToken: store.getState().auth.user.refreshToken.token,
-            });
+    //     if (isAccessExpired) {
+    //         const response = await axios.post(`${baseURL}/auth/refresh`, {
+    //             refreshToken: store.getState().auth.user.refreshToken.token,
+    //         });
 
-            store.dispatch(setUser(response.data));
+    //         store.dispatch(setUser(response.data));
 
-            return config;
-        }
-        return config;
-    }
+    //         return config;
+    //     }
+    //     return config;
+    // }
 
     return config;
 });

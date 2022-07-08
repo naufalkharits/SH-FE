@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
 import openServer from "../axios/openServer";
 import closedServer from "../axios/closedServer";
+import dayjs from "dayjs";
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -78,18 +79,10 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
-        decodedAccess: user ? jwtDecode(user.accessToken.token) : null,
-        decodedRefresh: user ? jwtDecode(user.refreshToken.token) : null,
-        // accessExp: user
-        //     ? Date.now() > new Date(decodedAccess * 1000 - 30 * 1000)
-        //         ? true
-        //         : false
-        //     : null,
-        // refreshExp: user
-        //     ? Date.now() > new Date(decodedRefresh * 1000 - 60 * 1000)
-        //         ? true
-        //         : false
-        //     : null,
+        unixRefreshExp: dayjs(user?.refreshToken.exp).unix(),
+        unixAccessExp: dayjs(user?.accessToken.exp).unix(),
+        isRefreshExp: dayjs.unix(user?.refreshToken.exp).diff(dayjs()) < 1,
+        isAccessExp: dayjs.unix(user?.accessToken.exp).diff(dayjs()) < 1,
         biodata: null,
         loading: "idle",
         error: null,

@@ -1,13 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import Search from "./Search";
 import ListDropdown from "./dropdowns/ListDropdown";
-import NotificationButton from "./NotificationButton";
+import NotificationDropdown from "./dropdowns/NotificationDropdown";
 import UserDropdown from "./dropdowns/UserDropdown";
 
 const DesktopMenu = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.auth);
 
@@ -19,7 +20,10 @@ const DesktopMenu = () => {
                     src="/img/logo1.png"
                     alt=""
                     onClick={() => {
-                        navigate("/");
+                        navigate(
+                            "/",
+                            location.pathname === "/" && { replace: true }
+                        );
                     }}
                 />
                 <MobileMenu />
@@ -34,7 +38,7 @@ const DesktopMenu = () => {
                 {user ? (
                     <>
                         <ListDropdown />
-                        <NotificationButton />
+                        <NotificationDropdown />
                         <UserDropdown />
                     </>
                 ) : (

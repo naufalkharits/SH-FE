@@ -25,7 +25,7 @@ const ListDropdown = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
             >
-                <Menu.Items className="absolute right-0 mt-2 w-56 overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-neutral-02 ring-opacity-20">
+                <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-neutral-02 ring-opacity-20">
                     <Menu.Item as="div" className="space-y-4 p-4">
                         {({ active }) => (
                             <>
@@ -38,7 +38,7 @@ const ListDropdown = () => {
                                         "block text-center"
                                     )}
                                 >
-                                    Toko Saya
+                                    Cek Toko
                                 </Link>
                                 <Link
                                     to="/user/infopenawar"
@@ -49,7 +49,7 @@ const ListDropdown = () => {
                                         "block text-center"
                                     )}
                                 >
-                                    Penawaran Saya
+                                    Cek Penawaran
                                 </Link>
                             </>
                         )}

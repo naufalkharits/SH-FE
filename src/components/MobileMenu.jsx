@@ -33,7 +33,7 @@ const MobileMenu = () => {
                 leaveTo="transform scale-95 opacity-0"
             >
                 <Popover.Panel className="absolute inset-x-0 top-0 z-50 p-2 sm:hidden">
-                    <div className="overflow-hidden rounded-md bg-white shadow">
+                    <div className="overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md">
                         <div className="p-2">
                             <div className="mb-4 flex items-center justify-between">
                                 <img
@@ -44,12 +44,19 @@ const MobileMenu = () => {
                                         navigate("/");
                                     }}
                                 />
-                                <Popover.Button className="rounded-2xl p-2 hover:bg-gray">
+                                <Popover.Button className="rounded-full p-2 hover:bg-gray">
                                     <FiX className="h-6 w-6" />
                                 </Popover.Button>
                             </div>
                             <Search />
                             <div className="mt-4 space-y-1 font-medium">
+                                <Link
+                                    to="/user"
+                                    className="block rounded-md p-2 hover:bg-gray"
+                                    href="#"
+                                >
+                                    Nama Profil
+                                </Link>
                                 <Link
                                     to="/notification"
                                     className="block rounded-md p-2 hover:bg-gray"
@@ -57,19 +64,20 @@ const MobileMenu = () => {
                                 >
                                     Notifikasi
                                 </Link>
+                                <hr className="text-gray" />
                                 <Link
                                     to="/manage-product"
                                     className="block rounded-md p-2 hover:bg-gray"
                                     href="#"
                                 >
-                                    Daftar Jual
+                                    Cek Toko
                                 </Link>
                                 <Link
-                                    to="/user"
+                                    to="/manage-product"
                                     className="block rounded-md p-2 hover:bg-gray"
                                     href="#"
                                 >
-                                    Akun Saya
+                                    Cek Penawaran
                                 </Link>
                             </div>
                         </div>

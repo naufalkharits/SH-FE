@@ -17,6 +17,8 @@ import ModalTawar from "../components/modals/ModalTawar";
 import WishlistButton from "../components/buttons/WishlistButton";
 import { CgSpinner } from "react-icons/cg";
 import IDR from "../utils/IDR";
+import SellerCard from "../components/SellerCard";
+import { me } from "../redux/authSlice";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -52,12 +54,13 @@ const DetailProduct = () => {
     useEffect(() => {
         dispatch(fetchProductById(productId));
         user && dispatch(getWishlistById(productId));
+        user && dispatch(me());
     }, [user, productId, dispatch]);
 
     return (
         <>
             {error?.message === "Valid Product ID is required" ? (
-                <Navigate to="/" replace />
+                <Navigate to="/error" replace />
             ) : (
                 <>
                     {isModalOn && (
@@ -72,7 +75,7 @@ const DetailProduct = () => {
                         <div className="flex flex-col gap-4 sm:flex-row">
                             <div
                                 className={className(
-                                    product?.seller_id === biodata?.user_id
+                                    product?.seller_id === biodata?.id
                                         ? "sm:w-2/3 lg:w-3/4"
                                         : "sm:w-3/5 lg:w-2/3",
                                     "space-y-4"
@@ -114,7 +117,7 @@ const DetailProduct = () => {
                             </div>
                             <div
                                 className={className(
-                                    product?.seller_id === biodata?.user_id
+                                    product?.seller_id === biodata?.id
                                         ? "sm:w-1/3 lg:w-1/4"
                                         : "sm:w-2/5 lg:w-1/3",
                                     "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
@@ -152,7 +155,7 @@ const DetailProduct = () => {
                                         <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
                                     ) : user &&
                                       product?.seller_id ===
-                                          biodata?.user_id ? (
+                                          biodata?.id ? (
                                         <>
                                             <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                                 Terbitkan
@@ -199,13 +202,12 @@ const DetailProduct = () => {
                                     )}
                                 </div>
                                 {user &&
-                                    product?.seller_id !== biodata?.user_id && (
+                                    product?.seller_id !== biodata?.id && (
                                         <WishlistButton />
                                     )}
-                                <ProfileCard
-                                    user={user}
+                                <SellerCard
                                     seller_id={product?.seller_id}
-                                    id={biodata?.user_id}
+                                    id={biodata?.id}
                                 />
                             </div>
                             <div className="mb-8 px-4 sm:hidden sm:px-0">
@@ -230,7 +232,7 @@ const DetailProduct = () => {
                             </div>
                         </div>
                     </div>
-                    {user && product?.seller_id === biodata?.user_id ? (
+                    {user && product?.seller_id === biodata?.id ? (
                         <PublishButton />
                     ) : (
                         <button

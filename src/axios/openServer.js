@@ -1,5 +1,4 @@
 import axios from "axios";
-import dayjs from "dayjs";
 import { setUser, logout } from "../redux/authSlice";
 
 let store;
@@ -15,28 +14,23 @@ const openServer = axios.create({
     baseURL,
 });
 
-// openServer.interceptors.request.use(async (config) => {
-//     const refreshToken = store.getState().auth.user.refreshToken.token;
-//     const decodedRefresh = store.getState().auth.decodedRefresh.exp;
-//     const accessToken = store.getState().auth.user.accessToken.token;
-//     const decodedAccess = store.getState().auth.decodedAccess.exp;
+openServer.interceptors.request.use(async (config) => {
+    if (store.getState().auth.isRefreshExp) {
+        store.dispatch(logout());
+        return config;
+    }
 
-//     const isRefreshExpired = dayjs.unix(decodedRefresh).diff(dayjs()) < 1;
-//     const isAccessExpired = dayjs.unix(decodedAccess).diff(dayjs()) < 1;
+    if (store.getState().auth.isAccessExp) {
+        const response = await axios.post(`${baseURL}/auth/refresh`, {
+            refreshToken: store.getState().auth.user.refreshToken.token,
+        });
+        config.headers.Authorization =
+            store.getState().response.data.accessToken.token;
+        store.dispatch(setUser(response.data));
+        return config;
+    }
 
-//     if (isRefreshExpired) {
-//         store.dispatch(logout());
-//         return config;
-//     }
-
-//     if (isAccessExpired) {
-//         config.headers.refreshToken = refreshToken;
-//         const response = await axios.post(`${baseURL}/auth/refresh`, {
-//             refreshToken,
-//         });
-//         store.dispatch(setUser(response.data));
-//         return config;
-//     }
-// });
+    return config;
+});
 
 export default openServer;

@@ -14,8 +14,6 @@ const TransactionCard = () => {
     const [status] = useState("");
     const [as] = useState("seller");
 
-    // var moment = require("moment");
-
     const transaction = useSelector(transactionSelectors.selectAll);
 
     // const clicked = () => {

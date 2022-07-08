@@ -3,6 +3,7 @@ import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { me } from "../redux/authSlice";
 import {
     deleteProduct,
     fetchProductById,
@@ -10,15 +11,13 @@ import {
 } from "../redux/productsSlice";
 import { getWishlistById } from "../redux/wishlistSlice";
 import { addTransactionTawar } from "../redux/transactionSlice";
-import ProfileCard from "../components/ProfileCard";
 import PublishButton from "../components/buttons/PublishButton";
 import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import WishlistButton from "../components/buttons/WishlistButton";
-import { CgSpinner } from "react-icons/cg";
-import IDR from "../utils/IDR";
 import SellerCard from "../components/SellerCard";
-import { me } from "../redux/authSlice";
+import IDR from "../utils/IDR";
+import { CgSpinner } from "react-icons/cg";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -60,7 +59,7 @@ const DetailProduct = () => {
     return (
         <>
             {error?.message === "Valid Product ID is required" ? (
-                <Navigate to="/error" replace />
+                <Navigate to="/404" replace />
             ) : (
                 <>
                     {isModalOn && (
@@ -154,8 +153,7 @@ const DetailProduct = () => {
                                     {loading === "pending" ? (
                                         <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
                                     ) : user &&
-                                      product?.seller_id ===
-                                          biodata?.id ? (
+                                      product?.seller_id === biodata?.id ? (
                                         <>
                                             <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                                 Terbitkan
@@ -201,10 +199,9 @@ const DetailProduct = () => {
                                         </button>
                                     )}
                                 </div>
-                                {user &&
-                                    product?.seller_id !== biodata?.id && (
-                                        <WishlistButton />
-                                    )}
+                                {user && product?.seller_id !== biodata?.id && (
+                                    <WishlistButton />
+                                )}
                                 <SellerCard
                                     seller_id={product?.seller_id}
                                     id={biodata?.id}

@@ -4,15 +4,15 @@ import { useEffect } from "react";
 import { getBiodata } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";
 
-const SellerCard = () => {
+const SellerCard = ({ seller_id, id }) => {
     const dispatch = useDispatch();
-    const { biodata, decodedAccess, loading } = useSelector(
+    const { biodataseller, loading } = useSelector(
         (state) => state.auth
-    );
+    )
 
     useEffect(() => {
-        decodedAccess && dispatch(getBiodata(decodedAccess.id));
-    }, [decodedAccess, dispatch]);
+        seller_id && dispatch(getBiodata(seller_id));
+    }, [seller_id, dispatch]);
 
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
@@ -21,7 +21,7 @@ const SellerCard = () => {
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray"></div>
                 ) : (
                     <img
-                        src={biodata?.picture || AltFoto}
+                        src={biodataseller?.picture || AltFoto}
                         alt=""
                         className="h-12 w-12 rounded-xl"
                     />
@@ -35,7 +35,7 @@ const SellerCard = () => {
                                 : ""
                         }
                     >
-                        {biodata?.name}
+                        {biodataseller?.name}
                     </div>
                     <div
                         className={
@@ -44,19 +44,23 @@ const SellerCard = () => {
                                 : "text-xs text-neutral-03"
                         }
                     >
-                        {biodata?.city}
+                        {biodataseller?.city}
                     </div>
                 </div>
             </div>
             {loading === "pending" ? (
                 <></>
             ) : (
-                <Link
-                    to="/user/profile"
-                    className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
-                >
-                    Edit
-                </Link>
+                <>
+                    { id === seller_id &&
+                        <Link
+                            to="/user/profile"
+                            className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
+                        >
+                            Edit
+                        </Link>
+                    }
+                </>
             )}
         </div>
     );

@@ -1,17 +1,17 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { getBiodata } from "../redux/authSlice";
+import { me } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";
 
-const ProfileCard = ({ user, seller_id, id }) => {
+const ProfileCard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { biodata, loading } = useSelector((state) => state.auth);
+    const { user, biodata, loading } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        seller_id && dispatch(getBiodata(seller_id));
-    }, [seller_id, dispatch]);
+        user && dispatch(me());
+    }, [user, dispatch]);
 
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
@@ -51,14 +51,12 @@ const ProfileCard = ({ user, seller_id, id }) => {
                 <></>
             ) : (
                 <>
-                    {user && seller_id === id && (
-                        <Link
-                            to="/user/profile"
-                            className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
-                        >
-                            Edit
-                        </Link>
-                    )}
+                    <Link
+                        to="/user/profile"
+                        className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
+                    >
+                        Edit
+                    </Link>
                 </>
             )}
         </div>

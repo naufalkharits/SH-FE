@@ -84,6 +84,7 @@ export const authSlice = createSlice({
         unixRefreshExp: user ? dayjs(user.refreshToken.expiredAt).unix() : null,
         unixAccessExp: user ? dayjs(user.accessToken.expiredAt).unix() : null,
         biodata: null,
+        biodataseller: null,
         loading: "idle",
         error: null,
     },
@@ -174,11 +175,11 @@ export const authSlice = createSlice({
         [getBiodata.pending]: (state) => {
             state.loading = "pending";
             state.error = null;
-            state.biodata = null;
+            state.biodataseller = null;
         },
         [getBiodata.fulfilled]: (state, action) => {
             state.loading = "idle";
-            state.biodata = action.payload.biodata;
+            state.biodataseller = action.payload.biodata;
         },
         [getBiodata.rejected]: (state, action) => {
             state.loading = "idle";

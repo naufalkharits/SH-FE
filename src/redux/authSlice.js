@@ -79,10 +79,16 @@ export const authSlice = createSlice({
     name: "auth",
     initialState: {
         user: user ? user : null,
-        unixRefreshExp: dayjs(user?.refreshToken.exp).unix(),
-        unixAccessExp: dayjs(user?.accessToken.exp).unix(),
-        isRefreshExp: dayjs.unix(user?.refreshToken.exp).diff(dayjs()) < 1,
-        isAccessExp: dayjs.unix(user?.accessToken.exp).diff(dayjs()) < 1,
+        decodedRefresh: user ? jwtDecode(user?.refreshToken.token) : null,
+        decodedAccess: user ? jwtDecode(user?.accessToken.token) : null,
+        unixRefreshExp: user ? dayjs(user?.refreshToken.exp).unix() : null,
+        unixAccessExp: user ? dayjs(user?.accessToken.exp).unix() : null,
+        isRefreshExp: user
+            ? dayjs.unix(user?.refreshToken.exp).diff(dayjs()) < 1
+            : null,
+        isAccessExp: user
+            ? dayjs.unix(user?.accessToken.exp).diff(dayjs()) < 1
+            : null,
         biodata: null,
         loading: "idle",
         error: null,

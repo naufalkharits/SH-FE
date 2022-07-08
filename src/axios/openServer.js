@@ -24,8 +24,6 @@ openServer.interceptors.request.use(async (config) => {
         const response = await axios.post(`${baseURL}/auth/refresh`, {
             refreshToken: store.getState().auth.user.refreshToken.token,
         });
-        config.headers.Authorization =
-            store.getState().response.data.accessToken.token;
         store.dispatch(setUser(response.data));
         return config;
     }

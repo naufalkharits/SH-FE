@@ -12,7 +12,7 @@ const ProfileCard = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        decodedAccess && dispatch(getBiodata(decodedAccess.id));
+        dispatch(getBiodata(decodedAccess?.id));
     }, [decodedAccess, dispatch]);
 
     return (

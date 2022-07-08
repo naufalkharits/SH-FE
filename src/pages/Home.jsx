@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     fetchProducts,
     productsSelectors,
-    setOffsetDecrement,
-    setOffsetIncrement,
+    offsetIncrement,
+    offsetDecrement,
+    resetOffset,
 } from "../redux/productsSlice";
 import Hero from "../components/Hero";
 import Category from "../components/Category";
@@ -33,7 +34,7 @@ const Home = () => {
             fetchProducts({
                 keyword,
                 category,
-                offset: Number(searchParams.get("offset")),
+                offset,
             })
         );
     }, [searchParams, keyword, category, offset, dispatch]);
@@ -46,7 +47,6 @@ const Home = () => {
             </div>
             {loading === "idle" && (
                 <div className="container mx-auto flex items-center justify-center gap-4">
-                    {/* {Number(searchParams.get("page")) >= 0 && ( */}
                     <button
                         className={
                             Number(searchParams.get("page")) === 1 ||
@@ -61,21 +61,19 @@ const Home = () => {
                                 : false
                         }
                         onClick={() => {
-                            dispatch(setOffsetDecrement(10));
-                            Number(searchParams.get("page")) === 2
-                                ? setSearchParams()
-                                : setSearchParams({
-                                      page:
-                                          Number(searchParams.get("page")) - 1,
-                                      offset:
-                                          Number(searchParams.get("offset")) -
-                                          10,
-                                  });
+                            if (Number(searchParams.get("page")) === 2) {
+                                setSearchParams();
+                                dispatch(resetOffset());
+                            } else {
+                                setSearchParams({
+                                    page: Number(searchParams.get("page")) - 1,
+                                });
+                                dispatch(offsetDecrement(10));
+                            }
                         }}
                     >
                         <FiMinus className="h-5 w-5" />
                     </button>
-                    {/* )} */}
                     <button
                         className={
                             products.length % limit === 0
@@ -84,19 +82,17 @@ const Home = () => {
                         }
                         disabled={products.length % limit === 0 ? false : true}
                         onClick={() => {
-                            dispatch(setOffsetIncrement(10));
-                            Number(searchParams.get("page")) === 0
-                                ? setSearchParams({
-                                      page: 2,
-                                      offset: 10,
-                                  })
-                                : setSearchParams({
-                                      page:
-                                          Number(searchParams.get("page")) + 1,
-                                      offset:
-                                          Number(searchParams.get("offset")) +
-                                          10,
-                                  });
+                            if (Number(searchParams.get("page")) === 0) {
+                                setSearchParams({
+                                    page: 2,
+                                });
+                                dispatch(offsetIncrement(10));
+                            } else {
+                                setSearchParams({
+                                    page: Number(searchParams.get("page")) + 1,
+                                });
+                                dispatch(offsetIncrement(10));
+                            }
                         }}
                     >
                         <FiPlus className="h-5 w-5" />

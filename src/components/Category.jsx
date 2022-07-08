@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ScrollingCarousel } from "@trendyol-js/react-carousel";
 import { useDispatch, useSelector } from "react-redux";
-import { resetPageOffset } from "../redux/productsSlice";
+import { resetOffset } from "../redux/productsSlice";
 import { fetchCategories, categoryQuery } from "../redux/categoriesSlice";
 import { FiSearch } from "react-icons/fi";
 import CategorySkeleton from "./skeletons/CategorySkeleton";
@@ -18,8 +18,8 @@ const Category = () => {
     const [formValue, setFormValue] = useState([]);
 
     const onClick = (query) => {
+        dispatch(resetOffset());
         dispatch(categoryQuery(query));
-        dispatch(resetPageOffset());
     };
 
     useEffect(() => {

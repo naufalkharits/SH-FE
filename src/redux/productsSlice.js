@@ -100,7 +100,7 @@ const productsSlice = createSlice({
         error: null,
         keyword: "",
         category: "",
-        offset: page ? (offset ? offset : 0) : 0,
+        offset: page ? page * 10 - 10 : 0,
     }),
     reducers: {
         // setLoading: (state, action) => {
@@ -112,13 +112,13 @@ const productsSlice = createSlice({
         categoryQuery: (state, action) => {
             state.category = action.payload;
         },
-        setOffsetIncrement: (state, action) => {
+        offsetIncrement: (state, action) => {
             state.offset = state.offset + action.payload;
         },
-        setOffsetDecrement: (state, action) => {
+        offsetDecrement: (state, action) => {
             state.offset = state.offset - action.payload;
         },
-        resetPageOffset: (state, action) => {
+        resetOffset: (state, action) => {
             state.offset = 0;
         },
     },
@@ -207,9 +207,9 @@ export const {
     setLoading,
     keywordQuery,
     categoryQuery,
-    setOffsetIncrement,
-    setOffsetDecrement,
-    resetPageOffset,
+    offsetIncrement,
+    offsetDecrement,
+    resetOffset,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

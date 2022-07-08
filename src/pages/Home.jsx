@@ -24,7 +24,11 @@ const Home = () => {
     const limit = 10;
 
     useEffect(() => {
-        Number(searchParams.get("page")) === 1 && setSearchParams();
+        if (
+            Number(searchParams.get("page")) === 1 ||
+            Number(searchParams.get("page")) <= 0
+        )
+            setSearchParams();
         dispatch(
             fetchProducts({
                 keyword,
@@ -40,6 +44,65 @@ const Home = () => {
             <div className="container mx-auto hidden p-4 sm:block">
                 <Category />
             </div>
+            {loading === "idle" && (
+                <div className="container mx-auto flex items-center justify-center gap-4">
+                    {/* {Number(searchParams.get("page")) >= 0 && ( */}
+                    <button
+                        className={
+                            Number(searchParams.get("page")) === 1 ||
+                            Number(searchParams.get("page")) <= 0
+                                ? "text-gray"
+                                : "rounded-md p-2 hover:bg-gray"
+                        }
+                        disabled={
+                            Number(searchParams.get("page")) === 1 ||
+                            Number(searchParams.get("page")) <= 0
+                                ? true
+                                : false
+                        }
+                        onClick={() => {
+                            dispatch(setOffsetDecrement(10));
+                            Number(searchParams.get("page")) === 2
+                                ? setSearchParams()
+                                : setSearchParams({
+                                      page:
+                                          Number(searchParams.get("page")) - 1,
+                                      offset:
+                                          Number(searchParams.get("offset")) -
+                                          10,
+                                  });
+                        }}
+                    >
+                        <FiMinus className="h-5 w-5" />
+                    </button>
+                    {/* )} */}
+                    <button
+                        className={
+                            products.length % limit === 0
+                                ? "rounded-md p-2 hover:bg-gray"
+                                : "text-gray"
+                        }
+                        disabled={products.length % limit === 0 ? false : true}
+                        onClick={() => {
+                            dispatch(setOffsetIncrement(10));
+                            Number(searchParams.get("page")) === 0
+                                ? setSearchParams({
+                                      page: 2,
+                                      offset: 10,
+                                  })
+                                : setSearchParams({
+                                      page:
+                                          Number(searchParams.get("page")) + 1,
+                                      offset:
+                                          Number(searchParams.get("offset")) +
+                                          10,
+                                  });
+                        }}
+                    >
+                        <FiPlus className="h-5 w-5" />
+                    </button>
+                </div>
+            )}
             <div className="container mx-auto space-y-4 p-4">
                 <div className="-m-4 flex flex-wrap">
                     <>
@@ -63,53 +126,6 @@ const Home = () => {
                         )}
                     </>
                 </div>
-                {loading === "idle" && (
-                    <div className="flex items-center">
-                        {Number(searchParams.get("page")) !== 0 && (
-                            <FiMinus
-                                className="h-8 w-8 cursor-pointer rounded-md p-2 hover:bg-gray"
-                                onClick={() => {
-                                    dispatch(setOffsetDecrement(10));
-                                    Number(searchParams.get("page")) === 2
-                                        ? setSearchParams()
-                                        : setSearchParams({
-                                              page:
-                                                  Number(
-                                                      searchParams.get("page")
-                                                  ) - 1,
-                                              offset:
-                                                  Number(
-                                                      searchParams.get("offset")
-                                                  ) - 10,
-                                          });
-                                }}
-                            />
-                        )}
-                        {products.length % limit === 0 && (
-                            <FiPlus
-                                className="h-8 w-8 cursor-pointer rounded-md p-2 hover:bg-gray"
-                                onClick={() => {
-                                    dispatch(setOffsetIncrement(10));
-                                    Number(searchParams.get("page")) === 0
-                                        ? setSearchParams({
-                                              page: 2,
-                                              offset: 10,
-                                          })
-                                        : setSearchParams({
-                                              page:
-                                                  Number(
-                                                      searchParams.get("page")
-                                                  ) + 1,
-                                              offset:
-                                                  Number(
-                                                      searchParams.get("offset")
-                                                  ) + 10,
-                                          });
-                                }}
-                            />
-                        )}
-                    </div>
-                )}
             </div>
             <SellButton />
         </>

@@ -47,7 +47,9 @@ const Register = () => {
                 <div className="text-2xl font-bold">Daftar</div>
                 <form onSubmit={onSubmit}>
                     <div className="mb-4 space-y-2">
-                        <label className="block">Nama</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Nama
+                        </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="text"
@@ -59,7 +61,9 @@ const Register = () => {
                         />
                     </div>
                     <div className="mb-4 space-y-2">
-                        <label className="block">Email</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Email
+                        </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="text"
@@ -71,7 +75,9 @@ const Register = () => {
                         />
                     </div>
                     <div className="mb-8 space-y-2">
-                        <label className="block">Password</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Password
+                        </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
                             type="password"

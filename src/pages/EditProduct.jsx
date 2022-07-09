@@ -116,7 +116,9 @@ const EditProduct = () => {
                 </div>
                 <form className="w-full space-y-4 px-5" onSubmit={onSubmit}>
                     <div className="space-y-2">
-                        <label className="block">Nama Produk</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Nama Produk
+                        </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none"
                             type="text"
@@ -127,7 +129,9 @@ const EditProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Harga Produk</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Harga Produk
+                        </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none"
                             type="number"
@@ -138,7 +142,9 @@ const EditProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Category</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Kategori
+                        </label>
                         <label className="relative block">
                             <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
                                 <FiChevronDown />
@@ -159,7 +165,9 @@ const EditProduct = () => {
                         </label>
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Deskripsi</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Deskripsi
+                        </label>
                         <textarea
                             rows="2"
                             className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
@@ -170,7 +178,9 @@ const EditProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Foto Produk</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Foto Produk
+                        </label>
                         <div className="flex flex-wrap">
                             {formValue.pictures &&
                                 formValue.pictures.map((image) => (

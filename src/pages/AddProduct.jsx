@@ -25,16 +25,14 @@ const AddProduct = () => {
     const [formData, setFormData] = useState("");
     const [show, setShow] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const { categories } = useSelector(
-        (state) => state.categories
-    );
+    const { categories } = useSelector((state) => state.categories);
     const [formCategory, setFormCategory] = useState([]);
 
-    const [picture, setPicture] = useState([])
+    const [picture, setPicture] = useState([]);
 
     const onFileChange = (e) => {
         const file = e.target.files;
-        const fileArray = Array.from(file)
+        const fileArray = Array.from(file);
         if (file.length > 4) {
             setShow(true);
             setErrorMessage("Gambar Tidak Boleh Lebih Dari 4");
@@ -43,8 +41,8 @@ const AddProduct = () => {
             }, 2000);
         } else {
             const imageArray = fileArray.map((file) => {
-                return URL.createObjectURL(file)
-            })
+                return URL.createObjectURL(file);
+            });
             for (let index of file) {
                 formData.append("pictures", index);
             }
@@ -93,7 +91,9 @@ const AddProduct = () => {
                 </div>
                 <form className="w-full space-y-4 px-5" onSubmit={onSubmit}>
                     <div className="space-y-2">
-                        <label className="block">Nama Produk</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Nama Produk
+                        </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                             type="text"
@@ -103,7 +103,9 @@ const AddProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Harga Produk</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Harga Produk
+                        </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
                             type="number"
@@ -113,7 +115,9 @@ const AddProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Category</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Kategori
+                        </label>
                         <label className="relative block">
                             <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
                                 <FiChevronDown />
@@ -125,13 +129,17 @@ const AddProduct = () => {
                             >
                                 <option value="">Pilih Kategori</option>
                                 {formCategory.map((category) => (
-                                    <option value={category} key={category}>{category}</option>
+                                    <option value={category} key={category}>
+                                        {category}
+                                    </option>
                                 ))}
                             </select>
                         </label>
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Deskripsi</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Deskripsi
+                        </label>
                         <textarea
                             name="description"
                             rows="2"
@@ -141,13 +149,19 @@ const AddProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block">Foto Produk</label>
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                            Foto Produk
+                        </label>
                         <div className="flex flex-wrap">
                             {picture &&
                                 picture.map((image) => (
-                                    <img key={image} src={image} alt="" className="h-24 w-24 object-contain mr-4" />
-                                ))
-                            }
+                                    <img
+                                        key={image}
+                                        src={image}
+                                        alt=""
+                                        className="mr-4 h-24 w-24 object-contain"
+                                    />
+                                ))}
                             <label
                                 className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
                                 htmlFor="file"

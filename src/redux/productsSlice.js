@@ -8,7 +8,6 @@ import closedServer from "../axios/closedServer";
 
 const params = new URLSearchParams(document.location.search);
 const page = Number(params.get("page"));
-const offset = Number(params.get("offset"));
 
 // fetch product by id
 export const fetchProductById = createAsyncThunk(

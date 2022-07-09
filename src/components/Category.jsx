@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { ScrollingCarousel } from "@trendyol-js/react-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { resetOffset } from "../redux/productsSlice";
@@ -11,6 +12,7 @@ const className = (...classes) => {
 };
 
 const Category = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
     const { categories, category, loading } = useSelector(
         (state) => state.categories
@@ -18,6 +20,7 @@ const Category = () => {
     const [formValue, setFormValue] = useState([]);
 
     const onClick = (query) => {
+        setSearchParams();
         dispatch(resetOffset());
         dispatch(categoryQuery(query));
     };

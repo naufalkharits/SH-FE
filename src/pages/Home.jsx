@@ -15,6 +15,10 @@ import SellButton from "../components/buttons/SellButton";
 import ProductSkeleton from "../components/skeletons/ProductSkeleton";
 import { FiMinus, FiPlus } from "react-icons/fi";
 
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
+
 const Home = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
@@ -28,8 +32,10 @@ const Home = () => {
         if (
             Number(searchParams.get("page")) === 1 ||
             Number(searchParams.get("page")) <= 0
-        )
+        ) {
             setSearchParams();
+            dispatch(resetOffset());
+        }
         dispatch(
             fetchProducts({
                 keyword,
@@ -48,12 +54,13 @@ const Home = () => {
             {loading === "idle" && (
                 <div className="container mx-auto flex items-center justify-center gap-4">
                     <button
-                        className={
+                        className={className(
                             Number(searchParams.get("page")) === 1 ||
-                            Number(searchParams.get("page")) <= 0
+                                Number(searchParams.get("page")) <= 0
                                 ? "text-gray"
-                                : "rounded-md p-2 hover:bg-gray"
-                        }
+                                : "hover:bg-gray",
+                            "rounded-md p-1 shadow"
+                        )}
                         disabled={
                             Number(searchParams.get("page")) === 1 ||
                             Number(searchParams.get("page")) <= 0
@@ -75,12 +82,19 @@ const Home = () => {
                         <FiMinus className="h-5 w-5" />
                     </button>
                     <button
-                        className={
+                        className={className(
+                            products.length !== 0 &&
+                                products.length % limit === 0
+                                ? "hover:bg-gray"
+                                : "text-gray",
+                            "rounded-md p-1 shadow"
+                        )}
+                        disabled={
+                            products.length !== 0 &&
                             products.length % limit === 0
-                                ? "rounded-md p-2 hover:bg-gray"
-                                : "text-gray"
+                                ? false
+                                : true
                         }
-                        disabled={products.length % limit === 0 ? false : true}
                         onClick={() => {
                             if (Number(searchParams.get("page")) === 0) {
                                 setSearchParams({

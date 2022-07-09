@@ -53,14 +53,12 @@ const MobileMenu = () => {
                                 <Link
                                     to="/user"
                                     className="block rounded-md p-2 hover:bg-gray"
-                                    href="#"
                                 >
                                     Nama Profil
                                 </Link>
                                 <Link
                                     to="/notification"
                                     className="block rounded-md p-2 hover:bg-gray"
-                                    href="#"
                                 >
                                     Notifikasi
                                 </Link>
@@ -68,14 +66,12 @@ const MobileMenu = () => {
                                 <Link
                                     to="/manage-product"
                                     className="block rounded-md p-2 hover:bg-gray"
-                                    href="#"
                                 >
                                     Cek Toko
                                 </Link>
                                 <Link
-                                    to="/manage-product"
+                                    to="/user/infopenawar"
                                     className="block rounded-md p-2 hover:bg-gray"
-                                    href="#"
                                 >
                                     Cek Penawaran
                                 </Link>

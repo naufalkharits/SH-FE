@@ -22,9 +22,9 @@ export const getProductById = createAsyncThunk(
     }
 );
 
-// fetch all product
-export const fetchProducts = createAsyncThunk(
-    "products/fetchProducts",
+// GET all product
+export const getProducts = createAsyncThunk(
+    "products/getProducts",
     async ({ keyword, category, offset }, thunkAPI) => {
         try {
             const response = await openServer.get(
@@ -137,17 +137,17 @@ const productsSlice = createSlice({
             state.error = action.payload;
         },
 
-        // fetch all product
-        [fetchProducts.pending]: (state) => {
+        // GET all products
+        [getProducts.pending]: (state) => {
             state.loading = "pending";
             productsAdapter.removeAll(state);
         },
-        [fetchProducts.fulfilled]: (state, action) => {
+        [getProducts.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.error = null;
             productsAdapter.setAll(state, action.payload.products);
         },
-        [fetchProducts.rejected]: (state, action) => {
+        [getProducts.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

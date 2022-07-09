@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-    fetchProducts,
+    getProducts,
     productsSelectors,
     offsetIncrement,
     offsetDecrement,
@@ -38,7 +38,7 @@ const Home = () => {
             dispatch(resetOffset());
         }
         dispatch(
-            fetchProducts({
+            getProducts({
                 keyword,
                 category,
                 offset,

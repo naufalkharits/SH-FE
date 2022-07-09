@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, productsSelectors } from "../redux/productsSlice";
+import { getProducts, productsSelectors } from "../redux/productsSlice";
 import { getWishlistBuyer } from "../redux/wishlistSlice";
 import ProductCard from "../components/ProductCard";
 
@@ -13,7 +13,7 @@ const Wishlist = () => {
     const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        dispatch(fetchProducts({ keyword, category, offset }));
+        dispatch(getProducts({ keyword, category, offset }));
         dispatch(getWishlistBuyer());
     }, [keyword, category, offset, dispatch]);
 

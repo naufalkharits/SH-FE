@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./layouts/Main";
 import Auth from "./layouts/Auth";
 // pages
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
 import EditProduct from "./pages/EditProduct";
 import Notification from "./pages/Notification";
 import PreviewProduct from "./pages/PreviewProduct";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Wishlist from "./pages/Wishlist";
 import AddProduct from "./pages/AddProduct";
 import EditProfil from "./pages/EditProfil";
 import ManageProduct from "./pages/ManageProduct";
@@ -29,7 +30,6 @@ import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
 import HistoryTransaksi from "./components/HistoryTransaksi";
-import ListWishlist from "./components/ListWishlist";
 import UserText from "./components/UserText";
 
 function App() {
@@ -72,10 +72,7 @@ function App() {
                                 path="/order-list"
                                 element={<HistoryTransaksi />}
                             />
-                            <Route
-                                path="/wishlist"
-                                element={<ListWishlist />}
-                            />
+                            <Route path="/wishlist" element={<Wishlist />} />
                         </Route>
                     </Route>
                     <Route element={<Topbar />}>

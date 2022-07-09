@@ -9,6 +9,21 @@ import closedServer from "../axios/closedServer";
 const params = new URLSearchParams(document.location.search);
 const page = Number(params.get("page"));
 
+// GET filtered product
+export const getFilteredProduct = createAsyncThunk(
+    "products/filterProducts",
+    async (id, thunkAPI) => {
+        try {
+            const response = await openServer.get("/product");
+            return response.data.products.filter(
+                (product) => product.seller_id === id
+            );
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
 // GET product by id
 export const getProductById = createAsyncThunk(
     "products/getProductById",
@@ -37,7 +52,7 @@ export const getProducts = createAsyncThunk(
     }
 );
 
-// insert product
+// POST product
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
     async ({ formData, process, navigate }, thunkAPI) => {
@@ -54,7 +69,7 @@ export const insertProduct = createAsyncThunk(
     }
 );
 
-// update product
+// PUT product
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
     async ({ productId, formData, process, navigate }, thunkAPI) => {
@@ -74,7 +89,7 @@ export const updateProduct = createAsyncThunk(
     }
 );
 
-// delete product
+// DELETE product
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
     async ({ productId, process, navigate }, thunkAPI) => {
@@ -122,7 +137,22 @@ const productsSlice = createSlice({
         },
     },
     extraReducers: {
-        // fetch product by id
+        // GET filtered product
+        [getFilteredProduct.pending]: (state) => {
+            state.loading = "pending";
+            state.filter = null;
+        },
+        [getFilteredProduct.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.error = null;
+            state.filter = action.payload;
+        },
+        [getFilteredProduct.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload || "SOMETHING WRONG!!";
+        },
+
+        // GET product by id
         [getProductById.pending]: (state) => {
             state.loading = "pending";
             productsAdapter.removeAll(state);
@@ -134,7 +164,7 @@ const productsSlice = createSlice({
         },
         [getProductById.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = action.payload;
+            state.error = action.payload || "SOMETHING WRONG!!";
         },
 
         // GET all products
@@ -149,10 +179,10 @@ const productsSlice = createSlice({
         },
         [getProducts.rejected]: (state, action) => {
             state.loading = "idle";
-            state.error = action.payload;
+            state.error = action.payload || "SOMETHING WRONG!!";
         },
 
-        // insert product
+        // POST product
         [insertProduct.pending]: (state) => {
             state.process = "pending";
             productsAdapter.removeAll(state);
@@ -164,10 +194,10 @@ const productsSlice = createSlice({
         },
         [insertProduct.rejected]: (state, action) => {
             state.process = "idle";
-            state.error = action.payload;
+            state.error = action.payload || "SOMETHING WRONG!!";
         },
 
-        // update product
+        // PUT product
         [updateProduct.pending]: (state) => {
             state.process = "pending";
             productsAdapter.removeAll(state);
@@ -178,10 +208,10 @@ const productsSlice = createSlice({
         },
         [updateProduct.rejected]: (state, action) => {
             state.process = "idle";
-            state.error = action.payload;
+            state.error = action.payload || "SOMETHING WRONG!!";
         },
 
-        // delete product
+        // DELETE product
         [deleteProduct.pending]: (state) => {
             state.process = "pending";
             productsAdapter.removeAll(state);
@@ -193,7 +223,7 @@ const productsSlice = createSlice({
         },
         [deleteProduct.rejected]: (state, action) => {
             state.process = "idle";
-            state.error = action.payload;
+            state.error = action.payload || "SOMETHING WRONG!!";
         },
     },
 });

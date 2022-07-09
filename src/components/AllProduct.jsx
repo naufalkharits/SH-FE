@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts, productsSelectors } from "../redux/productsSlice";
+import { getProducts, productsSelectors } from "../redux/productsSlice";
 import AddProductCard from "./AddProductCard";
 import ProductCard from "./ProductCard";
 
@@ -13,7 +13,7 @@ const AllProduct = () => {
     const { profile } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        dispatch(fetchProducts({ keyword, category, offset }));
+        dispatch(getProducts({ keyword, category, offset }));
     }, [keyword, category, offset, dispatch]);
     return (
         <>

@@ -9,9 +9,9 @@ import closedServer from "../axios/closedServer";
 const params = new URLSearchParams(document.location.search);
 const page = Number(params.get("page"));
 
-// fetch product by id
-export const fetchProductById = createAsyncThunk(
-    "products/fetchProductById",
+// GET product by id
+export const getProductById = createAsyncThunk(
+    "products/getProductById",
     async (productId, thunkAPI) => {
         try {
             const response = await openServer.get(`/product/${productId}`);
@@ -123,16 +123,16 @@ const productsSlice = createSlice({
     },
     extraReducers: {
         // fetch product by id
-        [fetchProductById.pending]: (state) => {
+        [getProductById.pending]: (state) => {
             state.loading = "pending";
             productsAdapter.removeAll(state);
         },
-        [fetchProductById.fulfilled]: (state, action) => {
+        [getProductById.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.error = null;
             productsAdapter.setOne(state, action.payload.product);
         },
-        [fetchProductById.rejected]: (state, action) => {
+        [getProductById.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

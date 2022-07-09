@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FiPlus, FiChevronDown } from "react-icons/fi";
 import { FiArrowLeft } from "react-icons/fi";
 import {
-    fetchProductById,
+    getProductById,
     productsSelectors,
     updateProduct,
 } from "../redux/productsSlice";
@@ -86,7 +86,7 @@ const EditProduct = () => {
 
     useEffect(() => {
         setFormData(new FormData());
-        dispatch(fetchProductById(productId));
+        dispatch(getProductById(productId));
         dispatch(fetchCategories());
     }, [productId, dispatch]);
 

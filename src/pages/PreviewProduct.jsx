@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import {
     deleteProduct,
-    fetchProductById,
+    getProductById,
     productsSelectors,
 } from "../redux/productsSlice";
 import ProfileCard from "../components/ProfileCard";
@@ -43,7 +43,7 @@ const PreviewProduct = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchProductById(productId));
+        dispatch(getProductById(productId));
     }, [productId, dispatch]);
 
     useEffect(() => {

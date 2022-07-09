@@ -6,7 +6,7 @@ import "swiper/css";
 import { me } from "../redux/authSlice";
 import {
     deleteProduct,
-    fetchProductById,
+    getProductById,
     productsSelectors,
 } from "../redux/productsSlice";
 import { getWishlistById } from "../redux/wishlistSlice";
@@ -51,7 +51,7 @@ const DetailProduct = () => {
     };
 
     useEffect(() => {
-        dispatch(fetchProductById(productId));
+        dispatch(getProductById(productId));
         user && dispatch(getWishlistById(productId));
         user && dispatch(me());
     }, [user, productId, dispatch]);

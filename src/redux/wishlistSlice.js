@@ -4,36 +4,57 @@ import closedServer from "../axios/closedServer";
 // get wishlist buyer
 export const getWishlistBuyer = createAsyncThunk(
     "wishlist/getWishlistBuyer",
-    async () => {
-        const response = await closedServer.get("/wishlist");
-        return response.data;
+    async (thunkAPI) => {
+        try {
+            const response = await closedServer.get("/wishlist");
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
 // get wishlist by id
 export const getWishlistById = createAsyncThunk(
     "wishlist/getWishlistById",
-    async (productId) => {
-        const response = await closedServer.get(`/wishlist/${productId}`);
-        return response.data;
+    async (productId, thunkAPI) => {
+        try {
+            const response = await closedServer.get(`/wishlist/${productId}`);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
 // post wishlist buyer
 export const addWishlistBuyer = createAsyncThunk(
     "wishlist/addWishlistBuyer",
-    async ({ productId }) => {
-        const response = await closedServer.post(`/wishlist/${productId}`, {});
-        return response.data;
+    async ({ productId }, thunkAPI) => {
+        try {
+            const response = await closedServer.post(
+                `/wishlist/${productId}`,
+                {}
+            );
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
 // delete wishlist buyer
 export const deleteWishlistBuyer = createAsyncThunk(
     "wishlist/deleteWishlistBuyer",
-    async ({ productId }) => {
-        const response = await closedServer.delete(`/wishlist/${productId}`);
-        return response.data;
+    async ({ productId }, thunkAPI) => {
+        try {
+            const response = await closedServer.delete(
+                `/wishlist/${productId}`
+            );
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 

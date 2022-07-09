@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import jwtDecode from "jwt-decode";
+import dayjs from "dayjs";
 import openServer from "../axios/openServer";
 import closedServer from "../axios/closedServer";
-import dayjs from "dayjs";
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -56,22 +56,30 @@ export const login = createAsyncThunk(
 // get biodata
 export const getBiodata = createAsyncThunk(
     "biodata/getBiodata",
-    async (userId) => {
-        const response = await openServer.get(`/biodata/${userId}`);
-        return response.data;
+    async (userId, thunkAPI) => {
+        try {
+            const response = await openServer.get(`/biodata/${userId}`);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
 // update biodata
 export const updateBiodata = createAsyncThunk(
     "biodata/updateBiodata",
-    async ({ formData, navigate }) => {
+    async ({ formData, navigate }, thunkAPI) => {
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
-        const response = await closedServer.put(`/biodata`, formData);
-        navigate("/user");
-        return response.data;
+        try {
+            const response = await closedServer.put(`/biodata`, formData);
+            navigate("/user");
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 

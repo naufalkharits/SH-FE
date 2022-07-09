@@ -1,30 +1,43 @@
-import { createAsyncThunk, createSlice, createEntityAdapter } from "@reduxjs/toolkit";
-import openServer from "../axios/openServer";
+import {
+    createAsyncThunk,
+    createSlice,
+    createEntityAdapter,
+} from "@reduxjs/toolkit";
 import closedServer from "../axios/closedServer";
 
 // post TransactionTawar
 export const addTransactionTawar = createAsyncThunk(
     "transaction/addTransactionTawar",
-    async ({ productId, price }) => {
+    async ({ productId, price }, thunkAPI) => {
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
-        const response = await closedServer.post(`/transaction/${productId}`, {
-            price,
-        });
-        // window.location.reload()
-        return response.data;
+        try {
+            const response = await closedServer.post(
+                `/transaction/${productId}`,
+                {
+                    price,
+                }
+            );
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
 // fetch all transaction
 export const fetchTransactionTawar = createAsyncThunk(
     "transaction/fetchTransactionTawar",
-    async ({ status, as }) => {
-        const response = await closedServer.get(
-            `/transaction?status=${status}&as=${as}`
-        );
-        return response.data;
+    async ({ status, as }, thunkAPI) => {
+        try {
+            const response = await closedServer.get(
+                `/transaction?status=${status}&as=${as}`
+            );
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 
@@ -32,7 +45,7 @@ const transactionAdapter = createEntityAdapter();
 
 export const transactionSlice = createSlice({
     name: "transaction",
-    initialState: transactionAdapter.getInitialState ({
+    initialState: transactionAdapter.getInitialState({
         data: null,
         loading: "idle",
         error: null,

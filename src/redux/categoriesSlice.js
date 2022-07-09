@@ -4,9 +4,13 @@ import openServer from "../axios/openServer";
 // fetch all category
 export const fetchCategories = createAsyncThunk(
     "categories/fetchCategories",
-    async () => {
-        const { data } = await openServer.get("/category");
-        return data;
+    async (thunkAPI) => {
+        try {
+            const { data } = await openServer.get("/category");
+            return data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
     }
 );
 

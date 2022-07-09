@@ -11,7 +11,7 @@ import PreviewProduct from "./pages/PreviewProduct";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AddProduct from "./pages/AddProduct";
-import InfoProfil from "./pages/InfoProfil";
+import EditProfil from "./pages/EditProfil";
 import ManageProduct from "./pages/ManageProduct";
 import InfoPenawar from "./pages/InfoPenawar";
 import DetailProduct from "./pages/DetailProduct";
@@ -91,7 +91,7 @@ function App() {
                             path="/manage-product/preview/:productId"
                             element={<PreviewProduct />}
                         />
-                        <Route path="/user/profile" element={<InfoProfil />} />
+                        <Route path="/user/profile" element={<EditProfil />} />
                         <Route
                             path="/user/infopenawar"
                             element={<InfoPenawar />}

@@ -105,6 +105,8 @@ export const authSlice = createSlice({
             state.biodata = null;
             state.decodedAccess = null;
             state.decodedRefresh = null;
+            state.unixRefreshExp = null;
+            state.unixAccessExp = null;
         },
     },
     extraReducers: {
@@ -148,6 +150,14 @@ export const authSlice = createSlice({
             state.error = null;
             localStorage.setItem("user", JSON.stringify(action.payload));
             state.user = action.payload;
+            state.decodedAccess = jwtDecode(action.payload.accessToken.token);
+            state.decodedRefresh = jwtDecode(action.payload.refreshToken.token);
+            state.unixRefreshExp = dayjs(
+                action.payload.refreshToken.expiredAt
+            ).unix();
+            state.unixAccessExp = dayjs(
+                action.payload.accessToken.expiredAt
+            ).unix();
         },
         [register.rejected]: (state, action) => {
             state.loading = "idle";
@@ -165,6 +175,12 @@ export const authSlice = createSlice({
             state.user = action.payload;
             state.decodedAccess = jwtDecode(action.payload.accessToken.token);
             state.decodedRefresh = jwtDecode(action.payload.refreshToken.token);
+            state.unixRefreshExp = dayjs(
+                action.payload.refreshToken.expiredAt
+            ).unix();
+            state.unixAccessExp = dayjs(
+                action.payload.accessToken.expiredAt
+            ).unix();
         },
         [login.rejected]: (state, action) => {
             state.loading = "idle";

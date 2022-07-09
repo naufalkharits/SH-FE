@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilteredProduct } from "../redux/productsSlice";
-import AddProductCard from "./AddProductCard";
+import AddProductButton from "./buttons/AddProductButton";
 import ProductCard from "./ProductCard";
-import Product404 from "./Product404";
+import Product404 from "../unfound/Product404";
 import SellerSkeleton from "./skeletons/SellerSkeleton";
 
 const AllProduct = () => {
@@ -27,7 +27,11 @@ const AllProduct = () => {
                     ) : (
                         filteredProduct && (
                             <>
-                                <AddProductCard />
+                                {filteredProduct.length === 0 ? (
+                                    <AddProductButton height={"h-32"} />
+                                ) : (
+                                    <AddProductButton height={"h-full"} />
+                                )}
                                 <>
                                     {filteredProduct.length === 0 ? (
                                         <div className="p-4">

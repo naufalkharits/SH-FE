@@ -1,3 +1,4 @@
+import Transaction404 from "../unfound/Transaction404";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -73,25 +74,26 @@ const data = {
 
 const Sold = () => {
     return (
-        <div className="w-full sm:p-4">
-            <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
-                <div className="font-medium">Statisti Tokomu</div>
-                <div className="flex items-center gap-4">
-                    <div className="rounded-md p-4 shadow">
-                        <div>Pendapatan Bersih Baru</div>
-                        <div>Rp0</div>
-                        <div>0% dari 7 hari terakhir</div>
+        <>
+            <div className="w-full sm:p-4">
+                <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
+                    <div className="font-medium">Statisti Tokomu</div>
+                    <div className="flex items-center gap-4">
+                        <div className="rounded-md p-4 shadow">
+                            <div>Pendapatan Bersih Baru</div>
+                            <div>Rp0</div>
+                            <div>0% dari 7 hari terakhir</div>
+                        </div>
+                        <div className="rounded-md p-4 shadow">
+                            <div>Produk Terjual</div>
+                            <div>0</div>
+                            <div>0% dari 7 hari terakhir</div>
+                        </div>
                     </div>
-                    <div className="rounded-md p-4 shadow">
-                        <div>Produk Terjual</div>
-                        <div>0</div>
-                        <div>0% dari 7 hari terakhir</div>
+                    <div className="h-48 w-full">
+                        <Line options={options} data={data} />
                     </div>
-                </div>
-                <div className="h-48 w-full">
-                    <Line options={options} data={data} />
-                </div>
-                {/* <table className="whitespace-no-wrap w-full table-auto text-left">
+                    {/* <table className="whitespace-no-wrap w-full table-auto text-left">
                     <thead>
                         <tr>
                             <th className="title-font text-gray-900 bg-gray-100 rounded-tl rounded-bl px-4 py-3 text-sm font-medium tracking-wider">
@@ -174,8 +176,12 @@ const Sold = () => {
                         </tr>
                     </tbody>
                 </table> */}
+                </div>
             </div>
-        </div>
+            <div className="p-4">
+                <Transaction404 />
+            </div>
+        </>
     );
 };
 

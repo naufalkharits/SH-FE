@@ -14,7 +14,7 @@ import ProductCard from "../components/ProductCard";
 import SellButton from "../components/buttons/SellButton";
 import ProductSkeleton from "../components/skeletons/ProductSkeleton";
 import { FiMinus, FiPlus } from "react-icons/fi";
-import Product404 from "../components/Product404";
+import Product404 from "../unfound/Product404";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");

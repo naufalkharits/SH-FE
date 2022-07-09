@@ -108,6 +108,7 @@ const productsAdapter = createEntityAdapter();
 const productsSlice = createSlice({
     name: "products",
     initialState: productsAdapter.getInitialState({
+        filteredProduct: null,
         categories: null,
         loading: "idle",
         process: "idle",
@@ -145,7 +146,7 @@ const productsSlice = createSlice({
         [getFilteredProduct.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.error = null;
-            state.filter = action.payload;
+            state.filteredProduct = action.payload;
         },
         [getFilteredProduct.rejected]: (state, action) => {
             state.loading = "idle";

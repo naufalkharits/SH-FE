@@ -1,39 +1,35 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, productsSelectors } from "../redux/productsSlice";
+import { getFilteredProduct } from "../redux/productsSlice";
 import AddProductCard from "./AddProductCard";
 import ProductCard from "./ProductCard";
 
 const AllProduct = () => {
     const dispatch = useDispatch();
-    const { keyword, category, offset } = useSelector(
-        (state) => state.products
-    );
-    const products = useSelector(productsSelectors.selectAll);
     const { profile } = useSelector((state) => state.auth);
+    const { filteredProduct } = useSelector((state) => state.products);
+
+    const [id, setId] = useState(null);
 
     useEffect(() => {
-        dispatch(getProducts({ keyword, category, offset }));
-    }, [keyword, category, offset, dispatch]);
+        profile && setId(profile.id);
+        id && dispatch(getFilteredProduct(id));
+    }, [profile, id, dispatch]);
+
     return (
         <>
             <AddProductCard />
-            {products
-                .filter((product) => product?.seller_id === profile?.id)
-                .map((product) => (
-                    <div
-                        className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
-                        key={product.id}
-                    >
-                        <ProductCard
-                            id={product.id}
-                            name={product.name}
-                            price={product.price}
-                            category={product.category}
-                            pictures={product.pictures[0]}
-                        />
-                    </div>
-                ))}
+            {filteredProduct?.map((product) => (
+                <div className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4" key={product.id}>
+                    <ProductCard
+                        id={product.id}
+                        name={product.name}
+                        price={product.price}
+                        category={product.category}
+                        pictures={product.pictures[0]}
+                    />
+                </div>
+            ))}
         </>
     );
 };

@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, productsSelectors } from "../redux/productsSlice";
-import ProductCard from "../components/ProductCard";
 import { getWishlistBuyer } from "../redux/wishlistSlice";
+import ProductCard from "../components/ProductCard";
 
-const ListWishlist = () => {
+const Wishlist = () => {
     const dispatch = useDispatch();
     const { wishlists } = useSelector((state) => state.wishlist);
     const { keyword, category, offset } = useSelector(
@@ -47,4 +47,4 @@ const ListWishlist = () => {
     );
 };
 
-export default ListWishlist;
+export default Wishlist;

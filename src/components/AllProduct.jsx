@@ -25,27 +25,35 @@ const AllProduct = () => {
                     {loading === "pending" ? (
                         <SellerSkeleton />
                     ) : (
-                        <>
-                            <AddProductCard />
-                            {!filteredProduct ? (
-                                <Product404 />
-                            ) : (
-                                filteredProduct.map((product) => (
-                                    <div
-                                        className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
-                                        key={product.id}
-                                    >
-                                        <ProductCard
-                                            id={product.id}
-                                            name={product.name}
-                                            price={product.price}
-                                            category={product.category}
-                                            pictures={product.pictures[0]}
-                                        />
-                                    </div>
-                                ))
-                            )}
-                        </>
+                        filteredProduct && (
+                            <>
+                                <AddProductCard />
+                                <>
+                                    {filteredProduct.length === 0 ? (
+                                        <div className="p-4">
+                                            <Product404 />
+                                        </div>
+                                    ) : (
+                                        filteredProduct.map((product) => (
+                                            <div
+                                                className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
+                                                key={product.id}
+                                            >
+                                                <ProductCard
+                                                    id={product.id}
+                                                    name={product.name}
+                                                    price={product.price}
+                                                    category={product.category}
+                                                    pictures={
+                                                        product.pictures[0]
+                                                    }
+                                                />
+                                            </div>
+                                        ))
+                                    )}
+                                </>
+                            </>
+                        )
                     )}
                 </>
             )}

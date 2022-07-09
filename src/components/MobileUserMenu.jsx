@@ -17,7 +17,7 @@ const MobileUserMenu = () => {
                     }
                 >
                     <FiDollarSign />
-                    <span>Daftar Transaksi</span>
+                    <span>List Transaksi</span>
                 </Link>
                 <Link
                     to="/wishlist"
@@ -28,14 +28,14 @@ const MobileUserMenu = () => {
                     }
                 >
                     <FiHeart />
-                    <span>Diminati</span>
+                    <span>List Keinginan</span>
                 </Link>
                 <Link
                     to="#"
                     className="ml-4 flex items-center gap-2 rounded-xl bg-primary-purple-01 py-3 px-6"
                 >
                     <FiSettings />
-                    <span>Pengaturan Akun</span>
+                    <span>Pengaturan</span>
                 </Link>
             </ScrollingCarousel>
         </div>

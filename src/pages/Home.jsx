@@ -14,6 +14,7 @@ import ProductCard from "../components/ProductCard";
 import SellButton from "../components/buttons/SellButton";
 import ProductSkeleton from "../components/skeletons/ProductSkeleton";
 import { FiMinus, FiPlus } from "react-icons/fi";
+import Product404 from "../components/Product404";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -115,28 +116,27 @@ const Home = () => {
             )}
             <div className="container mx-auto space-y-4 p-4">
                 <div className="-m-4 flex flex-wrap">
-                    <>
-                        {loading === "pending" ? (
-                            <ProductSkeleton />
-                        ) : (
-                            products.map((product) => (
-                                <div
-                                    className="w-1/2 p-4 md:w-1/3 lg:w-1/4 xl:w-1/5"
-                                    key={product.id}
-                                >
-                                    <ProductCard
-                                        id={product.id}
-                                        name={product.name}
-                                        price={product.price}
-                                        category={product.category}
-                                        pictures={product.pictures[0]}
-                                    />
-                                </div>
-                            ))
-                        )}
-                    </>
+                    {loading === "pending" ? (
+                        <ProductSkeleton />
+                    ) : (
+                        products.map((product) => (
+                            <div
+                                className="w-1/2 p-4 md:w-1/3 lg:w-1/4 xl:w-1/5"
+                                key={product.id}
+                            >
+                                <ProductCard
+                                    id={product.id}
+                                    name={product.name}
+                                    price={product.price}
+                                    category={product.category}
+                                    pictures={product.pictures[0]}
+                                />
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
+            {products.length === 0 && <Product404 />}
             <SellButton />
         </>
     );

@@ -1,14 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { getBiodata } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";
 
 const SellerCard = ({ seller_id, id }) => {
     const dispatch = useDispatch();
-    const { biodataseller, loading } = useSelector(
-        (state) => state.auth
-    )
+    const { bio, loading } = useSelector((state) => state.auth);
 
     useEffect(() => {
         seller_id && dispatch(getBiodata(seller_id));
@@ -21,7 +19,7 @@ const SellerCard = ({ seller_id, id }) => {
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray"></div>
                 ) : (
                     <img
-                        src={biodataseller?.picture || AltFoto}
+                        src={bio?.picture || AltFoto}
                         alt=""
                         className="h-12 w-12 rounded-xl"
                     />
@@ -35,7 +33,7 @@ const SellerCard = ({ seller_id, id }) => {
                                 : ""
                         }
                     >
-                        {biodataseller?.name}
+                        {bio?.name}
                     </div>
                     <div
                         className={
@@ -44,7 +42,7 @@ const SellerCard = ({ seller_id, id }) => {
                                 : "text-xs text-neutral-03"
                         }
                     >
-                        {biodataseller?.city}
+                        {bio?.city}
                     </div>
                 </div>
             </div>
@@ -52,14 +50,14 @@ const SellerCard = ({ seller_id, id }) => {
                 <></>
             ) : (
                 <>
-                    { id === seller_id &&
+                    {seller_id === id && (
                         <Link
                             to="/user/profile"
                             className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
                         >
                             Edit
                         </Link>
-                    }
+                    )}
                 </>
             )}
         </div>

@@ -7,7 +7,7 @@ import AltFoto from "../images/AltFoto.png";
 const ProfileCard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user, biodata, loading } = useSelector((state) => state.auth);
+    const { user, profile, loading } = useSelector((state) => state.auth);
 
     useEffect(() => {
         user && dispatch(me());
@@ -20,7 +20,7 @@ const ProfileCard = () => {
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray"></div>
                 ) : (
                     <img
-                        src={biodata?.picture || AltFoto}
+                        src={profile?.picture || AltFoto}
                         alt=""
                         className="h-12 w-12 rounded-xl"
                     />
@@ -34,7 +34,7 @@ const ProfileCard = () => {
                                 : ""
                         }
                     >
-                        {biodata?.name}
+                        {profile?.name}
                     </div>
                     <div
                         className={
@@ -43,7 +43,7 @@ const ProfileCard = () => {
                                 : "text-xs text-neutral-03"
                         }
                     >
-                        {biodata?.city}
+                        {profile?.city}
                     </div>
                 </div>
             </div>

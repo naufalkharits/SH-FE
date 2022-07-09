@@ -17,7 +17,7 @@ const DesktopUserMenu = () => {
                 }
             >
                 <FiDollarSign />
-                <span>Daftar Transaksi</span>
+                <span>Lis Transaksi</span>
             </Link>
             <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-02 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-02"></div>
             <Link
@@ -29,12 +29,12 @@ const DesktopUserMenu = () => {
                 }
             >
                 <FiHeart />
-                <span>Diminati</span>
+                <span>Lis Keinginan</span>
             </Link>
             <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-02 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-02"></div>
             <Link to="#" className="flex cursor-pointer items-center gap-2">
                 <FiSettings />
-                <span>Pengaturan Akun</span>
+                <span>Pengaturan</span>
             </Link>
         </div>
     );

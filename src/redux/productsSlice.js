@@ -141,7 +141,7 @@ const productsSlice = createSlice({
         // GET filtered product
         [getFilteredProduct.pending]: (state) => {
             state.loading = "pending";
-            state.filter = null;
+            state.filteredProduct = null;
         },
         [getFilteredProduct.fulfilled]: (state, action) => {
             state.loading = "idle";

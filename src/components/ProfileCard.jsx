@@ -48,7 +48,7 @@ const ProfileCard = () => {
                 </div>
             </div>
             {loading === "pending" ? (
-                <></>
+                <div className="h-8 w-14 animate-pulse rounded-lg bg-gray"></div>
             ) : (
                 <>
                     <Link

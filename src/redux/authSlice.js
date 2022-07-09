@@ -83,8 +83,8 @@ export const authSlice = createSlice({
         decodedAccess: user ? jwtDecode(user.accessToken.token) : null,
         unixRefreshExp: user ? dayjs(user.refreshToken.expiredAt).unix() : null,
         unixAccessExp: user ? dayjs(user.accessToken.expiredAt).unix() : null,
-        biodata: null,
-        biodataseller: null,
+        profile: null,
+        bio: null,
         loading: "idle",
         error: null,
     },
@@ -129,11 +129,11 @@ export const authSlice = createSlice({
         // checkMe
         [me.pending]: (state) => {
             state.loading = "pending";
-            state.biodata = null;
+            state.profile = null;
         },
         [me.fulfilled]: (state, action) => {
             state.loading = "idle";
-            state.biodata = action.payload.user;
+            state.profile = action.payload.user;
         },
         [me.rejected]: (state, action) => {
             state.loading = "idle";
@@ -191,11 +191,11 @@ export const authSlice = createSlice({
         [getBiodata.pending]: (state) => {
             state.loading = "pending";
             state.error = null;
-            state.biodataseller = null;
+            state.bio = null;
         },
         [getBiodata.fulfilled]: (state, action) => {
             state.loading = "idle";
-            state.biodataseller = action.payload.biodata;
+            state.bio = action.payload.biodata;
         },
         [getBiodata.rejected]: (state, action) => {
             state.loading = "idle";
@@ -206,11 +206,11 @@ export const authSlice = createSlice({
         [updateBiodata.pending]: (state) => {
             state.loading = "pending";
             state.error = null;
-            state.biodata = null;
+            state.bio = null;
         },
         [updateBiodata.fulfilled]: (state, action) => {
             state.loading = "idle";
-            state.biodata = action.payload.updatedBiodata;
+            state.bio = action.payload.updatedBiodata;
         },
         [updateBiodata.rejected]: (state, action) => {
             state.loading = "idle";

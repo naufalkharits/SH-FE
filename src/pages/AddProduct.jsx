@@ -65,7 +65,7 @@ const AddProduct = () => {
         formData.set("category", formValue.category);
         formData.set("description", formValue.description);
 
-        dispatch(insertProduct({ formData, process, navigate }));
+        dispatch(insertProduct({ formData, navigate }));
     };
 
     useEffect(() => {

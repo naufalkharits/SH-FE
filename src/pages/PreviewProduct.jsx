@@ -39,7 +39,7 @@ const PreviewProduct = () => {
     const handleDelete = (e) => {
         e.preventDefault();
 
-        dispatch(deleteProduct({ productId, process, navigate }));
+        dispatch(deleteProduct({ productId, navigate }));
     };
 
     useEffect(() => {

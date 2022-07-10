@@ -69,13 +69,13 @@ export const getBiodata = createAsyncThunk(
 // update biodata
 export const updateBiodata = createAsyncThunk(
     "biodata/updateBiodata",
-    async ({ formData, navigate }, thunkAPI) => {
+    async ({ formData, navigate, location }, thunkAPI) => {
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
         try {
             const response = await closedServer.put(`/biodata`, formData);
-            navigate("/user");
+            navigate(location.state?.from?.pathname || "/user");
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);

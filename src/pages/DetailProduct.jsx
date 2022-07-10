@@ -38,7 +38,7 @@ const DetailProduct = () => {
     const [price, setPrice] = useState(0);
 
     const handleDelete = () => {
-        dispatch(deleteProduct({ productId, process, navigate }));
+        dispatch(deleteProduct({ productId, navigate }));
     };
 
     // modal transaksi

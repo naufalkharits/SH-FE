@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FiCamera, FiArrowLeft, FiChevronDown } from "react-icons/fi";
 import { me, updateBiodata } from "../redux/authSlice";
 
 const EditProfil = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const { user, profile } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const EditProfil = () => {
         formValue.phone_number &&
             formData.set("phone_number", formValue.phone_number);
 
-        dispatch(updateBiodata({ formData, navigate }));
+        dispatch(updateBiodata({ formData, navigate, location }));
     };
 
     useEffect(() => {

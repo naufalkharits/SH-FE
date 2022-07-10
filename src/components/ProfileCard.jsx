@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { me } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";
 
 const ProfileCard = () => {
-    const navigate = useNavigate();
+    const location = useLocation();
     const dispatch = useDispatch();
     const { user, profile, loading } = useSelector((state) => state.auth);
 
@@ -53,6 +53,7 @@ const ProfileCard = () => {
                 <>
                     <Link
                         to="/user/profile"
+                        state={{ from: location }}
                         className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
                     >
                         Edit

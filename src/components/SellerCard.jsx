@@ -1,10 +1,11 @@
 import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getBiodata } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";
 
 const SellerCard = ({ seller_id, id }) => {
+    const location = useLocation();
     const dispatch = useDispatch();
     const { bio, loading } = useSelector((state) => state.auth);
 
@@ -53,6 +54,7 @@ const SellerCard = ({ seller_id, id }) => {
                     {seller_id === id && (
                         <Link
                             to="/user/profile"
+                            state={{ from: location }}
                             className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
                         >
                             Edit

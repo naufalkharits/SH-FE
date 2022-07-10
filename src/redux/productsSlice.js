@@ -55,13 +55,13 @@ export const getProducts = createAsyncThunk(
 // POST product
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
-    async ({ formData, process, navigate }, thunkAPI) => {
+    async ({ formData, navigate }, thunkAPI) => {
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
         try {
             const response = await closedServer.post("/product", formData);
-            if (process === "idle") navigate("/manage-product");
+            navigate(`/product/${response.data.product.id}`);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -72,7 +72,7 @@ export const insertProduct = createAsyncThunk(
 // PUT product
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
-    async ({ productId, formData, process, navigate }, thunkAPI) => {
+    async ({ productId, formData, navigate }, thunkAPI) => {
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);
         // }
@@ -81,7 +81,7 @@ export const updateProduct = createAsyncThunk(
                 `/product/${productId}`,
                 formData
             );
-            navigate("/manage-product");
+            navigate(`/product/${productId}`);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -92,7 +92,7 @@ export const updateProduct = createAsyncThunk(
 // DELETE product
 export const deleteProduct = createAsyncThunk(
     "products/deleteProduct",
-    async ({ productId, process, navigate }, thunkAPI) => {
+    async ({ productId, navigate }, thunkAPI) => {
         try {
             await closedServer.delete(`/product/${productId}`);
             navigate("/manage-product");

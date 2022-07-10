@@ -81,7 +81,7 @@ const EditProduct = () => {
             }
         }
 
-        dispatch(updateProduct({ productId, formData, process, navigate }));
+        dispatch(updateProduct({ productId, formData, navigate }));
     };
 
     useEffect(() => {

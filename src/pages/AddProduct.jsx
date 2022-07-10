@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { FiPlus, FiChevronDown } from "react-icons/fi";
-import { FiArrowLeft } from "react-icons/fi";
-import { insertProduct } from "../redux/productsSlice";
+import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi";
 import { CgSpinner } from "react-icons/cg";
-import DangerToast from "../components/toasts/DangerToast";
+import { insertProduct } from "../redux/productsSlice";
 import { fetchCategories } from "../redux/categoriesSlice";
+import DangerToast from "../components/toasts/DangerToast";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -15,7 +14,8 @@ const className = (...classes) => {
 const AddProduct = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { spinner } = useSelector((state) => state.products);
+    const { spinner, error } = useSelector((state) => state.products);
+    const { categories } = useSelector((state) => state.categories);
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
@@ -23,22 +23,18 @@ const AddProduct = () => {
         description: "",
     });
     const [formData, setFormData] = useState("");
-    const [show, setShow] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const { categories } = useSelector((state) => state.categories);
     const [formCategory, setFormCategory] = useState([]);
-
     const [picture, setPicture] = useState([]);
+    const [show, setShow] = useState(false);
+    const [alert, setAlert] = useState("");
 
     const onFileChange = (e) => {
         const file = e.target.files;
         const fileArray = Array.from(file);
         if (file.length > 4) {
+            e.target.value = null;
             setShow(true);
-            setErrorMessage("Gambar Tidak Boleh Lebih Dari 4");
-            setTimeout(() => {
-                setShow(false);
-            }, 2000);
+            setAlert("Gambar Tidak Boleh Lebih Dari 4");
         } else {
             const imageArray = fileArray.map((file) => {
                 return URL.createObjectURL(file);
@@ -79,7 +75,15 @@ const AddProduct = () => {
 
     return (
         <>
-            {show && <DangerToast show={show} message={errorMessage} />}
+            {show && (
+                <DangerToast
+                    show={show}
+                    setShow={setShow}
+                    alert={alert}
+                    setAlert={setAlert}
+                    message={error?.message}
+                />
+            )}
             <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft
@@ -171,7 +175,7 @@ const AddProduct = () => {
                                     type="file"
                                     id="file"
                                     name="pictures"
-                                    accept="image/png, image/jpeg, image/jpg"
+                                    accept="image/png, image/jpeg, image/jpg, .webp"
                                     multiple
                                     onChange={onFileChange}
                                 />
@@ -180,17 +184,24 @@ const AddProduct = () => {
                         </div>
                     </div>
                     <div className="flex justify-between">
-                        <button className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04 py-3 font-medium hover:bg-primary-purple-05 hover:text-white">
+                        <Link
+                            to="#"
+                            className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04 py-3 text-center font-medium hover:bg-primary-purple-05 hover:text-white"
+                        >
                             Preview
-                        </button>
+                        </Link>
                         <button
                             className={className(
                                 spinner
-                                    ? "flex items-center justify-center gap-2"
-                                    : "",
-                                "sm:w-74 w-[48%] rounded-xl bg-primary-purple-04 py-3 font-medium text-white hover:bg-primary-purple-05"
+                                    ? "flex cursor-wait items-center justify-center gap-2 bg-zinc-500"
+                                    : "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                "sm:w-74 w-[48%] rounded-xl py-3 font-medium text-white"
                             )}
                             type="submit"
+                            disabled={spinner ? true : false}
+                            onClick={() => {
+                                setShow(true);
+                            }}
                         >
                             {spinner ? (
                                 <>

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../redux/authSlice";
-import DangerToast from "../components/toasts/DangerToast";
 import { FiArrowLeft } from "react-icons/fi";
 import { CgSpinner } from "react-icons/cg";
+import { login } from "../redux/authSlice";
+import DangerToast from "../components/toasts/DangerToast";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -18,7 +18,7 @@ const Login = () => {
         email: "",
         password: "",
     });
-    const [showToast, setShowToast] = useState(false);
+    const [show, setShow] = useState(false);
 
     const onChange = (e) => {
         setFormValue({
@@ -35,7 +35,13 @@ const Login = () => {
 
     return (
         <>
-            {error && <DangerToast show={showToast} message={error.message} />}
+            {show && (
+                <DangerToast
+                    show={show}
+                    setShow={setShow}
+                    message={error?.message}
+                />
+            )}
             <div className="space-y-8 bg-white p-8 sm:p-14">
                 <FiArrowLeft
                     className="h-6 w-6 cursor-pointer sm:hidden"
@@ -51,7 +57,7 @@ const Login = () => {
                         </label>
                         <input
                             className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
-                            type="text"
+                            type="email"
                             name="email"
                             // value={email}
                             placeholder="Contoh: johndee@gmail.com"
@@ -76,13 +82,14 @@ const Login = () => {
                     <button
                         className={className(
                             loading === "pending"
-                                ? "flex items-center justify-center gap-2"
-                                : "",
-                            "w-full rounded-2xl bg-primary-purple-04 py-3 px-4 font-bold text-white hover:bg-primary-purple-05"
+                                ? "flex cursor-wait items-center justify-center gap-2 bg-zinc-500"
+                                : "bg-primary-purple-04 hover:bg-primary-purple-05",
+                            "w-full rounded-2xl py-3 px-4 font-bold text-white"
                         )}
                         type="submit"
+                        disabled={loading === "pending" ? true : false}
                         onClick={() => {
-                            setShowToast(true);
+                            setShow(true);
                         }}
                     >
                         {loading === "pending" ? (

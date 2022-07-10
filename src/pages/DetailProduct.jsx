@@ -181,8 +181,10 @@ const DetailProduct = () => {
                                             </button>
                                             <button
                                                 className={className(
-                                                    spinner ? "gap-2" : "",
-                                                    "hidden w-full items-center justify-center rounded-2xl bg-red-500 p-2 text-white hover:bg-red-600 sm:flex"
+                                                    spinner
+                                                        ? "flex cursor-wait items-center justify-center gap-2 bg-zinc-500"
+                                                        : "border border-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
+                                                    "mt-6 w-full rounded-2xl p-2 sm:mt-0"
                                                 )}
                                                 type="submit"
                                                 onClick={handleDelete}

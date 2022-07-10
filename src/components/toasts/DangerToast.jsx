@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const DangerToast = ({ show, message }) => {
-    const [showToast, setShowToast] = useState(show);
-
+const DangerToast = ({ show, setShow, alert, setAlert, message }) => {
     useEffect(() => {
         setTimeout(() => {
-            setShowToast(false);
+            show && setShow(false);
+            alert && setAlert("");
         }, 2000);
     }, []);
 
     return (
         <>
-            {message && showToast && (
-                <div className="absolute inset-x-0 top-8 z-50 mx-auto w-fit animate-bounce rounded-xl bg-alert-danger px-6 py-4 text-white shadow-lg">
-                    {message}
+            {alert || message ? (
+                <div className="absolute inset-x-0 top-8 z-50 mx-auto w-fit animate-bounce rounded-xl bg-alert-danger px-6 py-4 text-center text-white shadow-lg">
+                    {alert || message}
                 </div>
+            ) : (
+                <></>
             )}
         </>
     );

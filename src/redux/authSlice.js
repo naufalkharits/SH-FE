@@ -97,6 +97,9 @@ export const authSlice = createSlice({
         error: null,
     },
     reducers: {
+        resetError: (state) => {
+            state.error = null;
+        },
         setUser: (state, action) => {
             localStorage.setItem("user", JSON.stringify(action.payload));
             state.user = action.payload;
@@ -227,6 +230,6 @@ export const authSlice = createSlice({
     },
 });
 
-export const { setUser, logout } = authSlice.actions;
+export const { resetError, setUser, logout } = authSlice.actions;
 
 export default authSlice.reducer;

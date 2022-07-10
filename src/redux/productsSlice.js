@@ -118,9 +118,9 @@ const productsSlice = createSlice({
         offset: page ? page * 10 - 10 : 0,
     }),
     reducers: {
-        // setLoading: (state, action) => {
-        //     state.loading = action.payload;
-        // },
+        resetError: (state) => {
+            state.error = null;
+        },
         keywordQuery: (state, action) => {
             state.keyword = action.payload;
         },
@@ -234,7 +234,7 @@ export const productsSelectors = productsAdapter.getSelectors(
 );
 
 export const {
-    setLoading,
+    resetError,
     keywordQuery,
     categoryQuery,
     offsetIncrement,

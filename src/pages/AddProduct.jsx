@@ -193,7 +193,7 @@ const AddProduct = () => {
                         <button
                             className={className(
                                 spinner
-                                    ? "flex cursor-wait items-center justify-center gap-2 bg-zinc-500"
+                                    ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
                                     : "bg-primary-purple-04 hover:bg-primary-purple-05",
                                 "sm:w-74 w-[48%] rounded-xl py-3 font-medium text-white"
                             )}

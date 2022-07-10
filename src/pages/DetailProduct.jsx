@@ -182,7 +182,7 @@ const DetailProduct = () => {
                                             <button
                                                 className={className(
                                                     spinner
-                                                        ? "flex cursor-wait items-center justify-center gap-2 bg-zinc-500"
+                                                        ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
                                                         : "border border-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
                                                     "mt-6 w-full rounded-2xl p-2 sm:mt-0"
                                                 )}

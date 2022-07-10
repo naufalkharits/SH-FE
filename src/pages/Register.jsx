@@ -97,7 +97,7 @@ const Register = () => {
                     <button
                         className={className(
                             loading === "pending"
-                                ? "flex cursor-wait items-center justify-center gap-2 bg-zinc-500"
+                                ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
                                 : "bg-primary-purple-04 hover:bg-primary-purple-05",
                             "w-full rounded-2xl py-3 px-4 font-bold text-white"
                         )}

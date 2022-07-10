@@ -11,11 +11,12 @@ import {
 } from "../redux/productsSlice";
 import { getWishlistById } from "../redux/wishlistSlice";
 import { addTransactionTawar } from "../redux/transactionSlice";
-import PublishButton from "../components/buttons/PublishButton";
 import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import WishlistButton from "../components/buttons/WishlistButton";
 import SellerCard from "../components/SellerCard";
+import PublishButton from "../components/buttons/PublishButton";
+import EditButton from "../components/buttons/EditButton";
 import IDR from "../utils/IDR";
 import { CgSpinner } from "react-icons/cg";
 
@@ -155,11 +156,21 @@ const DetailProduct = () => {
                                     ) : user &&
                                       product?.seller_id === profile?.id ? (
                                         <>
-                                            <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
+                                            {/* <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                                 Terbitkan
-                                            </button>
+                                            </button> */}
+                                            {/* <button
+                                                className="mb-4 mt-6 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
+                                                onClick={() => {
+                                                    navigate(
+                                                        `/manage-product/edit/${productId}`
+                                                    );
+                                                }}
+                                            >
+                                                Edit
+                                            </button> */}
                                             <button
-                                                className="mb-4 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
+                                                className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block"
                                                 onClick={() => {
                                                     navigate(
                                                         `/manage-product/edit/${productId}`
@@ -230,7 +241,8 @@ const DetailProduct = () => {
                         </div>
                     </div>
                     {user && product?.seller_id === profile?.id ? (
-                        <PublishButton />
+                        // <PublishButton />
+                        <EditButton productId={productId} />
                     ) : (
                         <button
                             className={className(

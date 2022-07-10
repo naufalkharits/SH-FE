@@ -1,15 +1,16 @@
 import { Fragment } from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/authSlice";
-import { Menu, Transition } from "@headlessui/react";
-import { FiEdit3, FiLogOut, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Menu, Transition } from "@headlessui/react";
+import { FiLogOut, FiUser } from "react-icons/fi";
+import { logout } from "../../redux/authSlice";
+import AltFoto from "../../images/AltFoto.png";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
-const UserDropdown = () => {
+const UserDropdown = ({ drops }) => {
     const dispatch = useDispatch();
 
     return (
@@ -42,29 +43,32 @@ const UserDropdown = () => {
                                     <>
                                         <Link
                                             to="/user"
-                                            className={className(
-                                                active
-                                                    ? "hover:text-primary-purple-05"
-                                                    : "",
-                                                "flex w-full items-center justify-center gap-2"
-                                            )}
+                                            className="flex w-full items-center gap-2 rounded-md p-2 shadow"
                                         >
-                                            <FiEdit3 />
-                                            Nama Profil
+                                            <img
+                                                className="h-8"
+                                                src={drops?.picture || AltFoto}
+                                                alt=""
+                                            />
+                                            <span className="font-medium">
+                                                {drops?.name}
+                                            </span>
                                         </Link>
                                         <button
                                             className={className(
                                                 active
                                                     ? "hover:text-primary-purple-05"
                                                     : "",
-                                                "flex w-full items-center justify-center gap-2"
+                                                "flex w-full items-center gap-2"
                                             )}
                                             onClick={() => {
                                                 dispatch(logout());
                                             }}
                                         >
                                             <FiLogOut />
-                                            Logout
+                                            <span className="text-sm">
+                                                Logout
+                                            </span>
                                         </button>
                                     </>
                                 )}

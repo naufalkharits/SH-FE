@@ -5,7 +5,7 @@ const DangerToast = ({ show, setShow, alert, setAlert, message }) => {
         setTimeout(() => {
             show && setShow(false);
             alert && setAlert("");
-        }, 2000);
+        }, 1500);
     }, []);
 
     return (

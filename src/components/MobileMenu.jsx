@@ -5,8 +5,10 @@ import { logout } from "../redux/authSlice";
 import { Popover, Transition } from "@headlessui/react";
 import { FiLogIn, FiLogOut, FiMenu, FiX } from "react-icons/fi";
 import Search from "./Search";
+import SecondHand from "../images/SecondHand.png";
+import AltFoto from "../images/AltFoto.png";
 
-const MobileMenu = () => {
+const MobileMenu = ({ drops }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -37,8 +39,8 @@ const MobileMenu = () => {
                         <div className="p-2">
                             <div className="mb-4 flex items-center justify-between">
                                 <img
-                                    className="h-8 cursor-pointer pl-2 pt-2"
-                                    src="/img/logo1.png"
+                                    className="h-10 cursor-pointer pl-2 pt-2"
+                                    src={SecondHand}
                                     alt=""
                                     onClick={() => {
                                         navigate("/");
@@ -52,9 +54,16 @@ const MobileMenu = () => {
                             <div className="mt-4 space-y-1 font-medium">
                                 <Link
                                     to="/user"
-                                    className="block rounded-md p-2 hover:bg-gray"
+                                    className="mb-2 flex items-center gap-1 rounded-md px-2 py-4 shadow"
                                 >
-                                    Nama Profil
+                                    <img
+                                        className="h-8"
+                                        src={drops?.picture || AltFoto}
+                                        alt=""
+                                    />
+                                    <span className="font-bold">
+                                        {drops?.name}
+                                    </span>
                                 </Link>
                                 <Link
                                     to="/notification"
@@ -62,7 +71,6 @@ const MobileMenu = () => {
                                 >
                                     Notifikasi
                                 </Link>
-                                <hr className="text-gray" />
                                 <Link
                                     to="/manage-product"
                                     className="block rounded-md p-2 hover:bg-gray"

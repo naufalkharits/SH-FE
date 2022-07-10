@@ -5,6 +5,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { CgSpinner } from "react-icons/cg";
 import { login } from "../redux/authSlice";
 import DangerToast from "../components/toasts/DangerToast";
+import SecondHand from "../images/SecondHand.png";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -49,6 +50,7 @@ const Login = () => {
                         navigate(-1);
                     }}
                 />
+                <img className="sm:hidden" src={SecondHand} alt="" />
                 <div className="text-2xl font-bold">Masuk</div>
                 <form onSubmit={onSubmit}>
                     <div className="mb-4 space-y-2">

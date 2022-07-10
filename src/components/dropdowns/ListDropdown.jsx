@@ -1,7 +1,8 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { FiList } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { BiStore, BiStoreAlt } from "react-icons/bi";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -38,14 +39,12 @@ const ListDropdown = () => {
                                     <>
                                         <Link
                                             to="/manage-product"
-                                            className={className(
-                                                active
-                                                    ? "hover:text-primary-purple-05"
-                                                    : "",
-                                                "block text-center"
-                                            )}
+                                            className="flex items-center gap-2 rounded-md p-2 shadow"
                                         >
-                                            Cek Toko
+                                            <BiStoreAlt className="h-6 w-6" />
+                                            <span className="font-medium">
+                                                Cek Toko
+                                            </span>
                                         </Link>
                                         <Link
                                             to="/user/infopenawar"
@@ -53,7 +52,7 @@ const ListDropdown = () => {
                                                 active
                                                     ? "hover:text-primary-purple-05"
                                                     : "",
-                                                "block text-center"
+                                                "block text-sm"
                                             )}
                                         >
                                             Cek Penawaran

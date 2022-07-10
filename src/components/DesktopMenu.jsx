@@ -1,23 +1,31 @@
+import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
 import MobileMenu from "./MobileMenu";
 import Search from "./Search";
 import ListDropdown from "./dropdowns/ListDropdown";
 import NotificationDropdown from "./dropdowns/NotificationDropdown";
 import UserDropdown from "./dropdowns/UserDropdown";
+import SecondHand from "../images/SecondHand.png";
+import { dropdown } from "../redux/authSlice";
 
 const DesktopMenu = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const { user } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const { user, decodedAccess, drops } = useSelector((state) => state.auth);
+
+    useEffect(() => {
+        dispatch(dropdown(decodedAccess?.id));
+    }, [decodedAccess, dispatch]);
 
     return (
         <>
             <div className="flex items-center gap-8">
                 <img
                     className="hidden h-8 cursor-pointer sm:inline"
-                    src="/img/logo1.png"
+                    src={SecondHand}
                     alt=""
                     onClick={() => {
                         navigate(
@@ -26,7 +34,7 @@ const DesktopMenu = () => {
                         );
                     }}
                 />
-                <MobileMenu />
+                <MobileMenu drops={drops} />
                 <div className="hidden sm:block">
                     <Search />
                 </div>
@@ -39,7 +47,7 @@ const DesktopMenu = () => {
                     <>
                         <ListDropdown />
                         <NotificationDropdown />
-                        <UserDropdown />
+                        <UserDropdown drops={drops} />
                     </>
                 ) : (
                     <Link

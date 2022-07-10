@@ -22,7 +22,7 @@ const PreviewProduct = () => {
     const navigate = useNavigate();
     const { productId } = useParams();
     const dispatch = useDispatch();
-    const { process } = useSelector((state) => state.products);
+    const { spinner } = useSelector((state) => state.products);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );

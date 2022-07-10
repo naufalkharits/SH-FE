@@ -29,7 +29,7 @@ const DetailProduct = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
     const { user, profile } = useSelector((state) => state.auth);
-    const { process, loading, error } = useSelector((state) => state.products);
+    const { loading, spinner, error } = useSelector((state) => state.products);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
@@ -181,18 +181,18 @@ const DetailProduct = () => {
                                             </button>
                                             <button
                                                 className={className(
-                                                    process === "pending"
-                                                        ? "gap-2"
-                                                        : "",
+                                                    spinner ? "gap-2" : "",
                                                     "hidden w-full items-center justify-center rounded-2xl bg-red-500 p-2 text-white hover:bg-red-600 sm:flex"
                                                 )}
                                                 type="submit"
                                                 onClick={handleDelete}
                                             >
-                                                {process === "pending" ? (
+                                                {spinner ? (
                                                     <>
                                                         <CgSpinner className="animate-spin" />
-                                                        <span>Deleting...</span>
+                                                        <span>
+                                                            Processing...
+                                                        </span>
                                                     </>
                                                 ) : (
                                                     <span>Delete</span>

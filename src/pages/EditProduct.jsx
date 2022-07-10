@@ -23,7 +23,7 @@ const EditProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
-    const { process } = useSelector((state) => state.products);
+    const { spinner } = useSelector((state) => state.products);
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
@@ -215,17 +215,17 @@ const EditProduct = () => {
                         </button>
                         <button
                             className={className(
-                                process === "pending"
+                                spinner
                                     ? "flex items-center justify-center gap-2"
                                     : "",
                                 "sm:w-74 w-[48%] rounded-xl bg-primary-purple-04 py-3 font-medium text-white hover:bg-primary-purple-05"
                             )}
                             type="submit"
                         >
-                            {process === "pending" ? (
+                            {spinner ? (
                                 <>
                                     <CgSpinner className="animate-spin" />
-                                    <span>Editing...</span>
+                                    <span>Processing...</span>
                                 </>
                             ) : (
                                 <span>Terbitkan</span>

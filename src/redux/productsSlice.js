@@ -111,7 +111,7 @@ const productsSlice = createSlice({
         filteredProduct: null,
         categories: null,
         loading: "idle",
-        process: "idle",
+        spinner: false,
         error: null,
         keyword: "",
         category: "",
@@ -185,45 +185,45 @@ const productsSlice = createSlice({
 
         // POST product
         [insertProduct.pending]: (state) => {
-            state.process = "pending";
+            state.spinner = true;
             productsAdapter.removeAll(state);
         },
         [insertProduct.fulfilled]: (state, action) => {
-            state.process = "idle";
+            state.spinner = false;
             state.error = null;
             productsAdapter.addOne(state, action.payload.product);
         },
         [insertProduct.rejected]: (state, action) => {
-            state.process = "idle";
+            state.spinner = false;
             state.error = action.payload || "SOMETHING WRONG!!";
         },
 
         // PUT product
         [updateProduct.pending]: (state) => {
-            state.process = "pending";
+            state.spinner = true;
             productsAdapter.removeAll(state);
         },
         [updateProduct.fulfilled]: (state, action) => {
-            state.process = "idle";
+            state.spinner = false;
             productsAdapter.addOne(state, action.payload.updatedProduct);
         },
         [updateProduct.rejected]: (state, action) => {
-            state.process = "idle";
+            state.spinner = false;
             state.error = action.payload || "SOMETHING WRONG!!";
         },
 
         // DELETE product
         [deleteProduct.pending]: (state) => {
-            state.process = "pending";
+            state.spinner = true;
             productsAdapter.removeAll(state);
         },
         [deleteProduct.fulfilled]: (state, action) => {
-            state.process = "idle";
+            state.spinner = false;
             state.error = null;
             productsAdapter.removeOne(state, action.payload);
         },
         [deleteProduct.rejected]: (state, action) => {
-            state.process = "idle";
+            state.spinner = false;
             state.error = action.payload || "SOMETHING WRONG!!";
         },
     },

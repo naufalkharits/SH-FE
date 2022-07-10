@@ -17,6 +17,19 @@ const user = JSON.parse(localStorage.getItem("user"));
 //     }
 // });
 
+// dropdown
+export const dropdown = createAsyncThunk(
+    "auth/dropdown",
+    async (accessToken, thunkAPI) => {
+        try {
+            const response = await closedServer.get("/auth/me");
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
 // checkMe
 export const me = createAsyncThunk("auth/me", async (accessToken, thunkAPI) => {
     try {
@@ -93,6 +106,7 @@ export const authSlice = createSlice({
         unixAccessExp: user ? dayjs(user.accessToken.expiredAt).unix() : null,
         profile: null,
         bio: null,
+        drops: null,
         loading: "idle",
         error: null,
     },
@@ -136,6 +150,19 @@ export const authSlice = createSlice({
         //     state.loading = "idle";
         //     state.error = action.payload;
         // },
+
+        // dropdown
+        [dropdown.pending]: (state) => {
+            state.loading = "pending";
+        },
+        [dropdown.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.drops = action.payload.user;
+        },
+        [dropdown.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
 
         // checkMe
         [me.pending]: (state) => {

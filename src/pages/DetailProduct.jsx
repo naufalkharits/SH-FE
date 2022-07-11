@@ -55,7 +55,6 @@ const DetailProduct = () => {
     useEffect(() => {
         dispatch(getProductById(productId));
         user && dispatch(getWishlistById(productId));
-        user && dispatch(me());
     }, [user, productId, dispatch]);
 
     return (

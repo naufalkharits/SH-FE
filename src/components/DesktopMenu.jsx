@@ -2,22 +2,22 @@ import { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FiLogIn } from "react-icons/fi";
+import { me } from "../redux/authSlice";
 import MobileMenu from "./MobileMenu";
 import Search from "./Search";
 import ListDropdown from "./dropdowns/ListDropdown";
 import NotificationDropdown from "./dropdowns/NotificationDropdown";
 import UserDropdown from "./dropdowns/UserDropdown";
 import SecondHand from "../images/SecondHand.png";
-import { dropdown } from "../redux/authSlice";
 
 const DesktopMenu = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user, decodedAccess, drops } = useSelector((state) => state.auth);
+    const { user, decodedAccess, profile } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        dispatch(dropdown(decodedAccess?.id));
+        decodedAccess && dispatch(me(decodedAccess?.id));
     }, [decodedAccess, dispatch]);
 
     return (
@@ -34,7 +34,7 @@ const DesktopMenu = () => {
                         );
                     }}
                 />
-                <MobileMenu drops={drops} />
+                <MobileMenu profile={profile} />
                 <div className="hidden sm:block">
                     <Search />
                 </div>
@@ -47,7 +47,7 @@ const DesktopMenu = () => {
                     <>
                         <ListDropdown />
                         <NotificationDropdown />
-                        <UserDropdown drops={drops} />
+                        <UserDropdown profile={profile} />
                     </>
                 ) : (
                     <Link

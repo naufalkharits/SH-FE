@@ -10,7 +10,7 @@ const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
-const UserDropdown = ({ drops }) => {
+const UserDropdown = ({ profile }) => {
     const dispatch = useDispatch();
 
     return (
@@ -47,11 +47,13 @@ const UserDropdown = ({ drops }) => {
                                         >
                                             <img
                                                 className="h-8"
-                                                src={drops?.picture || AltFoto}
+                                                src={
+                                                    profile?.picture || AltFoto
+                                                }
                                                 alt=""
                                             />
                                             <span className="truncate font-medium">
-                                                {drops?.name}
+                                                {profile?.name}
                                             </span>
                                         </Link>
                                         <button

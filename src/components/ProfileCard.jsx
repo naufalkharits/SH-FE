@@ -1,17 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { me } from "../redux/authSlice";
+import { useSelector } from "react-redux";
 import AltFoto from "../images/AltFoto.png";
 
 const ProfileCard = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
-    const { user, profile, loading } = useSelector((state) => state.auth);
-
-    useEffect(() => {
-        user && dispatch(me());
-    }, [user, dispatch]);
+    const { profile, loading } = useSelector((state) => state.auth);
 
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
@@ -54,7 +47,7 @@ const ProfileCard = () => {
                     <Link
                         to="/user/profile"
                         state={{ from: location }}
-                        className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-neutral-05 hover:bg-primary-purple-05 hover:text-white"
+                        className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white"
                     >
                         Edit
                     </Link>

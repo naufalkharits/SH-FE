@@ -136,7 +136,7 @@ const Home = () => {
                     )}
                 </div>
             </div>
-            {products.length === 0 && <Product404 />}
+            {loading === "idle" && products.length === 0 && <Product404 />}
             <SellButton />
         </>
     );

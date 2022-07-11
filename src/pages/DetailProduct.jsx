@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/pagination";
 import { me } from "../redux/authSlice";
 import {
     deleteProduct,
@@ -83,7 +85,13 @@ const DetailProduct = () => {
                                 {loading === "pending" ? (
                                     <div className="h-[32rem] w-full animate-pulse bg-gray sm:rounded-2xl"></div>
                                 ) : (
-                                    <Swiper>
+                                    <Swiper
+                                        modules={[Pagination]}
+                                        pagination={{
+                                            dynamicBullets: true,
+                                            clickable: true,
+                                        }}
+                                    >
                                         {product?.pictures.map((picture) => (
                                             <SwiperSlide key={picture}>
                                                 <img
@@ -153,7 +161,8 @@ const DetailProduct = () => {
                                     {loading === "pending" ? (
                                         <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
                                     ) : user &&
-                                      product?.seller.user_id === profile?.id ? (
+                                      product?.seller.user_id ===
+                                          profile?.id ? (
                                         <>
                                             {/* <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                                 Terbitkan
@@ -211,9 +220,10 @@ const DetailProduct = () => {
                                         </button>
                                     )}
                                 </div>
-                                {user && product?.seller.user_id !== profile?.id && (
-                                    <WishlistButton />
-                                )}
+                                {user &&
+                                    product?.seller.user_id !== profile?.id && (
+                                        <WishlistButton />
+                                    )}
                                 <SellerCard
                                     loading={loading}
                                     id={product?.seller.user_id}

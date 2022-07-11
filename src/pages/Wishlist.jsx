@@ -19,7 +19,8 @@ const Wishlist = () => {
 
     return (
         <>
-            <div className="container mx-auto space-y-4 p-4">
+            <div className="w-full px-5 space-y-2 mt-4">
+                <p className="font-medium">List Wishlist User</p>
                 <div className="-m-4 flex flex-wrap">
                     {wishlists?.map((wishlist) =>
                         products

@@ -30,7 +30,7 @@ import AllProduct from "./components/AllProduct";
 import Wishlisted from "./components/Wishlisted";
 import Sold from "./components/Sold";
 import HistoryTransaksi from "./components/HistoryTransaksi";
-import UserText from "./components/UserText";
+import ProfileMenu from "./components/ProfileMenu";
 
 function App() {
     return (
@@ -67,7 +67,7 @@ function App() {
                             <Route path="sold" element={<Sold />} />
                         </Route>
                         <Route element={<UserProfile />}>
-                            <Route path="user" element={<UserText />} />
+                            <Route path="user" element={<ProfileMenu />} />
                             <Route
                                 path="/order-list"
                                 element={<HistoryTransaksi />}

@@ -26,6 +26,19 @@ export const addTransactionTawar = createAsyncThunk(
     }
 );
 
+// GET transaction by product id
+export const getTransactionById = createAsyncThunk(
+    "transaction/getTransactionById",
+    async (productId, thunkAPI) => {
+        try {
+            const response = await closedServer.get(`/transaction${productId}`);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
 // fetch all transaction
 export const fetchTransactionTawar = createAsyncThunk(
     "transaction/fetchTransactionTawar",
@@ -60,6 +73,7 @@ export const transactionSlice = createSlice({
     name: "transaction",
     initialState: transactionAdapter.getInitialState({
         data: null,
+        txById: null,
         loading: "idle",
         error: null,
     }),
@@ -76,6 +90,19 @@ export const transactionSlice = createSlice({
             state.data = action.payload;
         },
         [addTransactionTawar.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
+
+        // GET transaction by product id
+        [getTransactionById.pending]: (state) => {
+            state.loading = "pending";
+        },
+        [getTransactionById.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.txById = action.payload.transaction;
+        },
+        [getTransactionById.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

@@ -8,17 +8,36 @@ import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import dayjs from "dayjs";
 import IDR from "../utils/IDR";
+import { updateTransactionTawar } from "../redux/transactionSlice";
 
 const TransactionCard = () => {
     const dispatch = useDispatch();
     const [status] = useState("");
     const [as] = useState("seller");
 
+    const [transactionValue, setTransactionValue] = useState({
+        status:"",
+    });
+
     const transaction = useSelector(transactionSelectors.selectAll);
 
     // const clicked = () => {
     //     setModalOn(true);
     // };
+
+    const onChange = (e) => {
+        setTransactionValue({
+            ...transactionValue,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        transactionValue.name && status.set("status", transactionValue.status);
+        dispatch(updateTransactionTawar({ status }));
+    };
 
     useEffect(() => {
         dispatch(fetchTransactionTawar({ status, as }));
@@ -75,7 +94,7 @@ const TransactionCard = () => {
                         </div>
                     )}
 
-                        {tx.status === "ACCEPTED" && (
+                    {tx.status === "ACCEPTED" && (
                         <div className="flex justify-evenly sm:justify-end">
                             <button className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
                                 Status

@@ -41,6 +41,19 @@ export const fetchTransactionTawar = createAsyncThunk(
     }
 );
 
+// update status transaction
+export const updateTransactionTawar = createAsyncThunk(
+    "transaction/updateTransactionTawar",
+    async ({ status }, thunkAPI) => {
+        try {
+            const response = await closedServer.put(`/transaction`, status);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
 const transactionAdapter = createEntityAdapter();
 
 export const transactionSlice = createSlice({
@@ -80,6 +93,20 @@ export const transactionSlice = createSlice({
         [fetchTransactionTawar.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
+        },
+
+        // PUT TransactionTawar
+        [updateTransactionTawar.pending]: (state) => {
+            state.spinner = true;
+            transactionAdapter.removeAll(state);
+        },
+        [updateTransactionTawar.fulfilled]: (state, action) => {
+            state.spinner = false;
+            transactionAdapter.addOne(state, action.payload.transactionProduct);
+        },
+        [updateTransactionTawar.rejected]: (state, action) => {
+            state.spinner = false;
+            state.error = action.payload || "SOMETHING WRONG!!";
         },
     },
 });

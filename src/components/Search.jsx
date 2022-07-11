@@ -3,6 +3,10 @@ import { useDispatch } from "react-redux";
 import { keywordQuery } from "../redux/productsSlice";
 import { FiSearch } from "react-icons/fi";
 
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
+
 const Search = () => {
     const location = useLocation();
     const dispatch = useDispatch();
@@ -14,11 +18,10 @@ const Search = () => {
                 <FiSearch className="h-5 w-5" />
             </span>
             <input
-                className={
-                    location.pathname === "/"
-                        ? "w-full rounded-2xl py-3 pl-6 pr-14 placeholder:text-neutral-03 focus:outline-none sm:bg-gray"
-                        : "w-full rounded-2xl bg-gray py-3 pl-6 pr-14 placeholder:text-neutral-03 focus:outline-none"
-                }
+                className={className(
+                    location.pathname === "/" ? "sm:bg-gray" : "bg-gray",
+                    "w-full rounded-2xl py-3 pl-6 pr-14 placeholder:text-neutral-03 focus:shadow-sm focus:outline-none"
+                )}
                 placeholder="Cari di sini ..."
                 type="text"
                 name="search"

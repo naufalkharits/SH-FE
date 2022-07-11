@@ -7,6 +7,11 @@ import { FiLogIn, FiLogOut, FiMenu, FiX } from "react-icons/fi";
 import Search from "./Search";
 import SecondHand from "../images/SecondHand.png";
 import AltFoto from "../images/AltFoto.png";
+import { BiStore } from "react-icons/bi";
+
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
 
 const MobileMenu = ({ drops }) => {
     const location = useLocation();
@@ -17,13 +22,14 @@ const MobileMenu = ({ drops }) => {
     return (
         <>
             <Popover.Button
-                className={
+                className={className(
                     location.pathname === "/"
-                        ? `rounded-2xl bg-white p-2 sm:hidden sm:bg-gray`
-                        : `rounded-2xl bg-gray p-2 sm:hidden`
-                }
+                        ? "bg-white sm:bg-gray"
+                        : "bg-gray",
+                    "rounded-2xl p-2 hover:shadow-sm sm:hidden"
+                )}
             >
-                <FiMenu className="h-8 w-8 " />
+                <FiMenu className="h-8 w-8 text-neutral-03" />
             </Popover.Button>
             <Transition
                 as={Fragment}
@@ -46,7 +52,7 @@ const MobileMenu = ({ drops }) => {
                                         navigate("/");
                                     }}
                                 />
-                                <Popover.Button className="rounded-full p-2 hover:bg-gray">
+                                <Popover.Button className="rounded-full p-2 hover:shadow-sm">
                                     <FiX className="h-6 w-6" />
                                 </Popover.Button>
                             </div>
@@ -54,28 +60,30 @@ const MobileMenu = ({ drops }) => {
                             <div className="mt-4 space-y-1 font-medium">
                                 <Link
                                     to="/user"
-                                    className="mb-2 flex items-center gap-1 rounded-md px-2 py-4 shadow"
+                                    className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow"
                                 >
-                                    <img
-                                        className="h-8"
-                                        src={drops?.picture || AltFoto}
-                                        alt=""
-                                    />
-                                    <span className="font-bold">
-                                        {drops?.name}
-                                    </span>
+                                    <div className="flex items-center gap-1">
+                                        <img
+                                            className="h-8"
+                                            src={drops?.picture || AltFoto}
+                                            alt=""
+                                        />
+                                        <span className="font-bold">
+                                            {drops?.name}
+                                        </span>
+                                    </div>
+                                    <Link
+                                        to="/manage-product"
+                                        className="rounded-md p-2 shadow hover:bg-gray"
+                                    >
+                                        <BiStore className="h-6 w-6" />
+                                    </Link>
                                 </Link>
                                 <Link
                                     to="/notification"
                                     className="block rounded-md p-2 hover:bg-gray"
                                 >
                                     Notifikasi
-                                </Link>
-                                <Link
-                                    to="/manage-product"
-                                    className="block rounded-md p-2 hover:bg-gray"
-                                >
-                                    Cek Toko
                                 </Link>
                                 <Link
                                     to="/user/infopenawar"

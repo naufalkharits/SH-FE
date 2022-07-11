@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { FiList } from "react-icons/fi";
-import { BiStore, BiStoreAlt } from "react-icons/bi";
+import { BiStoreAlt } from "react-icons/bi";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -43,7 +43,7 @@ const ListDropdown = () => {
                                         >
                                             <BiStoreAlt className="h-6 w-6" />
                                             <span className="font-medium">
-                                                Cek Toko
+                                                Toko Saya
                                             </span>
                                         </Link>
                                         <Link

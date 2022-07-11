@@ -12,7 +12,7 @@ import Notification from "./pages/Notification";
 import PreviewProduct from "./pages/PreviewProduct";
 import Wishlist from "./pages/Wishlist";
 import AddProduct from "./pages/AddProduct";
-import EditProfil from "./pages/EditProfil";
+import EditProfile from "./pages/EditProfile";
 import ManageProduct from "./pages/ManageProduct";
 import InfoPenawar from "./pages/InfoPenawar";
 import DetailProduct from "./pages/DetailProduct";
@@ -88,7 +88,7 @@ function App() {
                             path="/manage-product/preview/:productId"
                             element={<PreviewProduct />}
                         />
-                        <Route path="/user/profile" element={<EditProfil />} />
+                        <Route path="/user/profile" element={<EditProfile />} />
                         <Route
                             path="/user/infopenawar"
                             element={<InfoPenawar />}

@@ -98,13 +98,23 @@ const Register = () => {
                     </div>
                     <button
                         className={className(
-                            loading === "pending"
-                                ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
-                                : "bg-primary-purple-04 hover:bg-primary-purple-05",
+                            !formValue.email || !formValue.password
+                                ? "bg-neutral-02"
+                                : "",
+                            loading === "pending" &&
+                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                            formValue.email &&
+                                formValue.password &&
+                                loading === "idle" &&
+                                "bg-primary-purple-04 hover:bg-primary-purple-05",
                             "w-full rounded-2xl py-3 px-4 font-bold text-white"
                         )}
                         type="submit"
-                        disabled={loading === "pending" ? true : false}
+                        disabled={
+                            !formValue.email ||
+                            !formValue.password ||
+                            loading === "pending"
+                        }
                         onClick={() => {
                             setShow(true);
                         }}

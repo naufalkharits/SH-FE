@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FiCamera, FiArrowLeft, FiChevronDown } from "react-icons/fi";
 import { me, updateBiodata } from "../redux/authSlice";
 
-const EditProfil = () => {
+const EditProfile = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { user, profile } = useSelector((state) => state.auth);
@@ -50,7 +50,7 @@ const EditProfil = () => {
     };
 
     useEffect(() => {
-        dispatch(me(user.accessToken.token));
+        dispatch(me(user?.accessToken.token));
         setFormData(new FormData());
     }, [user, dispatch]);
 
@@ -218,4 +218,4 @@ const EditProfil = () => {
     );
 };
 
-export default EditProfil;
+export default EditProfile;

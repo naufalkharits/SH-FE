@@ -50,7 +50,7 @@ const UserDropdown = ({ drops }) => {
                                                 src={drops?.picture || AltFoto}
                                                 alt=""
                                             />
-                                            <span className="font-medium">
+                                            <span className="truncate font-medium">
                                                 {drops?.name}
                                             </span>
                                         </Link>

@@ -62,7 +62,7 @@ const MobileMenu = ({ drops }) => {
                                     to="/user"
                                     className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow"
                                 >
-                                    <div className="flex items-center gap-1">
+                                    <div className="flex items-center gap-2">
                                         <img
                                             className="h-8"
                                             src={drops?.picture || AltFoto}

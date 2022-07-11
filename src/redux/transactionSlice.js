@@ -31,7 +31,9 @@ export const getTransactionById = createAsyncThunk(
     "transaction/getTransactionById",
     async (productId, thunkAPI) => {
         try {
-            const response = await closedServer.get(`/transaction${productId}`);
+            const response = await closedServer.get(
+                `/transaction/${productId}`
+            );
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);

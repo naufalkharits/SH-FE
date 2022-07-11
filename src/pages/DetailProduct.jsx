@@ -5,14 +5,16 @@ import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { me } from "../redux/authSlice";
 import {
     deleteProduct,
     getProductById,
     productsSelectors,
 } from "../redux/productsSlice";
 import { getWishlistById } from "../redux/wishlistSlice";
-import { addTransactionTawar } from "../redux/transactionSlice";
+import {
+    addTransactionTawar,
+    getTransactionById,
+} from "../redux/transactionSlice";
 import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import WishlistButton from "../components/buttons/WishlistButton";
@@ -53,6 +55,7 @@ const DetailProduct = () => {
     };
 
     useEffect(() => {
+        user && dispatch(getTransactionById(productId));
         dispatch(getProductById(productId));
         user && dispatch(getWishlistById(productId));
     }, [user, productId, dispatch]);

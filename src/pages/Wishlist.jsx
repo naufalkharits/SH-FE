@@ -7,40 +7,32 @@ import ProductCard from "../components/ProductCard";
 const Wishlist = () => {
     const dispatch = useDispatch();
     const { wishlists } = useSelector((state) => state.wishlist);
-    const { keyword, category, offset } = useSelector(
-        (state) => state.products
-    );
-    const products = useSelector(productsSelectors.selectAll);
 
     useEffect(() => {
-        dispatch(getProducts({ keyword, category, offset }));
         dispatch(getWishlistBuyer());
-    }, [keyword, category, offset, dispatch]);
+    }, [dispatch]);
 
     return (
         <>
             <div className="w-full px-5 space-y-2 mt-4">
                 <p className="font-medium">List Wishlist User</p>
                 <div className="-m-4 flex flex-wrap">
-                    {wishlists?.map((wishlist) =>
-                        products
-                            .filter(
-                                (product) => product.id === wishlist?.product_id
-                            )
-                            .map((product) => (
-                                <div
-                                    className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
-                                    key={product.id}
-                                >
-                                    <ProductCard
-                                        id={product.id}
-                                        name={product.name}
-                                        price={product.price}
-                                        category={product.category}
-                                        pictures={product.pictures[0]}
-                                    />
-                                </div>
-                            ))
+                    {wishlists?.map((wishlist) => {
+                        return (
+                            <div
+                                className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
+                                key={wishlist.product.id}
+                            >
+                                <ProductCard
+                                    id={wishlist.product.id}
+                                    name={wishlist.product.name}
+                                    price={wishlist.product.price}
+                                    category={wishlist.product.category}
+                                    pictures={wishlist.product.pictures[0]}
+                                />
+                            </div>
+                        )
+                    }
                     )}
                 </div>
             </div>

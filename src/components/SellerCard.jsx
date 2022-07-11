@@ -1,18 +1,11 @@
-import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { FiEdit2 } from "react-icons/fi";
-import { getBiodata } from "../redux/authSlice";
 import AltFoto from "../images/AltFoto.png";
 
-const SellerCard = ({ seller_id, id }) => {
+const SellerCard = ({ loading, id, name, picture, city }) => {
     const location = useLocation();
-    const dispatch = useDispatch();
-    const { bio, loading } = useSelector((state) => state.auth);
-
-    useEffect(() => {
-        seller_id && dispatch(getBiodata(seller_id));
-    }, [seller_id, dispatch]);
+    const { profile } = useSelector((state) => state.auth);
 
     return (
         <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
@@ -21,7 +14,7 @@ const SellerCard = ({ seller_id, id }) => {
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray"></div>
                 ) : (
                     <img
-                        src={bio?.picture || AltFoto}
+                        src={picture || AltFoto}
                         alt=""
                         className="h-12 w-12 rounded-xl"
                     />
@@ -35,7 +28,7 @@ const SellerCard = ({ seller_id, id }) => {
                                 : ""
                         }
                     >
-                        {bio?.name}
+                        {name}
                     </div>
                     <div
                         className={
@@ -44,7 +37,7 @@ const SellerCard = ({ seller_id, id }) => {
                                 : "text-xs text-neutral-03"
                         }
                     >
-                        {bio?.city}
+                        {city}
                     </div>
                 </div>
             </div>
@@ -52,7 +45,7 @@ const SellerCard = ({ seller_id, id }) => {
                 <></>
             ) : (
                 <>
-                    {seller_id === id && (
+                    {id === profile?.id && (
                         <Link
                             to="/user/profile"
                             state={{ from: location }}

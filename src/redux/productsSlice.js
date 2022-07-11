@@ -16,7 +16,7 @@ export const getFilteredProduct = createAsyncThunk(
         try {
             const response = await openServer.get("/product");
             return response.data.products.filter(
-                (product) => product.seller_id === id
+                (product) => product.seller.user_id === id
             );
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);

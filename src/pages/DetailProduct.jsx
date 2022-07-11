@@ -15,7 +15,6 @@ import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
 import WishlistButton from "../components/buttons/WishlistButton";
 import SellerCard from "../components/SellerCard";
-import PublishButton from "../components/buttons/PublishButton";
 import EditButton from "../components/buttons/EditButton";
 import IDR from "../utils/IDR";
 import { CgSpinner } from "react-icons/cg";
@@ -75,7 +74,7 @@ const DetailProduct = () => {
                         <div className="flex flex-col gap-4 sm:flex-row">
                             <div
                                 className={className(
-                                    product?.seller_id === profile?.id
+                                    product?.seller.user_id === profile?.id
                                         ? "sm:w-2/3 lg:w-3/4"
                                         : "sm:w-3/5 lg:w-2/3",
                                     "space-y-4"
@@ -117,7 +116,7 @@ const DetailProduct = () => {
                             </div>
                             <div
                                 className={className(
-                                    product?.seller_id === profile?.id
+                                    product?.seller.user_id === profile?.id
                                         ? "sm:w-1/3 lg:w-1/4"
                                         : "sm:w-2/5 lg:w-1/3",
                                     "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
@@ -154,7 +153,7 @@ const DetailProduct = () => {
                                     {loading === "pending" ? (
                                         <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
                                     ) : user &&
-                                      product?.seller_id === profile?.id ? (
+                                      product?.seller.user_id === profile?.id ? (
                                         <>
                                             {/* <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                                 Terbitkan
@@ -212,12 +211,15 @@ const DetailProduct = () => {
                                         </button>
                                     )}
                                 </div>
-                                {user && product?.seller_id !== profile?.id && (
+                                {user && product?.seller.user_id !== profile?.id && (
                                     <WishlistButton />
                                 )}
                                 <SellerCard
-                                    seller_id={product?.seller_id}
-                                    id={profile?.id}
+                                    loading={loading}
+                                    id={product?.seller.user_id}
+                                    name={product?.seller.name}
+                                    picture={product?.seller.picture}
+                                    city={product?.seller.city}
                                 />
                             </div>
                             <div className="mb-8 px-4 sm:hidden sm:px-0">
@@ -242,7 +244,7 @@ const DetailProduct = () => {
                             </div>
                         </div>
                     </div>
-                    {user && product?.seller_id === profile?.id ? (
+                    {user && product?.seller.user_id === profile?.id ? (
                         // <PublishButton />
                         <EditButton productId={productId} />
                     ) : (

@@ -74,6 +74,20 @@ const TransactionCard = () => {
                             </button>
                         </div>
                     )}
+
+                        {tx.status === "ACCEPTED" && (
+                        <div className="flex justify-evenly sm:justify-end">
+                            <button className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
+                                Status
+                            </button>
+                            <button
+                                // onClick={clicked}
+                                className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
+                            >
+                                Hubungi di WhatsApp
+                            </button>
+                        </div>
+                    )}
                     <div className="h-px bg-[#E5E5E5]"></div>
                 </div>
             ))}

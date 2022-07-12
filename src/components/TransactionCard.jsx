@@ -34,10 +34,17 @@ const TransactionCard = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
         transactionValue.name && status.set("status", transactionValue.status);
         dispatch(updateTransactionTawar({ status }));
     };
+
+    useEffect(() => {
+        status &&
+            transactionValue({
+                name: status.status,
+                
+            });
+    }, [status]);
 
     useEffect(() => {
         dispatch(fetchTransactionTawar({ status, as }));
@@ -46,7 +53,7 @@ const TransactionCard = () => {
     return (
         <>
             {transaction?.map((tx) => (
-                <div key={tx.id} className="mb-5 space-y-6">
+                <div key={tx.id} onSubmit={onSubmit} className="mb-5 space-y-6">
                     <div className="flex gap-6 rounded-xl">
                         <Swiper className="h-14 w-16 rounded-xl object-cover">
                             {tx.product.pictures.map((picture) => (
@@ -82,11 +89,16 @@ const TransactionCard = () => {
                     </div>
                     {tx.status === "PENDING" && (
                         <div className="flex justify-evenly sm:justify-end">
-                            <button className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
+                            <button 
+                            value={transactionValue.status ? transactionValue.status : "REJECTED"}
+                            onChange={onChange}
+                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
                                 Tolak
                             </button>
                             <button
                                 // onClick={clicked}
+                                value={transactionValue.status ? transactionValue.status : "ACCEPTED"}
+                                onChange={onChange}
                                 className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
                             >
                                 Terima

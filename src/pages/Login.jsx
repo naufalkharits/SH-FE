@@ -135,10 +135,12 @@ const Login = () => {
                     }}
                 /> */}
                 <button
-                className="flex justify-center items-center w-full py-3 px-4 rounded-2xl border border-neutral-05 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
+                className="flex justify-between items-center w-full py-3 px-4 font-bold text-blue-500 rounded-2xl border border-neutral-05 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
                 onClick={() => LoginGoogle()}
             >
-                Login With Google <FcGoogle className="ml-2 bg-white rounded-2xl" />
+                <FcGoogle className="text-2xl bg-white rounded-2xl" />
+                <p>Sign In With Google</p>
+                <div className="w-5"></div>
             </button>
                 <p className="text-sm">
                     Belum punya akun?{" "}

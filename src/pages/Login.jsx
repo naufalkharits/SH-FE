@@ -1,25 +1,23 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useGoogleLogin } from "@react-oauth/google";
+import { GoogleLogin } from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
 import { FiArrowLeft } from "react-icons/fi";
 import { CgSpinner } from "react-icons/cg";
 import { login } from "../redux/authSlice";
 import DangerToast from "../components/toasts/DangerToast";
 import SecondHand from "../images/SecondHand.png";
-import { useGoogleLogin } from "@react-oauth/google";
-import { FcGoogle } from "react-icons/fc";
-import { GoogleLogin } from '@react-oauth/google';
-
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
 const Login = () => {
-
     const LoginGoogle = useGoogleLogin({
-        onSuccess: codeResponse => console.log(codeResponse),
-        flow: 'auth-code'
+        onSuccess: (codeResponse) => console.log(codeResponse),
+        flow: "auth-code",
     });
 
     const navigate = useNavigate();
@@ -97,11 +95,11 @@ const Login = () => {
                                 ? "bg-neutral-02"
                                 : "",
                             loading === "pending" &&
-                            "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
                             formValue.email &&
-                            formValue.password &&
-                            loading === "idle" &&
-                            "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                formValue.password &&
+                                loading === "idle" &&
+                                "bg-primary-purple-04 hover:bg-primary-purple-05",
                             "w-full rounded-2xl py-3 px-4 font-bold text-white"
                         )}
                         type="submit"
@@ -124,7 +122,7 @@ const Login = () => {
                         )}
                     </button>
                 </form>
-                <p className="w-full text-center mb-8">Or</p>
+                <p className="mb-8 w-full text-center">Or</p>
 
                 {/* <GoogleLogin
                     onSuccess={credentialResponse => {
@@ -135,13 +133,13 @@ const Login = () => {
                     }}
                 /> */}
                 <button
-                className="flex justify-between items-center w-full py-3 px-4 font-bold text-blue-500 rounded-2xl border border-neutral-05 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
-                onClick={() => LoginGoogle()}
-            >
-                <FcGoogle className="text-2xl bg-white rounded-2xl" />
-                <p>Sign In With Google</p>
-                <div className="w-5"></div>
-            </button>
+                    className="flex w-full items-center justify-between rounded-2xl border border-neutral-05 py-3 px-4 font-bold text-blue-500 hover:border-blue-500 hover:bg-blue-500 hover:text-white"
+                    onClick={() => LoginGoogle()}
+                >
+                    <FcGoogle className="rounded-2xl bg-white text-2xl" />
+                    <p>Sign In With Google</p>
+                    <div className="w-5"></div>
+                </button>
                 <p className="text-sm">
                     Belum punya akun?{" "}
                     <Link

@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const Auth = () => {
     return (
@@ -9,10 +10,9 @@ const Auth = () => {
                 </div>
             </div>
             <div className="sm:w-1/2 xl:w-1/3">
-                {/* <div className="mb-4 text-4xl font-bold text-white sm:hidden">
-                    Second Hand.
-                </div> */}
-                <Outlet />
+                <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
+                    <Outlet />
+                </GoogleOAuthProvider>
             </div>
         </div>
     );

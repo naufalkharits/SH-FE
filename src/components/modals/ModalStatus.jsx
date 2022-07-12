@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { FiX } from "react-icons/fi";
 
-const ModalStatus = ({ setModalOn, onSubmit, setNewStatus }) => {
+const ModalStatus = ({ setModalOn, setUpdate, onSubmit }) => {
     const handleCancelClick = () => {
         // setChoice(false);
         setModalOn(false);
@@ -19,59 +18,64 @@ const ModalStatus = ({ setModalOn, onSubmit, setNewStatus }) => {
                             />
                         </div>
                         <div className="mb-8 space-y-6">
-                            <form onSubmit={onSubmit} id="myForm">
-                            <div className="font-medium">
-                                Perbarui status penjualan produkmu
-                            </div>
-                            <div className="flex">
-                                <div className="flex h-5 items-center">
-                                    <input
-                                        className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
-                                        type="radio"
-                                        name="radio"
-                                        value="COMPLETED"
-                                        onChange={(e) => {
-                                            setNewStatus(e.target.value)
-                                        }
-                                        }
-                                    />
+                            <form id="updateStatus" onSubmit={onSubmit}>
+                                <div className="font-medium">
+                                    Perbarui status penjualan produkmu
                                 </div>
-                                <div className="ml-4 space-y-2 text-sm">
-                                    <label className="text-neutral-05">
-                                        Berhasil terjual
-                                    </label>
-                                    <p className="text-xs text-neutral-03">
-                                        Kamu telah sepakat menjual produk ini
-                                        kepada pembeli
-                                    </p>
+                                <div className="flex">
+                                    <div className="flex h-5 items-center">
+                                        <input
+                                            className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
+                                            type="radio"
+                                            name="radio"
+                                            value="COMPLETED"
+                                            onChange={(e) => {
+                                                setUpdate({
+                                                    status: e.target.value,
+                                                });
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="ml-4 space-y-2 text-sm">
+                                        <label className="text-neutral-05">
+                                            Berhasil terjual
+                                        </label>
+                                        <p className="text-xs text-neutral-03">
+                                            Kamu telah sepakat menjual produk
+                                            ini kepada pembeli
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex">
-                                <div className="flex h-5 items-center">
-                                    <input
-                                        className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
-                                        type="radio"
-                                        name="radio"
-                                        value="REJECTED"
-                                        onChange={(e) => {
-                                            setNewStatus(e.target.value)
-                                        }
-                                        }
-                                    />
+                                <div className="flex">
+                                    <div className="flex h-5 items-center">
+                                        <input
+                                            className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
+                                            type="radio"
+                                            name="radio"
+                                            value="REJECTED"
+                                            onChange={(e) => {
+                                                setUpdate({
+                                                    status: e.target.value,
+                                                });
+                                            }}
+                                        />
+                                    </div>
+                                    <div className="ml-4 space-y-2 text-sm">
+                                        <label className="text-neutral-05">
+                                            Batalkan transaksi
+                                        </label>
+                                        <p className="text-xs text-neutral-03">
+                                            Kamu membatalkan transaksi produk
+                                            ini dengan pembeli
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="ml-4 space-y-2 text-sm">
-                                    <label className="text-neutral-05">
-                                        Batalkan transaksi
-                                    </label>
-                                    <p className="text-xs text-neutral-03">
-                                        Kamu membatalkan transaksi produk ini
-                                        dengan pembeli
-                                    </p>
-                                </div>
-                            </div>
                             </form>
                         </div>
-                        <button form="myForm" className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05">
+                        <button
+                            form="updateStatus"
+                            className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05"
+                        >
                             Kirim
                         </button>
                     </div>

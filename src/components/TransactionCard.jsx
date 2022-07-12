@@ -89,11 +89,8 @@ const TransactionCard = () => {
                                 Tolak
                             </button>
                             <button
-                                className=
-                                    "w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
-                                    onClick={() => {
-                                    setIsModalOn(true);
-                                }}
+                            onClick={() => {clicked(tx?.id, 'ACCEPTED', tx?.price)}}
+                            className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
                             >
                                 Terima
                             </button>

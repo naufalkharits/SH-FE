@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FiX } from "react-icons/fi";
 
-const ModalStatus = ({ setModalOn, setChoice }) => {
+const ModalStatus = ({ setModalOn, onSubmit, setNewStatus }) => {
     const handleCancelClick = () => {
-        setChoice(false);
+        // setChoice(false);
         setModalOn(false);
     };
 
@@ -19,6 +19,7 @@ const ModalStatus = ({ setModalOn, setChoice }) => {
                             />
                         </div>
                         <div className="mb-8 space-y-6">
+                            <form onSubmit={onSubmit} id="myForm">
                             <div className="font-medium">
                                 Perbarui status penjualan produkmu
                             </div>
@@ -28,6 +29,11 @@ const ModalStatus = ({ setModalOn, setChoice }) => {
                                         className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
                                         type="radio"
                                         name="radio"
+                                        value="COMPLETED"
+                                        onChange={(e) => {
+                                            setNewStatus(e.target.value)
+                                        }
+                                        }
                                     />
                                 </div>
                                 <div className="ml-4 space-y-2 text-sm">
@@ -46,6 +52,11 @@ const ModalStatus = ({ setModalOn, setChoice }) => {
                                         className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
                                         type="radio"
                                         name="radio"
+                                        value="REJECTED"
+                                        onChange={(e) => {
+                                            setNewStatus(e.target.value)
+                                        }
+                                        }
                                     />
                                 </div>
                                 <div className="ml-4 space-y-2 text-sm">
@@ -58,8 +69,9 @@ const ModalStatus = ({ setModalOn, setChoice }) => {
                                     </p>
                                 </div>
                             </div>
+                            </form>
                         </div>
-                        <button className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05">
+                        <button form="myForm" className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05">
                             Kirim
                         </button>
                     </div>

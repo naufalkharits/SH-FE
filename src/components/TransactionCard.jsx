@@ -22,7 +22,9 @@ const TransactionCard = () => {
     const [as] = useState("seller");
     const [isModalOn, setIsModalOn] = useState(false);
     const {loading} = useSelector((state) => state.transaction )
-    // const [newStatus, setNewStatus] = useState(""); 
+    const [id, setId] = useState(null)
+    const [newStatus, setNewStatus] = useState(""); 
+    const [newPrice, setNewPrice] = useState(null);
 
     const transaction = useSelector(transactionSelectors.selectAll);
 
@@ -34,6 +36,12 @@ const TransactionCard = () => {
         dispatch(updateTransactionTawar({ id, newSt, price }));
     };
 
+    const onSubmit = (e) => {
+        e.preventDefault();
+        console.log(newStatus, newPrice);
+        dispatch(updateTransactionTawar({id, newSt:newStatus, price:newPrice }))
+    }
+
     useEffect(() => {
         loading === "idle" && 
         dispatch(fetchTransactionTawar({ status, as }));
@@ -44,6 +52,8 @@ const TransactionCard = () => {
         {isModalOn && (
             <ModalStatus
                 setIsModalOn={setIsModalOn}
+                onSubmit={onSubmit}
+                setNewStatus={setNewStatus}
             />
             )}
             {transaction?.map((tx) => (
@@ -102,12 +112,14 @@ const TransactionCard = () => {
                             <button 
                             onClick={() => {
                                 setIsModalOn(true);
+                                setId(tx?.id);
+                                setNewPrice(tx?.product?.price);
                             }}
                             className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
                                 Status
                             </button>
                             <button
-                                className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
+                                className="w-[45%] flex justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
                             >
                                 Hubungi di <BsWhatsapp/>
                             </button>

@@ -57,10 +57,10 @@ export const fetchTransactionTawar = createAsyncThunk(
 // update status transaction
 export const updateTransactionTawar = createAsyncThunk(
     "transaction/updateTransactionTawar",
-    async ({ txId, stat, price }, thunkAPI) => {
+    async ({ id, newSt, price }, thunkAPI) => {
         try {
-            const response = await closedServer.put(`/transaction/${txId}`, {
-                status: stat,
+            const response = await closedServer.put(`/transaction/${id}`, {
+                status: newSt,
                 price,
             });
             return response.data;

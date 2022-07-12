@@ -21,6 +21,7 @@ import Error from "./pages/404";
 import PublicRoutes from "./middlewares/PublicRoutes";
 import AuthRoutes from "./middlewares/AuthRoutes";
 import UnauthRoutes from "./middlewares/UnauthRoutes";
+import { GoogleOAuthProvider } from '@react-oauth/google';
 // misc
 import ModalBerhasil from "./components/modals/ModalBerhasil";
 import ModalStatus from "./components/modals/ModalStatus";
@@ -98,9 +99,9 @@ function App() {
 
                 {/* unauthRoutes */}
                 <Route element={<UnauthRoutes />}>
-                    <Route element={<Auth />}>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
+                    <Route element={<GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}> <Auth /> </GoogleOAuthProvider>}>
+                            <Route path="/login" element={ <Login />} />
+                            <Route path="/register" element={<Register />} />
                     </Route>
                 </Route>
             </Routes>

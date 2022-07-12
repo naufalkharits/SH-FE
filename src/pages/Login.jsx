@@ -6,12 +6,22 @@ import { CgSpinner } from "react-icons/cg";
 import { login } from "../redux/authSlice";
 import DangerToast from "../components/toasts/DangerToast";
 import SecondHand from "../images/SecondHand.png";
+import { useGoogleLogin } from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
+import { GoogleLogin } from '@react-oauth/google';
+
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
 const Login = () => {
+
+    const LoginGoogle = useGoogleLogin({
+        onSuccess: codeResponse => console.log(codeResponse),
+        flow: 'auth-code'
+    });
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { loading, error } = useSelector((state) => state.auth);
@@ -87,11 +97,11 @@ const Login = () => {
                                 ? "bg-neutral-02"
                                 : "",
                             loading === "pending" &&
-                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                            "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
                             formValue.email &&
-                                formValue.password &&
-                                loading === "idle" &&
-                                "bg-primary-purple-04 hover:bg-primary-purple-05",
+                            formValue.password &&
+                            loading === "idle" &&
+                            "bg-primary-purple-04 hover:bg-primary-purple-05",
                             "w-full rounded-2xl py-3 px-4 font-bold text-white"
                         )}
                         type="submit"
@@ -114,6 +124,22 @@ const Login = () => {
                         )}
                     </button>
                 </form>
+                <p className="w-full text-center mb-8">Or</p>
+
+                {/* <GoogleLogin
+                    onSuccess={credentialResponse => {
+                        console.log(credentialResponse);
+                    }}
+                    onError={() => {
+                        console.log('Login Failed');
+                    }}
+                /> */}
+                <button
+                className="flex justify-center items-center w-full py-3 px-4 rounded-2xl border border-neutral-05 hover:bg-blue-500 hover:border-blue-500 hover:text-white"
+                onClick={() => LoginGoogle()}
+            >
+                Login With Google <FcGoogle className="ml-2 bg-white rounded-2xl" />
+            </button>
                 <p className="text-sm">
                     Belum punya akun?{" "}
                     <Link

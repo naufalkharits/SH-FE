@@ -13,7 +13,7 @@ import {
 import { getWishlistById } from "../redux/wishlistSlice";
 import {
     addTransactionTawar,
-    getTransactionById,
+    getFilteredTransaction,
 } from "../redux/transactionSlice";
 import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
@@ -32,11 +32,15 @@ const DetailProduct = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
     const { user, profile } = useSelector((state) => state.auth);
+    const { filteredTx } = useSelector((state) => state.transaction);
+    const loadingTx = useSelector((state) => state.transaction.loading);
     const { loading, spinner, error } = useSelector((state) => state.products);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
 
+    const [status] = useState("");
+    const [as] = useState("buyer");
     const [isModalOn, setIsModalOn] = useState(false);
     const [price, setPrice] = useState(0);
 
@@ -55,10 +59,10 @@ const DetailProduct = () => {
     };
 
     useEffect(() => {
-        user && dispatch(getTransactionById(productId));
+        user && dispatch(getFilteredTransaction({ status, as, productId }));
         dispatch(getProductById(productId));
         user && dispatch(getWishlistById(productId));
-    }, [user, productId, dispatch]);
+    }, [user, status, as, productId, dispatch]);
 
     return (
         <>
@@ -212,14 +216,31 @@ const DetailProduct = () => {
                                             </button>
                                         </>
                                     ) : (
-                                        <button
-                                            className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
-                                            onClick={() => {
-                                                setIsModalOn(true);
-                                            }}
-                                        >
-                                            Saya tertarik dan ingin nego
-                                        </button>
+                                        loadingTx === "idle" && (
+                                            <>
+                                                {filteredTx.filter(
+                                                    (tx) =>
+                                                        tx.status === "PENDING"
+                                                ) ? (
+                                                    <button
+                                                        className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white sm:block"
+                                                        disabled
+                                                    >
+                                                        Menunggu respon penjual
+                                                    </button>
+                                                ) : (
+                                                    <button
+                                                        className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                                                        onClick={() => {
+                                                            setIsModalOn(true);
+                                                        }}
+                                                    >
+                                                        Saya tertarik dan ingin
+                                                        nego
+                                                    </button>
+                                                )}
+                                            </>
+                                        )
                                     )}
                                 </div>
                                 {user &&
@@ -260,17 +281,42 @@ const DetailProduct = () => {
                         // <PublishButton />
                         <EditButton productId={productId} />
                     ) : (
-                        <button
-                            className={className(
-                                isModalOn === true ? "hidden" : "sm:hidden",
-                                "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
-                            )}
-                            onClick={() => {
-                                setIsModalOn(true);
-                            }}
-                        >
-                            <span>Saya Tertarik dan ingin Nego</span>
-                        </button>
+                        loading === "idle" &&
+                        loadingTx === "idle" && (
+                            <>
+                                {filteredTx.filter(
+                                    (tx) => tx.status === "PENDING"
+                                ) ? (
+                                    <button
+                                        className={className(
+                                            isModalOn === true
+                                                ? "hidden"
+                                                : "sm:hidden",
+                                            "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-neutral-02 px-6 py-3.5 text-white shadow-lg shadow-neutral-02"
+                                        )}
+                                        disabled
+                                    >
+                                        <span>Menunggu respon penjual</span>
+                                    </button>
+                                ) : (
+                                    <button
+                                        className={className(
+                                            isModalOn === true
+                                                ? "hidden"
+                                                : "sm:hidden",
+                                            "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
+                                        )}
+                                        onClick={() => {
+                                            setIsModalOn(true);
+                                        }}
+                                    >
+                                        <span>
+                                            Saya Tertarik dan ingin Nego
+                                        </span>
+                                    </button>
+                                )}
+                            </>
+                        )
                     )}
                 </>
             )}

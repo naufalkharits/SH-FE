@@ -26,14 +26,12 @@ export const addTransactionTawar = createAsyncThunk(
     }
 );
 
-// GET transaction by product id
+// GET transaction by id
 export const getTransactionById = createAsyncThunk(
     "transaction/getTransactionById",
-    async (productId, thunkAPI) => {
+    async (id, thunkAPI) => {
         try {
-            const response = await closedServer.get(
-                `/transaction/${productId}`
-            );
+            const response = await closedServer.get(`/transaction/${id}`);
             return response.data;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
@@ -41,7 +39,7 @@ export const getTransactionById = createAsyncThunk(
     }
 );
 
-// fetch all transaction
+// GET all transaction
 export const fetchTransactionTawar = createAsyncThunk(
     "transaction/fetchTransactionTawar",
     async ({ status, as }, thunkAPI) => {
@@ -60,13 +58,35 @@ export const fetchTransactionTawar = createAsyncThunk(
 export const updateTransactionTawar = createAsyncThunk(
     "transaction/updateTransactionTawar",
     async ({ id, newSt, price }, thunkAPI) => {
-        console.log( id, newSt, price);
+        console.log(id, newSt, price);
         try {
             const response = await closedServer.put(`/transaction/${id}`, {
-                status: newSt, 
-                price 
+                status: newSt,
+                price,
             });
             return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
+// GET filtered transaction
+export const getFilteredTransaction = createAsyncThunk(
+    "transaction/getFilteredTransaction",
+    async ({ status, as, productId }, thunkAPI) => {
+        try {
+            const response = await closedServer.get(
+                `/transaction?status=${status}&as=${as}`
+            );
+            // console.log(
+            //     response.data.transactions.filter(
+            //         (tx) => tx.product.id === Number(productId)
+            //     )
+            // );
+            return response.data.transactions.filter(
+                (tx) => tx.product.id === Number(productId)
+            );
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);
         }
@@ -80,6 +100,7 @@ export const transactionSlice = createSlice({
     initialState: transactionAdapter.getInitialState({
         data: null,
         txById: null,
+        filteredTx: null,
         loading: "idle",
         error: null,
     }),
@@ -124,6 +145,19 @@ export const transactionSlice = createSlice({
             transactionAdapter.setAll(state, action.payload.transactions);
         },
         [fetchTransactionTawar.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
+
+        // GET filtered transaction
+        [getFilteredTransaction.pending]: (state) => {
+            state.loading = "pending";
+        },
+        [getFilteredTransaction.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.filteredTx = action.payload;
+        },
+        [getFilteredTransaction.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

@@ -84,7 +84,9 @@ export const getFilteredTransaction = createAsyncThunk(
             //     )
             // );
             return response.data.transactions.filter(
-                (tx) => tx.product.id === Number(productId)
+                (tx) =>
+                    tx.product.id === Number(productId) &&
+                    tx.status === "PENDING"
             );
         } catch (error) {
             return thunkAPI.rejectWithValue(error.response.data);

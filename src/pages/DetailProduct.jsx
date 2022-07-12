@@ -218,10 +218,7 @@ const DetailProduct = () => {
                                     ) : (
                                         loadingTx === "idle" && (
                                             <>
-                                                {filteredTx.filter(
-                                                    (tx) =>
-                                                        tx.status === "PENDING"
-                                                ) ? (
+                                                {filteredTx?.length !== 0 ? (
                                                     <button
                                                         className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white sm:block"
                                                         disabled
@@ -284,9 +281,7 @@ const DetailProduct = () => {
                         loading === "idle" &&
                         loadingTx === "idle" && (
                             <>
-                                {filteredTx.filter(
-                                    (tx) => tx.status === "PENDING"
-                                ) ? (
+                                {filteredTx?.length !== 0 ? (
                                     <button
                                         className={className(
                                             isModalOn === true

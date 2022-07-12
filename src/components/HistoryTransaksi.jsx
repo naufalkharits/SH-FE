@@ -7,6 +7,7 @@ import {
 } from "../redux/transactionSlice";
 import IDR from "../utils/IDR";
 import { Swiper, SwiperSlide } from "swiper/react";
+import TransactionSkeleton from './skeletons/TransactionSkeleton';
 
 const HistoryTransaksi = () => {
     const dispatch = useDispatch();
@@ -15,9 +16,7 @@ const HistoryTransaksi = () => {
 
     const transaction = useSelector(transactionSelectors.selectAll);
 
-    // const clicked = () => {
-    //     setModalOn(true);
-    // };
+    const { loading } = useSelector((state) => state.transaction);
 
     useEffect(() => {
         dispatch(fetchTransactionTawar({ status, as }));
@@ -27,7 +26,10 @@ const HistoryTransaksi = () => {
         <>
             <div className="w-full px-5 space-y-5 mt-4">
                 <p className="font-medium">History Pembelian Produk</p>
-                {transaction?.map((tx) => (
+                {loading === "pending" ? (
+                    <TransactionSkeleton />
+                ) : 
+                transaction?.map((tx) => (
                     <div key={tx.id} className="w-full space-y-7">
                         <div className="flex gap-6 rounded-xl">
                             <Swiper className="h-14 w-16 rounded-xl object-cover">
@@ -41,11 +43,6 @@ const HistoryTransaksi = () => {
                                     </SwiperSlide>
                                 ))}
                             </Swiper>
-                            {/* <img
-                                src="/img/jam-2.png"
-                                alt=""
-                                className="h-14 w-14 rounded-xl object-cover"
-                            /> */}
                             <div className="w-full space-y-1">
                                 <div className="flex justify-between text-xs text-neutral-03">
                                     <p>Penawaran Produk</p>

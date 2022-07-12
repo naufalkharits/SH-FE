@@ -25,11 +25,11 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                 <div>
                     <IDR price={price} />
                 </div>
-                {location.pathname === "/wishlist" && (
+                {location.pathname === "/wishlist" || location.pathname === "/user" ? (
                     <button className="w-full rounded-2xl border border-primary-purple-04 p-2 font-medium hover:bg-primary-purple-05 hover:text-white ">
                         Beli
                     </button>
-                )}
+                ) : ( <></> )}
             </div>
         </>
     );

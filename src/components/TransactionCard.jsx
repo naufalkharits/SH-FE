@@ -5,11 +5,11 @@ import {
 } from "../redux/transactionSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import dayjs from "dayjs";
 import IDR from "../utils/IDR";
 import { updateTransactionTawar } from "../redux/transactionSlice";
+import { BsWhatsapp } from "react-icons/bs";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -96,14 +96,15 @@ const TransactionCard = () => {
 
                     {tx.status === "ACCEPTED" && (
                         <div className="flex justify-evenly sm:justify-end">
-                            <button className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
+                            <button 
+                            // onClick={onClick}
+                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
                                 Status
                             </button>
                             <button
-                                // onClick={clicked}
                                 className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
                             >
-                                Hubungi di WhatsApp
+                                Hubungi di <BsWhatsapp/>
                             </button>
                         </div>
                     )}

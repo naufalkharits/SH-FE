@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Swiper, SwiperSlide } from "swiper/react";
 import dayjs from "dayjs";
 import IDR from "../utils/IDR";
+import ModalStatus from "../components/modals/ModalStatus";
 import { updateTransactionTawar } from "../redux/transactionSlice";
 import { BsWhatsapp } from "react-icons/bs";
 
@@ -21,7 +22,7 @@ const TransactionCard = () => {
     const [as] = useState("seller");
     const [isModalOn, setIsModalOn] = useState(false);
     const {loading} = useSelector((state) => state.transaction )
-    const [newStatus, setNewStatus] = useState(""); 
+    // const [newStatus, setNewStatus] = useState(""); 
 
     const transaction = useSelector(transactionSelectors.selectAll);
 
@@ -40,6 +41,11 @@ const TransactionCard = () => {
 
     return (
         <>
+        {isModalOn && (
+            <ModalStatus
+                setIsModalOn={setIsModalOn}
+            />
+            )}
             {transaction?.map((tx) => (
                 <div key={tx.id} className="mb-5 space-y-6">
                     <div className="flex gap-6 rounded-xl">
@@ -97,7 +103,9 @@ const TransactionCard = () => {
                     {tx.status === "ACCEPTED" && (
                         <div className="flex justify-evenly sm:justify-end">
                             <button 
-                            // onClick={onClick}
+                            onClick={() => {
+                                setIsModalOn(true);
+                            }}
                             className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
                                 Status
                             </button>

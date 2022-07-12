@@ -5,55 +5,43 @@ import {
 } from "../redux/transactionSlice";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import dayjs from "dayjs";
 import IDR from "../utils/IDR";
 import { updateTransactionTawar } from "../redux/transactionSlice";
 
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
+
 const TransactionCard = () => {
     const dispatch = useDispatch();
-    const [status] = useState("");
+    const [status, setStatus] = useState("");
     const [as] = useState("seller");
-
-    const [transactionValue, setTransactionValue] = useState({
-        status:"",
-    });
+    const [isModalOn, setIsModalOn] = useState(false);
+    const {loading} = useSelector((state) => state.transaction )
+    const [newStatus, setNewStatus] = useState(""); 
 
     const transaction = useSelector(transactionSelectors.selectAll);
 
-    // const clicked = () => {
-    //     setModalOn(true);
-    // };
-
-    const onChange = (e) => {
-        setTransactionValue({
-            ...transactionValue,
-            [e.target.name]: e.target.value,
-        });
-    };
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        transactionValue.name && status.set("status", transactionValue.status);
-        dispatch(updateTransactionTawar({ status }));
+    const clicked = (id, st, price) => {
+        const newSt = String(st)
+        console.log(newSt);
+        // setStatus(st)
+        console.log(id, st);
+        dispatch(updateTransactionTawar({ id, newSt, price }));
     };
 
     useEffect(() => {
-        status &&
-            transactionValue({
-                name: status.status,
-                
-            });
-    }, [status]);
-
-    useEffect(() => {
+        loading === "idle" && 
         dispatch(fetchTransactionTawar({ status, as }));
     }, [status, as, dispatch]);
 
     return (
         <>
             {transaction?.map((tx) => (
-                <div key={tx.id} onSubmit={onSubmit} className="mb-5 space-y-6">
+                <div key={tx.id} className="mb-5 space-y-6">
                     <div className="flex gap-6 rounded-xl">
                         <Swiper className="h-14 w-16 rounded-xl object-cover">
                             {tx.product.pictures.map((picture) => (
@@ -90,16 +78,16 @@ const TransactionCard = () => {
                     {tx.status === "PENDING" && (
                         <div className="flex justify-evenly sm:justify-end">
                             <button 
-                            value={transactionValue.status ? transactionValue.status : "REJECTED"}
-                            onChange={onChange}
+                            onClick={() => {clicked(tx?.id, 'REJECTED', tx?.price)}}
                             className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]">
                                 Tolak
                             </button>
                             <button
-                                // onClick={clicked}
-                                value={transactionValue.status ? transactionValue.status : "ACCEPTED"}
-                                onChange={onChange}
-                                className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
+                                className=
+                                    "w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
+                                    onClick={() => {
+                                    setIsModalOn(true);
+                                }}
                             >
                                 Terima
                             </button>

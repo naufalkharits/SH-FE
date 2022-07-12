@@ -121,7 +121,7 @@ const TransactionCard = () => {
                             <button
                                 className="w-[45%] flex justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
                             >
-                                Hubungi di <BsWhatsapp/>
+                                Hubungi di <BsWhatsapp className="mx-2"/>
                             </button>
                         </div>
                     )}

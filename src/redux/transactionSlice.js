@@ -99,9 +99,10 @@ const transactionAdapter = createEntityAdapter();
 export const transactionSlice = createSlice({
     name: "transaction",
     initialState: transactionAdapter.getInitialState({
-        data: null,
         txById: null,
         filteredTx: null,
+        addedTx: null,
+        updatedTx: null,
         isModalOn: false,
         loading: "idle",
         error: null,
@@ -120,7 +121,7 @@ export const transactionSlice = createSlice({
         [addTransactionTawar.fulfilled]: (state, action) => {
             state.loading = "idle";
             state.error = null;
-            state.data = action.payload;
+            state.addedTx = action.payload;
             state.isModalOn = false;
         },
         [addTransactionTawar.rejected]: (state, action) => {
@@ -181,6 +182,7 @@ export const transactionSlice = createSlice({
                 id: action.payload.updatedtransaction.id,
                 updates: action.payload.updatedtransaction,
             });
+            state.updatedTx = action.payload.updatedtransaction;
         },
         [updateTransactionTawar.rejected]: (state, action) => {
             state.loading = "idle";

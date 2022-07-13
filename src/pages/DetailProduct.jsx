@@ -61,9 +61,12 @@ const DetailProduct = () => {
 
     useEffect(() => {
         user && dispatch(getFilteredTransaction({ status, as, productId }));
+    }, [user, addedTx, status, as, productId, dispatch]);
+
+    useEffect(() => {
         dispatch(getProductById(productId));
         user && dispatch(getWishlistById(productId));
-    }, [user, status, as, productId, dispatch]);
+    }, [user, productId, dispatch]);
 
     return (
         <>

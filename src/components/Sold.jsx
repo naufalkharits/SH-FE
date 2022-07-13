@@ -1,4 +1,14 @@
+import dayjs from 'dayjs';
+import IDR from "../utils/IDR";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import TransactionSkeleton from './skeletons/TransactionSkeleton';
 import Transaction404 from "../unfound/Transaction404";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+    fetchTransactionTawar,
+    transactionSelectors,
+} from "../redux/transactionSlice";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -73,9 +83,55 @@ const data = {
 };
 
 const Sold = () => {
+    const dispatch = useDispatch();
+    const [status] = useState("");
+    const [as] = useState("seller");
+
+    const transaction = useSelector(transactionSelectors.selectAll);
+
+    const { loading } = useSelector((state) => state.transaction);
+
+    useEffect(() => {
+        dispatch(fetchTransactionTawar({ status, as }));
+    }, [status, as, dispatch]);
+
     return (
         <>
-            <div className="w-full sm:p-4">
+        <div className="w-full px-5 space-y-5 mt-4">
+                <p className="font-medium">History Penjualan Produk</p>
+                {loading === "pending" ? (
+                    <TransactionSkeleton />
+                ) : 
+                transaction?.map((tx) => (
+                    tx.status === "ACCEPTED" && (
+                    <div key={tx.id} className="w-full space-y-7">
+                        <div className="flex gap-6 rounded-xl">
+                            <Swiper className="h-14 w-16 rounded-xl object-cover">
+                                {tx.product.pictures.map((picture) => (
+                                    <SwiperSlide key={picture}>
+                                        <img
+                                            className="h-14 w-14 rounded-xl object-cover"
+                                            src={picture}
+                                            alt=""
+                                        />
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                            <div className="w-full space-y-1">
+                                <div className="flex justify-between text-xs text-neutral-03">
+                                    <p>Penawaran Produk</p>
+                                    <p>{dayjs(tx.updatedAt).format("D MMM, HH:mm")}</p>
+                                </div>
+                                <p className="">{tx?.product.name}</p>
+                                <p className=""><IDR price={tx?.product.price} /></p>
+                                <p className="">Ditawar <IDR price={tx?.price} /></p>
+                            </div>
+                        </div>
+                        <div className="h-px bg-[#E5E5E5]"></div>
+                    </div>
+                )))}
+            </div>
+            {/* <div className="w-full sm:p-4">
                 <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
                     <div className="font-medium">Statisti Tokomu</div>
                     <div className="flex items-center gap-4">
@@ -93,7 +149,7 @@ const Sold = () => {
                     <div className="h-48 w-full">
                         <Line options={options} data={data} />
                     </div>
-                    {/* <table className="whitespace-no-wrap w-full table-auto text-left">
+                    <table className="whitespace-no-wrap w-full table-auto text-left">
                     <thead>
                         <tr>
                             <th className="title-font text-gray-900 bg-gray-100 rounded-tl rounded-bl px-4 py-3 text-sm font-medium tracking-wider">
@@ -175,12 +231,12 @@ const Sold = () => {
                             </td>
                         </tr>
                     </tbody>
-                </table> */}
+                </table>
                 </div>
             </div>
             <div className="p-4">
                 <Transaction404 />
-            </div>
+            </div> */}
         </>
     );
 };

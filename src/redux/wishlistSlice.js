@@ -58,11 +58,25 @@ export const deleteWishlistBuyer = createAsyncThunk(
     }
 );
 
+// get wishlist Seller
+export const getWishlistSeller = createAsyncThunk(
+    "wishlist/getWishlistSeller",
+    async ({as},thunkAPI) => {
+        try {
+            const response = await closedServer.get(`/wishlist?as=${as}`);
+            return response.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+);
+
 export const wishlistSlice = createSlice({
     name: "wishlists",
     initialState: {
         message: "",
         wishlists: null,
+        sellerwishlists: null,
         isWishlist: false,
         loading: "idle",
         error: null,
@@ -125,6 +139,21 @@ export const wishlistSlice = createSlice({
             state.message = action.payload.message;
         },
         [deleteWishlistBuyer.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
+        // getWishlistSeller
+        [getWishlistSeller.pending]: (state) => {
+            state.loading = "pending";
+            state.error = null;
+            state.sellerwishlists = null;
+        },
+        [getWishlistSeller.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            state.error = null;
+            state.sellerwishlists = action.payload.wishlists;
+        },
+        [getWishlistSeller.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

@@ -21,42 +21,45 @@ const WishlistButton = () => {
     const unwishlist = () => {
         dispatch(deleteWishlistBuyer({ productId, navigate }));
     };
+
     return (
         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
             {loading === "pending" ? (
                 <CgSpinner className="h-5 w-5 animate-spin" />
-            ) : isWishlist ? (
-                <div
-                    onMouseEnter={() => {
-                        setIsHovered(true);
-                    }}
-                    onMouseLeave={() => {
-                        setIsHovered(false);
-                    }}
-                    onClick={unwishlist}
-                >
-                    {isHovered ? (
-                        <FaRegHeart className="h-5 w-5 cursor-pointer" />
-                    ) : (
-                        <FaHeart className="h-5 w-5 cursor-pointer text-red-500" />
-                    )}
-                </div>
             ) : (
-                <div
-                    onMouseEnter={() => {
-                        setIsHovered(true);
-                    }}
-                    onMouseLeave={() => {
-                        setIsHovered(false);
-                    }}
-                    onClick={wishlist}
-                >
-                    {isHovered ? (
-                        <FaHeart className="h-5 w-5 cursor-pointer text-red-600" />
+                <>
+                    {isWishlist ? (
+                        <div
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
+                            onClick={() => {
+                                unwishlist();
+                                setIsHovered(false);
+                            }}
+                        >
+                            {isHovered ? (
+                                <FaRegHeart className="h-5 w-5 cursor-pointer" />
+                            ) : (
+                                <FaHeart className="h-5 w-5 cursor-pointer text-red-500" />
+                            )}
+                        </div>
                     ) : (
-                        <FaRegHeart className="h-5 w-5 cursor-pointer" />
+                        <div
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
+                            onClick={() => {
+                                wishlist();
+                                setIsHovered(false);
+                            }}
+                        >
+                            {isHovered ? (
+                                <FaHeart className="h-5 w-5 cursor-pointer text-red-600" />
+                            ) : (
+                                <FaRegHeart className="h-5 w-5 cursor-pointer" />
+                            )}
+                        </div>
                     )}
-                </div>
+                </>
             )}
         </div>
     );

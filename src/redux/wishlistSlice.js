@@ -61,7 +61,7 @@ export const deleteWishlistBuyer = createAsyncThunk(
 // get wishlist Seller
 export const getWishlistSeller = createAsyncThunk(
     "wishlist/getWishlistSeller",
-    async ({as},thunkAPI) => {
+    async ({ as }, thunkAPI) => {
         try {
             const response = await closedServer.get(`/wishlist?as=${as}`);
             return response.data;
@@ -116,7 +116,6 @@ export const wishlistSlice = createSlice({
         [getWishlistById.pending]: (state) => {
             state.loading = "pending";
             state.error = null;
-            state.isWishlist = false;
         },
         [getWishlistById.fulfilled]: (state, action) => {
             state.loading = "idle";

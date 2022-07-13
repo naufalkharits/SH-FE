@@ -103,7 +103,7 @@ const Sold = () => {
                     <TransactionSkeleton />
                 ) : 
                 transaction?.map((tx) => (
-                    tx.status === "ACCEPTED" && (
+                    tx.status === "COMPLETED" && (
                     <div key={tx.id} className="w-full space-y-7">
                         <div className="flex gap-6 rounded-xl">
                             <Swiper className="h-14 w-16 rounded-xl object-cover">

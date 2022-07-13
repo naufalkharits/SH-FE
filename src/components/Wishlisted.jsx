@@ -68,25 +68,20 @@ const data = {
 
 const Wishlisted = () => {
     return (
-        <>
-            <div className="w-full sm:p-4">
-                <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
-                    <div className="font-medium">Statisti Tokomu</div>
+        <div className="w-full sm:p-4">
+            <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
+                <div className="font-medium">Statisti Tokomu</div>
 
-                    <div className="w-fit rounded-md p-4 shadow">
-                        <div>Produk Diminati</div>
-                        <div>0</div>
-                        <div>0% dari 7 hari terakhir</div>
-                    </div>
-                    <div className="h-48 w-full">
-                        <Line options={options} data={data} />
-                    </div>
+                <div className="w-fit rounded-md p-4 shadow">
+                    <div>Produk Diminati</div>
+                    <div>0</div>
+                    <div>0% dari 7 hari terakhir</div>
+                </div>
+                <div className="h-48 w-full">
+                    <Line options={options} data={data} />
                 </div>
             </div>
-            <div className="p-4">
-                <Wishlisted404 />
-            </div>
-        </>
+        </div>
     );
 };
 

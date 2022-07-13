@@ -8,8 +8,8 @@ import Search from "./Search";
 import ListDropdown from "./dropdowns/ListDropdown";
 import NotificationDropdown from "./dropdowns/NotificationDropdown";
 import UserDropdown from "./dropdowns/UserDropdown";
-import SecondHand from "../images/SecondHand.png";
 import TitlePerPage from "./TitlePerPage";
+import SecondHand from "../images/SecondHand.png";
 
 const DesktopMenu = () => {
     const location = useLocation();

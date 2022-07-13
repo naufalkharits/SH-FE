@@ -8,7 +8,7 @@ const AddProductCard = ({ height }) => {
                 className={`${height} flex cursor-pointer flex-col items-center justify-center rounded border border-dashed border-neutral-02 text-neutral-03`}
             >
                 <FiPlus />
-                <div>Tambah Produk</div>
+                <div className="text-center">Tambah Produk</div>
             </div>
         </Link>
     );

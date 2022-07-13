@@ -196,7 +196,6 @@ const EditProduct = () => {
                                         className="mr-4 h-24 w-24 object-contain"
                                     />
                                 ))}
-
                             <label
                                 className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
                                 htmlFor="file"

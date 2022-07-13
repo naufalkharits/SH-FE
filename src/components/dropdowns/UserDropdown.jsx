@@ -10,7 +10,7 @@ const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
-const UserDropdown = ({ profile }) => {
+const UserDropdown = ({ profile, loading }) => {
     const dispatch = useDispatch();
 
     return (
@@ -45,16 +45,26 @@ const UserDropdown = ({ profile }) => {
                                             to="/user"
                                             className="flex w-full items-center gap-2 rounded-md p-2 shadow"
                                         >
-                                            <img
-                                                className="h-8"
-                                                src={
-                                                    profile?.picture || AltFoto
-                                                }
-                                                alt=""
-                                            />
-                                            <span className="truncate font-medium">
-                                                {profile?.name}
-                                            </span>
+                                            {loading === "pending" ? (
+                                                <>
+                                                    <div className="h-8 w-8 animate-pulse rounded bg-gray"></div>
+                                                    <span className="h-3 w-24 animate-pulse rounded bg-gray"></span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <img
+                                                        className="h-8"
+                                                        src={
+                                                            profile?.picture ||
+                                                            AltFoto
+                                                        }
+                                                        alt=""
+                                                    />
+                                                    <span className="truncate font-medium">
+                                                        {profile?.name}
+                                                    </span>
+                                                </>
+                                            )}
                                         </Link>
                                         <button
                                             className={className(

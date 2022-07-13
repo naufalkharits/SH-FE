@@ -13,11 +13,11 @@ const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
 };
 
-const MobileMenu = ({ drops }) => {
+const MobileMenu = ({ profile }) => {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.auth);
+    const { user, loading } = useSelector((state) => state.auth);
 
     return (
         <>
@@ -63,27 +63,45 @@ const MobileMenu = ({ drops }) => {
                             </div>
                             {location.pathname === "/" && <Search />}
                             <div className="mt-4 space-y-1 font-medium">
-                                <Link
-                                    to="/user"
-                                    className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow"
+                                <div
+                                    className="mb-2 flex cursor-pointer items-center justify-between rounded-md px-2 py-3 shadow"
+                                    onClick={() => {
+                                        navigate("/user");
+                                    }}
                                 >
                                     <div className="flex items-center gap-2">
-                                        <img
-                                            className="h-8"
-                                            src={drops?.picture || AltFoto}
-                                            alt=""
-                                        />
-                                        <span className="font-bold">
-                                            {drops?.name}
-                                        </span>
+                                        {loading === "pending" ? (
+                                            <>
+                                                <div className="h-8 w-8 animate-pulse rounded bg-gray"></div>
+                                                <span className="h-3 w-24 animate-pulse rounded bg-gray"></span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <img
+                                                    className="h-8 rounded"
+                                                    src={
+                                                        profile?.picture ||
+                                                        AltFoto
+                                                    }
+                                                    alt=""
+                                                />
+                                                <span className="font-bold">
+                                                    {profile?.name}
+                                                </span>
+                                            </>
+                                        )}
                                     </div>
-                                    <Link
-                                        to="/manage-product"
-                                        className="rounded-md p-2 shadow hover:bg-gray"
-                                    >
-                                        <BiStore className="h-6 w-6" />
-                                    </Link>
-                                </Link>
+                                    {loading === "pending" ? (
+                                        <div className="h-10 w-10 animate-pulse rounded-md bg-gray"></div>
+                                    ) : (
+                                        <Link
+                                            to="/manage-product"
+                                            className="rounded-md p-2 shadow hover:bg-gray"
+                                        >
+                                            <BiStore className="h-6 w-6" />
+                                        </Link>
+                                    )}
+                                </div>
                                 <Link
                                     to="/notification"
                                     className="block rounded-md p-2 hover:bg-gray"

@@ -15,7 +15,9 @@ const DesktopMenu = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user, decodedAccess, profile } = useSelector((state) => state.auth);
+    const { user, decodedAccess, profile, loading } = useSelector(
+        (state) => state.auth
+    );
 
     useEffect(() => {
         decodedAccess && dispatch(me(decodedAccess?.id));
@@ -54,7 +56,7 @@ const DesktopMenu = () => {
                     <>
                         <ListDropdown />
                         <NotificationDropdown />
-                        <UserDropdown profile={profile} />
+                        <UserDropdown profile={profile} loading={loading} />
                     </>
                 ) : (
                     <Link

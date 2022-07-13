@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import MobileUserMenu from "../components/MobileUserMenu";
 import DesktopUserMenu from "../components/DesktopUserMenu";
 import ProfileCard from "../components/ProfileCard";

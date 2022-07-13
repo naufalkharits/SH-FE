@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { CgSpinner } from "react-icons/cg";
 import {
     addWishlistBuyer,
     deleteWishlistBuyer,
@@ -11,7 +12,7 @@ const WishlistButton = () => {
     const navigate = useNavigate();
     const { productId } = useParams();
     const dispatch = useDispatch();
-    const { isWishlist } = useSelector((state) => state.wishlist);
+    const { isWishlist, loading } = useSelector((state) => state.wishlist);
     const [isHovered, setIsHovered] = useState(false);
 
     const wishlist = () => {
@@ -22,7 +23,9 @@ const WishlistButton = () => {
     };
     return (
         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
-            {isWishlist ? (
+            {loading === "pending" ? (
+                <CgSpinner className="h-5 w-5 animate-spin" />
+            ) : isWishlist ? (
                 <div
                     onMouseEnter={() => {
                         setIsHovered(true);

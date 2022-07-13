@@ -13,6 +13,7 @@ import { updateTransactionTawar } from "../redux/transactionSlice";
 import ModalStatus from "../components/modals/ModalStatus";
 import MyTransaction404 from "../unfound/MyTransaction404";
 import IDR from "../utils/IDR";
+import { useNavigate } from "react-router-dom";
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ");
@@ -20,6 +21,7 @@ const className = (...classes) => {
 
 const TransactionCard = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const transaction = useSelector(transactionSelectors.selectAll);
     const { isModalOn, updatedTx, loading } = useSelector(
         (state) => state.transaction
@@ -164,7 +166,9 @@ const TransactionCard = () => {
                                         >
                                             Status
                                         </button>
-                                        <button className="flex w-[45%] justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]">
+                                        <button 
+                                        onClick={() => {window.open(`https://wa.me/${tx?.buyer?.phone_number}`)}}
+                                        className="flex w-[45%] items-center justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]">
                                             Hubungi di{" "}
                                             <BsWhatsapp className="mx-2 my-1 h-3" />
                                         </button>

@@ -31,6 +31,7 @@ const WishlistUser = () => {
                             </div>
                         ) : (
                             <Swiper
+                                className="w-full"
                                 modules={[Pagination]}
                                 slidesPerView={1}
                                 pagination={{ dynamicBullets: true, clickable: true }}

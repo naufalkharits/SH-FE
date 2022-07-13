@@ -8,7 +8,7 @@ const ProfileCard = () => {
 
     return (
         <div className="flex items-center justify-between rounded-2xl p-4 shadow">
-            <div className="flex items-center gap-4">
+            <Link to="/user" className="flex items-center gap-4">
                 {loading === "pending" ? (
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray"></div>
                 ) : (
@@ -39,7 +39,7 @@ const ProfileCard = () => {
                         {profile?.city}
                     </div>
                 </div>
-            </div>
+            </Link>
             {loading === "pending" ? (
                 <div className="h-8 w-14 animate-pulse rounded-lg bg-gray"></div>
             ) : (

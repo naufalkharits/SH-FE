@@ -6,7 +6,6 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
     const navigate = useNavigate();
 
     return (
-        <>
             <div
                 className="cursor-pointer space-y-2 rounded-md p-2 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10"
                 onClick={() => {
@@ -34,7 +33,6 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                     <></>
                 )}
             </div>
-        </>
     );
 };
 

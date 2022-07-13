@@ -39,21 +39,11 @@ function App() {
                 {/* publicRoutes */}
                 <Route element={<PublicRoutes />}>
                     <Route path="*" element={<Error />} />
-                    <Route
-                        path="test/modalberhasil"
-                        element={<ModalBerhasil />}
-                    />
-                    <Route path="test/modalstatus" element={<ModalStatus />} />
-                    <Route path="test/modaltawar" element={<ModalTawar />} />
                     <Route element={<Main />}>
                         <Route path="/" element={<Home />} />
                         <Route
                             path="/product/:productId"
                             element={<DetailProduct />}
-                        />
-                        <Route
-                            path="/notification"
-                            element={<Notification />}
                         />
                     </Route>
                 </Route>
@@ -77,6 +67,10 @@ function App() {
                             />
                             <Route path="/wishlist" element={<Wishlist />} />
                         </Route>
+                        <Route
+                            path="/notification"
+                            element={<Notification />}
+                        />
                     </Route>
                     <Route element={<Topbar />}>
                         <Route

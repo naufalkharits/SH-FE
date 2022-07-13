@@ -102,10 +102,15 @@ export const transactionSlice = createSlice({
         data: null,
         txById: null,
         filteredTx: null,
+        isModalOn: false,
         loading: "idle",
         error: null,
     }),
-    reducers: {},
+    reducers: {
+        setIsModalOn: (state, action) => {
+            state.isModalOn = action.payload;
+        },
+    },
     extraReducers: {
         // addTransactionTawar
         [addTransactionTawar.pending]: (state) => {
@@ -116,6 +121,7 @@ export const transactionSlice = createSlice({
             state.loading = "idle";
             state.error = null;
             state.data = action.payload;
+            state.isModalOn = false;
         },
         [addTransactionTawar.rejected]: (state, action) => {
             state.loading = "idle";
@@ -187,5 +193,7 @@ export const transactionSlice = createSlice({
 export const transactionSelectors = transactionAdapter.getSelectors(
     (state) => state.transaction
 );
+
+export const { setIsModalOn } = transactionSlice.actions;
 
 export default transactionSlice.reducer;

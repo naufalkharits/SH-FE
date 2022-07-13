@@ -1,8 +1,12 @@
+import { useDispatch } from "react-redux";
 import { FiX } from "react-icons/fi";
+import { setIsModalOn } from "../../redux/transactionSlice";
 
-const Modal = ({ setIsModalOn, onChange, onSubmit }) => {
+const Modal = ({ onChange, onSubmit }) => {
+    const dispatch = useDispatch();
+
     const handleCancelClick = () => {
-        setIsModalOn(false);
+        dispatch(setIsModalOn(false));
     };
 
     return (
@@ -57,8 +61,8 @@ const Modal = ({ setIsModalOn, onChange, onSubmit }) => {
                                     />
                                 </div>
                                 <button
-                                    type="submit"
                                     className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05"
+                                    type="submit"
                                 >
                                     Kirim
                                 </button>

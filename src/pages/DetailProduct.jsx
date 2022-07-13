@@ -14,6 +14,7 @@ import { getWishlistById } from "../redux/wishlistSlice";
 import {
     addTransactionTawar,
     getFilteredTransaction,
+    setIsModalOn,
 } from "../redux/transactionSlice";
 import BackButton from "../components/buttons/BackButton";
 import ModalTawar from "../components/modals/ModalTawar";
@@ -32,16 +33,16 @@ const DetailProduct = () => {
     const { productId } = useParams();
     const dispatch = useDispatch();
     const { user, profile } = useSelector((state) => state.auth);
-    const { filteredTx } = useSelector((state) => state.transaction);
+    const { filteredTx, addedTx, isModalOn } = useSelector(
+        (state) => state.transaction
+    );
     const loadingTx = useSelector((state) => state.transaction.loading);
     const { loading, spinner, error } = useSelector((state) => state.products);
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     );
-
     const [status] = useState("");
     const [as] = useState("buyer");
-    const [isModalOn, setIsModalOn] = useState(false);
     const [price, setPrice] = useState(0);
 
     const handleDelete = () => {
@@ -71,11 +72,7 @@ const DetailProduct = () => {
             ) : (
                 <>
                     {isModalOn && (
-                        <ModalTawar
-                            setIsModalOn={setIsModalOn}
-                            onChange={onChange}
-                            onSubmit={onSubmit}
-                        />
+                        <ModalTawar onChange={onChange} onSubmit={onSubmit} />
                     )}
                     <BackButton />
                     <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">
@@ -164,7 +161,8 @@ const DetailProduct = () => {
                                             <IDR price={product?.price} />
                                         </div>
                                     )}
-                                    {loading === "pending" ? (
+                                    {loading === "pending" ||
+                                    loadingTx === "pending" ? (
                                         <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
                                     ) : user &&
                                       product?.seller.user_id ===
@@ -215,29 +213,22 @@ const DetailProduct = () => {
                                                 )}
                                             </button>
                                         </>
+                                    ) : filteredTx?.length !== 0 ? (
+                                        <button
+                                            className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white sm:block"
+                                            disabled
+                                        >
+                                            Menunggu respon penjual
+                                        </button>
                                     ) : (
-                                        loadingTx === "idle" && (
-                                            <>
-                                                {filteredTx?.length !== 0 ? (
-                                                    <button
-                                                        className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white sm:block"
-                                                        disabled
-                                                    >
-                                                        Menunggu respon penjual
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
-                                                        onClick={() => {
-                                                            setIsModalOn(true);
-                                                        }}
-                                                    >
-                                                        Saya tertarik dan ingin
-                                                        nego
-                                                    </button>
-                                                )}
-                                            </>
-                                        )
+                                        <button
+                                            className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                                            onClick={() => {
+                                                dispatch(setIsModalOn(true));
+                                            }}
+                                        >
+                                            Saya tertarik dan ingin nego
+                                        </button>
                                     )}
                                 </div>
                                 {user &&
@@ -284,9 +275,7 @@ const DetailProduct = () => {
                                 {filteredTx?.length !== 0 ? (
                                     <button
                                         className={className(
-                                            isModalOn === true
-                                                ? "hidden"
-                                                : "sm:hidden",
+                                            isModalOn ? "hidden" : "sm:hidden",
                                             "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-neutral-02 px-6 py-3.5 text-white shadow-lg shadow-neutral-02"
                                         )}
                                         disabled
@@ -296,13 +285,11 @@ const DetailProduct = () => {
                                 ) : (
                                     <button
                                         className={className(
-                                            isModalOn === true
-                                                ? "hidden"
-                                                : "sm:hidden",
+                                            isModalOn ? "hidden" : "sm:hidden",
                                             "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
                                         )}
                                         onClick={() => {
-                                            setIsModalOn(true);
+                                            dispatch(setIsModalOn(true));
                                         }}
                                     >
                                         <span>

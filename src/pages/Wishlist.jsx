@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getWishlistBuyer } from "../redux/wishlistSlice";
 import ProductCard from "../components/ProductCard";
 import WishlistSkeleton from "../components/skeletons/WishlistSkeleton";
+import Wishlist404 from "../unfound/Wishlist404";
 
 const Wishlist = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,11 @@ const Wishlist = () => {
             <div className="-m-4 flex flex-wrap">
                 { loading === "pending" ? (
                     <WishlistSkeleton />
+                ) :
+                wishlists?.length === 0 ? (
+                    <div className="w-full my-16">
+                        <Wishlist404 />
+                    </div>
                 ) :
                 wishlists?.map((wishlist) => {
                     return (

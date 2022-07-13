@@ -63,13 +63,11 @@ const MobileMenu = ({ profile }) => {
                             </div>
                             {location.pathname === "/" && <Search />}
                             <div className="mt-4 space-y-1 font-medium">
-                                <div
-                                    className="mb-2 flex cursor-pointer items-center justify-between rounded-md px-2 py-3 shadow"
-                                    onClick={() => {
-                                        navigate("/user");
-                                    }}
-                                >
-                                    <div className="flex items-center gap-2">
+                                <div className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow">
+                                    <Link
+                                        to="/user"
+                                        className="flex items-center gap-2"
+                                    >
                                         {loading === "pending" ? (
                                             <>
                                                 <div className="h-8 w-8 animate-pulse rounded bg-gray"></div>
@@ -90,7 +88,7 @@ const MobileMenu = ({ profile }) => {
                                                 </span>
                                             </>
                                         )}
-                                    </div>
+                                    </Link>
                                     {loading === "pending" ? (
                                         <div className="h-10 w-10 animate-pulse rounded-md bg-gray"></div>
                                     ) : (

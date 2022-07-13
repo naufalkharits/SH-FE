@@ -179,10 +179,11 @@ export const transactionSlice = createSlice({
             state.loading = "idle";
             state.spinner = false;
             transactionAdapter.updateOne(state, {
-                id: action.payload.updatedtransaction.id,
-                updates: action.payload.updatedtransaction,
+                id: action.payload.updatedTransaction.id,
+                updates: action.payload.updatedTransaction,
             });
-            state.updatedTx = action.payload.updatedtransaction;
+            state.updatedTx = action.payload.updatedTransaction;
+            state.isModalOn = false;
         },
         [updateTransactionTawar.rejected]: (state, action) => {
             state.loading = "idle";

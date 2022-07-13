@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import {
     fetchTransactionTawar,
+    setIsModalOn,
     transactionSelectors,
 } from "../redux/transactionSlice";
 import { useState } from "react";
@@ -20,14 +21,16 @@ const className = (...classes) => {
 const TransactionCard = () => {
     const dispatch = useDispatch();
     const transaction = useSelector(transactionSelectors.selectAll);
-    const { loading } = useSelector((state) => state.transaction);
-    const [isModalOn, setIsModalOn] = useState(false);
+    const { isModalOn, updatedTx, loading } = useSelector(
+        (state) => state.transaction
+    );
     const [update, setUpdate] = useState({
         id: null,
         status: "",
         price: 0,
     });
 
+    // step-1
     const onClick = (updateValue) => {
         dispatch(
             updateTransactionTawar({
@@ -38,6 +41,7 @@ const TransactionCard = () => {
         );
     };
 
+    // step-2
     const onSubmit = (e) => {
         e.preventDefault();
 
@@ -52,13 +56,13 @@ const TransactionCard = () => {
 
     useEffect(() => {
         dispatch(fetchTransactionTawar({ status: "", as: "seller" }));
-    }, [dispatch]);
+    }, [updatedTx, dispatch]);
 
     return (
         <>
             {isModalOn && (
                 <ModalStatus
-                    setIsModalOn={setIsModalOn}
+                    update={update}
                     setUpdate={setUpdate}
                     onSubmit={onSubmit}
                 />
@@ -136,11 +140,11 @@ const TransactionCard = () => {
                                     <div className="flex justify-evenly sm:justify-end">
                                         <button
                                             onClick={() => {
-                                                setIsModalOn(true);
                                                 setUpdate({
                                                     id: tx?.id,
                                                     price: tx?.price,
                                                 });
+                                                dispatch(setIsModalOn(true));
                                             }}
                                             className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]"
                                         >

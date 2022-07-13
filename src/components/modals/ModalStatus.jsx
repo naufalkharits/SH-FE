@@ -1,10 +1,19 @@
+import { useDispatch } from "react-redux";
+import { setIsModalOn } from "../../redux/transactionSlice";
 import { FiX } from "react-icons/fi";
+import { useEffect } from "react";
 
-const ModalStatus = ({ setModalOn, setUpdate, onSubmit }) => {
+const ModalStatus = ({ update, setUpdate, onSubmit }) => {
+    const dispatch = useDispatch();
+
     const handleCancelClick = () => {
         // setChoice(false);
-        setModalOn(false);
+        dispatch(setIsModalOn(false));
     };
+
+    useEffect(() => {
+        console.log(update);
+    }, [update]);
 
     return (
         <>
@@ -31,6 +40,7 @@ const ModalStatus = ({ setModalOn, setUpdate, onSubmit }) => {
                                             value="COMPLETED"
                                             onChange={(e) => {
                                                 setUpdate({
+                                                    ...update,
                                                     status: e.target.value,
                                                 });
                                             }}
@@ -55,6 +65,7 @@ const ModalStatus = ({ setModalOn, setUpdate, onSubmit }) => {
                                             value="REJECTED"
                                             onChange={(e) => {
                                                 setUpdate({
+                                                    ...update,
                                                     status: e.target.value,
                                                 });
                                             }}

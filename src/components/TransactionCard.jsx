@@ -72,7 +72,7 @@ const TransactionCard = () => {
                     {transaction.length !== 0 ? (
                         transaction?.map((tx) => (
                             <div key={tx.id} className="mb-5 space-y-6">
-                                <div className="flex gap-6 rounded-xl">
+                                <div className="flex gap-4 rounded-xl">
                                     <Swiper className="h-14 w-16 rounded-xl object-cover">
                                         {tx.product.pictures.map((picture) => (
                                             <SwiperSlide key={picture}>
@@ -84,11 +84,6 @@ const TransactionCard = () => {
                                             </SwiperSlide>
                                         ))}
                                     </Swiper>
-                                    {/* <img
-                        src={tx.product.pictures[0]}
-                        alt=""
-                        className="h-14 w-14 rounded-xl object-cover"
-                    /> */}
                                     <div className="w-full space-y-1">
                                         <div className="flex justify-between text-xs text-neutral-03">
                                             <p>{tx?.status}</p>
@@ -103,8 +98,27 @@ const TransactionCard = () => {
                                             <IDR price={tx?.product.price} />
                                         </p>
                                         <p className="">
-                                            Ditawar <IDR price={tx?.price} />
+                                            Ditawar{" "}
+                                            <span className="text-lg text-primary-purple-04">
+                                                <IDR price={tx?.price} />
+                                            </span>{" "}
+                                            oleh:
                                         </p>
+                                        <div className="flex items-center gap-2">
+                                            <img
+                                                className="h-10 w-10 rounded-xl"
+                                                src={tx?.buyer?.picture}
+                                                alt=""
+                                            />
+                                            <div className="">
+                                                <div className="text-sm">
+                                                    {tx?.buyer?.name}
+                                                </div>
+                                                <div className="text-xs text-neutral-03">
+                                                    {tx?.buyer?.city}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 {tx.status === "PENDING" && (

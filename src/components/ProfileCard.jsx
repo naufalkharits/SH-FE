@@ -7,7 +7,7 @@ const ProfileCard = () => {
     const { profile, loading } = useSelector((state) => state.auth);
 
     return (
-        <div className="flex items-center justify-between rounded-2xl border border-neutral-200 p-4 shadow">
+        <div className="flex items-center justify-between rounded-2xl p-4 shadow">
             <div className="flex items-center gap-4">
                 {loading === "pending" ? (
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray"></div>

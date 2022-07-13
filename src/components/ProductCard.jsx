@@ -8,7 +8,7 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
     return (
         <>
             <div
-                className="cursor-pointer space-y-2 rounded-md p-2 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10"
+                className="cursor-pointer space-y-2 rounded-md p-2 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10"
                 onClick={() => {
                     navigate(`/product/${id}`);
                 }}
@@ -25,11 +25,14 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                 <div>
                     <IDR price={price} />
                 </div>
-                {location.pathname === "/wishlist" || location.pathname === "/user" ? (
+                {location.pathname === "/wishlist" ||
+                location.pathname === "/user" ? (
                     <button className="w-full rounded-2xl border border-primary-purple-04 p-2 font-medium hover:bg-primary-purple-05 hover:text-white ">
                         Beli
                     </button>
-                ) : ( <></> )}
+                ) : (
+                    <></>
+                )}
             </div>
         </>
     );

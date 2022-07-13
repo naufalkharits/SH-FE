@@ -1,11 +1,11 @@
 import { React, useEffect } from "react";
-import orang from "../images/orang.png";
+import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import ModalBerhasil from "../components/modals/ModalBerhasil";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TransactionCard from "../components/TransactionCard";
-import { useNavigate } from "react-router-dom";
+import orang from "../images/orang.png";
 
 const InfoPenawar = () => {
     const dispatch = useDispatch();
@@ -28,7 +28,7 @@ const InfoPenawar = () => {
                 />
             </div>
             <div className="w-full space-y-7 px-4">
-                <div className="shadow-low flex items-center gap-6 rounded-2xl border border-neutral-200 p-4">
+                <div className="flex items-center gap-4 rounded-2xl p-4 shadow">
                     <img src={orang} alt="" />
                     <div className="space-y-1">
                         <div>Nama Pembeli</div>
@@ -36,12 +36,7 @@ const InfoPenawar = () => {
                     </div>
                 </div>
                 <p className="font-medium">Daftar Produkmu yang Ditawar</p>
-
-                <div
-                    className="w-full"
-                >
-                    <TransactionCard />
-                </div>
+                <TransactionCard />
 
                 {/* <div className="flex gap-6 rounded-xl">
                     <img

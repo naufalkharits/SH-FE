@@ -23,24 +23,24 @@ openServer.interceptors.request.use(async (config) => {
             dayjs.unix(store.getState().auth.unixAccessExp).diff(dayjs()) < 1;
 
         if (isRefreshExpired) {
-            console.log(
-                "Refresh expired: " +
-                    dayjs
-                        .unix(store.getState().auth.unixRefreshExp)
-                        .diff(dayjs())
-            );
+            // console.log(
+            //     "Refresh expired: " +
+            //         dayjs
+            //             .unix(store.getState().auth.unixRefreshExp)
+            //             .diff(dayjs())
+            // );
 
             store.dispatch(logout());
             return config;
         }
 
         if (isAccessExpired) {
-            console.log(
-                "Access expired: " +
-                    dayjs
-                        .unix(store.getState().auth.unixAccessExp)
-                        .diff(dayjs())
-            );
+            // console.log(
+            //     "Access expired: " +
+            //         dayjs
+            //             .unix(store.getState().auth.unixAccessExp)
+            //             .diff(dayjs())
+            // );
 
             const response = await axios.post(`${baseURL}/auth/refresh`, {
                 refreshToken: store.getState().auth.user.refreshToken.token,
@@ -48,25 +48,25 @@ openServer.interceptors.request.use(async (config) => {
 
             store.dispatch(setUser(response.data));
 
-            console.log(
-                "New access: " +
-                    dayjs
-                        .unix(store.getState().auth.unixAccessExp)
-                        .diff(dayjs())
-            );
+            // console.log(
+            //     "New access: " +
+            //         dayjs
+            //             .unix(store.getState().auth.unixAccessExp)
+            //             .diff(dayjs())
+            // );
 
-            console.log(response.data.accessToken.token);
+            // console.log(response.data.accessToken.token);
 
             config.headers.Authorization = response.data.accessToken.token;
 
             return config;
         }
 
-        console.log("Not expired!!");
+        // console.log("Not expired!!");
         return config;
     }
 
-    console.log("User not login");
+    // console.log("User not login");
     return config;
 });
 

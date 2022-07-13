@@ -51,12 +51,15 @@ function App() {
                             path="/product/:productId"
                             element={<DetailProduct />}
                         />
+                        <Route
+                            path="/notification"
+                            element={<Notification />}
+                        />
                     </Route>
                 </Route>
 
                 {/* authRoutes */}
                 <Route element={<AuthRoutes />}>
-                    <Route path="/notification" element={<Notification />} />
                     <Route element={<Main />}>
                         <Route
                             path="/manage-product"

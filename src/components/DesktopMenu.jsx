@@ -9,6 +9,7 @@ import ListDropdown from "./dropdowns/ListDropdown";
 import NotificationDropdown from "./dropdowns/NotificationDropdown";
 import UserDropdown from "./dropdowns/UserDropdown";
 import SecondHand from "../images/SecondHand.png";
+import TitlePerPage from "./TitlePerPage";
 
 const DesktopMenu = () => {
     const location = useLocation();
@@ -35,13 +36,19 @@ const DesktopMenu = () => {
                     }}
                 />
                 <MobileMenu profile={profile} />
-                <div className="hidden sm:block">
+                {location.pathname === "/" ? (
+                    <div className="hidden sm:block">
+                        <Search />
+                    </div>
+                ) : (
+                    <TitlePerPage />
+                )}
+            </div>
+            {location.pathname === "/" && (
+                <div className="w-full sm:hidden">
                     <Search />
                 </div>
-            </div>
-            <div className="w-full sm:hidden">
-                <Search />
-            </div>
+            )}
             <div className="hidden items-center gap-6 sm:flex">
                 {user ? (
                     <>

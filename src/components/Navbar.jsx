@@ -3,6 +3,10 @@ import { Popover } from "@headlessui/react";
 import Category from "./Category";
 import DesktopMenu from "./DesktopMenu";
 
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ");
+};
+
 const Navbar = () => {
     const { productId } = useParams();
     const location = useLocation();
@@ -16,11 +20,12 @@ const Navbar = () => {
             }
         >
             <nav
-                className={
+                className={className(
                     location.pathname === "/"
-                        ? "bg-gradient-to-b from-[#FFE9CA] to-white sm:bg-none sm:shadow"
-                        : "bg-white shadow"
-                }
+                        ? "bg-gradient-to-b from-[#FFE9CA] to-white sm:bg-none"
+                        : "bg-white",
+                    "sm:shadow"
+                )}
             >
                 <div className="container mx-auto flex items-center gap-8 p-4 sm:justify-between">
                     <DesktopMenu />

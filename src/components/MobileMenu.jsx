@@ -24,12 +24,17 @@ const MobileMenu = ({ drops }) => {
             <Popover.Button
                 className={className(
                     location.pathname === "/"
-                        ? "bg-white sm:bg-gray"
-                        : "bg-gray",
-                    "rounded-2xl p-2 hover:shadow-sm sm:hidden"
+                        ? "rounded-2xl bg-white p-2 hover:shadow-sm sm:bg-gray"
+                        : "",
+                    "sm:hidden"
                 )}
             >
-                <FiMenu className="h-8 w-8 text-neutral-03" />
+                <FiMenu
+                    className={className(
+                        location.pathname === "/" ? "text-neutral-03" : "",
+                        "h-8 w-8"
+                    )}
+                />
             </Popover.Button>
             <Transition
                 as={Fragment}
@@ -56,7 +61,7 @@ const MobileMenu = ({ drops }) => {
                                     <FiX className="h-6 w-6" />
                                 </Popover.Button>
                             </div>
-                            <Search />
+                            {location.pathname === "/" && <Search />}
                             <div className="mt-4 space-y-1 font-medium">
                                 <Link
                                     to="/user"

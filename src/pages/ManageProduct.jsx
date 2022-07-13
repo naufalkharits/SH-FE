@@ -6,8 +6,10 @@ import ProfileCard from "../components/ProfileCard";
 const ManageProduct = () => {
     return (
         <div className="container mx-auto p-4">
-            <div className="mb-4 space-y-6 sm:mb-2">
-                <div className="text-xl font-bold">Daftar Jual Saya</div>
+            <div className="mb-4 sm:mb-2 sm:space-y-6">
+                <div className="hidden text-xl font-bold sm:block">
+                    Daftar Jual Saya
+                </div>
                 <ProfileCard />
             </div>
             <div className="flex flex-col sm:flex-row">

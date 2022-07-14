@@ -27,14 +27,11 @@ const DesktopMenu = () => {
         <>
             <div className="flex items-center gap-8">
                 <Link
+                    className="hidden sm:block"
                     to="/"
                     replace={location.pathname === "/" && { replace: true }}
                 >
-                    <img
-                        className="hidden h-8 cursor-pointer sm:inline"
-                        src={SecondHand}
-                        alt=""
-                    />
+                    <img className="h-8" src={SecondHand} alt="" />
                 </Link>
                 <MobileMenu profile={profile} />
                 {location.pathname === "/" ? (

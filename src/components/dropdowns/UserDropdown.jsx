@@ -1,32 +1,36 @@
-import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { Menu, Transition } from "@headlessui/react";
-import { FiLogOut, FiUser } from "react-icons/fi";
-import { logout } from "../../redux/authSlice";
-import AltFoto from "../../images/AltFoto.png";
+import { Fragment } from "react"
+import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { Menu, Transition } from "@headlessui/react"
+import { FiLogOut, FiUser } from "react-icons/fi"
+import { logout } from "../../redux/authSlice"
+import AltFoto from "../../images/AltFoto.png"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const UserDropdown = ({ profile, loading }) => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     return (
         <Menu as="div" className="relative z-10 hidden sm:inline-block">
             {({ open }) => (
                 <>
-                    <Menu.Button
-                        className={className(
-                            open
-                                ? "text-primary-purple-04 hover:text-primary-purple-05"
-                                : "",
-                            "flex justify-center hover:text-primary-purple-05 focus:outline-none"
-                        )}
-                    >
-                        <FiUser className="h-6 w-6" />
-                    </Menu.Button>
+                    {loading === "pending" ? (
+                        <div className="h-6 w-6 animate-pulse rounded bg-gray"></div>
+                    ) : (
+                        <Menu.Button
+                            className={className(
+                                open
+                                    ? "text-primary-purple-04 hover:text-primary-purple-05"
+                                    : "",
+                                "flex justify-center hover:text-primary-purple-05 focus:outline-none"
+                            )}
+                        >
+                            <FiUser className="h-6 w-6" />
+                        </Menu.Button>
+                    )}
 
                     <Transition
                         as={Fragment}
@@ -74,7 +78,7 @@ const UserDropdown = ({ profile, loading }) => {
                                                 "flex w-full items-center gap-2"
                                             )}
                                             onClick={() => {
-                                                dispatch(logout());
+                                                dispatch(logout())
                                             }}
                                         >
                                             <FiLogOut />
@@ -90,7 +94,7 @@ const UserDropdown = ({ profile, loading }) => {
                 </>
             )}
         </Menu>
-    );
-};
+    )
+}
 
-export default UserDropdown;
+export default UserDropdown

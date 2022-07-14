@@ -10,7 +10,7 @@ const Notification = () => {
 
     return (
         <>
-            <div className="container mx-auto space-y-6 p-4 sm:px-16 md:px-32 lg:px-48 xl:px-64 2xl:px-80 3xl:px-96">
+            <div className="container mx-auto p-4 sm:space-y-6 sm:px-16 md:px-32 lg:px-48 xl:px-64 2xl:px-80 3xl:px-96">
                 <h1 className="hidden text-xl font-bold sm:block">
                     Notifikasi
                 </h1>

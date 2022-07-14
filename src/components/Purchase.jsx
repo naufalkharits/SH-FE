@@ -7,6 +7,7 @@ import {
 } from "../redux/transactionSlice"
 import IDR from "../utils/IDR"
 import { Swiper, SwiperSlide } from "swiper/react"
+
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 import Transaction404 from "../unfound/Transaction404"
 
@@ -88,7 +89,7 @@ const Purchase = () => {
                                     )}
                                 </div>
                             </div>
-                            <div className="h-px bg-[#E5E5E5]"></div>
+                            <div className="h-px bg-neutral-200"></div>
                         </div>
                     ))
                 )}

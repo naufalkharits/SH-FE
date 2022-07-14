@@ -3,8 +3,6 @@ import { useNavigate, useParams, Navigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { Pagination } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
-import "swiper/css"
-import "swiper/css/pagination"
 import {
     deleteProduct,
     getProductById,

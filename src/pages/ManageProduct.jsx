@@ -1,23 +1,23 @@
-import { Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
-import CategorySellerCard from "../components/CategorySellerCard";
-import CategorySeller from "../components/CategorySeller";
-import ProfileCard from "../components/ProfileCard";
-import MyProduct404 from "../unfound/MyProduct404";
+import { Outlet } from "react-router-dom"
+import { useSelector } from "react-redux"
+import CategorySellerCard from "../components/CategorySellerCard"
+import CategorySeller from "../components/CategorySeller"
+import ProfileCard from "../components/ProfileCard"
+import MyProduct404 from "../unfound/MyProduct404"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const ManageProduct = () => {
-    const { filteredProduct } = useSelector((state) => state.products);
+    const { filteredProduct } = useSelector((state) => state.products)
 
     return (
         <div className="container mx-auto p-4">
             <div className="mb-4 sm:mb-2 sm:space-y-6">
-                <div className="hidden text-xl font-bold sm:block">
+                <h1 className="hidden text-xl font-bold sm:block">
                     Daftar Jual Saya
-                </div>
+                </h1>
                 <ProfileCard />
             </div>
             <div className="flex flex-col sm:flex-row">
@@ -38,7 +38,7 @@ const ManageProduct = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default ManageProduct;
+export default ManageProduct

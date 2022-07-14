@@ -1,50 +1,50 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import { useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Swiper, SwiperSlide } from "swiper/react"
+
 import {
     deleteProduct,
     getProductById,
     productsSelectors,
-} from "../redux/productsSlice";
-import ProfileCard from "../components/ProfileCard";
-import PublishButton from "../components/buttons/PublishButton";
-import BackButton from "../components/buttons/BackButton";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { CgSpinner } from "react-icons/cg";
+} from "../redux/productsSlice"
+import ProfileCard from "../components/ProfileCard"
+import PublishButton from "../components/buttons/PublishButton"
+import BackButton from "../components/buttons/BackButton"
+import { FaHeart, FaRegHeart } from "react-icons/fa"
+import { CgSpinner } from "react-icons/cg"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const PreviewProduct = () => {
-    const navigate = useNavigate();
-    const { productId } = useParams();
-    const dispatch = useDispatch();
-    const { spinner } = useSelector((state) => state.products);
+    const navigate = useNavigate()
+    const { productId } = useParams()
+    const dispatch = useDispatch()
+    const { spinner } = useSelector((state) => state.products)
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
-    );
+    )
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
         category: "",
         description: "",
         pictures: [],
-    });
+    })
 
-    const [isHovered, setIsHovered] = useState(false);
+    const [isHovered, setIsHovered] = useState(false)
 
     const handleDelete = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        dispatch(deleteProduct({ productId, navigate }));
-    };
+        dispatch(deleteProduct({ productId, navigate }))
+    }
 
     useEffect(() => {
-        dispatch(getProductById(productId));
-    }, [productId, dispatch]);
+        dispatch(getProductById(productId))
+    }, [productId, dispatch])
 
     useEffect(() => {
         product &&
@@ -54,8 +54,8 @@ const PreviewProduct = () => {
                 category: product.category,
                 description: product.description,
                 pictures: product.pictures,
-            });
-    }, [product]);
+            })
+    }, [product])
 
     return (
         <>
@@ -105,7 +105,7 @@ const PreviewProduct = () => {
                                 onClick={() => {
                                     navigate(
                                         `/manage-product/edit/${productId}`
-                                    );
+                                    )
                                 }}
                             >
                                 Edit
@@ -114,10 +114,10 @@ const PreviewProduct = () => {
                         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                             <div
                                 onMouseEnter={() => {
-                                    setIsHovered(true);
+                                    setIsHovered(true)
                                 }}
                                 onMouseLeave={() => {
-                                    setIsHovered(false);
+                                    setIsHovered(false)
                                 }}
                             >
                                 {isHovered ? (
@@ -141,7 +141,7 @@ const PreviewProduct = () => {
             </div>
             <PublishButton />
         </>
-    );
-};
+    )
+}
 
-export default PreviewProduct;
+export default PreviewProduct

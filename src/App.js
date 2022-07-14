@@ -28,6 +28,9 @@ import Wishlisted from "./components/Wishlisted"
 import Sold from "./components/Sold"
 import Purchase from "./components/Purchase"
 import ProfileMenu from "./components/ProfileMenu"
+import "swiper/css"
+import "swiper/css/autoplay"
+import "swiper/css/pagination"
 
 function App() {
     return (

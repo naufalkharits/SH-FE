@@ -1,14 +1,15 @@
-import dayjs from "dayjs"
-import IDR from "../utils/IDR"
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import TransactionSkeleton from "./skeletons/TransactionSkeleton"
-import Transaction404 from "../unfound/Transaction404"
 import { Swiper, SwiperSlide } from "swiper/react"
+import dayjs from "dayjs"
+
+import IDR from "../utils/IDR"
 import {
     fetchTransactionTawar,
     transactionSelectors,
 } from "../redux/transactionSlice"
+import Transaction404 from "../unfound/Transaction404"
+import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -159,7 +160,7 @@ const Sold = () => {
                                             )}
                                         </div>
                                     </div>
-                                    <div className="h-px bg-[#E5E5E5]"></div>
+                                    <div className="h-px bg-neutral-200"></div>
                                 </div>
                             )
                     )

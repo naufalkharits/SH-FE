@@ -1,12 +1,10 @@
-import { Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/autoplay";
-import banner1 from "../images/banner-1.png";
-import banner2 from "../images/banner-2.png";
-import banner3 from "../images/banner-3.png";
-import banner4 from "../images/banner-4.png";
-import banner5 from "../images/banner-5.png";
+import { Autoplay } from "swiper"
+import { Swiper, SwiperSlide } from "swiper/react"
+import banner1 from "../images/banner-1.png"
+import banner2 from "../images/banner-2.png"
+import banner3 from "../images/banner-3.png"
+import banner4 from "../images/banner-4.png"
+import banner5 from "../images/banner-5.png"
 
 const Hero = () => {
     return (
@@ -78,7 +76,7 @@ const Hero = () => {
                 )}
             </SwiperSlide>
         </Swiper>
-    );
-};
+    )
+}
 
-export default Hero;
+export default Hero

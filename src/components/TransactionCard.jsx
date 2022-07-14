@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
 import { BsWhatsapp } from "react-icons/bs"
+
 import { updateTransactionTawar } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
 import MyTransaction404 from "../unfound/MyTransaction404"
@@ -75,11 +76,11 @@ const TransactionCard = () => {
                         transaction?.map((tx) => (
                             <div key={tx.id} className="mb-5 space-y-6">
                                 <div className="flex gap-4 rounded-xl">
-                                    <Swiper className="h-14 w-16 rounded-xl object-cover">
+                                    <Swiper className="h-14 w-16 rounded-xl">
                                         {tx.product.pictures.map((picture) => (
                                             <SwiperSlide key={picture}>
                                                 <img
-                                                    className="h-14 w-14 rounded-xl object-cover"
+                                                    className="h-14 w-14 rounded-xl object-cover object-center"
                                                     src={picture}
                                                     alt=""
                                                 />
@@ -90,7 +91,7 @@ const TransactionCard = () => {
                                         <div className="flex justify-between text-xs text-neutral-03">
                                             <span>{tx?.status}</span>
                                             <span>
-                                                {dayjs(tx.updatedAt).format(
+                                                {dayjs(tx?.updatedAt).format(
                                                     "D MMM, HH:mm"
                                                 )}
                                             </span>
@@ -151,7 +152,6 @@ const TransactionCard = () => {
                                         </button>
                                     </div>
                                 )}
-
                                 {tx.status === "ACCEPTED" && (
                                     <div className="flex justify-evenly sm:justify-end">
                                         <button
@@ -179,7 +179,7 @@ const TransactionCard = () => {
                                         </button>
                                     </div>
                                 )}
-                                <div className="h-px bg-[#E5E5E5]"></div>
+                                <div className="h-px bg-neutral-200"></div>
                             </div>
                         ))
                     ) : (

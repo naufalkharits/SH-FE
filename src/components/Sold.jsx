@@ -1,14 +1,14 @@
-import dayjs from 'dayjs';
-import IDR from "../utils/IDR";
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import TransactionSkeleton from './skeletons/TransactionSkeleton';
-import Transaction404 from "../unfound/Transaction404";
-import { Swiper, SwiperSlide } from "swiper/react";
+import dayjs from "dayjs"
+import IDR from "../utils/IDR"
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import TransactionSkeleton from "./skeletons/TransactionSkeleton"
+import Transaction404 from "../unfound/Transaction404"
+import { Swiper, SwiperSlide } from "swiper/react"
 import {
     fetchTransactionTawar,
     transactionSelectors,
-} from "../redux/transactionSlice";
+} from "../redux/transactionSlice"
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -16,9 +16,9 @@ import {
     PointElement,
     LineElement,
     Title,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title);
+} from "chart.js"
+import { Line } from "react-chartjs-2"
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title)
 
 const options = {
     responsive: true,
@@ -29,7 +29,7 @@ const options = {
             text: "Chart.js Line Chart",
         },
     },
-};
+}
 
 const userData = [
     {
@@ -62,7 +62,7 @@ const userData = [
         pendapatanBersih: 4300,
         produkTerjual: 234,
     },
-];
+]
 
 const data = {
     labels: userData.map((data) => data.year),
@@ -80,56 +80,90 @@ const data = {
             backgroundColor: "rgba(50, 162, 235, 0.5)",
         },
     ],
-};
+}
 
 const Sold = () => {
-    const dispatch = useDispatch();
-    const [status] = useState("");
-    const [as] = useState("seller");
+    const dispatch = useDispatch()
+    const [status] = useState("")
+    const [as] = useState("seller")
 
-    const transaction = useSelector(transactionSelectors.selectAll);
+    const transaction = useSelector(transactionSelectors.selectAll)
 
-    const { loading } = useSelector((state) => state.transaction);
+    const { loading } = useSelector((state) => state.transaction)
 
     useEffect(() => {
-        dispatch(fetchTransactionTawar({ status, as }));
-    }, [status, as, dispatch]);
+        dispatch(fetchTransactionTawar({ status, as }))
+    }, [status, as, dispatch])
 
     return (
         <>
-        <div className="w-full px-5 space-y-5 mt-4">
-                <p className="font-medium">History Penjualan Produk</p>
+            <div className="mt-4 w-full space-y-5 px-5">
+                <p className="font-medium">Histori Penjualan Produk</p>
                 {loading === "pending" ? (
                     <TransactionSkeleton />
-                ) : 
-                transaction?.map((tx) => (
-                    tx.status === "COMPLETED" && (
-                    <div key={tx.id} className="w-full space-y-7">
-                        <div className="flex gap-6 rounded-xl">
-                            <Swiper className="h-14 w-16 rounded-xl object-cover">
-                                {tx.product.pictures.map((picture) => (
-                                    <SwiperSlide key={picture}>
-                                        <img
-                                            className="h-14 w-14 rounded-xl object-cover"
-                                            src={picture}
-                                            alt=""
-                                        />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                            <div className="w-full space-y-1">
-                                <div className="flex justify-between text-xs text-neutral-03">
-                                    <p>Penawaran Produk</p>
-                                    <p>{dayjs(tx.updatedAt).format("D MMM, HH:mm")}</p>
+                ) : (
+                    transaction?.map(
+                        (tx) =>
+                            tx.status === "COMPLETED" && (
+                                <div key={tx.id} className="w-full space-y-7">
+                                    <div className="flex gap-6 rounded-xl">
+                                        <Swiper className="h-14 w-16 rounded-xl object-cover">
+                                            {tx.product.pictures.map(
+                                                (picture) => (
+                                                    <SwiperSlide key={picture}>
+                                                        <img
+                                                            className="h-14 w-14 rounded-xl object-cover"
+                                                            src={picture}
+                                                            alt=""
+                                                        />
+                                                    </SwiperSlide>
+                                                )
+                                            )}
+                                        </Swiper>
+                                        <div className="w-full space-y-1">
+                                            <div className="flex justify-between text-xs text-neutral-03">
+                                                <span>Produk Terjual</span>
+                                                <span>
+                                                    {dayjs(tx.updatedAt).format(
+                                                        "D MMM, HH:mm"
+                                                    )}
+                                                </span>
+                                            </div>
+                                            <div>{tx?.product.name}</div>
+                                            {tx?.product.price === tx?.price ? (
+                                                <div>
+                                                    Berhasil terjual{" "}
+                                                    <IDR
+                                                        price={
+                                                            tx?.product.price
+                                                        }
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <>
+                                                    <div className="line-through">
+                                                        <IDR
+                                                            price={
+                                                                tx?.product
+                                                                    .price
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        Berhasil terjual{" "}
+                                                        <IDR
+                                                            price={tx?.price}
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="h-px bg-[#E5E5E5]"></div>
                                 </div>
-                                <p className="">{tx?.product.name}</p>
-                                <p className=""><IDR price={tx?.product.price} /></p>
-                                <p className="">Ditawar <IDR price={tx?.price} /></p>
-                            </div>
-                        </div>
-                        <div className="h-px bg-[#E5E5E5]"></div>
-                    </div>
-                )))}
+                            )
+                    )
+                )}
             </div>
             {/* <div className="w-full sm:p-4">
                 <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
@@ -238,7 +272,7 @@ const Sold = () => {
                 <Transaction404 />
             </div> */}
         </>
-    );
-};
+    )
+}
 
-export default Sold;
+export default Sold

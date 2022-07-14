@@ -1,72 +1,72 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { Pagination } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
+import { useEffect, useState } from "react"
+import { useNavigate, useParams, Navigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Pagination } from "swiper"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/pagination"
 import {
     deleteProduct,
     getProductById,
     productsSelectors,
-} from "../redux/productsSlice";
-import { getWishlistById } from "../redux/wishlistSlice";
+} from "../redux/productsSlice"
+import { getWishlistById } from "../redux/wishlistSlice"
 import {
     addTransactionTawar,
     getFilteredTransaction,
     setIsModalOn,
-} from "../redux/transactionSlice";
-import BackButton from "../components/buttons/BackButton";
-import ModalTawar from "../components/modals/ModalTawar";
-import WishlistButton from "../components/buttons/WishlistButton";
-import SellerCard from "../components/SellerCard";
-import EditButton from "../components/buttons/EditButton";
-import IDR from "../utils/IDR";
-import { CgSpinner } from "react-icons/cg";
+} from "../redux/transactionSlice"
+import BackButton from "../components/buttons/BackButton"
+import ModalTawar from "../components/modals/ModalTawar"
+import WishlistButton from "../components/buttons/WishlistButton"
+import SellerCard from "../components/SellerCard"
+import EditButton from "../components/buttons/EditButton"
+import IDR from "../utils/IDR"
+import { CgSpinner } from "react-icons/cg"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const DetailProduct = () => {
-    const navigate = useNavigate();
-    const { productId } = useParams();
-    const dispatch = useDispatch();
-    const { user, profile } = useSelector((state) => state.auth);
+    const navigate = useNavigate()
+    const { productId } = useParams()
+    const dispatch = useDispatch()
+    const { user, profile } = useSelector((state) => state.auth)
     const { filteredTx, addedTx, isModalOn } = useSelector(
         (state) => state.transaction
-    );
-    const loadingTx = useSelector((state) => state.transaction.loading);
-    const { loading, spinner, error } = useSelector((state) => state.products);
+    )
+    const loadingTx = useSelector((state) => state.transaction.loading)
+    const { loading, spinner, error } = useSelector((state) => state.products)
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
-    );
-    const [status] = useState("");
-    const [as] = useState("buyer");
-    const [price, setPrice] = useState(0);
+    )
+    const [status] = useState("")
+    const [as] = useState("buyer")
+    const [price, setPrice] = useState(0)
 
     const handleDelete = () => {
-        dispatch(deleteProduct({ productId, navigate }));
-    };
+        dispatch(deleteProduct({ productId, navigate }))
+    }
 
     // modal transaksi
     const onChange = (e) => {
-        setPrice(e.target.value);
-    };
+        setPrice(e.target.value)
+    }
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        dispatch(addTransactionTawar({ productId, price }));
-    };
-
-    useEffect(() => {
-        user && dispatch(getFilteredTransaction({ status, as, productId }));
-    }, [user, addedTx, status, as, productId, dispatch]);
+        dispatch(addTransactionTawar({ productId, price }))
+    }
 
     useEffect(() => {
-        dispatch(getProductById(productId));
-        user && dispatch(getWishlistById(productId));
-    }, [user, productId, dispatch]);
+        user && dispatch(getFilteredTransaction({ status, as, productId }))
+    }, [user, addedTx, status, as, productId, dispatch])
+
+    useEffect(() => {
+        dispatch(getProductById(productId))
+        user && dispatch(getWishlistById(productId))
+    }, [user, productId, dispatch])
 
     return (
         <>
@@ -189,7 +189,7 @@ const DetailProduct = () => {
                                                 onClick={() => {
                                                     navigate(
                                                         `/manage-product/edit/${productId}`
-                                                    );
+                                                    )
                                                 }}
                                             >
                                                 Edit
@@ -198,7 +198,7 @@ const DetailProduct = () => {
                                                 className={className(
                                                     spinner
                                                         ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
-                                                        : "border border-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
+                                                        : "border border-primary-purple-04 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
                                                     "mt-6 w-full rounded-2xl p-2 sm:mt-0"
                                                 )}
                                                 type="submit"
@@ -227,7 +227,7 @@ const DetailProduct = () => {
                                         <button
                                             className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
                                             onClick={() => {
-                                                dispatch(setIsModalOn(true));
+                                                dispatch(setIsModalOn(true))
                                             }}
                                         >
                                             Saya tertarik dan ingin nego
@@ -292,7 +292,7 @@ const DetailProduct = () => {
                                             "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
                                         )}
                                         onClick={() => {
-                                            dispatch(setIsModalOn(true));
+                                            dispatch(setIsModalOn(true))
                                         }}
                                     >
                                         <span>
@@ -306,7 +306,7 @@ const DetailProduct = () => {
                 </>
             )}
         </>
-    );
-};
+    )
+}
 
-export default DetailProduct;
+export default DetailProduct

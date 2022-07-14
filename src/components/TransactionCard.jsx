@@ -1,36 +1,36 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 import {
     fetchTransactionTawar,
     setIsModalOn,
     transactionSelectors,
-} from "../redux/transactionSlice";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Swiper, SwiperSlide } from "swiper/react";
-import dayjs from "dayjs";
-import { BsWhatsapp } from "react-icons/bs";
-import { updateTransactionTawar } from "../redux/transactionSlice";
-import ModalStatus from "../components/modals/ModalStatus";
-import MyTransaction404 from "../unfound/MyTransaction404";
-import IDR from "../utils/IDR";
-import { useNavigate } from "react-router-dom";
+} from "../redux/transactionSlice"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Swiper, SwiperSlide } from "swiper/react"
+import dayjs from "dayjs"
+import { BsWhatsapp } from "react-icons/bs"
+import { updateTransactionTawar } from "../redux/transactionSlice"
+import ModalStatus from "../components/modals/ModalStatus"
+import MyTransaction404 from "../unfound/MyTransaction404"
+import IDR from "../utils/IDR"
+import { useNavigate } from "react-router-dom"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const TransactionCard = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const transaction = useSelector(transactionSelectors.selectAll);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const transaction = useSelector(transactionSelectors.selectAll)
     const { isModalOn, updatedTx, loading } = useSelector(
         (state) => state.transaction
-    );
+    )
     const [update, setUpdate] = useState({
         id: null,
         status: "",
         price: 0,
-    });
+    })
 
     // step-1
     const onClick = (updateValue) => {
@@ -40,12 +40,12 @@ const TransactionCard = () => {
                 status: updateValue.status,
                 price: updateValue.price,
             })
-        );
-    };
+        )
+    }
 
     // step-2
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         dispatch(
             updateTransactionTawar({
@@ -53,12 +53,12 @@ const TransactionCard = () => {
                 status: update.status,
                 price: update.price,
             })
-        );
-    };
+        )
+    }
 
     useEffect(() => {
-        dispatch(fetchTransactionTawar({ status: "", as: "seller" }));
-    }, [updatedTx, dispatch]);
+        dispatch(fetchTransactionTawar({ status: "", as: "seller" }))
+    }, [updatedTx, dispatch])
 
     return (
         <>
@@ -88,35 +88,35 @@ const TransactionCard = () => {
                                     </Swiper>
                                     <div className="w-full space-y-1">
                                         <div className="flex justify-between text-xs text-neutral-03">
-                                            <p>{tx?.status}</p>
-                                            <p>
+                                            <span>{tx?.status}</span>
+                                            <span>
                                                 {dayjs(tx.updatedAt).format(
                                                     "D MMM, HH:mm"
                                                 )}
-                                            </p>
+                                            </span>
                                         </div>
-                                        <p className="">{tx?.product.name}</p>
-                                        <p className="">
+                                        <div>{tx?.product.name}</div>
+                                        <div>
                                             <IDR price={tx?.product.price} />
-                                        </p>
-                                        <p className="">
+                                        </div>
+                                        <div>
                                             Ditawar{" "}
-                                            <span className="text-lg text-primary-purple-04">
+                                            <span className="text-primary-purple-04">
                                                 <IDR price={tx?.price} />
                                             </span>{" "}
-                                            oleh:
-                                        </p>
+                                            oleh
+                                        </div>
                                         <div className="flex items-center gap-2">
                                             <img
-                                                className="h-10 w-10 rounded-xl"
+                                                className="h-8 w-8 rounded-full"
                                                 src={tx?.buyer?.picture}
                                                 alt=""
                                             />
                                             <div className="">
-                                                <div className="text-sm">
+                                                <div className="text-xs text-neutral-05">
                                                     {tx?.buyer?.name}
                                                 </div>
-                                                <div className="text-xs text-neutral-03">
+                                                <div className="text-xs text-neutral-04">
                                                     {tx?.buyer?.city}
                                                 </div>
                                             </div>
@@ -131,9 +131,9 @@ const TransactionCard = () => {
                                                     id: tx?.id,
                                                     status: "REJECTED",
                                                     price: tx?.price,
-                                                });
+                                                })
                                             }}
-                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]"
+                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:w-[28%]"
                                         >
                                             Tolak
                                         </button>
@@ -143,9 +143,9 @@ const TransactionCard = () => {
                                                     id: tx?.id,
                                                     status: "ACCEPTED",
                                                     price: tx?.price,
-                                                });
+                                                })
                                             }}
-                                            className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
+                                            className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white hover:bg-primary-purple-05 sm:w-[28%]"
                                         >
                                             Terima
                                         </button>
@@ -159,16 +159,21 @@ const TransactionCard = () => {
                                                 setUpdate({
                                                     id: tx?.id,
                                                     price: tx?.price,
-                                                });
-                                                dispatch(setIsModalOn(true));
+                                                })
+                                                dispatch(setIsModalOn(true))
                                             }}
                                             className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]"
                                         >
                                             Status
                                         </button>
-                                        <button 
-                                        onClick={() => {window.open(`https://wa.me/${tx?.buyer?.phone_number}`)}}
-                                        className="flex w-[45%] items-center justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]">
+                                        <button
+                                            onClick={() => {
+                                                window.open(
+                                                    `https://wa.me/${tx?.buyer?.phone_number}`
+                                                )
+                                            }}
+                                            className="flex w-[45%] items-center justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
+                                        >
                                             Hubungi di{" "}
                                             <BsWhatsapp className="mx-2 my-1 h-3" />
                                         </button>
@@ -183,7 +188,7 @@ const TransactionCard = () => {
                 </>
             )}
         </>
-    );
-};
+    )
+}
 
-export default TransactionCard;
+export default TransactionCard

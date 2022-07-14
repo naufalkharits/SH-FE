@@ -1,23 +1,23 @@
-import { Fragment } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../redux/authSlice";
-import { Popover, Transition } from "@headlessui/react";
-import { FiLogIn, FiLogOut, FiMenu, FiX } from "react-icons/fi";
-import Search from "./Search";
-import SecondHand from "../images/SecondHand.png";
-import AltFoto from "../images/AltFoto.png";
-import { BiStore } from "react-icons/bi";
+import { Fragment } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { Popover, Transition } from "@headlessui/react"
+import { FiLogIn, FiLogOut, FiMenu, FiX } from "react-icons/fi"
+import { BiStore } from "react-icons/bi"
+import { logout } from "../redux/authSlice"
+import Search from "./Search"
+import SecondHand from "../images/SecondHand.png"
+import AltFoto from "../images/AltFoto.png"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const MobileMenu = ({ profile }) => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { user, loading } = useSelector((state) => state.auth);
+    const location = useLocation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { user, loading } = useSelector((state) => state.auth)
 
     return (
         <>
@@ -54,7 +54,7 @@ const MobileMenu = ({ profile }) => {
                                     src={SecondHand}
                                     alt=""
                                     onClick={() => {
-                                        navigate("/");
+                                        navigate("/")
                                     }}
                                 />
                                 <Popover.Button className="rounded-full p-2 hover:shadow-sm">
@@ -118,11 +118,11 @@ const MobileMenu = ({ profile }) => {
                             className="flex w-full items-center justify-center gap-2 bg-primary-purple-04 py-2 px-4 font-semibold text-white hover:bg-primary-purple-05"
                             onClick={() => {
                                 if (user) {
-                                    dispatch(logout());
+                                    dispatch(logout())
                                 }
 
                                 if (!user) {
-                                    navigate("/login");
+                                    navigate("/login")
                                 }
                             }}
                         >
@@ -142,7 +142,7 @@ const MobileMenu = ({ profile }) => {
                 </Popover.Panel>
             </Transition>
         </>
-    );
-};
+    )
+}
 
-export default MobileMenu;
+export default MobileMenu

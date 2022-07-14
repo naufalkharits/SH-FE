@@ -1,14 +1,13 @@
-import React from 'react'
-import HistoryTransaksi from './HistoryTransaksi'
-import WishlistUser from './WishlistUser'
+import Purchase from "./Purchase"
+import WishlistUser from "./WishlistUser"
 
 const ProfileMenu = () => {
-  return (
-    <div className="w-full space-y-7">
-        <WishlistUser />
-        <HistoryTransaksi />
-    </div>
-  )
+    return (
+        <div className="w-full space-y-7">
+            <WishlistUser />
+            <Purchase />
+        </div>
+    )
 }
 
-export default ProfileMenu;
+export default ProfileMenu

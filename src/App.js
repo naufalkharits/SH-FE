@@ -1,36 +1,33 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 // layouts
-import Main from "./layouts/Main";
-import Auth from "./layouts/Auth";
+import Main from "./layouts/Main"
+import Auth from "./layouts/Auth"
 // pages
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Home from "./pages/Home";
-import UserProfile from "./pages/UserProfile";
-import EditProduct from "./pages/EditProduct";
-import Notification from "./pages/Notification";
-import PreviewProduct from "./pages/PreviewProduct";
-import Wishlist from "./pages/Wishlist";
-import AddProduct from "./pages/AddProduct";
-import EditProfile from "./pages/EditProfile";
-import ManageProduct from "./pages/ManageProduct";
-import InfoPenawar from "./pages/InfoPenawar";
-import DetailProduct from "./pages/DetailProduct";
-import Error from "./pages/404";
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Home from "./pages/Home"
+import UserProfile from "./pages/UserProfile"
+import EditProduct from "./pages/EditProduct"
+import Notification from "./pages/Notification"
+import PreviewProduct from "./pages/PreviewProduct"
+import Wishlist from "./pages/Wishlist"
+import AddProduct from "./pages/AddProduct"
+import EditProfile from "./pages/EditProfile"
+import ManageProduct from "./pages/ManageProduct"
+import InfoPenawar from "./pages/InfoPenawar"
+import DetailProduct from "./pages/DetailProduct"
+import Error from "./pages/404"
 // middlewares
-import PublicRoutes from "./middlewares/PublicRoutes";
-import AuthRoutes from "./middlewares/AuthRoutes";
-import UnauthRoutes from "./middlewares/UnauthRoutes";
+import PublicRoutes from "./middlewares/PublicRoutes"
+import AuthRoutes from "./middlewares/AuthRoutes"
+import UnauthRoutes from "./middlewares/UnauthRoutes"
 // misc
-import ModalBerhasil from "./components/modals/ModalBerhasil";
-import ModalStatus from "./components/modals/ModalStatus";
-import ModalTawar from "./components/modals/ModalTawar";
-import Topbar from "./components/Topbar";
-import AllProduct from "./components/AllProduct";
-import Wishlisted from "./components/Wishlisted";
-import Sold from "./components/Sold";
-import HistoryTransaksi from "./components/HistoryTransaksi";
-import ProfileMenu from "./components/ProfileMenu";
+import Topbar from "./components/Topbar"
+import AllProduct from "./components/AllProduct"
+import Wishlisted from "./components/Wishlisted"
+import Sold from "./components/Sold"
+import Purchase from "./components/Purchase"
+import ProfileMenu from "./components/ProfileMenu"
 
 function App() {
     return (
@@ -61,10 +58,7 @@ function App() {
                         </Route>
                         <Route element={<UserProfile />}>
                             <Route path="user" element={<ProfileMenu />} />
-                            <Route
-                                path="/order-list"
-                                element={<HistoryTransaksi />}
-                            />
+                            <Route path="/order-list" element={<Purchase />} />
                             <Route path="/wishlist" element={<Wishlist />} />
                         </Route>
                         <Route
@@ -102,7 +96,7 @@ function App() {
                 </Route>
             </Routes>
         </BrowserRouter>
-    );
+    )
 }
 
-export default App;
+export default App

@@ -1,18 +1,18 @@
-import Wishlisted404 from "../unfound/Wishlisted404";
+import Wishlisted404 from "../unfound/Wishlisted404"
 import {
     Chart as ChartJS,
     CategoryScale,
     LinearScale,
     PointElement,
     LineElement,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getWishlistSeller } from "../redux/wishlistSlice";
-import SellerWishlistsCard from "./SellerWishlistsCard";
-import WishlistSkeleton from "./skeletons/WishlistSkeleton";
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
+} from "chart.js"
+import { Line } from "react-chartjs-2"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getWishlistSeller } from "../redux/wishlistSlice"
+import SellerWishlistsCard from "./SellerWishlistsCard"
+import WishlistSkeleton from "./skeletons/WishlistSkeleton"
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement)
 
 // const options = {
 //     responsive: true,
@@ -72,24 +72,24 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 // };
 
 const Wishlisted = () => {
-    const dispatch = useDispatch();
-    const { sellerwishlists, loading } = useSelector((state) => state.wishlist);
-
-    const as = "seller";
+    const dispatch = useDispatch()
+    const { sellerwishlists, loading } = useSelector((state) => state.wishlist)
 
     useEffect(() => {
-        dispatch(getWishlistSeller({ as }));
-    }, [dispatch, as]);
+        dispatch(getWishlistSeller({ as: "seller" }))
+    }, [dispatch])
 
-    const result = 
-    sellerwishlists && 
-    Object.values(sellerwishlists?.reduce((jumlah, wishlist) => {
-        let check = `${wishlist.product.id}`;
-        if (!jumlah[check]) jumlah[check] = { ...wishlist, count: 1 }
-        else jumlah[check].count += 1;
-        return jumlah;
-    }, {}))
-    
+    const result =
+        sellerwishlists &&
+        Object.values(
+            sellerwishlists?.reduce((jumlah, wishlist) => {
+                let check = `${wishlist.product.id}`
+                if (!jumlah[check]) jumlah[check] = { ...wishlist, count: 1 }
+                else jumlah[check].count += 1
+                return jumlah
+            }, {})
+        )
+
     // console.log(result?.map((test) => (
     //    test
     // )));
@@ -99,28 +99,24 @@ const Wishlisted = () => {
             <div className="flex flex-wrap">
                 {loading === "pending" ? (
                     <WishlistSkeleton />
-                ) :
-                    sellerwishlists?.length === 0 ? (
-                        <div className="w-full my-16">
-                            <Wishlisted404 />
+                ) : sellerwishlists?.length === 0 ? (
+                    <div className="my-16 w-full">
+                        <Wishlisted404 />
+                    </div>
+                ) : (
+                    result?.map((sellwish, id) => (
+                        <div className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4" key={id}>
+                            <SellerWishlistsCard
+                                id={sellwish.product.id}
+                                name={sellwish.product.name}
+                                price={sellwish.product.price}
+                                category={sellwish.product.category}
+                                pictures={sellwish.product.pictures[0]}
+                                count={sellwish.count}
+                            />
                         </div>
-                    ) :
-                        result?.map((sellwish, id) => (
-                                <div
-                                    className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
-                                    key={id}
-                                >
-                                    <SellerWishlistsCard
-                                        id={sellwish.product.id}
-                                        name={sellwish.product.name}
-                                        price={sellwish.product.price}
-                                        category={sellwish.product.category}
-                                        pictures={sellwish.product.pictures[0]}
-                                        count={sellwish.count}
-                                    />
-                                </div>
-                            ))
-                }
+                    ))
+                )}
             </div>
             {/* <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">
                 <div className="font-medium">Statisti Tokomu</div>
@@ -135,7 +131,7 @@ const Wishlisted = () => {
                 </div>
             </div> */}
         </div>
-    );
-};
+    )
+}
 
-export default Wishlisted;
+export default Wishlisted

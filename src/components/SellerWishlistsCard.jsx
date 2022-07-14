@@ -1,16 +1,22 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import IDR from "../utils/IDR";
-import { FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"
+import { FaHeart } from "react-icons/fa"
+import IDR from "../utils/IDR"
 
-const SellerWishlistsCard = ({ id, name, price, category, pictures, count }) => {
-    const navigate = useNavigate();
+const SellerWishlistsCard = ({
+    id,
+    name,
+    price,
+    category,
+    pictures,
+    count,
+}) => {
+    const navigate = useNavigate()
 
     return (
         <div
             className="cursor-pointer space-y-2 rounded-md p-2 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10"
             onClick={() => {
-                navigate(`/product/${id}`);
+                navigate(`/product/${id}`)
             }}
         >
             <img
@@ -26,8 +32,11 @@ const SellerWishlistsCard = ({ id, name, price, category, pictures, count }) => 
                 <IDR price={price} />
             </div>
             <div className="flex items-center">
-                <p className='text-sm mr-2'> <FaHeart/> </p>
-                <p className='text-sm'>{count}</p>
+                <p className="mr-2 text-sm">
+                    {" "}
+                    <FaHeart />{" "}
+                </p>
+                <p className="text-sm">{count}</p>
             </div>
         </div>
     )

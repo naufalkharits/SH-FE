@@ -9,6 +9,7 @@ import { VscBellDot } from "react-icons/vsc"
 import {
     getNotification,
     notificationSelectors,
+    putNotification,
 } from "../../redux/notificationSlice"
 import IDR from "../../utils/IDR"
 
@@ -19,14 +20,14 @@ const className = (...classes) => {
 const NotificationDropdown = () => {
     const dispatch = useDispatch()
     const notification = useSelector(notificationSelectors.selectAll)
-    const { loading } = useSelector((state) => state.notification)
+    const { updatedNotif, loading } = useSelector((state) => state.notification)
     const { user } = useSelector((state) => state.auth)
 
     const [ping, setPing] = useState(null)
 
     useEffect(() => {
         user && dispatch(getNotification())
-    }, [user, dispatch])
+    }, [user, updatedNotif, dispatch])
 
     useEffect(() => {
         setPing(notification.filter((notif) => notif.read === false))
@@ -73,6 +74,14 @@ const NotificationDropdown = () => {
                                         <div
                                             className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
                                             key={notif?.id}
+                                            onClick={() => {
+                                                dispatch(
+                                                    putNotification({
+                                                        id: notif?.id,
+                                                        read: true,
+                                                    })
+                                                )
+                                            }}
                                         >
                                             <Swiper className="h-14 w-16 rounded-xl">
                                                 {notif?.transaction?.product?.pictures?.map(
@@ -97,7 +106,7 @@ const NotificationDropdown = () => {
                                                     <div className="flex items-center gap-2">
                                                         <span className="text-xs text-neutral-03">
                                                             {dayjs(
-                                                                notif?.updatedAt
+                                                                notif?.createdAt
                                                             ).format(
                                                                 "D MMM, HH:mm"
                                                             )}

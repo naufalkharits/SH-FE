@@ -13,7 +13,6 @@ import SecondHand from "../images/SecondHand.png"
 
 const DesktopMenu = () => {
     const location = useLocation()
-    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { user, decodedAccess, profile, loading } = useSelector(
         (state) => state.auth

@@ -17,11 +17,26 @@ export const getNotification = createAsyncThunk(
     }
 )
 
+export const putNotification = createAsyncThunk(
+    "notification/putNotification",
+    async ({ id, read }, thunkAPI) => {
+        try {
+            const response = await closedServer.put(`/notification/${id}`, {
+                read,
+            })
+            return response.data
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data)
+        }
+    }
+)
+
 const notificationAdapter = createEntityAdapter()
 
 export const notificationSlice = createSlice({
     name: "notification",
     initialState: notificationAdapter.getInitialState({
+        updatedNotif: null,
         loading: "idle",
         error: null,
     }),
@@ -36,6 +51,22 @@ export const notificationSlice = createSlice({
             notificationAdapter.setAll(state, action.payload.notifications)
         },
         [getNotification.rejected]: (state, action) => {
+            state.loading = "idle"
+            state.error = action.payload
+        },
+
+        [putNotification.pending]: (state) => {
+            state.loading = "pending"
+        },
+        [putNotification.fulfilled]: (state, action) => {
+            state.loading = "idle"
+            notificationAdapter.updateOne(state, {
+                id: action.payload.updatedNotification.id,
+                updates: action.payload.updatedNotification,
+            })
+            state.updatedNotif = action.payload.updatedNotification
+        },
+        [putNotification.rejected]: (state, action) => {
             state.loading = "idle"
             state.error = action.payload
         },

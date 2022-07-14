@@ -1,10 +1,14 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
-import { notificationSelectors } from "../redux/notificationSlice"
+import {
+    notificationSelectors,
+    putNotification,
+} from "../redux/notificationSlice"
 import IDR from "../utils/IDR"
 
 const Notification = () => {
+    const dispatch = useDispatch()
     const notification = useSelector(notificationSelectors.selectAll)
     const { loading } = useSelector((state) => state.notification)
 
@@ -22,6 +26,14 @@ const Notification = () => {
                             <div
                                 className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
                                 key={notif?.id}
+                                onClick={() => {
+                                    dispatch(
+                                        putNotification({
+                                            id: notif?.id,
+                                            read: true,
+                                        })
+                                    )
+                                }}
                             >
                                 <Swiper className="h-14 w-16 rounded-xl">
                                     {notif?.transaction?.product?.pictures?.map(

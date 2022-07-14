@@ -49,14 +49,20 @@ const MobileMenu = ({ profile }) => {
                     <div className="overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md">
                         <div className="p-2">
                             <div className="mb-4 flex items-center justify-between">
-                                <img
-                                    className="h-10 cursor-pointer pl-2 pt-2"
-                                    src={SecondHand}
-                                    alt=""
-                                    onClick={() => {
-                                        navigate("/")
-                                    }}
-                                />
+                                <Link
+                                    to="/"
+                                    replace={
+                                        location.pathname === "/" && {
+                                            replace: true,
+                                        }
+                                    }
+                                >
+                                    <img
+                                        className="h-10 cursor-pointer pl-2 pt-2"
+                                        src={SecondHand}
+                                        alt=""
+                                    />
+                                </Link>
                                 <Popover.Button className="rounded-full p-2 hover:shadow-sm">
                                     <FiX className="h-6 w-6" />
                                 </Popover.Button>

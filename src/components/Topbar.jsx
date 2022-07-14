@@ -1,11 +1,11 @@
-import { FiArrowLeft } from "react-icons/fi";
-import { useNavigate, Outlet, useLocation, useParams } from "react-router-dom";
-import SecondHand from "../images/SecondHand.png";
+import { FiArrowLeft } from "react-icons/fi"
+import { useNavigate, Outlet, useLocation, useParams } from "react-router-dom"
+import SecondHand from "../images/SecondHand.png"
 
 const Topbar = () => {
-    const navigate = useNavigate();
-    const location = useLocation();
-    const { productId } = useParams();
+    const navigate = useNavigate()
+    const location = useLocation()
+    const { productId } = useParams()
 
     return (
         <>
@@ -19,14 +19,14 @@ const Topbar = () => {
                             navigate(
                                 "/",
                                 location.pathname === "/" && { replace: true }
-                            );
+                            )
                         }}
                     />
 
                     <FiArrowLeft
                         className="h-6 w-6 cursor-pointer sm:hidden"
                         onClick={() => {
-                            navigate(-1);
+                            navigate(-1)
                         }}
                     />
                     <div className="font-medium">
@@ -41,12 +41,12 @@ const Topbar = () => {
                             ? "Edit Detail Produk"
                             : ""}
                     </div>
-                    <div className="h-6 w-6 sm:w-[99px]"></div>
+                    <div className="h-6 w-6 sm:w-[69.56px]"></div>
                 </div>
             </nav>
             <Outlet />
         </>
-    );
-};
+    )
+}
 
-export default Topbar;
+export default Topbar

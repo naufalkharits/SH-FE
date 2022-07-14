@@ -1,42 +1,41 @@
-import { useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { FiLogIn } from "react-icons/fi";
-import { me } from "../redux/authSlice";
-import MobileMenu from "./MobileMenu";
-import Search from "./Search";
-import ListDropdown from "./dropdowns/ListDropdown";
-import NotificationDropdown from "./dropdowns/NotificationDropdown";
-import UserDropdown from "./dropdowns/UserDropdown";
-import TitlePerPage from "./TitlePerPage";
-import SecondHand from "../images/SecondHand.png";
+import { useEffect } from "react"
+import { Link, useNavigate, useLocation } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import { FiLogIn } from "react-icons/fi"
+import { me } from "../redux/authSlice"
+import MobileMenu from "./MobileMenu"
+import Search from "./Search"
+import ListDropdown from "./dropdowns/ListDropdown"
+import NotificationDropdown from "./dropdowns/NotificationDropdown"
+import UserDropdown from "./dropdowns/UserDropdown"
+import TitlePerPage from "./TitlePerPage"
+import SecondHand from "../images/SecondHand.png"
 
 const DesktopMenu = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const location = useLocation()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const { user, decodedAccess, profile, loading } = useSelector(
         (state) => state.auth
-    );
+    )
 
     useEffect(() => {
-        decodedAccess && dispatch(me(decodedAccess?.id));
-    }, [decodedAccess, dispatch]);
+        decodedAccess && dispatch(me(decodedAccess?.id))
+    }, [decodedAccess, dispatch])
 
     return (
         <>
             <div className="flex items-center gap-8">
-                <img
-                    className="hidden h-8 cursor-pointer sm:inline"
-                    src={SecondHand}
-                    alt=""
-                    onClick={() => {
-                        navigate(
-                            "/",
-                            location.pathname === "/" && { replace: true }
-                        );
-                    }}
-                />
+                <Link
+                    to="/"
+                    replace={location.pathname === "/" && { replace: true }}
+                >
+                    <img
+                        className="hidden h-8 cursor-pointer sm:inline"
+                        src={SecondHand}
+                        alt=""
+                    />
+                </Link>
                 <MobileMenu profile={profile} />
                 {location.pathname === "/" ? (
                     <div className="hidden sm:block">
@@ -69,7 +68,7 @@ const DesktopMenu = () => {
                 )}
             </div>
         </>
-    );
-};
+    )
+}
 
-export default DesktopMenu;
+export default DesktopMenu

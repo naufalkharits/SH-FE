@@ -1,11 +1,11 @@
-import { Fragment, useEffect } from "react"
+import { Fragment, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { Popover, Transition } from "@headlessui/react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
 import { FiBell } from "react-icons/fi"
-
+import { VscBellDot } from "react-icons/vsc"
 import {
     getNotification,
     notificationSelectors,
@@ -22,24 +22,38 @@ const NotificationDropdown = () => {
     const { loading } = useSelector((state) => state.notification)
     const { user } = useSelector((state) => state.auth)
 
+    const [ping, setPing] = useState(null)
+
     useEffect(() => {
         user && dispatch(getNotification())
     }, [user, dispatch])
+
+    useEffect(() => {
+        setPing(notification.filter((notif) => notif.read === false))
+    }, [notification])
 
     return (
         <Popover className="relative z-10 hidden sm:inline-block">
             {({ open }) => (
                 <>
-                    <Popover.Button
-                        className={className(
-                            open
-                                ? "text-primary-purple-04 hover:text-primary-purple-05"
-                                : "",
-                            "flex justify-center hover:text-primary-purple-05 focus:outline-none"
-                        )}
-                    >
-                        <FiBell className="h-6 w-6" />
-                    </Popover.Button>
+                    {loading === "pending" ? (
+                        <div className="h-6 w-6 animate-pulse rounded bg-gray"></div>
+                    ) : (
+                        <Popover.Button
+                            className={className(
+                                open
+                                    ? "text-primary-purple-04 hover:text-primary-purple-05"
+                                    : "",
+                                "flex justify-center hover:text-primary-purple-05 focus:outline-none"
+                            )}
+                        >
+                            {ping?.length !== 0 ? (
+                                <VscBellDot className="h-6 w-6" />
+                            ) : (
+                                <FiBell className="h-6 w-6" />
+                            )}
+                        </Popover.Button>
+                    )}
 
                     <Transition
                         as={Fragment}
@@ -80,13 +94,18 @@ const NotificationDropdown = () => {
                                                     <span className="text-xs text-neutral-03">
                                                         {notif?.type}
                                                     </span>
-                                                    <span className="text-xs text-neutral-03">
-                                                        {dayjs(
-                                                            notif?.updatedAt
-                                                        ).format(
-                                                            "D MMM, HH:mm"
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-xs text-neutral-03">
+                                                            {dayjs(
+                                                                notif?.updatedAt
+                                                            ).format(
+                                                                "D MMM, HH:mm"
+                                                            )}
+                                                        </span>
+                                                        {!notif?.read && (
+                                                            <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
                                                         )}
-                                                    </span>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     {

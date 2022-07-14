@@ -41,11 +41,16 @@ const Notification = () => {
                                         <span className="text-xs text-neutral-03">
                                             {notif?.type}
                                         </span>
-                                        <span className="text-xs text-neutral-03">
-                                            {dayjs(notif?.updatedAt).format(
-                                                "D MMM, HH:mm"
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-xs text-neutral-03">
+                                                {dayjs(notif?.updatedAt).format(
+                                                    "D MMM, HH:mm"
+                                                )}
+                                            </span>
+                                            {!notif?.read && (
+                                                <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
                                             )}
-                                        </span>
+                                        </div>
                                     </div>
                                     <div>
                                         {notif?.transaction?.product?.name}

@@ -80,6 +80,7 @@ export const wishlistSlice = createSlice({
         isWishlist: false,
         loading: "idle",
         error: null,
+        updatedwishlist: null,
     },
     reducers: {},
     extraReducers: {
@@ -92,6 +93,7 @@ export const wishlistSlice = createSlice({
             state.loading = "idle";
             state.error = null;
             state.isWishlist = true;
+            state.updatedwishlist = action.payload.wishlist;
         },
         [addWishlistBuyer.rejected]: (state, action) => {
             state.loading = "idle";
@@ -136,6 +138,7 @@ export const wishlistSlice = createSlice({
             state.error = null;
             state.isWishlist = false;
             state.message = action.payload.message;
+            state.updatedwishlist = action.payload.message;
         },
         [deleteWishlistBuyer.rejected]: (state, action) => {
             state.loading = "idle";

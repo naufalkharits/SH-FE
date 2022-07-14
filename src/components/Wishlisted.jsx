@@ -72,15 +72,26 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const Wishlisted = () => {
     const dispatch = useDispatch();
-    const { sellerwishlists, loading } = useSelector((state) => state.wishlist);
+    const { sellerwishlists, updatedwishlist, loading } = useSelector((state) => state.wishlist);
 
     const [as] = useState("seller");
 
     useEffect(() => {
         dispatch(getWishlistSeller({ as }));
-    }, [dispatch, as]);
+    }, [dispatch, as, updatedwishlist]);
 
-    console.log(sellerwishlists);
+    const result = 
+    sellerwishlists && 
+    Object.values(sellerwishlists?.reduce((jumlah, wishlist) => {
+        let check = `${wishlist.product.id}`;
+        if (!jumlah[check]) jumlah[check] = { ...wishlist, count: 1 }
+        else jumlah[check].count += 1;
+        return jumlah;
+    }, {}))
+    
+    console.log(result?.map((test) => (
+       test
+    )));
 
     return (
         <div className="mt-4 w-full space-y-2 px-5">
@@ -93,22 +104,21 @@ const Wishlisted = () => {
                             <Wishlisted404 />
                         </div>
                     ) :
-                        sellerwishlists?.map((sellwish, id) => (
-                            <div
-                                className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
-                                key={id}
-                            >
-                                <SellerWishlistsCard
-                                    id={sellwish.product.id}
-                                    name={sellwish.product.name}
-                                    price={sellwish.product.price}
-                                    category={sellwish.product.category}
-                                    pictures={sellwish.product.pictures[0]}
-                                    user={sellwish.user.name}
-                                    userimg={sellwish.user.picture}
-                                />
-                            </div>
-                        ))
+                        result?.map((sellwish, id) => (
+                                <div
+                                    className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
+                                    key={id}
+                                >
+                                    <SellerWishlistsCard
+                                        id={sellwish.product.id}
+                                        name={sellwish.product.name}
+                                        price={sellwish.product.price}
+                                        category={sellwish.product.category}
+                                        pictures={sellwish.product.pictures[0]}
+                                        count={sellwish.count}
+                                    />
+                                </div>
+                            ))
                 }
             </div>
             {/* <div className="space-y-4 rounded-2xl border border-neutral-200 p-4 shadow-md">

@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import IDR from "../utils/IDR";
+import { FaHeart } from "react-icons/fa";
 
-const SellerWishlistsCard = ({ id, name, price, category, pictures, user, userimg }) => {
+const SellerWishlistsCard = ({ id, name, price, category, pictures, count }) => {
     const navigate = useNavigate();
 
     return (
@@ -24,12 +25,9 @@ const SellerWishlistsCard = ({ id, name, price, category, pictures, user, userim
             <div>
                 <IDR price={price} />
             </div>
-            <div className="w-full p-2 rounded-xl bg-primary-purple-04">
-                <p className='text-sm text-white'>Diminati Oleh : </p>
-                <div className="flex justify-between items-center rounded-2xl bg-gray p-2 hover:text-primary-purple-04">
-                    <p className='text-sm'>{user}</p>
-                    <img className="w-8 h-8 rounded-xl bg-white" src={userimg} alt="" />
-                </div>
+            <div className="flex items-center">
+                <p className='text-sm mr-2'> <FaHeart/> </p>
+                <p className='text-sm'>{count}</p>
             </div>
         </div>
     )

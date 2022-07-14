@@ -8,9 +8,10 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getWishlistSeller } from "../redux/wishlistSlice";
 import SellerWishlistsCard from "./SellerWishlistsCard";
+import WishlistSkeleton from "./skeletons/WishlistSkeleton";
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 // const options = {
@@ -72,13 +73,13 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement);
 
 const Wishlisted = () => {
     const dispatch = useDispatch();
-    const { sellerwishlists, updatedwishlist, loading } = useSelector((state) => state.wishlist);
+    const { sellerwishlists, loading } = useSelector((state) => state.wishlist);
 
-    const [as] = useState("seller");
+    const as = "seller";
 
     useEffect(() => {
         dispatch(getWishlistSeller({ as }));
-    }, [dispatch, as, updatedwishlist]);
+    }, [dispatch, as]);
 
     const result = 
     sellerwishlists && 
@@ -89,15 +90,15 @@ const Wishlisted = () => {
         return jumlah;
     }, {}))
     
-    console.log(result?.map((test) => (
-       test
-    )));
+    // console.log(result?.map((test) => (
+    //    test
+    // )));
 
     return (
         <div className="mt-4 w-full space-y-2 px-5">
             <div className="flex flex-wrap">
                 {loading === "pending" ? (
-                    <div>loading...</div>
+                    <WishlistSkeleton />
                 ) :
                     sellerwishlists?.length === 0 ? (
                         <div className="w-full my-16">

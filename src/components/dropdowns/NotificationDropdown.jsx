@@ -11,6 +11,7 @@ import {
     notificationSelectors,
     putNotification,
 } from "../../redux/notificationSlice"
+import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import IDR from "../../utils/IDR"
 
 const className = (...classes) => {
@@ -67,7 +68,7 @@ const NotificationDropdown = () => {
                     >
                         <Popover.Panel className="absolute right-0 mt-5 w-[32rem] space-y-4 rounded-t rounded-b-2xl bg-white p-6 shadow-md ring-1 ring-neutral-02 ring-opacity-20 focus:outline-none">
                             {loading === "pending" ? (
-                                <></>
+                                <NotificationDropdownSkeleton />
                             ) : (
                                 <div className="divide-y divide-neutral-200">
                                     {notification?.slice(0, 3).map((notif) => (
@@ -75,12 +76,13 @@ const NotificationDropdown = () => {
                                             className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
                                             key={notif?.id}
                                             onClick={() => {
-                                                dispatch(
-                                                    putNotification({
-                                                        id: notif?.id,
-                                                        read: true,
-                                                    })
-                                                )
+                                                !notif?.read &&
+                                                    dispatch(
+                                                        putNotification({
+                                                            id: notif?.id,
+                                                            read: true,
+                                                        })
+                                                    )
                                             }}
                                         >
                                             <Swiper className="h-14 w-16 rounded-xl">
@@ -112,7 +114,7 @@ const NotificationDropdown = () => {
                                                             )}
                                                         </span>
                                                         {!notif?.read && (
-                                                            <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                                                            <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500"></div>
                                                         )}
                                                     </div>
                                                 </div>

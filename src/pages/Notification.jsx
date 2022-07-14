@@ -27,12 +27,13 @@ const Notification = () => {
                                 className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
                                 key={notif?.id}
                                 onClick={() => {
-                                    dispatch(
-                                        putNotification({
-                                            id: notif?.id,
-                                            read: true,
-                                        })
-                                    )
+                                    !notif?.read &&
+                                        dispatch(
+                                            putNotification({
+                                                id: notif?.id,
+                                                read: true,
+                                            })
+                                        )
                                 }}
                             >
                                 <Swiper className="h-14 w-16 rounded-xl">
@@ -60,7 +61,7 @@ const Notification = () => {
                                                 )}
                                             </span>
                                             {!notif?.read && (
-                                                <div className="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                                                <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500"></div>
                                             )}
                                         </div>
                                     </div>

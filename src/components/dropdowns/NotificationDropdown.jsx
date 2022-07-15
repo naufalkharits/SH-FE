@@ -11,6 +11,7 @@ import {
 import NotifDropdown from "../notifications/NotifDropdown"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import Notification404 from "../../unfound/Notification404"
+import ioClient from "../../socket/ioClient"
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ")
@@ -20,7 +21,7 @@ const NotificationDropdown = () => {
     const dispatch = useDispatch()
     const notification = useSelector(notificationSelectors.selectAll)
     const { updatedNotif, loading } = useSelector((state) => state.notification)
-    const { user } = useSelector((state) => state.auth)
+    const { user, decodedAccess } = useSelector((state) => state.auth)
 
     const [ping, setPing] = useState(null)
 
@@ -31,6 +32,16 @@ const NotificationDropdown = () => {
     useEffect(() => {
         setPing(notification.filter((notif) => notif.read === false))
     }, [notification])
+
+    useEffect(() => {
+        ioClient.emit("START", {
+            id: decodedAccess.id,
+        })
+
+        ioClient.on("NOTIFICATION", () => {
+            dispatch(getNotification())
+        })
+    }, [decodedAccess, dispatch])
 
     return (
         <Popover className="relative z-10 hidden sm:inline-block">

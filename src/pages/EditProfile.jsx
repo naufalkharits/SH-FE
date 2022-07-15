@@ -181,7 +181,11 @@ const EditProfile = () => {
                                 type="text"
                                 placeholder="Contoh: Jalan Ikan Hiu 33"
                                 name="address"
-                                value={formValue.address || ""}
+                                value={
+                                    formValue.address === "null"
+                                        ? ""
+                                        : formValue.address
+                                }
                                 onChange={onChange}
                             />
                         </label>

@@ -73,7 +73,11 @@ const DetailProduct = () => {
             ) : (
                 <>
                     {isModalOn && (
-                        <ModalTawar onChange={onChange} onSubmit={onSubmit} />
+                        <ModalTawar
+                            product={product}
+                            onChange={onChange}
+                            onSubmit={onSubmit}
+                        />
                     )}
                     <BackButton />
                     <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">

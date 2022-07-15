@@ -1,13 +1,15 @@
-import { useDispatch } from "react-redux";
-import { FiX } from "react-icons/fi";
-import { setIsModalOn } from "../../redux/transactionSlice";
+import { useDispatch } from "react-redux"
+import { FiX } from "react-icons/fi"
+import { setIsModalOn } from "../../redux/transactionSlice"
+import IDR from "../../utils/IDR"
+import { Swiper, SwiperSlide } from "swiper/react"
 
-const Modal = ({ onChange, onSubmit }) => {
-    const dispatch = useDispatch();
+const Modal = ({ product, onChange, onSubmit }) => {
+    const dispatch = useDispatch()
 
     const handleCancelClick = () => {
-        dispatch(setIsModalOn(false));
-    };
+        dispatch(setIsModalOn(false))
+    }
 
     return (
         <>
@@ -33,17 +35,29 @@ const Modal = ({ onChange, onSubmit }) => {
                                         dihubungi penjual.
                                     </div>
                                     <div className="flex items-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 sm:bg-gray sm:shadow-none sm:ring-0">
-                                        <img
-                                            className="h-12 w-12 rounded-xl"
-                                            src="/img/jam-2.png"
-                                            alt=""
-                                        />
+                                        <div className="">
+                                            <Swiper className="h-14 w-14 rounded-xl">
+                                                {product?.pictures?.map(
+                                                    (picture) => (
+                                                        <SwiperSlide
+                                                            key={picture}
+                                                        >
+                                                            <img
+                                                                className="h-14 w-14 rounded-xl object-cover object-center"
+                                                                src={picture}
+                                                                alt=""
+                                                            />
+                                                        </SwiperSlide>
+                                                    )
+                                                )}
+                                            </Swiper>
+                                        </div>
                                         <div className="space-y-1">
                                             <div className="text-sm font-medium">
-                                                Jam Tangan Casio
+                                                {product?.name}
                                             </div>
                                             <div className="text-sm">
-                                                Rp 250.000
+                                                <IDR price={product?.price} />
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +86,7 @@ const Modal = ({ onChange, onSubmit }) => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Modal;
+export default Modal

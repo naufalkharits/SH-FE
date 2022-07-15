@@ -169,14 +169,15 @@ const DetailProduct = () => {
                                     {loading === "pending" ||
                                     loadingTx === "pending" ? (
                                         <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
-                                    ) : user &&
-                                      product?.seller.user_id ===
-                                          profile?.id ? (
+                                    ) : user ? (
                                         <>
-                                            {/* <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
+                                            {product?.seller.user_id ===
+                                            profile?.id ? (
+                                                <>
+                                                    {/* <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
                                                 Terbitkan
                                             </button> */}
-                                            {/* <button
+                                                    {/* <button
                                                 className="mb-4 mt-6 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
                                                 onClick={() => {
                                                     navigate(
@@ -186,50 +187,72 @@ const DetailProduct = () => {
                                             >
                                                 Edit
                                             </button> */}
-                                            <button
-                                                className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block"
-                                                onClick={() => {
-                                                    navigate(
-                                                        `/manage-product/edit/${productId}`
-                                                    )
-                                                }}
-                                            >
-                                                Edit
-                                            </button>
-                                            <button
-                                                className={className(
-                                                    spinner
-                                                        ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
-                                                        : "border border-primary-purple-04 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
-                                                    "mt-6 w-full rounded-2xl p-2 sm:mt-0"
-                                                )}
-                                                type="submit"
-                                                onClick={handleDelete}
-                                            >
-                                                {spinner ? (
-                                                    <>
-                                                        <CgSpinner className="animate-spin" />
-                                                        <span>
-                                                            Processing...
-                                                        </span>
-                                                    </>
-                                                ) : (
-                                                    <span>Delete</span>
-                                                )}
-                                            </button>
+                                                    <button
+                                                        className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block"
+                                                        onClick={() => {
+                                                            navigate(
+                                                                `/manage-product/edit/${productId}`
+                                                            )
+                                                        }}
+                                                    >
+                                                        Edit
+                                                    </button>
+                                                    <button
+                                                        className={className(
+                                                            spinner
+                                                                ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
+                                                                : "border border-primary-purple-04 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
+                                                            "mt-6 w-full rounded-2xl p-2 sm:mt-0"
+                                                        )}
+                                                        type="submit"
+                                                        onClick={handleDelete}
+                                                    >
+                                                        {spinner ? (
+                                                            <>
+                                                                <CgSpinner className="animate-spin" />
+                                                                <span>
+                                                                    Processing...
+                                                                </span>
+                                                            </>
+                                                        ) : (
+                                                            <span>Delete</span>
+                                                        )}
+                                                    </button>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    {filteredTx?.length !==
+                                                    0 ? (
+                                                        <button
+                                                            className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white sm:block"
+                                                            disabled
+                                                        >
+                                                            Menunggu respon
+                                                            penjual
+                                                        </button>
+                                                    ) : (
+                                                        <button
+                                                            className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                                                            onClick={() => {
+                                                                dispatch(
+                                                                    setIsModalOn(
+                                                                        true
+                                                                    )
+                                                                )
+                                                            }}
+                                                        >
+                                                            Saya tertarik dan
+                                                            ingin nego
+                                                        </button>
+                                                    )}
+                                                </>
+                                            )}
                                         </>
-                                    ) : filteredTx?.length !== 0 ? (
-                                        <button
-                                            className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white sm:block"
-                                            disabled
-                                        >
-                                            Menunggu respon penjual
-                                        </button>
                                     ) : (
                                         <button
                                             className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
                                             onClick={() => {
-                                                dispatch(setIsModalOn(true))
+                                                navigate("/login")
                                             }}
                                         >
                                             Saya tertarik dan ingin nego

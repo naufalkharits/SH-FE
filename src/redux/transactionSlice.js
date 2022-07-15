@@ -2,73 +2,70 @@ import {
     createAsyncThunk,
     createSlice,
     createEntityAdapter,
-} from "@reduxjs/toolkit";
-import closedServer from "../axios/closedServer";
+} from "@reduxjs/toolkit"
+import closedServer from "../axios/closedServer"
 
-// post TransactionTawar
-export const addTransactionTawar = createAsyncThunk(
-    "transaction/addTransactionTawar",
+// POST transaction
+export const postTransaction = createAsyncThunk(
+    "transaction/postTransaction",
     async ({ productId, price }, thunkAPI) => {
-        // for (const pair of formData.entries()) {
-        //     console.log(`${pair[0]}, ${pair[1]}`);
-        // }
         try {
             const response = await closedServer.post(
                 `/transaction/${productId}`,
                 {
                     price,
                 }
-            );
-            return response.data;
+            )
+            return response.data
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
+            return thunkAPI.rejectWithValue(error.response.data)
         }
     }
-);
+)
 
 // GET transaction by id
 export const getTransactionById = createAsyncThunk(
     "transaction/getTransactionById",
     async (id, thunkAPI) => {
         try {
-            const response = await closedServer.get(`/transaction/${id}`);
-            return response.data;
+            const response = await closedServer.get(`/transaction/${id}`)
+            return response.data
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
+            return thunkAPI.rejectWithValue(error.response.data)
         }
     }
-);
+)
 
-// GET all transaction
-export const fetchTransactionTawar = createAsyncThunk(
-    "transaction/fetchTransactionTawar",
+// GET all transactions
+export const getTransaction = createAsyncThunk(
+    "transaction/getTransaction",
     async ({ status, as }, thunkAPI) => {
         try {
             const response = await closedServer.get(
                 `/transaction?status=${status}&as=${as}`
-            );
-            return response.data;
+            )
+            return response.data
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
+            return thunkAPI.rejectWithValue(error.response.data)
         }
     }
-);
+)
 
-// update status transaction
-export const updateTransactionTawar = createAsyncThunk(
-    "transaction/updateTransactionTawar",
+// PUT status transaction
+export const putTransaction = createAsyncThunk(
+    "transaction/putTransaction",
     async ({ id, status, price }, thunkAPI) => {
         try {
             const response = await closedServer.put(`/transaction/${id}`, {
                 status,
                 price,
-            });
-            return response.data;
+            })
+            return response.data
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
+            return thunkAPI.rejectWithValue(error.response.data)
         }
     }
-);
+)
 
 // GET filtered transaction
 export const getFilteredTransaction = createAsyncThunk(
@@ -77,24 +74,19 @@ export const getFilteredTransaction = createAsyncThunk(
         try {
             const response = await closedServer.get(
                 `/transaction?status=${status}&as=${as}`
-            );
-            // console.log(
-            //     response.data.transactions.filter(
-            //         (tx) => tx.product.id === Number(productId)
-            //     )
-            // );
+            )
             return response.data.transactions.filter(
                 (tx) =>
                     tx.product.id === Number(productId) &&
                     tx.status === "PENDING"
-            );
+            )
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.response.data);
+            return thunkAPI.rejectWithValue(error.response.data)
         }
     }
-);
+)
 
-const transactionAdapter = createEntityAdapter();
+const transactionAdapter = createEntityAdapter()
 
 export const transactionSlice = createSlice({
     name: "transaction",
@@ -109,94 +101,94 @@ export const transactionSlice = createSlice({
     }),
     reducers: {
         setIsModalOn: (state, action) => {
-            state.isModalOn = action.payload;
+            state.isModalOn = action.payload
         },
     },
     extraReducers: {
-        // addTransactionTawar
-        [addTransactionTawar.pending]: (state) => {
-            state.loading = "pending";
-            state.error = null;
+        // POST transaction
+        [postTransaction.pending]: (state) => {
+            state.loading = "pending"
+            state.error = null
         },
-        [addTransactionTawar.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            state.error = null;
-            state.addedTx = action.payload;
-            state.isModalOn = false;
+        [postTransaction.fulfilled]: (state, action) => {
+            state.loading = "idle"
+            state.error = null
+            state.addedTx = action.payload
+            state.isModalOn = false
         },
-        [addTransactionTawar.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.error = action.payload;
+        [postTransaction.rejected]: (state, action) => {
+            state.loading = "idle"
+            state.error = action.payload
         },
 
         // GET transaction by product id
         [getTransactionById.pending]: (state) => {
-            state.loading = "pending";
+            state.loading = "pending"
         },
         [getTransactionById.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            state.txById = action.payload.transaction;
+            state.loading = "idle"
+            state.txById = action.payload.transaction
         },
         [getTransactionById.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.error = action.payload;
+            state.loading = "idle"
+            state.error = action.payload
         },
 
-        // fetch all transaction
-        [fetchTransactionTawar.pending]: (state) => {
-            state.loading = "pending";
-            state.error = null;
-            transactionAdapter.removeAll(state);
+        // GET all transactions
+        [getTransaction.pending]: (state) => {
+            state.loading = "pending"
+            state.error = null
+            transactionAdapter.removeAll(state)
         },
-        [fetchTransactionTawar.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            transactionAdapter.setAll(state, action.payload.transactions);
+        [getTransaction.fulfilled]: (state, action) => {
+            state.loading = "idle"
+            transactionAdapter.setAll(state, action.payload.transactions)
         },
-        [fetchTransactionTawar.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.error = action.payload;
+        [getTransaction.rejected]: (state, action) => {
+            state.loading = "idle"
+            state.error = action.payload
         },
 
         // GET filtered transaction
         [getFilteredTransaction.pending]: (state) => {
-            state.loading = "pending";
+            state.loading = "pending"
         },
         [getFilteredTransaction.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            state.filteredTx = action.payload;
+            state.loading = "idle"
+            state.filteredTx = action.payload
         },
         [getFilteredTransaction.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.error = action.payload;
+            state.loading = "idle"
+            state.error = action.payload
         },
 
-        // PUT TransactionTawar
-        [updateTransactionTawar.pending]: (state) => {
-            state.loading = "pending";
-            state.spinner = true;
+        // PUT status transaction
+        [putTransaction.pending]: (state) => {
+            state.loading = "pending"
+            state.spinner = true
         },
-        [updateTransactionTawar.fulfilled]: (state, action) => {
-            state.loading = "idle";
-            state.spinner = false;
+        [putTransaction.fulfilled]: (state, action) => {
+            state.loading = "idle"
+            state.spinner = false
             transactionAdapter.updateOne(state, {
                 id: action.payload.updatedTransaction.id,
                 updates: action.payload.updatedTransaction,
-            });
-            state.updatedTx = action.payload.updatedTransaction;
-            state.isModalOn = false;
+            })
+            state.updatedTx = action.payload.updatedTransaction
+            state.isModalOn = false
         },
-        [updateTransactionTawar.rejected]: (state, action) => {
-            state.loading = "idle";
-            state.spinner = false;
-            state.error = action.payload || "SOMETHING WRONG!!";
+        [putTransaction.rejected]: (state, action) => {
+            state.loading = "idle"
+            state.spinner = false
+            state.error = action.payload || "SOMETHING WRONG!!"
         },
     },
-});
+})
 
 export const transactionSelectors = transactionAdapter.getSelectors(
     (state) => state.transaction
-);
+)
 
-export const { setIsModalOn } = transactionSlice.actions;
+export const { setIsModalOn } = transactionSlice.actions
 
-export default transactionSlice.reducer;
+export default transactionSlice.reducer

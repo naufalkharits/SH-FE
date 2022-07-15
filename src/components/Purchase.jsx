@@ -1,10 +1,7 @@
 import dayjs from "dayjs"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {
-    fetchTransactionTawar,
-    transactionSelectors,
-} from "../redux/transactionSlice"
+import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import IDR from "../utils/IDR"
 import { Swiper, SwiperSlide } from "swiper/react"
 
@@ -25,7 +22,7 @@ const Purchase = () => {
     const { loading } = useSelector((state) => state.transaction)
 
     useEffect(() => {
-        dispatch(fetchTransactionTawar({ status, as }))
+        dispatch(getTransaction({ status, as }))
     }, [status, as, dispatch])
 
     return (

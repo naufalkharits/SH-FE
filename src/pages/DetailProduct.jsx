@@ -10,7 +10,7 @@ import {
 } from "../redux/productsSlice"
 import { getWishlistById } from "../redux/wishlistSlice"
 import {
-    addTransactionTawar,
+    postTransaction,
     getFilteredTransaction,
     setIsModalOn,
 } from "../redux/transactionSlice"
@@ -54,7 +54,7 @@ const DetailProduct = () => {
     const onSubmit = (e) => {
         e.preventDefault()
 
-        dispatch(addTransactionTawar({ productId, price }))
+        dispatch(postTransaction({ productId, price }))
     }
 
     useEffect(() => {

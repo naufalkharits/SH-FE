@@ -4,10 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
 
 import IDR from "../utils/IDR"
-import {
-    fetchTransactionTawar,
-    transactionSelectors,
-} from "../redux/transactionSlice"
+import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import Transaction404 from "../unfound/Transaction404"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 import {
@@ -93,7 +90,7 @@ const Sold = () => {
     const { loading } = useSelector((state) => state.transaction)
 
     useEffect(() => {
-        dispatch(fetchTransactionTawar({ status, as }))
+        dispatch(getTransaction({ status, as }))
     }, [status, as, dispatch])
 
     return (

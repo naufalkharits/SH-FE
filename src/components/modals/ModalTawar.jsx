@@ -1,11 +1,15 @@
-import { useDispatch } from "react-redux"
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Swiper, SwiperSlide } from "swiper/react"
 import { FiX } from "react-icons/fi"
 import { setIsModalOn } from "../../redux/transactionSlice"
+import DangerToast from "../toasts/DangerToast"
 import IDR from "../../utils/IDR"
-import { Swiper, SwiperSlide } from "swiper/react"
 
 const Modal = ({ product, onChange, onSubmit }) => {
     const dispatch = useDispatch()
+    const { error } = useSelector((state) => state.transaction)
+    const [show, setShow] = useState(false)
 
     const handleCancelClick = () => {
         dispatch(setIsModalOn(false))
@@ -13,7 +17,14 @@ const Modal = ({ product, onChange, onSubmit }) => {
 
     return (
         <>
-            <div className="fixed inset-0 z-50 bg-gray-bg">
+            {show && (
+                <DangerToast
+                    show={show}
+                    setShow={setShow}
+                    message={error?.message}
+                />
+            )}
+            <div className="fixed inset-0 z-40 bg-gray-bg">
                 <div className="flex h-screen items-center justify-center">
                     {/* modal */}
                     <div className="h-fit w-96 rounded-2xl bg-white p-8">
@@ -77,6 +88,9 @@ const Modal = ({ product, onChange, onSubmit }) => {
                                 <button
                                     className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05"
                                     type="submit"
+                                    onClick={() => {
+                                        setShow(true)
+                                    }}
                                 >
                                     Kirim
                                 </button>

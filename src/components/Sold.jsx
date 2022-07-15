@@ -95,10 +95,14 @@ const Sold = () => {
 
     return (
         <>
-            <div className="mt-4 w-full space-y-5 px-5">
+            <div className="mt-4 w-full space-y-5 px-4 sm:ml-5">
                 <p className="font-medium">Histori Penjualan Produk</p>
                 {loading === "pending" ? (
                     <TransactionSkeleton />
+                ) : transaction?.length === 0 ? (
+                    <div className="my-16 w-full">
+                        <Transaction404 />
+                    </div>
                 ) : (
                     transaction?.map(
                         (tx) =>

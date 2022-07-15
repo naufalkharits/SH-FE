@@ -14,9 +14,9 @@ const Wishlist = () => {
     }, [dispatch]);
 
     return (
-        <div className="w-full px-5 space-y-2 mt-4">
-            <p className="font-medium">List Wishlist User</p>
-            <div className="-m-4 flex flex-wrap">
+        <div className="w-full sm:pl-10 sm:pr-0 space-y-2 mt-4">
+            <p className="ml-4 sm:ml-0 font-medium">List Wishlist User</p>
+            <div className="sm:-ml-4 flex flex-wrap">
                 { loading === "pending" ? (
                     <WishlistSkeleton />
                 ) :

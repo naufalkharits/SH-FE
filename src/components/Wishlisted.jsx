@@ -95,7 +95,7 @@ const Wishlisted = () => {
     // )));
 
     return (
-        <div className="mt-4 w-full space-y-2 px-5">
+        <div className="w-full space-y-2 sm:pl-5">
             <div className="flex flex-wrap">
                 {loading === "pending" ? (
                     <WishlistSkeleton />

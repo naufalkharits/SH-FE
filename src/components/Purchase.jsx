@@ -27,7 +27,7 @@ const Purchase = () => {
 
     return (
         <>
-            <div className="mt-4 w-full space-y-5 px-5">
+            <div className="mt-4 w-full space-y-5 px-5 sm:pl-10">
                 <p className="font-medium">Histori Pembelian</p>
                 {loading === "pending" ? (
                     <TransactionSkeleton />

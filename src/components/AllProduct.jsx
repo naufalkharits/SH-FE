@@ -20,38 +20,40 @@ const AllProduct = () => {
     }, [profile, id, dispatch])
 
     return (
-        <>
-            {loadingAuth === "pending" || loading === "pending" ? (
-                <SellerSkeleton />
-            ) : (
-                filteredProduct && (
-                    <>
-                        {filteredProduct.length === 0 ? (
-                            <div className="flex items-center w-full">
-                                <AddProductButton height={"h-72"} />
-                                <MyProduct404 />
-                            </div>
-                        ) : (
-                            <AddProductButton height={"h-full"} />
-                        )}
-                        {filteredProduct.map((product) => (
-                            <div
-                                className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
-                                key={product.id}
-                            >
-                                <ProductCard
-                                    id={product.id}
-                                    name={product.name}
-                                    price={product.price}
-                                    category={product.category}
-                                    pictures={product.pictures[0]}
-                                />
-                            </div>
-                        ))}
-                    </>
-                )
-            )}
-        </>
+        <div className="w-full space-y-2 sm:pl-5">
+            <div className="flex flex-wrap">
+                {loadingAuth === "pending" || loading === "pending" ? (
+                    <SellerSkeleton />
+                ) : (
+                    filteredProduct && (
+                        <>
+                            {filteredProduct.length === 0 ? (
+                                <div className="flex items-center w-full">
+                                    <AddProductButton height={"h-72"} />
+                                    <MyProduct404 />
+                                </div>
+                            ) : (
+                                <AddProductButton height={"h-full"} />
+                            )}
+                            {filteredProduct.map((product) => (
+                                <div
+                                    className="w-1/2 p-4 lg:w-1/3 2xl:w-1/4"
+                                    key={product.id}
+                                >
+                                    <ProductCard
+                                        id={product.id}
+                                        name={product.name}
+                                        price={product.price}
+                                        category={product.category}
+                                        pictures={product.pictures[0]}
+                                    />
+                                </div>
+                            ))}
+                        </>
+                    )
+                )}
+            </div>
+        </div>
     )
 }
 

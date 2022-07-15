@@ -9,7 +9,7 @@ const CategorySellerCard = () => {
     const location = useLocation();
 
     return (
-        <div className="mt-4 hidden h-fit rounded-2xl p-6 shadow-md sm:block">
+        <div className="mt-4 hidden h-fit rounded-2xl border border-neutral-200 p-6 shadow-md sm:block">
             <div className="mb-6 font-medium">Kategori</div>
             <Link
                 to="/manage-product"

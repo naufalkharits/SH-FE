@@ -57,7 +57,7 @@ const UserDropdown = ({ profile, loading }) => {
                                             ) : (
                                                 <>
                                                     <img
-                                                        className="h-8"
+                                                        className="h-8 w-8 rounded object-cover object-center"
                                                         src={
                                                             profile?.picture ||
                                                             AltFoto

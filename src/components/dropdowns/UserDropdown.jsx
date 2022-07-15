@@ -5,6 +5,7 @@ import { Menu, Transition } from "@headlessui/react"
 import { FiLogOut, FiUser } from "react-icons/fi"
 import { logout } from "../../redux/authSlice"
 import AltFoto from "../../images/AltFoto.png"
+import { resetProductState } from "../../redux/productsSlice"
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ")
@@ -79,6 +80,7 @@ const UserDropdown = ({ profile, loading }) => {
                                             )}
                                             onClick={() => {
                                                 dispatch(logout())
+                                                dispatch(resetProductState())
                                             }}
                                         >
                                             <FiLogOut />

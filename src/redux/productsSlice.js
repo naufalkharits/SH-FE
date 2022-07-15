@@ -136,6 +136,9 @@ const productsSlice = createSlice({
         resetOffset: (state, action) => {
             state.offset = 0;
         },
+        resetProductState: (state) => {
+            state.filteredProduct = null;
+        }
     },
     extraReducers: {
         // GET filtered product
@@ -240,6 +243,7 @@ export const {
     offsetIncrement,
     offsetDecrement,
     resetOffset,
+    resetProductState,
 } = productsSlice.actions;
 
 export default productsSlice.reducer;

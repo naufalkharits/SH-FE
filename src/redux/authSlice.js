@@ -128,6 +128,7 @@ export const authSlice = createSlice({
             localStorage.removeItem("user");
             state.user = null;
             state.biodata = null;
+            state.profile = null;
             state.decodedAccess = null;
             state.decodedRefresh = null;
             state.unixRefreshExp = null;

@@ -8,6 +8,7 @@ import { logout } from "../redux/authSlice"
 import Search from "./Search"
 import SecondHand from "../images/SecondHand.png"
 import AltFoto from "../images/AltFoto.png"
+import { resetProductState } from "../redux/productsSlice"
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ")
@@ -125,6 +126,7 @@ const MobileMenu = ({ profile }) => {
                             onClick={() => {
                                 if (user) {
                                     dispatch(logout())
+                                    dispatch(resetProductState())
                                 }
 
                                 if (!user) {

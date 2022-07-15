@@ -1,54 +1,51 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useGoogleLogin } from "@react-oauth/google";
-import { GoogleLogin } from "@react-oauth/google";
-import { FcGoogle } from "react-icons/fc";
-import { FiArrowLeft } from "react-icons/fi";
-import { CgSpinner } from "react-icons/cg";
-import { authResponse, login } from "../redux/authSlice";
-import DangerToast from "../components/toasts/DangerToast";
-import SecondHand from "../images/SecondHand.png";
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useGoogleLogin } from "@react-oauth/google"
+import { GoogleLogin } from "@react-oauth/google"
+import { FcGoogle } from "react-icons/fc"
+import { FiArrowLeft } from "react-icons/fi"
+import { CgSpinner } from "react-icons/cg"
+import { authResponse, login } from "../redux/authSlice"
+import DangerToast from "../components/toasts/DangerToast"
+import SecondHand from "../images/SecondHand.png"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const Login = () => {
-
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { loading, error } = useSelector((state) => state.auth);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { loading, error } = useSelector((state) => state.auth)
     const [formValue, setFormValue] = useState({
         email: "",
         password: "",
-    });
-    const [show, setShow] = useState(false);
+    })
+    const [show, setShow] = useState(false)
 
     const LoginGoogle = useGoogleLogin({
         flow: "auth-code",
         scope: "profile",
         onSuccess: async (response) => {
-            
-            const code = {code: response.code}
+            const code = { code: response.code }
 
-            dispatch(authResponse({code}))
-        }
-    });
-
+            dispatch(authResponse({ code }))
+        },
+    })
 
     const onChange = (e) => {
         setFormValue({
             ...formValue,
             [e.target.name]: e.target.value,
-        });
-    };
+        })
+    }
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        dispatch(login({ formValue, navigate }));
-    };
+        dispatch(login({ formValue, navigate }))
+    }
 
     return (
         <>
@@ -63,7 +60,7 @@ const Login = () => {
                 <FiArrowLeft
                     className="h-6 w-6 cursor-pointer sm:hidden"
                     onClick={() => {
-                        navigate(-1);
+                        navigate(-1)
                     }}
                 />
                 <img className="sm:hidden" src={SecondHand} alt="" />
@@ -80,7 +77,6 @@ const Login = () => {
                             // value={email}
                             placeholder="Contoh: johndee@gmail.com"
                             onChange={onChange}
-                            required
                         />
                     </div>
                     <div className="mb-8 space-y-2">
@@ -94,7 +90,6 @@ const Login = () => {
                             // value={password}
                             placeholder="Masukkan password"
                             onChange={onChange}
-                            required
                         />
                     </div>
                     <button
@@ -103,11 +98,11 @@ const Login = () => {
                                 ? "bg-neutral-02"
                                 : "",
                             loading === "pending" &&
-                            "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
                             formValue.email &&
-                            formValue.password &&
-                            loading === "idle" &&
-                            "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                formValue.password &&
+                                loading === "idle" &&
+                                "bg-primary-purple-04 hover:bg-primary-purple-05",
                             "w-full rounded-2xl py-3 px-4 font-bold text-white"
                         )}
                         type="submit"
@@ -117,7 +112,7 @@ const Login = () => {
                             loading === "pending"
                         }
                         onClick={() => {
-                            setShow(true);
+                            setShow(true)
                         }}
                     >
                         {loading === "pending" ? (
@@ -148,7 +143,7 @@ const Login = () => {
                     <p>Sign In With Google</p>
                     <div className="w-5"></div>
                 </button>
-                <p className="text-sm text-center">
+                <p className="text-center text-sm">
                     Belum punya akun?{" "}
                     <Link
                         to="/register"
@@ -159,7 +154,7 @@ const Login = () => {
                 </p>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Login;
+export default Login

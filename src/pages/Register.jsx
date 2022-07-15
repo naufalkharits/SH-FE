@@ -1,39 +1,39 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { FiArrowLeft } from "react-icons/fi";
-import { CgSpinner } from "react-icons/cg";
-import { register } from "../redux/authSlice";
-import DangerToast from "../components/toasts/DangerToast";
-import SecondHand from "../images/SecondHand.png";
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { FiArrowLeft } from "react-icons/fi"
+import { CgSpinner } from "react-icons/cg"
+import { register } from "../redux/authSlice"
+import DangerToast from "../components/toasts/DangerToast"
+import SecondHand from "../images/SecondHand.png"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const Register = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { loading, error } = useSelector((state) => state.auth);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { loading, error } = useSelector((state) => state.auth)
     const [formValue, setFormValue] = useState({
         name: "",
         email: "",
         password: "",
-    });
-    const [show, setShow] = useState(false);
+    })
+    const [show, setShow] = useState(false)
 
     const onChange = (e) => {
         setFormValue({
             ...formValue,
             [e.target.name]: e.target.value,
-        });
-    };
+        })
+    }
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        dispatch(register({ formValue, navigate }));
-    };
+        dispatch(register({ formValue, navigate }))
+    }
 
     return (
         <>
@@ -48,7 +48,7 @@ const Register = () => {
                 <FiArrowLeft
                     className="h-6 w-6 cursor-pointer sm:hidden"
                     onClick={() => {
-                        navigate(-1);
+                        navigate(-1)
                     }}
                 />
                 <img className="sm:hidden" src={SecondHand} alt="" />
@@ -65,7 +65,6 @@ const Register = () => {
                             // value={name}
                             placeholder="Nama Lengkap"
                             onChange={onChange}
-                            required
                         />
                     </div>
                     <div className="mb-4 space-y-2">
@@ -79,7 +78,6 @@ const Register = () => {
                             // value={email}
                             placeholder="Contoh: johndee@gmail.com"
                             onChange={onChange}
-                            required
                         />
                     </div>
                     <div className="mb-8 space-y-2">
@@ -93,7 +91,6 @@ const Register = () => {
                             // value={password}
                             placeholder="Masukkan password"
                             onChange={onChange}
-                            required
                         />
                     </div>
                     <button
@@ -116,7 +113,7 @@ const Register = () => {
                             loading === "pending"
                         }
                         onClick={() => {
-                            setShow(true);
+                            setShow(true)
                         }}
                     >
                         {loading === "pending" ? (
@@ -129,7 +126,7 @@ const Register = () => {
                         )}
                     </button>
                 </form>
-                <p className="text-sm text-center">
+                <p className="text-center text-sm">
                     Sudah punya akun?{" "}
                     <Link
                         to="/login"
@@ -140,7 +137,7 @@ const Register = () => {
                 </p>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Register;
+export default Register

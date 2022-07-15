@@ -113,9 +113,7 @@ const EditProfile = () => {
                     <div className="space-y-2">
                         {/* Nama */}
                         <label className="space-y-2">
-                            <span className="block after:ml-0.5 after:text-red-500 after:content-['*']">
-                                Nama
-                            </span>
+                            <span className="block">Nama</span>
                             <input
                                 className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
                                 type="text"
@@ -130,9 +128,7 @@ const EditProfile = () => {
                     <div className="">
                         {/* Kota */}
                         <label className="space-y-2">
-                            <span className="block after:ml-0.5 after:text-red-500 after:content-['*']">
-                                Kota
-                            </span>
+                            <span className="block">Kota</span>
                             <label className="relative block">
                                 <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
                                     <FiChevronDown />
@@ -172,9 +168,7 @@ const EditProfile = () => {
                     <div className="">
                         {/* Alamat */}
                         <label className="space-y-2">
-                            <span className="block after:ml-0.5 after:text-red-500 after:content-['*']">
-                                Alamat
-                            </span>
+                            <span className="block">Alamat</span>
                             <textarea
                                 rows="2"
                                 className="bg-neutral-01 h-20 w-full resize-none rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
@@ -194,9 +188,7 @@ const EditProfile = () => {
                     <div className="space-y-2">
                         {/* No Handphone */}
                         <label className="space-y-2">
-                            <span className="block after:ml-0.5 after:text-red-500 after:content-['*']">
-                                No Handphone
-                            </span>
+                            <span className="block">No Handphone</span>
                             <input
                                 className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
                                 type="number"

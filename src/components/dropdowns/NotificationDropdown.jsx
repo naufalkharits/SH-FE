@@ -70,84 +70,103 @@ const NotificationDropdown = () => {
                         <Popover.Panel className="absolute right-0 mt-5 w-[32rem] space-y-4 rounded-t rounded-b-2xl bg-white p-6 shadow-md ring-1 ring-neutral-02 ring-opacity-20 focus:outline-none">
                             {loading === "pending" ? (
                                 <NotificationDropdownSkeleton />
-                            ) : notification?.length === 0 ? (
-                                <Notification404 />
                             ) : (
-                                <div className="divide-y divide-neutral-200">
-                                    {notification?.slice(0, 3).map((notif) => (
-                                        <div
-                                            className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
-                                            key={notif?.id}
-                                            onClick={() => {
-                                                !notif?.read &&
-                                                    dispatch(
-                                                        putNotification({
-                                                            id: notif?.id,
-                                                            read: true,
-                                                        })
-                                                    )
-                                            }}
-                                        >
-                                            <Swiper className="h-14 w-16 rounded-xl">
-                                                {notif?.transaction?.product?.pictures?.map(
-                                                    (picture) => (
-                                                        <SwiperSlide
-                                                            key={picture}
-                                                        >
-                                                            <img
-                                                                className="h-14 w-14 rounded-xl object-cover object-center"
-                                                                src={picture}
-                                                                alt=""
-                                                            />
-                                                        </SwiperSlide>
-                                                    )
-                                                )}
-                                            </Swiper>
-                                            <div className="w-full space-y-1">
-                                                <div className="flex items-center justify-between">
-                                                    <span className="text-xs text-neutral-03">
-                                                        {notif?.type}
-                                                    </span>
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-xs text-neutral-03">
-                                                            {dayjs(
-                                                                notif?.createdAt
-                                                            ).format(
-                                                                "D MMM, HH:mm"
+                                <>
+                                    {notification?.length === 0 ? (
+                                        <Notification404 />
+                                    ) : (
+                                        <div className="divide-y divide-neutral-200">
+                                            {notification
+                                                ?.slice(0, 3)
+                                                .map((notif) => (
+                                                    <div
+                                                        className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
+                                                        key={notif?.id}
+                                                        onClick={() => {
+                                                            !notif?.read &&
+                                                                dispatch(
+                                                                    putNotification(
+                                                                        {
+                                                                            id: notif?.id,
+                                                                            read: true,
+                                                                        }
+                                                                    )
+                                                                )
+                                                        }}
+                                                    >
+                                                        <Swiper className="h-14 w-16 rounded-xl">
+                                                            {notif?.transaction?.product?.pictures?.map(
+                                                                (picture) => (
+                                                                    <SwiperSlide
+                                                                        key={
+                                                                            picture
+                                                                        }
+                                                                    >
+                                                                        <img
+                                                                            className="h-14 w-14 rounded-xl object-cover object-center"
+                                                                            src={
+                                                                                picture
+                                                                            }
+                                                                            alt=""
+                                                                        />
+                                                                    </SwiperSlide>
+                                                                )
                                                             )}
-                                                        </span>
-                                                        {!notif?.read && (
-                                                            <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500"></div>
-                                                        )}
+                                                        </Swiper>
+                                                        <div className="w-full space-y-1">
+                                                            <div className="flex items-center justify-between">
+                                                                <span className="text-xs text-neutral-03">
+                                                                    {
+                                                                        notif?.type
+                                                                    }
+                                                                </span>
+                                                                <div className="flex items-center gap-2">
+                                                                    <span className="text-xs text-neutral-03">
+                                                                        {dayjs(
+                                                                            notif?.createdAt
+                                                                        ).format(
+                                                                            "D MMM, HH:mm"
+                                                                        )}
+                                                                    </span>
+                                                                    {!notif?.read && (
+                                                                        <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500"></div>
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                {
+                                                                    notif
+                                                                        ?.transaction
+                                                                        ?.product
+                                                                        ?.name
+                                                                }
+                                                            </div>
+                                                            <div>
+                                                                <IDR
+                                                                    price={
+                                                                        notif
+                                                                            ?.transaction
+                                                                            ?.product
+                                                                            ?.price
+                                                                    }
+                                                                />
+                                                            </div>
+                                                            <div>
+                                                                Ditawar{" "}
+                                                                <IDR
+                                                                    price={
+                                                                        notif
+                                                                            ?.transaction
+                                                                            ?.price
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    {
-                                                        notif?.transaction
-                                                            ?.product?.name
-                                                    }
-                                                </div>
-                                                <div>
-                                                    <IDR
-                                                        price={
-                                                            notif?.transaction
-                                                                ?.product?.price
-                                                        }
-                                                    />
-                                                </div>
-                                                <div>
-                                                    Ditawar{" "}
-                                                    <IDR
-                                                        price={
-                                                            notif?.transaction
-                                                                ?.price
-                                                        }
-                                                    />
-                                                </div>
-                                            </div>
+                                                ))}
                                         </div>
-                                    ))}
-                                </div>
+                                    )}
+                                </>
                             )}
                             <Link
                                 to="/notification"

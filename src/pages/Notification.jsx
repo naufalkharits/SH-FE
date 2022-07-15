@@ -6,6 +6,7 @@ import {
     putNotification,
 } from "../redux/notificationSlice"
 import IDR from "../utils/IDR"
+import NotificationSkeleton from "../components/skeletons/NotificationSkeleton"
 
 const Notification = () => {
     const dispatch = useDispatch()
@@ -19,12 +20,14 @@ const Notification = () => {
                     Notifikasi
                 </h1>
                 {loading === "pending" ? (
-                    <></>
+                    <div className="divide-y divide-neutral-200">
+                        <NotificationSkeleton />
+                    </div>
                 ) : (
                     <div className="divide-y divide-neutral-200">
                         {notification?.map((notif) => (
                             <div
-                                className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
+                                className="flex gap-4 py-6 first:pt-0 last:pb-0"
                                 key={notif?.id}
                                 onClick={() => {
                                     !notif?.read &&

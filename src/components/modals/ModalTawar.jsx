@@ -5,10 +5,15 @@ import { FiX } from "react-icons/fi"
 import { setIsModalOn } from "../../redux/transactionSlice"
 import DangerToast from "../toasts/DangerToast"
 import IDR from "../../utils/IDR"
+import { CgSpinner } from "react-icons/cg"
 
-const Modal = ({ product, onChange, onSubmit }) => {
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ")
+}
+
+const Modal = ({ price, product, onChange, onSubmit }) => {
     const dispatch = useDispatch()
-    const { error } = useSelector((state) => state.transaction)
+    const { loading, error } = useSelector((state) => state.transaction)
     const [show, setShow] = useState(false)
 
     const handleCancelClick = () => {
@@ -82,17 +87,32 @@ const Modal = ({ product, onChange, onSubmit }) => {
                                         type="number"
                                         placeholder="Rp 0,00"
                                         onChange={onChange}
-                                        // value={formValue.price}
                                     />
                                 </div>
                                 <button
-                                    className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05"
+                                    className={className(
+                                        !price && "bg-neutral-02",
+                                        loading === "pending" &&
+                                            "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                        price &&
+                                            loading === "idle" &&
+                                            "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                        "w-full rounded-2xl py-3.5 px-6 font-medium text-white"
+                                    )}
                                     type="submit"
+                                    disabled={!price}
                                     onClick={() => {
                                         setShow(true)
                                     }}
                                 >
-                                    Kirim
+                                    {loading === "pending" ? (
+                                        <>
+                                            <CgSpinner className="animate-spin" />
+                                            <span>Processing...</span>
+                                        </>
+                                    ) : (
+                                        <span>Kirim</span>
+                                    )}
                                 </button>
                             </div>
                         </form>

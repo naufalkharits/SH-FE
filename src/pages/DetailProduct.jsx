@@ -74,6 +74,7 @@ const DetailProduct = () => {
                 <>
                     {isModalOn && (
                         <ModalTawar
+                            price={price}
                             product={product}
                             onChange={onChange}
                             onSubmit={onSubmit}

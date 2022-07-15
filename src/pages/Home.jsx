@@ -13,7 +13,7 @@ import Category from "../components/Category";
 import ProductCard from "../components/ProductCard";
 import SellButton from "../components/buttons/SellButton";
 import ProductSkeleton from "../components/skeletons/ProductSkeleton";
-import { FiMinus, FiPlus } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Product404 from "../unfound/Product404";
 
 const className = (...classes) => {
@@ -80,7 +80,7 @@ const Home = () => {
                             }
                         }}
                     >
-                        <FiMinus className="h-5 w-5" />
+                        <FiChevronLeft className="h-5 w-5" />
                     </button>
                     <button
                         className={className(
@@ -110,7 +110,7 @@ const Home = () => {
                             }
                         }}
                     >
-                        <FiPlus className="h-5 w-5" />
+                        <FiChevronRight className="h-5 w-5" />
                     </button>
                 </div>
             )}

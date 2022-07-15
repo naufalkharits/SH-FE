@@ -1,8 +1,11 @@
 import { useSelector } from "react-redux"
+import { notificationSelectors } from "../redux/notificationSlice"
 import NotificationSkeleton from "../components/skeletons/NotificationSkeleton"
-import Notif from "../components/notifications/Notif"
+import NewProduct from "../components/notifications/NewProduct"
+import ProductTransaction from "../components/notifications/ProductTransaction"
 
 const Notification = () => {
+    const notification = useSelector(notificationSelectors.selectAll)
     const { loading } = useSelector((state) => state.notification)
 
     return (
@@ -17,7 +20,16 @@ const Notification = () => {
                     </div>
                 ) : (
                     <div className="divide-y divide-neutral-200">
-                        <Notif />
+                        {notification?.map((notif) =>
+                            notif?.type === "NEW_PRODUCT" ? (
+                                <NewProduct key={notif?.id} notif={notif} />
+                            ) : (
+                                <ProductTransaction
+                                    key={notif?.id}
+                                    notif={notif}
+                                />
+                            )
+                        )}
                     </div>
                 )}
             </div>

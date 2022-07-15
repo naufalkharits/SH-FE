@@ -8,10 +8,11 @@ import {
     getNotification,
     notificationSelectors,
 } from "../../redux/notificationSlice"
-import NotifDropdown from "../notifications/NotifDropdown"
+import NewProduct from "../notifications/NewProduct"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import Notification404 from "../../unfound/Notification404"
 import ioClient from "../../socket/ioClient"
+import ProductTransaction from "../notifications/ProductTransaction"
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ")
@@ -35,7 +36,7 @@ const NotificationDropdown = () => {
 
     useEffect(() => {
         ioClient.emit("START", {
-            id: decodedAccess.id,
+            id: decodedAccess?.id,
         })
 
         ioClient.on("NOTIFICATION", () => {
@@ -84,7 +85,22 @@ const NotificationDropdown = () => {
                                         <Notification404 />
                                     ) : (
                                         <div className="divide-y divide-neutral-200">
-                                            <NotifDropdown />
+                                            {notification
+                                                ?.slice(0, 3)
+                                                .map((notif) =>
+                                                    notif?.type ===
+                                                    "NEW_PRODUCT" ? (
+                                                        <NewProduct
+                                                            key={notif?.id}
+                                                            notif={notif}
+                                                        />
+                                                    ) : (
+                                                        <ProductTransaction
+                                                            key={notif?.id}
+                                                            notif={notif}
+                                                        />
+                                                    )
+                                                )}
                                         </div>
                                     )}
                                 </>

@@ -83,6 +83,19 @@ export const updateBiodata = createAsyncThunk(
     }
 );
 
+// google login
+export const authResponse = createAsyncThunk(
+    "auth/googleLogin",
+    async ({ code }, thunkAPI) => {
+        try {
+            const response = await openServer.post("/auth/google", code );
+            return response.data
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
 export const authSlice = createSlice({
     name: "auth",
     initialState: {
@@ -225,6 +238,29 @@ export const authSlice = createSlice({
             state.bio = action.payload.updatedBiodata;
         },
         [updateBiodata.rejected]: (state, action) => {
+            state.loading = "idle";
+            state.error = action.payload;
+        },
+
+        // google login
+        [authResponse.pending]: (state) => {
+            state.loading = "pending";
+            state.error = null;
+        },
+        [authResponse.fulfilled]: (state, action) => {
+            state.loading = "idle";
+            localStorage.setItem("user", JSON.stringify(action.payload));
+            state.user = action.payload;
+            state.decodedAccess = jwtDecode(action.payload.accessToken.token);
+            state.decodedRefresh = jwtDecode(action.payload.refreshToken.token);
+            state.unixRefreshExp = dayjs(
+                action.payload.refreshToken.expiredAt
+            ).unix();
+            state.unixAccessExp = dayjs(
+                action.payload.accessToken.expiredAt
+            ).unix();
+        },
+        [authResponse.rejected]: (state, action) => {
             state.loading = "idle";
             state.error = action.payload;
         },

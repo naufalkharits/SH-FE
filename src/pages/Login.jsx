@@ -6,7 +6,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 import { FiArrowLeft } from "react-icons/fi";
 import { CgSpinner } from "react-icons/cg";
-import { login } from "../redux/authSlice";
+import { authResponse, login } from "../redux/authSlice";
 import DangerToast from "../components/toasts/DangerToast";
 import SecondHand from "../images/SecondHand.png";
 
@@ -15,10 +15,6 @@ const className = (...classes) => {
 };
 
 const Login = () => {
-    const LoginGoogle = useGoogleLogin({
-        onSuccess: (codeResponse) => console.log(codeResponse),
-        flow: "auth-code",
-    });
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -28,6 +24,18 @@ const Login = () => {
         password: "",
     });
     const [show, setShow] = useState(false);
+
+    const LoginGoogle = useGoogleLogin({
+        flow: "auth-code",
+        scope: "profile",
+        onSuccess: async (response) => {
+            
+            const code = {code: response.code}
+
+            dispatch(authResponse({code}))
+        }
+    });
+
 
     const onChange = (e) => {
         setFormValue({
@@ -95,11 +103,11 @@ const Login = () => {
                                 ? "bg-neutral-02"
                                 : "",
                             loading === "pending" &&
-                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                            "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
                             formValue.email &&
-                                formValue.password &&
-                                loading === "idle" &&
-                                "bg-primary-purple-04 hover:bg-primary-purple-05",
+                            formValue.password &&
+                            loading === "idle" &&
+                            "bg-primary-purple-04 hover:bg-primary-purple-05",
                             "w-full rounded-2xl py-3 px-4 font-bold text-white"
                         )}
                         type="submit"
@@ -140,7 +148,7 @@ const Login = () => {
                     <p>Sign In With Google</p>
                     <div className="w-5"></div>
                 </button>
-                <p className="text-sm">
+                <p className="text-sm text-center">
                     Belum punya akun?{" "}
                     <Link
                         to="/register"

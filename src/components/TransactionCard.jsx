@@ -169,7 +169,7 @@ const TransactionCard = () => {
                                         <button
                                             onClick={() => {
                                                 window.open(
-                                                    `https://api.whatsapp.com/send?phone=62${tx?.buyer?.phone_number}`
+                                                    `https://api.whatsapp.com/send?phone=${tx?.buyer?.phone_number}`
                                                 )
                                             }}
                                             className="flex w-[45%] items-center justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"

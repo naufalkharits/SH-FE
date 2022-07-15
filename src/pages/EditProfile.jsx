@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { FiCamera, FiArrowLeft, FiChevronDown } from "react-icons/fi";
-import { me, updateBiodata } from "../redux/authSlice";
+import { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { FiCamera, FiArrowLeft, FiChevronDown } from "react-icons/fi"
+import { me, updateBiodata } from "../redux/authSlice"
+import { phoneNumber } from "../utils/phoneNumber"
 
 const EditProfile = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { user, profile } = useSelector((state) => state.auth);
-    const dispatch = useDispatch();
+    const location = useLocation()
+    const navigate = useNavigate()
+    const { user, profile } = useSelector((state) => state.auth)
+    const dispatch = useDispatch()
 
     const [formValue, setFormValue] = useState({
         name: "",
@@ -16,43 +17,43 @@ const EditProfile = () => {
         address: "",
         phone_number: "",
         picture: null,
-    });
-    const [formData, setFormData] = useState("");
+    })
+    const [formData, setFormData] = useState("")
 
     const onPictChange = (e) => {
-        const file = e.target.files;
+        const file = e.target.files
         for (let index of file) {
-            formData.append("picture", index);
+            formData.append("picture", index)
         }
         setFormValue({
             ...formValue,
             picture: URL.createObjectURL(file[0]),
-        });
-    };
+        })
+    }
 
     const onChange = (e) => {
         setFormValue({
             ...formValue,
             [e.target.name]: e.target.value,
-        });
-    };
+        })
+    }
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        formValue.name && formData.set("name", formValue.name);
-        formValue.city && formData.set("city", formValue.city);
-        formValue.address && formData.set("address", formValue.address);
+        formValue.name && formData.set("name", formValue.name)
+        formValue.city && formData.set("city", formValue.city)
+        formValue.address && formData.set("address", formValue.address)
         formValue.phone_number &&
-            formData.set("phone_number", formValue.phone_number);
+            formData.set("phone_number", formValue.phone_number)
 
-        dispatch(updateBiodata({ formData, navigate, location }));
-    };
+        dispatch(updateBiodata({ formData, navigate, location }))
+    }
 
     useEffect(() => {
-        dispatch(me(user?.accessToken.token));
-        setFormData(new FormData());
-    }, [user, dispatch]);
+        dispatch(me(user?.accessToken.token))
+        setFormData(new FormData())
+    }, [user, dispatch])
 
     useEffect(() => {
         profile &&
@@ -62,8 +63,8 @@ const EditProfile = () => {
                 address: profile.address,
                 phone_number: profile.phone_number,
                 picture: profile.picture,
-            });
-    }, [profile]);
+            })
+    }, [profile])
 
     return (
         <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
@@ -71,7 +72,7 @@ const EditProfile = () => {
                 <FiArrowLeft
                     className="cursor-pointer text-3xl"
                     onClick={() => {
-                        navigate(-1);
+                        navigate(-1)
                     }}
                 />
             </div>
@@ -120,7 +121,7 @@ const EditProfile = () => {
                                 type="text"
                                 placeholder="Nama"
                                 name="name"
-                                value={formValue.name ? formValue.name : ""}
+                                value={formValue.name || ""}
                                 onChange={onChange}
                             />
                         </label>
@@ -139,7 +140,7 @@ const EditProfile = () => {
                                 <select
                                     className="bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
                                     name="city"
-                                    value={formValue.city ? formValue.city : ""}
+                                    value={formValue.city || ""}
                                     onChange={onChange}
                                 >
                                     <option value="">
@@ -180,9 +181,7 @@ const EditProfile = () => {
                                 type="text"
                                 placeholder="Contoh: Jalan Ikan Hiu 33"
                                 name="address"
-                                value={
-                                    formValue.address ? formValue.address : ""
-                                }
+                                value={formValue.address || ""}
                                 onChange={onChange}
                             />
                         </label>
@@ -199,12 +198,15 @@ const EditProfile = () => {
                                 type="number"
                                 placeholder="contoh: 08123456789"
                                 name="phone_number"
-                                value={
-                                    formValue.phone_number
-                                        ? formValue.phone_number
-                                        : ""
-                                }
-                                onChange={onChange}
+                                value={formValue.phone_number || ""}
+                                onChange={(e) => {
+                                    setFormValue({
+                                        ...formValue,
+                                        [e.target.name]: phoneNumber(
+                                            e.target.value
+                                        ),
+                                    })
+                                }}
                             />
                         </label>
                     </div>
@@ -215,7 +217,7 @@ const EditProfile = () => {
             </form>
             <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>
         </div>
-    );
-};
+    )
+}
 
-export default EditProfile;
+export default EditProfile

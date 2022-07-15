@@ -5,10 +5,9 @@ const TitlePerPage = () => {
 
     return (
         <h1 className="text-xl font-bold sm:hidden">
-            {location.pathname.includes("/user") && "Profile"}
+            {location.pathname.includes("/user") && "Akun Saya"}
             {location.pathname.includes("/notification") && "Notifikasi"}
-            {location.pathname.includes("/manage-product") &&
-                "Daftar Jual Saya"}
+            {location.pathname.includes("/manage-product") && "Toko Saya"}
         </h1>
     )
 }

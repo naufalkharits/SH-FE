@@ -1,91 +1,91 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi";
-import { CgSpinner } from "react-icons/cg";
+import { useEffect, useState } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi"
+import { CgSpinner } from "react-icons/cg"
 import {
     getProductById,
     productsSelectors,
     updateProduct,
-} from "../redux/productsSlice";
-import { fetchCategories } from "../redux/categoriesSlice";
-import DangerToast from "../components/toasts/DangerToast";
+} from "../redux/productsSlice"
+import { fetchCategories } from "../redux/categoriesSlice"
+import DangerToast from "../components/toasts/DangerToast"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const EditProduct = () => {
-    const { productId } = useParams();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const { productId } = useParams()
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
-    );
-    const { spinner, error } = useSelector((state) => state.products);
-    const { categories } = useSelector((state) => state.categories);
+    )
+    const { spinner, error } = useSelector((state) => state.products)
+    const { categories } = useSelector((state) => state.categories)
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
         category: "",
         description: "",
         pictures: [],
-    });
-    const [formData, setFormData] = useState("");
-    const [formCategory, setFormCategory] = useState([]);
-    const [show, setShow] = useState(false);
-    const [alert, setAlert] = useState("");
+    })
+    const [formData, setFormData] = useState("")
+    const [formCategory, setFormCategory] = useState([])
+    const [show, setShow] = useState(false)
+    const [alert, setAlert] = useState("")
 
     const onFileChange = (e) => {
-        const file = e.target.files;
-        const fileArray = Array.from(file);
+        const file = e.target.files
+        const fileArray = Array.from(file)
         if (file.length > 4) {
-            e.target.value = null;
-            setShow(true);
-            setAlert("Gambar Tidak Boleh Lebih Dari 4");
+            e.target.value = null
+            setShow(true)
+            setAlert("Gambar Tidak Boleh Lebih Dari 4")
         } else {
             const imageArray = fileArray.map((file) => {
-                return URL.createObjectURL(file);
-            });
+                return URL.createObjectURL(file)
+            })
             for (let index of file) {
-                formData.append("pictures", index);
+                formData.append("pictures", index)
             }
             setFormValue({
                 ...formValue,
                 pictures: imageArray,
-            });
+            })
         }
-    };
+    }
 
     const onChange = (e) => {
         setFormValue({
             ...formValue,
             [e.target.name]: e.target.value,
-        });
-    };
+        })
+    }
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        formData.set("name", formValue.name);
-        formData.set("price", formValue.price);
-        formData.set("category", formValue.category);
-        formData.set("description", formValue.description);
+        formData.set("name", formValue.name)
+        formData.set("price", formValue.price)
+        formData.set("category", formValue.category)
+        formData.set("description", formValue.description)
         if (formData.has("pictures") === false) {
-            const file = formValue.pictures;
+            const file = formValue.pictures
             for (let index of file) {
-                formData.append("pictures", index);
+                formData.append("pictures", index)
             }
         }
 
-        dispatch(updateProduct({ productId, formData, navigate }));
-    };
+        dispatch(updateProduct({ productId, formData, navigate }))
+    }
 
     useEffect(() => {
-        setFormData(new FormData());
-        dispatch(getProductById(productId));
-        dispatch(fetchCategories());
-    }, [productId, dispatch]);
+        setFormData(new FormData())
+        dispatch(getProductById(productId))
+        dispatch(fetchCategories())
+    }, [productId, dispatch])
 
     useEffect(() => {
         product &&
@@ -95,9 +95,9 @@ const EditProduct = () => {
                 category: product.category,
                 description: product.description,
                 pictures: product.pictures,
-            });
-        categories && setFormCategory(categories);
-    }, [product, categories]);
+            })
+        categories && setFormCategory(categories)
+    }, [product, categories])
 
     return (
         <>
@@ -115,7 +115,7 @@ const EditProduct = () => {
                     <FiArrowLeft
                         className="cursor-pointer text-3xl"
                         onClick={() => {
-                            navigate(-1);
+                            navigate(-1)
                         }}
                     />
                 </div>
@@ -155,7 +155,7 @@ const EditProduct = () => {
                                 <FiChevronDown />
                             </span>
                             <select
-                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 py-3.5 pr-10 pl-3 focus:outline-none"
+                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3.5 pr-10 pl-3 focus:outline-none"
                                 name="category"
                                 value={formValue.category}
                                 onChange={onChange}
@@ -214,23 +214,20 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div className="flex justify-between">
-                        <Link
-                            to="#"
-                            className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04 py-3 text-center font-medium hover:bg-primary-purple-05 hover:text-white"
-                        >
+                        <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white">
                             Preview
-                        </Link>
+                        </div>
                         <button
                             className={className(
                                 spinner
                                     ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
                                     : "bg-primary-purple-04 hover:bg-primary-purple-05",
-                                "sm:w-74 w-[48%] rounded-xl py-3 font-medium text-white"
+                                "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white"
                             )}
                             type="submit"
-                            disabled={spinner ? true : false}
+                            disabled={spinner}
                             onClick={() => {
-                                setShow(true);
+                                setShow(true)
                             }}
                         >
                             {spinner ? (
@@ -247,7 +244,7 @@ const EditProduct = () => {
                 <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default EditProduct;
+export default EditProduct

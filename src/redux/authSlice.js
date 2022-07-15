@@ -99,6 +99,7 @@ export const authSlice = createSlice({
         bio: null,
         drops: null,
         loading: "idle",
+        spinner: false,
         error: null,
     },
     reducers: {
@@ -224,15 +225,18 @@ export const authSlice = createSlice({
         // update biodata
         [updateBiodata.pending]: (state) => {
             state.loading = "pending"
+            state.spinner = true
             state.error = null
             state.bio = null
         },
         [updateBiodata.fulfilled]: (state, action) => {
             state.loading = "idle"
+            state.spinner = false
             state.bio = action.payload.updatedBiodata
         },
         [updateBiodata.rejected]: (state, action) => {
             state.loading = "idle"
+            state.spinner = false
             state.error = action.payload
         },
 

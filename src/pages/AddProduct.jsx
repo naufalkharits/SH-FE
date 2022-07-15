@@ -1,77 +1,77 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi";
-import { CgSpinner } from "react-icons/cg";
-import { insertProduct } from "../redux/productsSlice";
-import { fetchCategories } from "../redux/categoriesSlice";
-import DangerToast from "../components/toasts/DangerToast";
+import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi"
+import { CgSpinner } from "react-icons/cg"
+import { insertProduct } from "../redux/productsSlice"
+import { fetchCategories } from "../redux/categoriesSlice"
+import DangerToast from "../components/toasts/DangerToast"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const AddProduct = () => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { spinner, error } = useSelector((state) => state.products);
-    const { categories } = useSelector((state) => state.categories);
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { spinner, error } = useSelector((state) => state.products)
+    const { categories } = useSelector((state) => state.categories)
     const [formValue, setFormValue] = useState({
         name: "",
         price: 0,
         category: "",
         description: "",
-    });
-    const [formData, setFormData] = useState("");
-    const [formCategory, setFormCategory] = useState([]);
-    const [picture, setPicture] = useState([]);
-    const [show, setShow] = useState(false);
-    const [alert, setAlert] = useState("");
+    })
+    const [formData, setFormData] = useState("")
+    const [formCategory, setFormCategory] = useState([])
+    const [picture, setPicture] = useState([])
+    const [show, setShow] = useState(false)
+    const [alert, setAlert] = useState("")
 
     const onFileChange = (e) => {
-        const file = e.target.files;
-        const fileArray = Array.from(file);
+        const file = e.target.files
+        const fileArray = Array.from(file)
         if (file.length > 4) {
-            e.target.value = null;
-            setShow(true);
-            setAlert("Gambar Tidak Boleh Lebih Dari 4");
+            e.target.value = null
+            setShow(true)
+            setAlert("Gambar Tidak Boleh Lebih Dari 4")
         } else {
             const imageArray = fileArray.map((file) => {
-                return URL.createObjectURL(file);
-            });
+                return URL.createObjectURL(file)
+            })
             for (let index of file) {
-                formData.append("pictures", index);
+                formData.append("pictures", index)
             }
-            setPicture(imageArray);
+            setPicture(imageArray)
         }
-    };
+    }
 
     const onChange = (e) => {
         setFormValue({
             ...formValue,
             [e.target.name]: e.target.value,
-        });
-    };
+        })
+    }
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        formData.set("name", formValue.name);
-        formData.set("price", formValue.price);
-        formData.set("category", formValue.category);
-        formData.set("description", formValue.description);
+        formData.set("name", formValue.name)
+        formData.set("price", formValue.price)
+        formData.set("category", formValue.category)
+        formData.set("description", formValue.description)
 
-        dispatch(insertProduct({ formData, navigate }));
-    };
-
-    useEffect(() => {
-        setFormData(new FormData());
-        categories && setFormCategory(categories);
-    }, [categories]);
+        dispatch(insertProduct({ formData, navigate }))
+    }
 
     useEffect(() => {
-        dispatch(fetchCategories());
-    }, [dispatch]);
+        setFormData(new FormData())
+        categories && setFormCategory(categories)
+    }, [categories])
+
+    useEffect(() => {
+        dispatch(fetchCategories())
+    }, [dispatch])
 
     return (
         <>
@@ -89,7 +89,7 @@ const AddProduct = () => {
                     <FiArrowLeft
                         className="cursor-pointer text-3xl"
                         onClick={() => {
-                            navigate(-1);
+                            navigate(-1)
                         }}
                     />
                 </div>
@@ -127,7 +127,7 @@ const AddProduct = () => {
                                 <FiChevronDown />
                             </span>
                             <select
-                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 py-3 pr-10 pl-3 focus:outline-none"
+                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3 pr-10 pl-3 focus:outline-none"
                                 name="category"
                                 onChange={onChange}
                             >
@@ -184,23 +184,40 @@ const AddProduct = () => {
                         </div>
                     </div>
                     <div className="flex justify-between">
-                        <Link
-                            to="#"
-                            className="sm:w-74 w-[48%] rounded-xl border border-primary-purple-04 py-3 text-center font-medium hover:bg-primary-purple-05 hover:text-white"
-                        >
+                        <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white">
                             Preview
-                        </Link>
+                        </div>
                         <button
                             className={className(
-                                spinner
-                                    ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
-                                    : "bg-primary-purple-04 hover:bg-primary-purple-05",
-                                "sm:w-74 w-[48%] rounded-xl py-3 font-medium text-white"
+                                !formValue.name ||
+                                    !formValue.price ||
+                                    !formValue.category ||
+                                    !formValue.description ||
+                                    formData.has("pictures") === false
+                                    ? "bg-neutral-02"
+                                    : "",
+                                spinner &&
+                                    "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                formValue.name &&
+                                    formValue.price &&
+                                    formValue.category &&
+                                    formValue.description &&
+                                    formData.has("pictures") === true &&
+                                    !spinner &&
+                                    "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white"
                             )}
                             type="submit"
-                            disabled={spinner ? true : false}
+                            disabled={
+                                !formValue.name ||
+                                !formValue.price ||
+                                !formValue.category ||
+                                !formValue.description ||
+                                formData.has("pictures") === false ||
+                                spinner
+                            }
                             onClick={() => {
-                                setShow(true);
+                                setShow(true)
                             }}
                         >
                             {spinner ? (
@@ -217,7 +234,7 @@ const AddProduct = () => {
                 <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default AddProduct;
+export default AddProduct

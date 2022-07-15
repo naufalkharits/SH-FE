@@ -4,12 +4,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { FiCamera, FiArrowLeft, FiChevronDown } from "react-icons/fi"
 import { me, updateBiodata } from "../redux/authSlice"
 import { phoneNumber } from "../utils/phoneNumber"
+import { CgSpinner } from "react-icons/cg"
+
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ")
+}
 
 const EditProfile = () => {
     const location = useLocation()
     const navigate = useNavigate()
-    const { user, profile } = useSelector((state) => state.auth)
     const dispatch = useDispatch()
+    const { user, profile, loading, spinner } = useSelector(
+        (state) => state.auth
+    )
 
     const [formValue, setFormValue] = useState({
         name: "",
@@ -206,8 +213,23 @@ const EditProfile = () => {
                             />
                         </label>
                     </div>
-                    <button className="h-12 w-full rounded-xl bg-primary-purple-04 p-2 text-white">
-                        Simpan
+                    <button
+                        className={className(
+                            spinner
+                                ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
+                                : "bg-primary-purple-04 hover:bg-primary-purple-05",
+                            "w-full rounded-2xl py-3.5 px-6 font-medium text-white"
+                        )}
+                        disabled={loading === "pending" || spinner}
+                    >
+                        {spinner ? (
+                            <>
+                                <CgSpinner className="animate-spin" />
+                                <span>Processing...</span>
+                            </>
+                        ) : (
+                            <span>Simpan</span>
+                        )}
                     </button>
                 </div>
             </form>

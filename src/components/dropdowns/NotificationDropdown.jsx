@@ -13,6 +13,7 @@ import {
 } from "../../redux/notificationSlice"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import IDR from "../../utils/IDR"
+import Notification404 from "../../unfound/Notification404"
 
 const className = (...classes) => {
     return classes.filter(Boolean).join(" ")
@@ -69,6 +70,8 @@ const NotificationDropdown = () => {
                         <Popover.Panel className="absolute right-0 mt-5 w-[32rem] space-y-4 rounded-t rounded-b-2xl bg-white p-6 shadow-md ring-1 ring-neutral-02 ring-opacity-20 focus:outline-none">
                             {loading === "pending" ? (
                                 <NotificationDropdownSkeleton />
+                            ) : notification?.length === 0 ? (
+                                <Notification404 />
                             ) : (
                                 <div className="divide-y divide-neutral-200">
                                     {notification?.slice(0, 3).map((notif) => (

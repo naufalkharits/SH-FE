@@ -1,37 +1,37 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { ScrollingCarousel } from "@trendyol-js/react-carousel";
-import { useDispatch, useSelector } from "react-redux";
-import { resetOffset } from "../redux/productsSlice";
-import { fetchCategories, categoryQuery } from "../redux/categoriesSlice";
-import { FiSearch } from "react-icons/fi";
-import CategorySkeleton from "./skeletons/CategorySkeleton";
+import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router-dom"
+import { ScrollingCarousel } from "@trendyol-js/react-carousel"
+import { useDispatch, useSelector } from "react-redux"
+import { resetOffset } from "../redux/productsSlice"
+import { fetchCategories, categoryQuery } from "../redux/categoriesSlice"
+import { FiSearch } from "react-icons/fi"
+import CategorySkeleton from "./skeletons/CategorySkeleton"
 
 const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+    return classes.filter(Boolean).join(" ")
+}
 
 const Category = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const dispatch = useDispatch();
+    const [searchParams, setSearchParams] = useSearchParams()
+    const dispatch = useDispatch()
     const { categories, category, loading } = useSelector(
         (state) => state.categories
-    );
-    const [formValue, setFormValue] = useState([]);
+    )
+    const [formValue, setFormValue] = useState([])
 
     const onClick = (query) => {
-        setSearchParams();
-        dispatch(resetOffset());
-        dispatch(categoryQuery(query));
-    };
+        setSearchParams()
+        dispatch(resetOffset())
+        dispatch(categoryQuery(query))
+    }
 
     useEffect(() => {
-        dispatch(fetchCategories());
-    }, [dispatch]);
+        dispatch(fetchCategories())
+    }, [dispatch])
 
     useEffect(() => {
-        categories && setFormValue(categories);
-    }, [categories]);
+        categories && setFormValue(categories)
+    }, [categories])
 
     return (
         <>
@@ -51,7 +51,7 @@ const Category = () => {
                                 "flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
                             )}
                             onClick={() => {
-                                onClick("");
+                                onClick("")
                             }}
                         >
                             <FiSearch />
@@ -67,7 +67,7 @@ const Category = () => {
                                     "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
                                 )}
                                 onClick={() => {
-                                    onClick(cat);
+                                    onClick(cat)
                                 }}
                             >
                                 <FiSearch />
@@ -78,7 +78,7 @@ const Category = () => {
                 )}
             </ScrollingCarousel>
         </>
-    );
-};
+    )
+}
 
-export default Category;
+export default Category

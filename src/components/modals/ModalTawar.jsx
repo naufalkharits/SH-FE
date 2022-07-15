@@ -1,17 +1,35 @@
-import { useDispatch } from "react-redux";
-import { FiX } from "react-icons/fi";
-import { setIsModalOn } from "../../redux/transactionSlice";
+import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { FiX } from "react-icons/fi"
+import { setIsModalOn } from "../../redux/transactionSlice"
+import DangerToast from "../toasts/DangerToast"
+import IDR from "../../utils/IDR"
+import { CgSpinner } from "react-icons/cg"
 
-const Modal = ({ onChange, onSubmit }) => {
-    const dispatch = useDispatch();
+const className = (...classes) => {
+    return classes.filter(Boolean).join(" ")
+}
+
+const Modal = ({ price, product, onChange, onSubmit }) => {
+    const dispatch = useDispatch()
+    const { loading, error } = useSelector((state) => state.transaction)
+    const [show, setShow] = useState(false)
 
     const handleCancelClick = () => {
-        dispatch(setIsModalOn(false));
-    };
+        dispatch(setIsModalOn(false))
+    }
 
     return (
         <>
-            <div className="fixed inset-0 z-50 bg-gray-bg">
+            {show && (
+                <DangerToast
+                    show={show}
+                    setShow={setShow}
+                    message={error?.message}
+                />
+            )}
+            <div className="fixed inset-0 z-40 bg-gray-bg">
                 <div className="flex h-screen items-center justify-center">
                     {/* modal */}
                     <div className="h-fit w-96 rounded-2xl bg-white p-8">
@@ -33,17 +51,29 @@ const Modal = ({ onChange, onSubmit }) => {
                                         dihubungi penjual.
                                     </div>
                                     <div className="flex items-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 sm:bg-gray sm:shadow-none sm:ring-0">
-                                        <img
-                                            className="h-12 w-12 rounded-xl"
-                                            src="/img/jam-2.png"
-                                            alt=""
-                                        />
+                                        <div className="">
+                                            <Swiper className="h-14 w-14 rounded-xl">
+                                                {product?.pictures?.map(
+                                                    (picture) => (
+                                                        <SwiperSlide
+                                                            key={picture}
+                                                        >
+                                                            <img
+                                                                className="h-14 w-14 rounded-xl object-cover object-center"
+                                                                src={picture}
+                                                                alt=""
+                                                            />
+                                                        </SwiperSlide>
+                                                    )
+                                                )}
+                                            </Swiper>
+                                        </div>
                                         <div className="space-y-1">
                                             <div className="text-sm font-medium">
-                                                Jam Tangan Casio
+                                                {product?.name}
                                             </div>
                                             <div className="text-sm">
-                                                Rp 250.000
+                                                <IDR price={product?.price} />
                                             </div>
                                         </div>
                                     </div>
@@ -57,14 +87,32 @@ const Modal = ({ onChange, onSubmit }) => {
                                         type="number"
                                         placeholder="Rp 0,00"
                                         onChange={onChange}
-                                        // value={formValue.price}
                                     />
                                 </div>
                                 <button
-                                    className="w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 font-medium text-white hover:bg-primary-purple-05"
+                                    className={className(
+                                        !price && "bg-neutral-02",
+                                        loading === "pending" &&
+                                            "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                        price &&
+                                            loading === "idle" &&
+                                            "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                        "w-full rounded-2xl py-3.5 px-6 font-medium text-white"
+                                    )}
                                     type="submit"
+                                    disabled={!price}
+                                    onClick={() => {
+                                        setShow(true)
+                                    }}
                                 >
-                                    Kirim
+                                    {loading === "pending" ? (
+                                        <>
+                                            <CgSpinner className="animate-spin" />
+                                            <span>Processing...</span>
+                                        </>
+                                    ) : (
+                                        <span>Kirim</span>
+                                    )}
                                 </button>
                             </div>
                         </form>
@@ -72,7 +120,7 @@ const Modal = ({ onChange, onSubmit }) => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Modal;
+export default Modal

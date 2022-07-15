@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import {
-    fetchTransactionTawar,
+    getTransaction,
     setIsModalOn,
     transactionSelectors,
 } from "../redux/transactionSlice"
@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
 import { BsWhatsapp } from "react-icons/bs"
 
-import { updateTransactionTawar } from "../redux/transactionSlice"
+import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
 import MyTransaction404 from "../unfound/MyTransaction404"
 import IDR from "../utils/IDR"
@@ -36,7 +36,7 @@ const TransactionCard = () => {
     // step-1
     const onClick = (updateValue) => {
         dispatch(
-            updateTransactionTawar({
+            putTransaction({
                 id: updateValue.id,
                 status: updateValue.status,
                 price: updateValue.price,
@@ -49,7 +49,7 @@ const TransactionCard = () => {
         e.preventDefault()
 
         dispatch(
-            updateTransactionTawar({
+            putTransaction({
                 id: update.id,
                 status: update.status,
                 price: update.price,
@@ -58,7 +58,7 @@ const TransactionCard = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchTransactionTawar({ status: "", as: "seller" }))
+        dispatch(getTransaction({ status: "", as: "seller" }))
     }, [updatedTx, dispatch])
 
     return (

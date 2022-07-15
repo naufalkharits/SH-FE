@@ -129,7 +129,7 @@ const Register = () => {
                         )}
                     </button>
                 </form>
-                <p className="text-sm">
+                <p className="text-sm text-center">
                     Sudah punya akun?{" "}
                     <Link
                         to="/login"

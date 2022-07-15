@@ -9,7 +9,7 @@ const Auth = () => {
                     Second <div>Hand.</div>
                 </div>
             </div>
-            <div className="sm:w-1/2 xl:w-1/3">
+            <div className="flex flex-col justify-center sm:w-1/2 xl:w-1/3">
                 <GoogleOAuthProvider clientId={process.env.REACT_APP_CLIENT_ID}>
                     <Outlet />
                 </GoogleOAuthProvider>

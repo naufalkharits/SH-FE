@@ -8,10 +8,10 @@ import {
     getNotification,
     notificationSelectors,
 } from "../../redux/notificationSlice"
+import ioClient from "../../socket/ioClient"
 import NewProduct from "../notifications/NewProduct"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import Notification404 from "../../unfound/Notification404"
-import ioClient from "../../socket/ioClient"
 import ProductTransaction from "../notifications/ProductTransaction"
 
 const className = (...classes) => {

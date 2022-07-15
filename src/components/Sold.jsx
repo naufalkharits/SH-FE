@@ -95,7 +95,7 @@ const Sold = () => {
 
     return (
         <>
-            <div className="mt-4 w-full space-y-5 px-4 sm:ml-5">
+            <div className="mt-4 w-full space-y-5 px-5 sm:pl-10">
                 <p className="font-medium">Histori Penjualan Produk</p>
                 {loading === "pending" ? (
                     <TransactionSkeleton />

@@ -165,7 +165,7 @@ const TransactionCard = () => {
                                             className="flex w-[45%] items-center justify-center gap-2 rounded-2xl bg-primary-purple-04 py-2 px-6 text-white hover:bg-primary-purple-05 md:w-[35%] lg:w-[30%]"
                                             onClick={() => {
                                                 window.open(
-                                                    `https://api.whatsapp.com/send?phone=${tx?.buyer?.phone_number}`
+                                                    `https://api.whatsapp.com/send?phone=62${tx?.buyer?.phone_number}`
                                                 )
                                             }}
                                         >

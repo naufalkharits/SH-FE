@@ -28,7 +28,7 @@ const DesktopMenu = () => {
                 <Link
                     className="hidden sm:block"
                     to="/"
-                    replace={location.pathname === "/" && { replace: true }}
+                    // replace={location.pathname === "/" && { replace: true }}
                 >
                     <img className="h-8" src={SecondHand} alt="" />
                 </Link>

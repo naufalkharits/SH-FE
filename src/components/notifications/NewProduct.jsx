@@ -9,7 +9,7 @@ const NewProduct = ({ notif }) => {
 
     return (
         <div
-            className="flex items-start gap-4 py-6 first:pt-0 last:pb-0"
+            className="flex gap-4 py-6 first:pt-0 last:pb-0"
             key={notif?.id}
             onClick={() => {
                 !notif?.read &&

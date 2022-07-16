@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
 import { putNotification } from "../../redux/notificationSlice"
-import IDR from "../../utils/IDR"
+import { priceFormatter } from "../../utils/priceFormatter"
 
 const ProductTransaction = ({ notif }) => {
     const dispatch = useDispatch()
@@ -50,17 +50,17 @@ const ProductTransaction = ({ notif }) => {
                 {notif?.type === "NEW_OFFER" ? (
                     <>
                         <div>
-                            <IDR price={notif?.transaction?.product?.price} />
+                            {priceFormatter(notif?.transaction?.product?.price)}
                         </div>
                         <div>
-                            Ditawar <IDR price={notif?.transaction?.price} />
+                            Ditawar {priceFormatter(notif?.transaction?.price)}
                         </div>
                     </>
                 ) : (
                     notif?.type === "TRANSACTION_COMPLETE" && (
                         <div>
                             Berhasil dibeli{" "}
-                            <IDR price={notif?.transaction?.price} />
+                            {priceFormatter(notif?.transaction?.price)}
                         </div>
                     )
                 )}

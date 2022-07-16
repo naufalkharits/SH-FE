@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
 import { putNotification } from "../../redux/notificationSlice"
-import IDR from "../../utils/IDR"
+import { priceFormatter } from "../../utils/priceFormatter"
 
 const NewProduct = ({ notif }) => {
     const dispatch = useDispatch()
@@ -47,9 +47,7 @@ const NewProduct = ({ notif }) => {
                     </div>
                 </div>
                 <div>{notif?.product?.name}</div>
-                <div>
-                    <IDR price={notif?.product?.price} />
-                </div>
+                <div>{priceFormatter(notif?.product?.price)}</div>
             </div>
         </div>
     )

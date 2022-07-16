@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { FiX } from "react-icons/fi"
 import { setIsModalOn } from "../../redux/transactionSlice"
 import DangerToast from "../toasts/DangerToast"
-import IDR from "../../utils/IDR"
+import { priceFormatter } from "../../utils/priceFormatter"
 import { CgSpinner } from "react-icons/cg"
 
 const className = (...classes) => {
@@ -73,7 +73,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                                 {product?.name}
                                             </div>
                                             <div className="text-sm">
-                                                <IDR price={product?.price} />
+                                                {priceFormatter(product?.price)}
                                             </div>
                                         </div>
                                     </div>

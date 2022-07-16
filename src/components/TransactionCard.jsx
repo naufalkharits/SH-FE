@@ -13,12 +13,8 @@ import { BsWhatsapp } from "react-icons/bs"
 import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
 import Tawar404 from "../unfound/Tawar404"
-import IDR from "../utils/IDR"
+import { priceFormatter } from "../utils/priceFormatter"
 import { useNavigate } from "react-router-dom"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
 
 const TransactionCard = () => {
     const dispatch = useDispatch()
@@ -98,12 +94,12 @@ const TransactionCard = () => {
                                         </div>
                                         <div>{tx?.product.name}</div>
                                         <div>
-                                            <IDR price={tx?.product.price} />
+                                            {priceFormatter(tx?.product.price)}
                                         </div>
                                         <div>
                                             Ditawar{" "}
                                             <span className="text-primary-purple-04">
-                                                <IDR price={tx?.price} />
+                                                {priceFormatter(tx?.price)}
                                             </span>{" "}
                                             oleh
                                         </div>

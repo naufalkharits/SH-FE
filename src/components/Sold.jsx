@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
 
-import IDR from "../utils/IDR"
+import { priceFormatter } from "../utils/priceFormatter"
 import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import Transaction404 from "../unfound/Transaction404"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
@@ -135,27 +135,22 @@ const Sold = () => {
                                             {tx?.product.price === tx?.price ? (
                                                 <div>
                                                     Berhasil terjual{" "}
-                                                    <IDR
-                                                        price={
-                                                            tx?.product.price
-                                                        }
-                                                    />
+                                                    {priceFormatter(
+                                                        tx?.product.price
+                                                    )}
                                                 </div>
                                             ) : (
                                                 <>
                                                     <div className="line-through">
-                                                        <IDR
-                                                            price={
-                                                                tx?.product
-                                                                    .price
-                                                            }
-                                                        />
+                                                        {priceFormatter(
+                                                            tx?.product.price
+                                                        )}
                                                     </div>
                                                     <div>
                                                         Berhasil terjual{" "}
-                                                        <IDR
-                                                            price={tx?.price}
-                                                        />
+                                                        {priceFormatter(
+                                                            tx?.price
+                                                        )}
                                                     </div>
                                                 </>
                                             )}

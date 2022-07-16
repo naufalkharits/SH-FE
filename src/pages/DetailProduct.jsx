@@ -19,7 +19,7 @@ import ModalTawar from "../components/modals/ModalTawar"
 import WishlistButton from "../components/buttons/WishlistButton"
 import SellerCard from "../components/SellerCard"
 import EditButton from "../components/buttons/EditButton"
-import IDR from "../utils/IDR"
+import { priceFormatter } from "../utils/priceFormatter"
 import { CgSpinner } from "react-icons/cg"
 
 const className = (...classes) => {
@@ -35,6 +35,7 @@ const DetailProduct = () => {
         (state) => state.transaction
     )
     const loadingTx = useSelector((state) => state.transaction.loading)
+    const loadingAuth = useSelector((state) => state.auth.loading)
     const { loading, spinner, error } = useSelector((state) => state.products)
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
@@ -164,11 +165,12 @@ const DetailProduct = () => {
                                         <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
                                     ) : (
                                         <div>
-                                            <IDR price={product?.price} />
+                                            {priceFormatter(product?.price)}
                                         </div>
                                     )}
                                     {loading === "pending" ||
-                                    loadingTx === "pending" ? (
+                                    loadingTx === "pending" ||
+                                    loadingAuth === "pending" ? (
                                         <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
                                     ) : user ? (
                                         <>
@@ -261,9 +263,8 @@ const DetailProduct = () => {
                                     )}
                                 </div>
                                 {user &&
-                                    product?.seller?.user_id !== profile?.id && (
-                                        <WishlistButton />
-                                    )}
+                                    product?.seller?.user_id !==
+                                        profile?.id && <WishlistButton />}
                                 <SellerCard
                                     loading={loading}
                                     id={product?.seller?.user_id}

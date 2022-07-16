@@ -2,7 +2,7 @@ import dayjs from "dayjs"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
-import IDR from "../utils/IDR"
+import { priceFormatter } from "../utils/priceFormatter"
 import { Swiper, SwiperSlide } from "swiper/react"
 
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
@@ -66,22 +66,22 @@ const Purchase = () => {
                                                 "line-through"
                                         )}
                                     >
-                                        <IDR price={tx?.product.price} />
+                                        {priceFormatter(tx?.product.price)}
                                     </div>
                                     {tx?.status === "PENDING" ||
                                     tx?.status === "ACCEPTED" ? (
                                         <div className="">
-                                            Ditawar <IDR price={tx?.price} />
+                                            Ditawar {priceFormatter(tx?.price)}
                                         </div>
                                     ) : tx?.status === "COMPLETED" ? (
                                         <div className="">
                                             Berhasil ditawar{" "}
-                                            <IDR price={tx?.price} />
+                                            {priceFormatter(tx?.price)}
                                         </div>
                                     ) : (
                                         <div className="">
                                             Gagal ditawar{" "}
-                                            <IDR price={tx?.price} />
+                                            {priceFormatter(tx?.price)}
                                         </div>
                                     )}
                                 </div>

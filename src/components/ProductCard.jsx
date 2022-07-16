@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import IDR from "../utils/IDR"
+import { priceFormatter } from "../utils/priceFormatter"
 
 const ProductCard = ({ id, name, price, category, pictures }) => {
     const location = useLocation()
@@ -21,9 +21,7 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                 <div className="truncate font-medium">{name}</div>
                 <div className="text-sm text-neutral-03">{category}</div>
             </div>
-            <div>
-                <IDR price={price} />
-            </div>
+            <div>{priceFormatter(price)}</div>
             {/* {location.pathname === "/wishlist" ||
                 location.pathname === "/user" ? (
                     <button className="w-full rounded-2xl border border-primary-purple-04 p-2 font-medium hover:bg-primary-purple-05 hover:text-white ">

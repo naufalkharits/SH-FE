@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi"
 import { CgSpinner } from "react-icons/cg"
 import { insertProduct } from "../redux/productsSlice"
 import { fetchCategories } from "../redux/categoriesSlice"
 import DangerToast from "../components/toasts/DangerToast"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const AddProduct = () => {
     const navigate = useNavigate()
@@ -188,7 +185,7 @@ const AddProduct = () => {
                             Preview
                         </div>
                         <button
-                            className={className(
+                            className={classNameJoin(
                                 !formValue.name ||
                                     !formValue.price ||
                                     !formValue.category ||

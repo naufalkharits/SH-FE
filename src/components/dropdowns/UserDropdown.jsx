@@ -6,10 +6,7 @@ import { FiLogOut, FiUser } from "react-icons/fi"
 import { logout } from "../../redux/authSlice"
 import AltFoto from "../../images/AltFoto.png"
 import { resetProductState } from "../../redux/productsSlice"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../../utils/classNameJoin"
 
 const UserDropdown = ({ profile, loading }) => {
     const dispatch = useDispatch()
@@ -22,7 +19,7 @@ const UserDropdown = ({ profile, loading }) => {
                         <div className="h-6 w-6 animate-pulse rounded bg-gray"></div>
                     ) : (
                         <Menu.Button
-                            className={className(
+                            className={classNameJoin(
                                 open
                                     ? "text-primary-purple-04 hover:text-primary-purple-05"
                                     : "",
@@ -72,7 +69,7 @@ const UserDropdown = ({ profile, loading }) => {
                                             )}
                                         </Link>
                                         <button
-                                            className={className(
+                                            className={classNameJoin(
                                                 active
                                                     ? "hover:text-primary-purple-05"
                                                     : "",

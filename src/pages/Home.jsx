@@ -1,41 +1,38 @@
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react"
+import { useSearchParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import {
     getProducts,
     productsSelectors,
     offsetIncrement,
     offsetDecrement,
     resetOffset,
-} from "../redux/productsSlice";
-import Hero from "../components/Hero";
-import Category from "../components/Category";
-import ProductCard from "../components/ProductCard";
-import SellButton from "../components/buttons/SellButton";
-import ProductSkeleton from "../components/skeletons/ProductSkeleton";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import Product404 from "../unfound/Product404";
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+} from "../redux/productsSlice"
+import Hero from "../components/Hero"
+import Category from "../components/Category"
+import ProductCard from "../components/ProductCard"
+import SellButton from "../components/buttons/SellButton"
+import ProductSkeleton from "../components/skeletons/ProductSkeleton"
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
+import Product404 from "../unfound/Product404"
+import { classNameJoin } from "../utils/classNameJoin"
 
 const Home = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const dispatch = useDispatch();
-    const products = useSelector(productsSelectors.selectAll);
-    const { keyword, offset, loading } = useSelector((state) => state.products);
-    const { category } = useSelector((state) => state.categories);
+    const [searchParams, setSearchParams] = useSearchParams()
+    const dispatch = useDispatch()
+    const products = useSelector(productsSelectors.selectAll)
+    const { keyword, offset, loading } = useSelector((state) => state.products)
+    const { category } = useSelector((state) => state.categories)
 
-    const limit = 10;
+    const limit = 10
 
     useEffect(() => {
         if (
             Number(searchParams.get("page")) === 1 ||
             Number(searchParams.get("page")) <= 0
         ) {
-            setSearchParams();
-            dispatch(resetOffset());
+            setSearchParams()
+            dispatch(resetOffset())
         }
         dispatch(
             getProducts({
@@ -43,8 +40,8 @@ const Home = () => {
                 category,
                 offset,
             })
-        );
-    }, [searchParams, keyword, category, offset, dispatch]);
+        )
+    }, [searchParams, keyword, category, offset, dispatch])
 
     return (
         <>
@@ -55,7 +52,7 @@ const Home = () => {
             {loading === "idle" && (
                 <div className="container mx-auto flex items-center justify-center gap-4">
                     <button
-                        className={className(
+                        className={classNameJoin(
                             Number(searchParams.get("page")) === 1 ||
                                 Number(searchParams.get("page")) <= 0
                                 ? "text-gray"
@@ -70,20 +67,20 @@ const Home = () => {
                         }
                         onClick={() => {
                             if (Number(searchParams.get("page")) === 2) {
-                                setSearchParams();
-                                dispatch(resetOffset());
+                                setSearchParams()
+                                dispatch(resetOffset())
                             } else {
                                 setSearchParams({
                                     page: Number(searchParams.get("page")) - 1,
-                                });
-                                dispatch(offsetDecrement(10));
+                                })
+                                dispatch(offsetDecrement(10))
                             }
                         }}
                     >
                         <FiChevronLeft className="h-5 w-5" />
                     </button>
                     <button
-                        className={className(
+                        className={classNameJoin(
                             products.length !== 0 &&
                                 products.length % limit === 0
                                 ? "hover:bg-gray"
@@ -100,13 +97,13 @@ const Home = () => {
                             if (Number(searchParams.get("page")) === 0) {
                                 setSearchParams({
                                     page: 2,
-                                });
-                                dispatch(offsetIncrement(10));
+                                })
+                                dispatch(offsetIncrement(10))
                             } else {
                                 setSearchParams({
                                     page: Number(searchParams.get("page")) + 1,
-                                });
-                                dispatch(offsetIncrement(10));
+                                })
+                                dispatch(offsetIncrement(10))
                             }
                         }}
                     >
@@ -139,7 +136,7 @@ const Home = () => {
             {loading === "idle" && products.length === 0 && <Product404 />}
             <SellButton />
         </>
-    );
-};
+    )
+}
 
-export default Home;
+export default Home

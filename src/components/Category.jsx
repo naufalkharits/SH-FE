@@ -6,10 +6,7 @@ import { resetOffset } from "../redux/productsSlice"
 import { fetchCategories, categoryQuery } from "../redux/categoriesSlice"
 import { FiSearch } from "react-icons/fi"
 import CategorySkeleton from "./skeletons/CategorySkeleton"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const Category = () => {
     const [searchParams, setSearchParams] = useSearchParams()
@@ -44,7 +41,7 @@ const Category = () => {
                 ) : (
                     <>
                         <div
-                            className={className(
+                            className={classNameJoin(
                                 category === ""
                                     ? "bg-primary-purple-04 text-white"
                                     : "bg-primary-purple-01 hover:text-white",
@@ -60,7 +57,7 @@ const Category = () => {
                         {formValue.map((cat) => (
                             <div
                                 key={cat}
-                                className={className(
+                                className={classNameJoin(
                                     category === cat
                                         ? "bg-primary-purple-04 text-white"
                                         : "bg-primary-purple-01 hover:text-white",

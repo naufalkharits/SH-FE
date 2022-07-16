@@ -21,10 +21,7 @@ import SellerCard from "../components/SellerCard"
 import EditButton from "../components/buttons/EditButton"
 import { priceFormatter } from "../utils/priceFormatter"
 import { CgSpinner } from "react-icons/cg"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const DetailProduct = () => {
     const navigate = useNavigate()
@@ -85,7 +82,7 @@ const DetailProduct = () => {
                     <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">
                         <div className="flex flex-col gap-4 sm:flex-row">
                             <div
-                                className={className(
+                                className={classNameJoin(
                                     product?.seller?.user_id === profile?.id
                                         ? "sm:w-2/3 lg:w-3/4"
                                         : "sm:w-3/5 lg:w-2/3",
@@ -133,7 +130,7 @@ const DetailProduct = () => {
                                 </div>
                             </div>
                             <div
-                                className={className(
+                                className={classNameJoin(
                                     product?.seller?.user_id === profile?.id
                                         ? "sm:w-1/3 lg:w-1/4"
                                         : "sm:w-2/5 lg:w-1/3",
@@ -201,7 +198,7 @@ const DetailProduct = () => {
                                                         Edit
                                                     </button>
                                                     <button
-                                                        className={className(
+                                                        className={classNameJoin(
                                                             spinner
                                                                 ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
                                                                 : "border border-primary-purple-04 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
@@ -304,7 +301,7 @@ const DetailProduct = () => {
                             <>
                                 {filteredTx?.length !== 0 ? (
                                     <button
-                                        className={className(
+                                        className={classNameJoin(
                                             isModalOn ? "hidden" : "sm:hidden",
                                             "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-neutral-02 px-6 py-3.5 text-white shadow-lg shadow-neutral-02"
                                         )}
@@ -314,7 +311,7 @@ const DetailProduct = () => {
                                     </button>
                                 ) : (
                                     <button
-                                        className={className(
+                                        className={classNameJoin(
                                             isModalOn ? "hidden" : "sm:hidden",
                                             "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
                                         )}

@@ -4,13 +4,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import { priceFormatter } from "../utils/priceFormatter"
 import { Swiper, SwiperSlide } from "swiper/react"
-
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 import Transaction404 from "../unfound/Transaction404"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const Purchase = () => {
     const dispatch = useDispatch()
@@ -61,7 +57,7 @@ const Purchase = () => {
                                     </div>
                                     <div className="">{tx?.product.name}</div>
                                     <div
-                                        className={className(
+                                        className={classNameJoin(
                                             tx?.status === "COMPLETED" &&
                                                 "line-through"
                                         )}

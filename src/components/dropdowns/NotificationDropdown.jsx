@@ -13,10 +13,7 @@ import NewProduct from "../notifications/NewProduct"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import Notification404 from "../../unfound/Notification404"
 import ProductTransaction from "../notifications/ProductTransaction"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../../utils/classNameJoin"
 
 const NotificationDropdown = () => {
     const dispatch = useDispatch()
@@ -52,7 +49,7 @@ const NotificationDropdown = () => {
                         <div className="h-6 w-6 animate-pulse rounded bg-gray"></div>
                     ) : (
                         <Popover.Button
-                            className={className(
+                            className={classNameJoin(
                                 open
                                     ? "text-primary-purple-04 hover:text-primary-purple-05"
                                     : "",

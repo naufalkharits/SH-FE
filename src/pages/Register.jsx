@@ -6,10 +6,7 @@ import { CgSpinner } from "react-icons/cg"
 import { register } from "../redux/authSlice"
 import DangerToast from "../components/toasts/DangerToast"
 import SecondHand from "../images/SecondHand.png"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const Register = () => {
     const navigate = useNavigate()
@@ -94,7 +91,7 @@ const Register = () => {
                         />
                     </div>
                     <button
-                        className={className(
+                        className={classNameJoin(
                             !formValue.email || !formValue.password
                                 ? "bg-neutral-02"
                                 : "",

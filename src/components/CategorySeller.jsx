@@ -1,20 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
-import { ScrollingCarousel } from "@trendyol-js/react-carousel";
-import { FiBox, FiDollarSign, FiHeart } from "react-icons/fi";
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+import { Link, useLocation } from "react-router-dom"
+import { ScrollingCarousel } from "@trendyol-js/react-carousel"
+import { FiBox, FiDollarSign, FiHeart } from "react-icons/fi"
+import { classNameJoin } from "../utils/classNameJoin"
 
 const CategorySeller = () => {
-    const location = useLocation();
+    const location = useLocation()
 
     return (
         <div className="mb-4 sm:hidden">
             <ScrollingCarousel leftIcon={false} rightIcon={false}>
                 <Link
                     to="/manage-product"
-                    className={className(
+                    className={classNameJoin(
                         location.pathname === "/manage-product"
                             ? "bg-primary-purple-04 text-white"
                             : "bg-primary-purple-01 hover:text-white",
@@ -26,7 +23,7 @@ const CategorySeller = () => {
                 </Link>
                 <Link
                     to="wishlisted"
-                    className={className(
+                    className={classNameJoin(
                         location.pathname === "/manage-product/wishlisted"
                             ? "bg-primary-purple-04 text-white"
                             : "bg-primary-purple-01 hover:text-white",
@@ -38,7 +35,7 @@ const CategorySeller = () => {
                 </Link>
                 <Link
                     to="sold"
-                    className={className(
+                    className={classNameJoin(
                         location.pathname === "/manage-product/sold"
                             ? "bg-primary-purple-04 text-white"
                             : "bg-primary-purple-01 hover:text-white",
@@ -50,7 +47,7 @@ const CategorySeller = () => {
                 </Link>
             </ScrollingCarousel>
         </div>
-    );
-};
+    )
+}
 
-export default CategorySeller;
+export default CategorySeller

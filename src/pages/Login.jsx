@@ -2,17 +2,13 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useGoogleLogin } from "@react-oauth/google"
-import { GoogleLogin } from "@react-oauth/google"
 import { FcGoogle } from "react-icons/fc"
-import { FiArrowLeft } from "react-icons/fi"
 import { CgSpinner } from "react-icons/cg"
+import { FiArrowLeft } from "react-icons/fi"
 import { authResponse, login } from "../redux/authSlice"
 import DangerToast from "../components/toasts/DangerToast"
+import { classNameJoin } from "../utils/classNameJoin"
 import SecondHand from "../images/SecondHand.png"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
 
 const Login = () => {
     const navigate = useNavigate()
@@ -93,7 +89,7 @@ const Login = () => {
                         />
                     </div>
                     <button
-                        className={className(
+                        className={classNameJoin(
                             !formValue.email || !formValue.password
                                 ? "bg-neutral-02"
                                 : "",

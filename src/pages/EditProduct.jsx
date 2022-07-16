@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi"
 import { CgSpinner } from "react-icons/cg"
@@ -10,10 +10,7 @@ import {
 } from "../redux/productsSlice"
 import { fetchCategories } from "../redux/categoriesSlice"
 import DangerToast from "../components/toasts/DangerToast"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const EditProduct = () => {
     const { productId } = useParams()
@@ -218,7 +215,7 @@ const EditProduct = () => {
                             Preview
                         </div>
                         <button
-                            className={className(
+                            className={classNameJoin(
                                 spinner
                                     ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
                                     : "bg-primary-purple-04 hover:bg-primary-purple-05",

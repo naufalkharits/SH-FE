@@ -1,15 +1,12 @@
-import { useLocation, useParams } from "react-router-dom";
-import { Popover } from "@headlessui/react";
-import Category from "./Category";
-import DesktopMenu from "./DesktopMenu";
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+import { useLocation, useParams } from "react-router-dom"
+import { Popover } from "@headlessui/react"
+import Category from "./Category"
+import DesktopMenu from "./DesktopMenu"
+import { classNameJoin } from "../utils/classNameJoin"
 
 const Navbar = () => {
-    const { productId } = useParams();
-    const location = useLocation();
+    const { productId } = useParams()
+    const location = useLocation()
 
     return (
         <Popover
@@ -20,7 +17,7 @@ const Navbar = () => {
             }
         >
             <nav
-                className={className(
+                className={classNameJoin(
                     location.pathname === "/"
                         ? "bg-gradient-to-b from-[#FFE9CA] to-white sm:bg-none"
                         : "bg-white",
@@ -56,7 +53,7 @@ const Navbar = () => {
                 )}
             </nav>
         </Popover>
-    );
-};
+    )
+}
 
-export default Navbar;
+export default Navbar

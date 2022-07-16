@@ -9,10 +9,7 @@ import Search from "./Search"
 import SecondHand from "../images/SecondHand.png"
 import AltFoto from "../images/AltFoto.png"
 import { resetProductState } from "../redux/productsSlice"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const MobileMenu = ({ profile }) => {
     const location = useLocation()
@@ -23,7 +20,7 @@ const MobileMenu = ({ profile }) => {
     return (
         <>
             <Popover.Button
-                className={className(
+                className={classNameJoin(
                     location.pathname === "/"
                         ? "rounded-2xl bg-white p-2 hover:shadow-sm sm:bg-gray"
                         : "",
@@ -31,7 +28,7 @@ const MobileMenu = ({ profile }) => {
                 )}
             >
                 <FiMenu
-                    className={className(
+                    className={classNameJoin(
                         location.pathname === "/" ? "text-neutral-03" : "",
                         "h-8 w-8"
                     )}

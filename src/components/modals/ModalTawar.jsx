@@ -6,10 +6,7 @@ import { setIsModalOn } from "../../redux/transactionSlice"
 import DangerToast from "../toasts/DangerToast"
 import { priceFormatter } from "../../utils/priceFormatter"
 import { CgSpinner } from "react-icons/cg"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../../utils/classNameJoin"
 
 const Modal = ({ price, product, onChange, onSubmit }) => {
     const dispatch = useDispatch()
@@ -90,7 +87,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                     />
                                 </div>
                                 <button
-                                    className={className(
+                                    className={classNameJoin(
                                         !price && "bg-neutral-02",
                                         loading === "pending" &&
                                             "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",

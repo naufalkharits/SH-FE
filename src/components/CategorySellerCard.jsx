@@ -1,19 +1,16 @@
-import { Link, useLocation } from "react-router-dom";
-import { FiBox, FiDollarSign, FiHeart } from "react-icons/fi";
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+import { Link, useLocation } from "react-router-dom"
+import { FiBox, FiDollarSign, FiHeart } from "react-icons/fi"
+import { classNameJoin } from "../utils/classNameJoin"
 
 const CategorySellerCard = () => {
-    const location = useLocation();
+    const location = useLocation()
 
     return (
         <div className="mt-4 hidden h-fit rounded-2xl border border-neutral-200 p-6 shadow-md sm:block">
             <div className="mb-6 font-medium">Kategori</div>
             <Link
                 to="/manage-product"
-                className={className(
+                className={classNameJoin(
                     location.pathname === "/manage-product"
                         ? "text-primary-purple-04"
                         : "",
@@ -26,7 +23,7 @@ const CategorySellerCard = () => {
             <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-02 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-02"></div>
             <Link
                 to="wishlisted"
-                className={className(
+                className={classNameJoin(
                     location.pathname === "/manage-product/wishlisted"
                         ? "text-primary-purple-04"
                         : "",
@@ -39,7 +36,7 @@ const CategorySellerCard = () => {
             <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-02 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-02"></div>
             <Link
                 to="sold"
-                className={className(
+                className={classNameJoin(
                     location.pathname === "/manage-product/sold"
                         ? "text-primary-purple-04"
                         : "",
@@ -50,7 +47,7 @@ const CategorySellerCard = () => {
                 <span>Terjual</span>
             </Link>
         </div>
-    );
-};
+    )
+}
 
-export default CategorySellerCard;
+export default CategorySellerCard

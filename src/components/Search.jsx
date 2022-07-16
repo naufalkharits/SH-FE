@@ -1,16 +1,13 @@
-import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { keywordQuery } from "../redux/productsSlice";
-import { FiSearch } from "react-icons/fi";
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+import { useLocation } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { keywordQuery } from "../redux/productsSlice"
+import { FiSearch } from "react-icons/fi"
+import { classNameJoin } from "../utils/classNameJoin"
 
 const Search = () => {
-    const location = useLocation();
-    const dispatch = useDispatch();
-    const onChange = (query) => dispatch(keywordQuery(query));
+    const location = useLocation()
+    const dispatch = useDispatch()
+    const onChange = (query) => dispatch(keywordQuery(query))
 
     return (
         <label className="relative block w-full text-neutral-03 sm:w-fit">
@@ -18,7 +15,7 @@ const Search = () => {
                 <FiSearch className="h-5 w-5" />
             </span>
             <input
-                className={className(
+                className={classNameJoin(
                     location.pathname === "/" ? "sm:bg-gray" : "bg-gray",
                     "w-full rounded-2xl py-3 pl-6 pr-14 placeholder:text-neutral-03 focus:shadow-sm focus:outline-none"
                 )}
@@ -26,11 +23,11 @@ const Search = () => {
                 type="text"
                 name="search"
                 onChange={(e) => {
-                    onChange(e.target.value);
+                    onChange(e.target.value)
                 }}
             />
         </label>
-    );
-};
+    )
+}
 
-export default Search;
+export default Search

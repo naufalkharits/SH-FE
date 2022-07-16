@@ -1,12 +1,9 @@
-import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { Menu, Transition } from "@headlessui/react";
-import { FiList } from "react-icons/fi";
-import { BiStoreAlt } from "react-icons/bi";
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ");
-};
+import { Fragment } from "react"
+import { Link } from "react-router-dom"
+import { Menu, Transition } from "@headlessui/react"
+import { FiList } from "react-icons/fi"
+import { BiStoreAlt } from "react-icons/bi"
+import { classNameJoin } from "../../utils/classNameJoin"
 
 const ListDropdown = () => {
     return (
@@ -14,7 +11,7 @@ const ListDropdown = () => {
             {({ open }) => (
                 <>
                     <Menu.Button
-                        className={className(
+                        className={classNameJoin(
                             open
                                 ? "text-primary-purple-04 hover:text-primary-purple-05"
                                 : "",
@@ -48,7 +45,7 @@ const ListDropdown = () => {
                                         </Link>
                                         <Link
                                             to="/user/infopenawar"
-                                            className={className(
+                                            className={classNameJoin(
                                                 active
                                                     ? "hover:text-primary-purple-05"
                                                     : "",
@@ -65,7 +62,7 @@ const ListDropdown = () => {
                 </>
             )}
         </Menu>
-    );
-};
+    )
+}
 
-export default ListDropdown;
+export default ListDropdown

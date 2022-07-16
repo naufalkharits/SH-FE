@@ -14,10 +14,6 @@ import BackButton from "../components/buttons/BackButton"
 import { FaHeart, FaRegHeart } from "react-icons/fa"
 import { CgSpinner } from "react-icons/cg"
 
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
-
 const PreviewProduct = () => {
     const navigate = useNavigate()
     const { productId } = useParams()

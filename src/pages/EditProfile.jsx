@@ -5,10 +5,7 @@ import { FiCamera, FiArrowLeft, FiChevronDown } from "react-icons/fi"
 import { me, updateBiodata } from "../redux/authSlice"
 import { phoneNumberFormatter } from "../utils/phoneNumberFormatter"
 import { CgSpinner } from "react-icons/cg"
-
-const className = (...classes) => {
-    return classes.filter(Boolean).join(" ")
-}
+import { classNameJoin } from "../utils/classNameJoin"
 
 const EditProfile = () => {
     const location = useLocation()
@@ -214,7 +211,7 @@ const EditProfile = () => {
                         </label>
                     </div>
                     <button
-                        className={className(
+                        className={classNameJoin(
                             spinner
                                 ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
                                 : "bg-primary-purple-04 hover:bg-primary-purple-05",

@@ -90,10 +90,6 @@ const Wishlisted = () => {
             }, {})
         )
 
-    // console.log(result?.map((test) => (
-    //    test
-    // )));
-
     return (
         <div className="w-full space-y-2 sm:pl-5">
             <div className="flex flex-wrap">

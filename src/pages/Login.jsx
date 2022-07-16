@@ -122,15 +122,6 @@ const Login = () => {
                     </button>
                 </form>
                 <p className="mb-8 w-full text-center">Or</p>
-
-                {/* <GoogleLogin
-                    onSuccess={credentialResponse => {
-                        console.log(credentialResponse);
-                    }}
-                    onError={() => {
-                        console.log('Login Failed');
-                    }}
-                /> */}
                 <button
                     className="flex w-full items-center justify-between rounded-2xl border border-neutral-05 py-3 px-4 font-bold text-blue-500 hover:border-blue-500 hover:bg-blue-500 hover:text-white"
                     onClick={() => LoginGoogle()}

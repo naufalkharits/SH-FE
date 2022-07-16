@@ -3,6 +3,7 @@ import { notificationSelectors } from "../redux/notificationSlice"
 import NotificationSkeleton from "../components/skeletons/NotificationSkeleton"
 import NewProduct from "../components/notifications/NewProduct"
 import ProductTransaction from "../components/notifications/ProductTransaction"
+import Notification404 from "../unfound/Notification404"
 
 const Notification = () => {
     const notification = useSelector(notificationSelectors.selectAll)
@@ -19,18 +20,27 @@ const Notification = () => {
                         <NotificationSkeleton />
                     </div>
                 ) : (
-                    <div className="divide-y divide-neutral-200">
-                        {notification?.map((notif) =>
-                            notif?.type === "NEW_PRODUCT" ? (
-                                <NewProduct key={notif?.id} notif={notif} />
-                            ) : (
-                                <ProductTransaction
-                                    key={notif?.id}
-                                    notif={notif}
-                                />
-                            )
+                    <>
+                        {notification?.length === 0 ? (
+                            <Notification404 />
+                        ) : (
+                            <div className="divide-y divide-neutral-200">
+                                {notification?.map((notif) =>
+                                    notif?.type === "NEW_PRODUCT" ? (
+                                        <NewProduct
+                                            key={notif?.id}
+                                            notif={notif}
+                                        />
+                                    ) : (
+                                        <ProductTransaction
+                                            key={notif?.id}
+                                            notif={notif}
+                                        />
+                                    )
+                                )}
+                            </div>
                         )}
-                    </div>
+                    </>
                 )}
             </div>
         </>

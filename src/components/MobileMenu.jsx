@@ -80,7 +80,7 @@ const MobileMenu = ({ profile }) => {
                                         ) : (
                                             <>
                                                 <img
-                                                    className="h-8 rounded"
+                                                    className="h-8 w-8 rounded-full object-cover object-center"
                                                     src={
                                                         profile?.picture ||
                                                         AltFoto

@@ -1,15 +1,13 @@
-import { Outlet } from "react-router-dom";
-import MobileUserMenu from "../components/MobileUserMenu";
-import DesktopUserMenu from "../components/DesktopUserMenu";
-import ProfileCard from "../components/ProfileCard";
+import { Outlet } from "react-router-dom"
+import MobileUserMenu from "../components/MobileUserMenu"
+import DesktopUserMenu from "../components/DesktopUserMenu"
+import ProfileCard from "../components/ProfileCard"
 
 const UserProfile = () => {
     return (
         <div className="container mx-auto p-4">
             <div className="mb-4 sm:mb-2 sm:space-y-6">
-                <div className="hidden text-xl font-bold sm:block">
-                    Akun Saya
-                </div>
+                <h1 className="hidden text-xl font-bold sm:block">Akun Saya</h1>
                 <ProfileCard />
             </div>
             <div className="flex flex-col sm:flex-row">
@@ -22,7 +20,7 @@ const UserProfile = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default UserProfile;
+export default UserProfile

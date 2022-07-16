@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import {
     getTransaction,
     setIsModalOn,
@@ -8,13 +9,11 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
-import { BsWhatsapp } from "react-icons/bs"
-
+import { TbBrandWhatsapp } from "react-icons/tb"
 import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
 import Tawar404 from "../unfound/Tawar404"
 import { priceFormatter } from "../utils/priceFormatter"
-import { useNavigate } from "react-router-dom"
 
 const TransactionCard = () => {
     const dispatch = useDispatch()
@@ -130,7 +129,7 @@ const TransactionCard = () => {
                                                     price: tx?.price,
                                                 })
                                             }}
-                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:w-[28%]"
+                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white md:w-[35%] lg:w-[30%]"
                                         >
                                             Tolak
                                         </button>
@@ -142,7 +141,7 @@ const TransactionCard = () => {
                                                     price: tx?.price,
                                                 })
                                             }}
-                                            className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white hover:bg-primary-purple-05 sm:w-[28%]"
+                                            className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white hover:bg-primary-purple-05 md:w-[35%] lg:w-[30%]"
                                         >
                                             Terima
                                         </button>
@@ -158,20 +157,25 @@ const TransactionCard = () => {
                                                 })
                                                 dispatch(setIsModalOn(true))
                                             }}
-                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 sm:w-[28%]"
+                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white md:w-[35%] lg:w-[30%]"
                                         >
                                             Status
                                         </button>
                                         <button
+                                            className="flex w-[45%] items-center justify-center gap-2 rounded-2xl bg-primary-purple-04 py-2 px-6 text-white hover:bg-primary-purple-05 md:w-[35%] lg:w-[30%]"
                                             onClick={() => {
                                                 window.open(
                                                     `https://api.whatsapp.com/send?phone=${tx?.buyer?.phone_number}`
                                                 )
                                             }}
-                                            className="flex w-[45%] items-center justify-center rounded-2xl bg-primary-purple-04 py-2 text-white sm:w-[28%]"
                                         >
-                                            Hubungi di{" "}
-                                            <BsWhatsapp className="mx-2 my-1 h-3" />
+                                            <span>
+                                                Hubungi{" "}
+                                                <span className="hidden sm:inline">
+                                                    via
+                                                </span>
+                                            </span>
+                                            <TbBrandWhatsapp />
                                         </button>
                                     </div>
                                 )}

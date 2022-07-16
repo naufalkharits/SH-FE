@@ -10,7 +10,7 @@ import { classNameJoin } from "../../utils/classNameJoin"
 
 const Modal = ({ price, product, onChange, onSubmit }) => {
     const dispatch = useDispatch()
-    const { loading, error } = useSelector((state) => state.transaction)
+    const { spinner, error } = useSelector((state) => state.transaction)
     const [show, setShow] = useState(false)
 
     const handleCancelClick = () => {
@@ -89,20 +89,20 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                 <button
                                     className={classNameJoin(
                                         !price && "bg-neutral-02",
-                                        loading === "pending" &&
+                                        spinner &&
                                             "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
                                         price &&
-                                            loading === "idle" &&
+                                            !spinner &&
                                             "bg-primary-purple-04 hover:bg-primary-purple-05",
                                         "w-full rounded-2xl py-3.5 px-6 font-medium text-white"
                                     )}
                                     type="submit"
-                                    disabled={!price}
+                                    disabled={!price || spinner}
                                     onClick={() => {
                                         setShow(true)
                                     }}
                                 >
-                                    {loading === "pending" ? (
+                                    {spinner ? (
                                         <>
                                             <CgSpinner className="animate-spin" />
                                             <span>Processing...</span>

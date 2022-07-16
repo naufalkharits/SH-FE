@@ -29,12 +29,8 @@ const SellerWishlistsCard = ({
                 <div className="text-sm text-neutral-03">{category}</div>
             </div>
             <div>{priceFormatter(price)}</div>
-            <div className="flex items-center">
-                <p className="mr-2 text-sm">
-                    {" "}
-                    <FaHeart />{" "}
-                </p>
-                <p className="text-sm">{count}</p>
+            <div className="flex items-center gap-1 text-sm text-neutral-03">
+                <FaHeart /> <span>{count}</span>
             </div>
         </div>
     )

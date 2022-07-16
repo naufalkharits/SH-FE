@@ -1,11 +1,11 @@
-import { BsWhatsapp } from "react-icons/bs";
-import { FiX } from "react-icons/fi";
+import { BsWhatsapp } from "react-icons/bs"
+import { FiX } from "react-icons/fi"
 
-const Modal = ({ setModalOn, setChoice }) => {
+const ModalBerhasil = ({ setModalOn, setChoice }) => {
     const handleCancelClick = () => {
-        setChoice(false);
-        setModalOn(false);
-    };
+        setChoice(false)
+        setModalOn(false)
+    }
 
     return (
         <>
@@ -67,7 +67,7 @@ const Modal = ({ setModalOn, setChoice }) => {
                             </div>
                         </div>
                         <button className="flex w-full items-center justify-between rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-white hover:bg-primary-purple-05">
-                            <BsWhatsapp className="opacity-0" />
+                            <BsWhatsapp className="invisible" />
                             <span className="font-medium">
                                 Hubungi via Whatsapp
                             </span>
@@ -77,7 +77,7 @@ const Modal = ({ setModalOn, setChoice }) => {
                 </div>
             </div>
         </>
-    );
-};
+    )
+}
 
-export default Modal;
+export default ModalBerhasil

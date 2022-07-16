@@ -12,7 +12,7 @@ import { BsWhatsapp } from "react-icons/bs"
 
 import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
-import MyTransaction404 from "../unfound/MyTransaction404"
+import Tawar404 from "../unfound/Tawar404"
 import IDR from "../utils/IDR"
 import { useNavigate } from "react-router-dom"
 
@@ -183,7 +183,7 @@ const TransactionCard = () => {
                             </div>
                         ))
                     ) : (
-                        <MyTransaction404 />
+                        <Tawar404 />
                     )}
                 </>
             )}

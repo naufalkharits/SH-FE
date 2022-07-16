@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { FiCamera, FiArrowLeft, FiChevronDown } from "react-icons/fi"
 import { me, updateBiodata } from "../redux/authSlice"
-import { phoneNumber } from "../utils/phoneNumber"
+import { phoneNumberFormatter } from "../utils/phoneNumberFormatter"
 import { CgSpinner } from "react-icons/cg"
 
 const className = (...classes) => {
@@ -205,7 +205,7 @@ const EditProfile = () => {
                                 onChange={(e) => {
                                     setFormValue({
                                         ...formValue,
-                                        [e.target.name]: phoneNumber(
+                                        [e.target.name]: phoneNumberFormatter(
                                             e.target.value
                                         ),
                                     })

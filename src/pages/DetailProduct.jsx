@@ -112,21 +112,25 @@ const DetailProduct = () => {
                                 )}
                                 <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                                     {loading === "pending" ? (
-                                        <div className="h-4 w-12 animate-pulse rounded-md bg-gray"></div>
+                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
                                     ) : (
                                         <div className="font-medium">
                                             Deskripsi
                                         </div>
                                     )}
-                                    <p
-                                        className={
-                                            loading === "pending"
-                                                ? "h-3 w-64 animate-pulse rounded-md bg-gray"
-                                                : "text-sm text-neutral-03"
-                                        }
-                                    >
-                                        {product?.description}
-                                    </p>
+                                    {loading === "pending" ? (
+                                        <div className="space-y-2 [&>div:last-child]:w-4/5">
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                        </div>
+                                    ) : (
+                                        <p className="text-sm text-neutral-03">
+                                            {product?.description}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                             <div
@@ -273,21 +277,25 @@ const DetailProduct = () => {
                             <div className="mb-8 px-4 sm:hidden sm:px-0">
                                 <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                                     {loading === "pending" ? (
-                                        <div className="h-4 w-12 animate-pulse rounded-md bg-gray"></div>
+                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
                                     ) : (
                                         <div className="font-medium">
                                             Deskripsi
                                         </div>
                                     )}
-                                    <p
-                                        className={
-                                            loading === "pending"
-                                                ? "h-3 w-64 animate-pulse rounded-md bg-gray"
-                                                : "text-sm text-neutral-03"
-                                        }
-                                    >
-                                        {product?.description}
-                                    </p>
+                                    {loading === "pending" ? (
+                                        <div className="space-y-2 [&>div:last-child]:w-4/5">
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                        </div>
+                                    ) : (
+                                        <p className="text-sm text-neutral-03">
+                                            {product?.description}
+                                        </p>
+                                    )}
                                 </div>
                             </div>
                         </div>

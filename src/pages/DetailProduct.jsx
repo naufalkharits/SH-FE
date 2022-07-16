@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate, useParams, Navigate } from "react-router-dom"
+import { useNavigate, useParams, Navigate, useLocation } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { Pagination } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -24,6 +24,7 @@ import { CgSpinner } from "react-icons/cg"
 import { classNameJoin } from "../utils/classNameJoin"
 
 const DetailProduct = () => {
+    const location = useLocation()
     const navigate = useNavigate()
     const { productId } = useParams()
     const dispatch = useDispatch()
@@ -195,7 +196,12 @@ const DetailProduct = () => {
                                                         className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block"
                                                         onClick={() => {
                                                             navigate(
-                                                                `/manage-product/edit/${productId}`
+                                                                `/manage-product/edit/${productId}`,
+                                                                {
+                                                                    state: {
+                                                                        from: location,
+                                                                    },
+                                                                }
                                                             )
                                                         }}
                                                     >

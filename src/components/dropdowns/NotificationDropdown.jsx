@@ -52,7 +52,7 @@ const NotificationDropdown = () => {
                             className={classNameJoin(
                                 open
                                     ? "text-primary-purple-04 hover:text-primary-purple-05"
-                                    : "",
+                                    : "dark:text-white",
                                 "flex justify-center hover:text-primary-purple-05 focus:outline-none"
                             )}
                         >
@@ -73,7 +73,7 @@ const NotificationDropdown = () => {
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                     >
-                        <Popover.Panel className="absolute right-0 mt-5 w-[32rem] space-y-4 rounded-t rounded-b-2xl bg-white p-6 shadow-md ring-1 ring-neutral-02 ring-opacity-20 focus:outline-none">
+                        <Popover.Panel className="absolute right-0 mt-5 w-[32rem] space-y-4 rounded-t rounded-b-2xl bg-white p-6 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
                             {loading === "pending" ? (
                                 <NotificationDropdownSkeleton />
                             ) : (

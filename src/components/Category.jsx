@@ -32,7 +32,7 @@ const Category = () => {
 
     return (
         <>
-            <div className="mb-4 font-medium sm:font-bold">
+            <div className="mb-4 font-medium dark:text-white sm:font-bold">
                 Telusuri Kategori
             </div>
             <ScrollingCarousel leftIcon={false} rightIcon={false}>

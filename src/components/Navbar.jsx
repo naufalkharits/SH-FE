@@ -19,9 +19,9 @@ const Navbar = () => {
             <nav
                 className={classNameJoin(
                     location.pathname === "/"
-                        ? "bg-gradient-to-b from-[#FFE9CA] to-white sm:bg-none"
-                        : "bg-white",
-                    "sm:shadow"
+                        ? "bg-gradient-to-b from-[#FFE9CA] to-white dark:to-zinc-900 sm:bg-none"
+                        : "bg-white dark:bg-zinc-900",
+                    "sm:shadow sm:dark:shadow-zinc-800"
                 )}
             >
                 <div className="container mx-auto flex items-center gap-8 p-4 sm:justify-between">

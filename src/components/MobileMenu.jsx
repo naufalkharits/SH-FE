@@ -22,14 +22,16 @@ const MobileMenu = ({ profile }) => {
             <Popover.Button
                 className={classNameJoin(
                     location.pathname === "/"
-                        ? "rounded-2xl bg-white p-2 hover:shadow-sm sm:bg-gray"
+                        ? "rounded-2xl bg-white p-2 hover:shadow-sm dark:bg-zinc-900 dark:hover:shadow-zinc-800"
                         : "",
                     "sm:hidden"
                 )}
             >
                 <FiMenu
                     className={classNameJoin(
-                        location.pathname === "/" ? "text-neutral-03" : "",
+                        location.pathname === "/"
+                            ? "text-neutral-03 dark:text-neutral-400"
+                            : "dark:text-white",
                         "h-8 w-8"
                     )}
                 />
@@ -44,7 +46,7 @@ const MobileMenu = ({ profile }) => {
                 leaveTo="transform scale-95 opacity-0"
             >
                 <Popover.Panel className="absolute inset-x-0 top-0 z-50 p-2 sm:hidden">
-                    <div className="overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md">
+                    <div className="overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md dark:bg-zinc-900">
                         <div className="p-2">
                             <div className="mb-4 flex items-center justify-between">
                                 <Link
@@ -61,21 +63,21 @@ const MobileMenu = ({ profile }) => {
                                         alt=""
                                     />
                                 </Link>
-                                <Popover.Button className="rounded-full p-2 hover:shadow-sm">
+                                <Popover.Button className="rounded-full p-2 hover:shadow-sm dark:text-white dark:hover:shadow-zinc-800">
                                     <FiX className="h-6 w-6" />
                                 </Popover.Button>
                             </div>
                             {location.pathname === "/" && <Search />}
                             <div className="mt-4 space-y-1 font-medium">
-                                <div className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow">
+                                <div className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow dark:shadow-zinc-800">
                                     <Link
                                         to="/user"
                                         className="flex items-center gap-2"
                                     >
                                         {loading === "pending" ? (
                                             <>
-                                                <div className="h-8 w-8 animate-pulse rounded bg-gray"></div>
-                                                <span className="h-3 w-24 animate-pulse rounded bg-gray"></span>
+                                                <div className="h-8 w-8 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
+                                                <span className="h-3 w-24 animate-pulse rounded bg-gray dark:bg-zinc-800"></span>
                                             </>
                                         ) : (
                                             <>
@@ -87,18 +89,18 @@ const MobileMenu = ({ profile }) => {
                                                     }
                                                     alt=""
                                                 />
-                                                <span className="font-bold">
+                                                <span className="font-bold dark:text-white">
                                                     {profile?.name}
                                                 </span>
                                             </>
                                         )}
                                     </Link>
                                     {loading === "pending" ? (
-                                        <div className="h-10 w-10 animate-pulse rounded-md bg-gray"></div>
+                                        <div className="h-10 w-10 animate-pulse rounded-md bg-gray dark:bg-zinc-800 dark:shadow-zinc-800"></div>
                                     ) : (
                                         <Link
                                             to="/manage-product"
-                                            className="rounded-md p-2 shadow hover:bg-gray"
+                                            className="rounded-md p-2 shadow hover:bg-gray dark:text-white dark:shadow-zinc-800 dark:hover:bg-zinc-800"
                                         >
                                             <BiStore className="h-6 w-6" />
                                         </Link>
@@ -106,13 +108,13 @@ const MobileMenu = ({ profile }) => {
                                 </div>
                                 <Link
                                     to="/notification"
-                                    className="block rounded-md p-2 hover:bg-gray"
+                                    className="block rounded-md p-2 hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
                                 >
                                     Notifikasi
                                 </Link>
                                 <Link
                                     to="/user/infopenawar"
-                                    className="block rounded-md p-2 hover:bg-gray"
+                                    className="block rounded-md p-2 hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
                                 >
                                     Cek Penawaran
                                 </Link>

@@ -14,7 +14,7 @@ const ListDropdown = () => {
                         className={classNameJoin(
                             open
                                 ? "text-primary-purple-04 hover:text-primary-purple-05"
-                                : "",
+                                : "dark:text-white",
                             "flex justify-center hover:text-primary-purple-05 focus:outline-none"
                         )}
                     >
@@ -30,13 +30,13 @@ const ListDropdown = () => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                     >
-                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-neutral-02 ring-opacity-20">
+                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
                             <Menu.Item as="div" className="space-y-4 p-4">
                                 {({ active }) => (
                                     <>
                                         <Link
                                             to="/manage-product"
-                                            className="flex items-center gap-2 rounded-md p-2 shadow"
+                                            className="flex items-center gap-2 rounded-md p-2 shadow dark:text-white dark:shadow-zinc-800"
                                         >
                                             <BiStoreAlt className="h-6 w-6" />
                                             <span className="font-medium">
@@ -49,7 +49,7 @@ const ListDropdown = () => {
                                                 active
                                                     ? "hover:text-primary-purple-05"
                                                     : "",
-                                                "block text-sm"
+                                                "block text-sm dark:text-white"
                                             )}
                                         >
                                             Cek Penawaran

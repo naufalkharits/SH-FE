@@ -22,7 +22,7 @@ const UserDropdown = ({ profile, loading }) => {
                             className={classNameJoin(
                                 open
                                     ? "text-primary-purple-04 hover:text-primary-purple-05"
-                                    : "",
+                                    : "dark:text-white",
                                 "flex justify-center hover:text-primary-purple-05 focus:outline-none"
                             )}
                         >
@@ -39,18 +39,18 @@ const UserDropdown = ({ profile, loading }) => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                     >
-                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-neutral-02 ring-opacity-20">
+                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
                             <Menu.Item as="div" className="space-y-4 p-4">
                                 {({ active }) => (
                                     <>
                                         <Link
                                             to="/user"
-                                            className="flex w-full items-center gap-2 rounded-md p-2 shadow"
+                                            className="flex w-full items-center gap-2 rounded-md p-2 shadow dark:shadow-zinc-800"
                                         >
                                             {loading === "pending" ? (
                                                 <>
-                                                    <div className="h-8 w-8 animate-pulse rounded bg-gray"></div>
-                                                    <span className="h-3 w-24 animate-pulse rounded bg-gray"></span>
+                                                    <div className="h-8 w-8 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
+                                                    <span className="h-3 w-24 animate-pulse rounded bg-gray dark:bg-zinc-800"></span>
                                                 </>
                                             ) : (
                                                 <>
@@ -62,7 +62,7 @@ const UserDropdown = ({ profile, loading }) => {
                                                         }
                                                         alt=""
                                                     />
-                                                    <span className="truncate font-medium">
+                                                    <span className="truncate text-lg font-medium dark:text-white">
                                                         {profile?.name}
                                                     </span>
                                                 </>
@@ -73,7 +73,7 @@ const UserDropdown = ({ profile, loading }) => {
                                                 active
                                                     ? "hover:text-primary-purple-05"
                                                     : "",
-                                                "flex w-full items-center gap-2"
+                                                "flex w-full items-center gap-2 dark:text-white"
                                             )}
                                             onClick={() => {
                                                 dispatch(logout())

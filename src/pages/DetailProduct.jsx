@@ -18,7 +18,7 @@ import BackButton from "../components/buttons/BackButton"
 import ModalTawar from "../components/modals/ModalTawar"
 import WishlistButton from "../components/buttons/WishlistButton"
 import SellerCard from "../components/SellerCard"
-import EditButton from "../components/buttons/EditButton"
+import EditFloatingButton from "../components/buttons/EditFloatingButton"
 import { priceFormatter } from "../utils/priceFormatter"
 import { CgSpinner } from "react-icons/cg"
 import { classNameJoin } from "../utils/classNameJoin"
@@ -322,7 +322,7 @@ const DetailProduct = () => {
                     </div>
                     {user && product?.seller?.user_id === profile?.id ? (
                         // <PublishButton />
-                        <EditButton productId={productId} />
+                        <EditFloatingButton productId={productId} />
                     ) : (
                         loading === "idle" &&
                         loadingTx === "idle" && (

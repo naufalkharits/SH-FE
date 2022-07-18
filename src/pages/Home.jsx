@@ -11,7 +11,7 @@ import {
 import Hero from "../components/Hero"
 import Category from "../components/Category"
 import ProductCard from "../components/ProductCard"
-import SellButton from "../components/buttons/SellButton"
+import SellFloatingButton from "../components/buttons/SellFloatingButton"
 import ProductSkeleton from "../components/skeletons/ProductSkeleton"
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
 import Product404 from "../unfound/Product404"
@@ -134,7 +134,7 @@ const Home = () => {
                 </div>
             </div>
             {loading === "idle" && products.length === 0 && <Product404 />}
-            <SellButton />
+            <SellFloatingButton />
         </>
     )
 }

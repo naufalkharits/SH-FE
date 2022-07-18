@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { FiPlus } from "react-icons/fi"
 
-const SellButton = () => {
+const SellFloatingButton = () => {
     return (
         <Link
             to={"manage-product"}
@@ -13,4 +13,4 @@ const SellButton = () => {
     )
 }
 
-export default SellButton
+export default SellFloatingButton

@@ -231,29 +231,43 @@ const DetailProduct = () => {
                                                 </>
                                             ) : (
                                                 <>
-                                                    {filteredTx?.length !==
-                                                    0 ? (
+                                                    {product?.status ===
+                                                    "SOLD" ? (
                                                         <button
                                                             className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
                                                             disabled
                                                         >
-                                                            Menunggu respon
-                                                            penjual
+                                                            SOLD OUT
                                                         </button>
                                                     ) : (
-                                                        <button
-                                                            className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
-                                                            onClick={() => {
-                                                                dispatch(
-                                                                    setIsModalOn(
-                                                                        true
-                                                                    )
-                                                                )
-                                                            }}
-                                                        >
-                                                            Saya tertarik dan
-                                                            ingin nego
-                                                        </button>
+                                                        <>
+                                                            {filteredTx?.length !==
+                                                            0 ? (
+                                                                <button
+                                                                    className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
+                                                                    disabled
+                                                                >
+                                                                    Menunggu
+                                                                    respon
+                                                                    penjual
+                                                                </button>
+                                                            ) : (
+                                                                <button
+                                                                    className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                                                                    onClick={() => {
+                                                                        dispatch(
+                                                                            setIsModalOn(
+                                                                                true
+                                                                            )
+                                                                        )
+                                                                    }}
+                                                                >
+                                                                    Saya
+                                                                    tertarik dan
+                                                                    ingin nego
+                                                                </button>
+                                                            )}
+                                                        </>
                                                     )}
                                                 </>
                                             )}

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
-import { putNotification } from "../../redux/notificationSlice"
+import { putNotificationById } from "../../redux/notificationSlice"
 import { priceFormatter } from "../../utils/priceFormatter"
 
 const NewProduct = ({ notif }) => {
@@ -14,7 +14,7 @@ const NewProduct = ({ notif }) => {
             onClick={() => {
                 !notif?.read &&
                     dispatch(
-                        putNotification({
+                        putNotificationById({
                             id: notif?.id,
                             read: true,
                         })

@@ -7,6 +7,7 @@ import { VscBellDot } from "react-icons/vsc"
 import {
     getNotification,
     notificationSelectors,
+    putNotification,
 } from "../../redux/notificationSlice"
 import ioClient from "../../socket/ioClient"
 import NewProduct from "../notifications/NewProduct"
@@ -18,14 +19,16 @@ import { classNameJoin } from "../../utils/classNameJoin"
 const NotificationDropdown = () => {
     const dispatch = useDispatch()
     const notification = useSelector(notificationSelectors.selectAll)
-    const { updatedNotif, loading } = useSelector((state) => state.notification)
+    const { updatedNotif, readAll, loading } = useSelector(
+        (state) => state.notification
+    )
     const { user, decodedAccess } = useSelector((state) => state.auth)
 
     const [ping, setPing] = useState(null)
 
     useEffect(() => {
         user && dispatch(getNotification())
-    }, [user, updatedNotif, dispatch])
+    }, [user, updatedNotif, readAll, dispatch])
 
     useEffect(() => {
         setPing(notification.filter((notif) => notif.read === false))
@@ -81,24 +84,34 @@ const NotificationDropdown = () => {
                                     {notification?.length === 0 ? (
                                         <Notification404 />
                                     ) : (
-                                        <div className="divide-y divide-neutral-200 dark:divide-zinc-800">
-                                            {notification
-                                                ?.slice(0, 3)
-                                                .map((notif) =>
-                                                    notif?.type ===
-                                                    "NEW_PRODUCT" ? (
-                                                        <NewProduct
-                                                            key={notif?.id}
-                                                            notif={notif}
-                                                        />
-                                                    ) : (
-                                                        <ProductTransaction
-                                                            key={notif?.id}
-                                                            notif={notif}
-                                                        />
-                                                    )
-                                                )}
-                                        </div>
+                                        <>
+                                            <div
+                                                className="mb-2 cursor-pointer text-end text-primary-purple-04 hover:text-primary-purple-05"
+                                                onClick={() => {
+                                                    dispatch(putNotification())
+                                                }}
+                                            >
+                                                Read All
+                                            </div>
+                                            <div className="divide-y divide-neutral-200 dark:divide-zinc-800">
+                                                {notification
+                                                    ?.slice(0, 3)
+                                                    .map((notif) =>
+                                                        notif?.type ===
+                                                        "NEW_PRODUCT" ? (
+                                                            <NewProduct
+                                                                key={notif?.id}
+                                                                notif={notif}
+                                                            />
+                                                        ) : (
+                                                            <ProductTransaction
+                                                                key={notif?.id}
+                                                                notif={notif}
+                                                            />
+                                                        )
+                                                    )}
+                                            </div>
+                                        </>
                                     )}
                                 </>
                             )}

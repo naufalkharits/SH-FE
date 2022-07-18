@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { logout } from "../redux/authSlice"
+import { logout } from "../../redux/authSlice"
 
-const RequireAuth = () => {
+const AuthRoutes = () => {
     const location = useLocation()
     const { productId } = useParams()
     const { user } = useSelector((state) => state.auth)
@@ -29,4 +29,4 @@ const RequireAuth = () => {
     )
 }
 
-export default RequireAuth
+export default AuthRoutes

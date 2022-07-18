@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { useSelector } from "react-redux"
 
-const UnrequireAuth = () => {
+const UnauthRoutes = () => {
     const location = useLocation()
     const { user } = useSelector((state) => state.auth)
     const from = location.state?.from?.pathname || "/"
@@ -14,4 +14,4 @@ const UnrequireAuth = () => {
     )
 }
 
-export default UnrequireAuth
+export default UnauthRoutes

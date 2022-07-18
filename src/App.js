@@ -17,9 +17,9 @@ import InfoPenawar from "./pages/InfoPenawar"
 import DetailProduct from "./pages/DetailProduct"
 import Error from "./pages/404"
 // middlewares
-import PublicRoutes from "./middlewares/PublicRoutes"
-import AuthRoutes from "./middlewares/AuthRoutes"
-import UnauthRoutes from "./middlewares/UnauthRoutes"
+import PublicRoutes from "./middlewares/routes/PublicRoutes"
+import AuthRoutes from "./middlewares/routes/AuthRoutes"
+import UnauthRoutes from "./middlewares/routes/UnauthRoutes"
 // misc
 import Topbar from "./components/Topbar"
 import AllProduct from "./components/AllProduct"
@@ -61,8 +61,14 @@ function App() {
                         </Route>
                         <Route element={<UserProfile />}>
                             <Route path="user" element={<ProfileMenu />} />
-                            <Route path="/user/order-list" element={<Purchase />} />
-                            <Route path="/user/wishlist" element={<Wishlist />} />
+                            <Route
+                                path="/user/order-list"
+                                element={<Purchase />}
+                            />
+                            <Route
+                                path="/user/wishlist"
+                                element={<Wishlist />}
+                            />
                         </Route>
                         <Route
                             path="/notification"

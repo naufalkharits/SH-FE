@@ -25,7 +25,7 @@ const WishlistButton = () => {
     return (
         <div className="flex items-center justify-center rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5">
             {loading === "pending" ? (
-                <CgSpinner className="h-5 w-5 animate-spin" />
+                <CgSpinner className="h-5 w-5 animate-spin dark:text-white" />
             ) : (
                 <>
                     {isWishlist ? (

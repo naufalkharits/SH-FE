@@ -46,7 +46,7 @@ const NotificationDropdown = () => {
             {({ open }) => (
                 <>
                     {loading === "pending" ? (
-                        <div className="h-6 w-6 animate-pulse rounded bg-gray"></div>
+                        <div className="h-6 w-6 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
                     ) : (
                         <Popover.Button
                             className={classNameJoin(

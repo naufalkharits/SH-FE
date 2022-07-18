@@ -1,13 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
-import AltFoto from "../images/AltFoto.png";
+import { Link, useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
+import AltFoto from "../images/AltFoto.png"
 
 const ProfileCard = () => {
-    const location = useLocation();
-    const { profile, loading } = useSelector((state) => state.auth);
+    const location = useLocation()
+    const { profile, loading } = useSelector((state) => state.auth)
 
     return (
-        <div className="flex items-center justify-between rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 dark:shadow-zinc-800">
+        <div className="flex items-center justify-between rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-10">
             <Link to="/user" className="flex items-center gap-4">
                 {loading === "pending" ? (
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray dark:bg-zinc-800"></div>
@@ -47,14 +47,14 @@ const ProfileCard = () => {
                     <Link
                         to="/user/profile"
                         state={{ from: location }}
-                        className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white"
+                        className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white dark:bg-zinc-900"
                     >
                         Edit
                     </Link>
                 </>
             )}
         </div>
-    );
-};
+    )
+}
 
-export default ProfileCard;
+export default ProfileCard

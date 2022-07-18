@@ -91,7 +91,7 @@ const DetailProduct = () => {
                                 )}
                             >
                                 {loading === "pending" ? (
-                                    <div className="h-[32rem] w-full animate-pulse bg-gray sm:rounded-2xl"></div>
+                                    <div className="h-[32rem] w-full animate-pulse bg-gray dark:bg-zinc-800 sm:rounded-2xl"></div>
                                 ) : (
                                     <Swiper
                                         modules={[Pagination]}
@@ -111,24 +111,24 @@ const DetailProduct = () => {
                                         ))}
                                     </Swiper>
                                 )}
-                                <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
+                                <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5 sm:block">
                                     {loading === "pending" ? (
-                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
+                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
                                     ) : (
-                                        <div className="font-medium">
+                                        <div className="font-medium dark:text-white">
                                             Deskripsi
                                         </div>
                                     )}
                                     {loading === "pending" ? (
                                         <div className="space-y-2 [&>div:last-child]:w-4/5">
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
                                         </div>
                                     ) : (
-                                        <p className="text-sm text-neutral-03">
+                                        <p className="text-sm text-neutral-03 dark:text-zinc-400">
                                             {product?.description}
                                         </p>
                                     )}
@@ -142,13 +142,13 @@ const DetailProduct = () => {
                                     "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
                                 )}
                             >
-                                <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                                <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
                                     <div className="mb-4 space-y-2">
                                         <div
                                             className={
                                                 loading === "pending"
-                                                    ? "h-4 w-32 animate-pulse rounded-md bg-gray"
-                                                    : ""
+                                                    ? "h-4 w-32 animate-pulse rounded-md bg-gray dark:bg-zinc-800"
+                                                    : "dark:text-white"
                                             }
                                         >
                                             {product?.name}
@@ -156,24 +156,24 @@ const DetailProduct = () => {
                                         <div
                                             className={
                                                 loading === "pending"
-                                                    ? "h-3 w-16 animate-pulse rounded-md bg-gray"
-                                                    : "text-sm text-neutral-03"
+                                                    ? "h-3 w-16 animate-pulse rounded-md bg-gray dark:bg-zinc-800"
+                                                    : "text-sm text-neutral-03 dark:text-zinc-400"
                                             }
                                         >
                                             {product?.category}
                                         </div>
                                     </div>
                                     {loading === "pending" ? (
-                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
+                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
                                     ) : (
-                                        <div>
+                                        <div className="dark:text-white">
                                             {priceFormatter(product?.price)}
                                         </div>
                                     )}
                                     {loading === "pending" ||
                                     loadingTx === "pending" ||
                                     loadingAuth === "pending" ? (
-                                        <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray"></div>
+                                        <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray dark:bg-zinc-800"></div>
                                     ) : user ? (
                                         <>
                                             {product?.seller?.user_id ===
@@ -234,7 +234,7 @@ const DetailProduct = () => {
                                                     {filteredTx?.length !==
                                                     0 ? (
                                                         <button
-                                                            className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white sm:block"
+                                                            className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
                                                             disabled
                                                         >
                                                             Menunggu respon
@@ -281,24 +281,24 @@ const DetailProduct = () => {
                                 />
                             </div>
                             <div className="mb-8 px-4 sm:hidden sm:px-0">
-                                <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
+                                <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5">
                                     {loading === "pending" ? (
-                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray"></div>
+                                        <div className="h-4 w-20 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
                                     ) : (
-                                        <div className="font-medium">
+                                        <div className="font-medium dark:text-white">
                                             Deskripsi
                                         </div>
                                     )}
                                     {loading === "pending" ? (
                                         <div className="space-y-2 [&>div:last-child]:w-4/5">
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
-                                            <div className="h-3 animate-pulse rounded-md bg-gray"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
+                                            <div className="h-3 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
                                         </div>
                                     ) : (
-                                        <p className="text-sm text-neutral-03">
+                                        <p className="text-sm text-neutral-03 dark:text-zinc-400">
                                             {product?.description}
                                         </p>
                                     )}
@@ -317,7 +317,7 @@ const DetailProduct = () => {
                                     <button
                                         className={classNameJoin(
                                             isModalOn ? "hidden" : "sm:hidden",
-                                            "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-neutral-02 px-6 py-3.5 text-white shadow-lg shadow-neutral-02"
+                                            "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-neutral-02 px-6 py-3.5 text-white shadow-lg shadow-neutral-02 dark:bg-zinc-500 dark:shadow-zinc-500"
                                         )}
                                         disabled
                                     >

@@ -5,7 +5,7 @@ import {
 } from "../redux/notificationSlice"
 import NotificationSkeleton from "../components/skeletons/NotificationSkeleton"
 import NewProduct from "../components/notifications/NewProduct"
-import ProductTransaction from "../components/notifications/ProductTransaction"
+import ProductTransactions from "../components/notifications/ProductTransactions"
 import Notification404 from "../unfound/Notification404"
 
 const Notification = () => {
@@ -54,7 +54,7 @@ const Notification = () => {
                                             notif={notif}
                                         />
                                     ) : (
-                                        <ProductTransaction
+                                        <ProductTransactions
                                             key={notif?.id}
                                             notif={notif}
                                         />

@@ -4,7 +4,7 @@ import dayjs from "dayjs"
 import { putNotificationById } from "../../redux/notificationSlice"
 import { priceFormatter } from "../../utils/priceFormatter"
 
-const ProductTransaction = ({ notif }) => {
+const ProductTransactions = ({ notif }) => {
     const dispatch = useDispatch()
 
     return (
@@ -91,4 +91,4 @@ const ProductTransaction = ({ notif }) => {
     )
 }
 
-export default ProductTransaction
+export default ProductTransactions

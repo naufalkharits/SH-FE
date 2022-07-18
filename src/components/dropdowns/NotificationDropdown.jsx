@@ -13,7 +13,7 @@ import ioClient from "../../socket/ioClient"
 import NewProduct from "../notifications/NewProduct"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import Notification404 from "../../unfound/Notification404"
-import ProductTransaction from "../notifications/ProductTransaction"
+import ProductTransactions from "../notifications/ProductTransactions"
 import { classNameJoin } from "../../utils/classNameJoin"
 
 const NotificationDropdown = () => {
@@ -104,7 +104,7 @@ const NotificationDropdown = () => {
                                                                 notif={notif}
                                                             />
                                                         ) : (
-                                                            <ProductTransaction
+                                                            <ProductTransactions
                                                                 key={notif?.id}
                                                                 notif={notif}
                                                             />

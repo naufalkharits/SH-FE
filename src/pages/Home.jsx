@@ -14,7 +14,7 @@ import ProductCard from "../components/ProductCard"
 import SellFloatingButton from "../components/buttons/SellFloatingButton"
 import ProductSkeleton from "../components/skeletons/ProductSkeleton"
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi"
-import Product404 from "../unfound/Product404"
+import Product404 from "../components/unfound/Product404"
 import { classNameJoin } from "../utils/classNameJoin"
 
 const Home = () => {

@@ -12,7 +12,7 @@ import dayjs from "dayjs"
 import { TbBrandWhatsapp } from "react-icons/tb"
 import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
-import Tawar404 from "../unfound/Tawar404"
+import Tawar404 from "./unfound/Tawar404"
 import { priceFormatter } from "../utils/priceFormatter"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 

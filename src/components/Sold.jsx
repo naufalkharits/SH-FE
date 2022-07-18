@@ -5,7 +5,7 @@ import dayjs from "dayjs"
 
 import { priceFormatter } from "../utils/priceFormatter"
 import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
-import Transaction404 from "../unfound/Transaction404"
+import Transaction404 from "./unfound/Transaction404"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 import {
     Chart as ChartJS,
@@ -96,7 +96,9 @@ const Sold = () => {
     return (
         <>
             <div className="mt-4 w-full space-y-5 px-5 sm:pl-10">
-                <p className="font-medium dark:text-white">Histori Penjualan Produk</p>
+                <p className="font-medium dark:text-white">
+                    Histori Penjualan Produk
+                </p>
                 {loading === "pending" ? (
                     <TransactionSkeleton />
                 ) : transaction?.length === 0 ? (
@@ -131,7 +133,9 @@ const Sold = () => {
                                                     )}
                                                 </span>
                                             </div>
-                                            <div className="dark:text-white">{tx?.product.name}</div>
+                                            <div className="dark:text-white">
+                                                {tx?.product.name}
+                                            </div>
                                             {tx?.product.price === tx?.price ? (
                                                 <div className="dark:text-white">
                                                     Berhasil terjual{" "}

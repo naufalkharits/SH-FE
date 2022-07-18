@@ -6,7 +6,7 @@ import {
 import NotificationSkeleton from "../components/skeletons/NotificationSkeleton"
 import NewProduct from "../components/notifications/NewProduct"
 import ProductTransactions from "../components/notifications/ProductTransactions"
-import Notification404 from "../unfound/Notification404"
+import Notification404 from "../components/unfound/Notification404"
 
 const Notification = () => {
     const dispatch = useDispatch()

@@ -12,7 +12,7 @@ import {
 import ioClient from "../../socket/ioClient"
 import NewProduct from "../notifications/NewProduct"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
-import Notification404 from "../../unfound/Notification404"
+import Notification404 from "../unfound/Notification404"
 import ProductTransactions from "../notifications/ProductTransactions"
 import { classNameJoin } from "../../utils/classNameJoin"
 

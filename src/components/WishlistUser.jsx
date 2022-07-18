@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { getWishlistBuyer } from "../redux/wishlistSlice"
 import ProductCard from "../components/ProductCard"
 import WishlistProfileSkeleton from "./skeletons/WishlistProfileSkeleton"
-import Wishlist404 from "../unfound/Wishlist404"
+import Wishlist404 from "./unfound/Wishlist404"
 
 const WishlistUser = () => {
     const dispatch = useDispatch()
@@ -18,7 +18,9 @@ const WishlistUser = () => {
     return (
         <>
             <div className="mt-4 w-full space-y-2 px-5 sm:pl-10">
-                <p className="font-medium dark:text-white">List Wishlist User</p>
+                <p className="font-medium dark:text-white">
+                    List Wishlist User
+                </p>
                 <div className="flex">
                     {loading === "pending" ? (
                         <WishlistProfileSkeleton />

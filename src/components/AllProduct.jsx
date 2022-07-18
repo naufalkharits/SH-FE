@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getFilteredProduct } from "../redux/productsSlice"
-import MyProduct404 from "../unfound/MyProduct404"
+import MyProduct404 from "./unfound/MyProduct404"
 import AddProductButton from "./buttons/AddProductButton"
 import ProductCard from "./ProductCard"
 import SellerSkeleton from "./skeletons/SellerSkeleton"
@@ -28,7 +28,7 @@ const AllProduct = () => {
                     filteredProduct && (
                         <>
                             {filteredProduct.length === 0 ? (
-                                <div className="flex items-center w-full">
+                                <div className="flex w-full items-center">
                                     <AddProductButton height={"h-72"} />
                                     <MyProduct404 />
                                 </div>

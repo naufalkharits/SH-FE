@@ -1,4 +1,4 @@
-import Wishlisted404 from "../unfound/Wishlisted404"
+import Wishlisted404 from "./unfound/Wishlisted404"
 import {
     Chart as ChartJS,
     CategoryScale,

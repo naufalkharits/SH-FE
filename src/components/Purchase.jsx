@@ -5,7 +5,7 @@ import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import { priceFormatter } from "../utils/priceFormatter"
 import { Swiper, SwiperSlide } from "swiper/react"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
-import Transaction404 from "../unfound/Transaction404"
+import Transaction404 from "./unfound/Transaction404"
 import { classNameJoin } from "../utils/classNameJoin"
 
 const Purchase = () => {
@@ -55,13 +55,14 @@ const Purchase = () => {
                                             )}
                                         </span>
                                     </div>
-                                    <div className="dark:text-white">{tx?.product.name}</div>
+                                    <div className="dark:text-white">
+                                        {tx?.product.name}
+                                    </div>
                                     <div
                                         className={classNameJoin(
-                                            tx?.status === "COMPLETED" ?
-                                                "line-through dark:text-white"
-                                                :
-                                                "dark:text-white"
+                                            tx?.status === "COMPLETED"
+                                                ? "line-through dark:text-white"
+                                                : "dark:text-white"
                                         )}
                                     >
                                         {priceFormatter(tx?.product.price)}

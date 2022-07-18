@@ -10,7 +10,7 @@ const Search = () => {
     const onChange = (query) => dispatch(keywordQuery(query))
 
     return (
-        <label className="relative block w-full text-neutral-03 dark:text-neutral-400 sm:w-fit">
+        <label className="relative block w-full text-neutral-03 dark:text-zinc-400 sm:w-fit">
             <span className="absolute inset-y-0 right-0 flex items-center pr-6">
                 <FiSearch className="h-5 w-5" />
             </span>

@@ -21,7 +21,7 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
                 <div className="truncate font-medium dark:text-white">
                     {name}
                 </div>
-                <div className="text-sm text-neutral-03 dark:text-neutral-400">
+                <div className="text-sm text-neutral-03 dark:text-zinc-400">
                     {category}
                 </div>
             </div>

@@ -30,7 +30,7 @@ const MobileMenu = ({ profile }) => {
                 <FiMenu
                     className={classNameJoin(
                         location.pathname === "/"
-                            ? "text-neutral-03 dark:text-neutral-400"
+                            ? "text-neutral-03 dark:text-zinc-400"
                             : "dark:text-white",
                         "h-8 w-8"
                     )}

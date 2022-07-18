@@ -22,7 +22,7 @@ const InfoPenawar = () => {
         <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
             <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                 <FiArrowLeft
-                    className="cursor-pointer text-3xl"
+                    className="cursor-pointer text-3xl dark:text-white"
                     onClick={() => {
                         navigate(-1);
                     }}
@@ -30,7 +30,7 @@ const InfoPenawar = () => {
             </div>
             <div className="w-full space-y-7 px-4">
                 <ProfileCard />
-                <div className="font-medium">Daftar Produkmu yang Ditawar</div>
+                <div className="font-medium dark:text-white">Daftar Produkmu yang Ditawar</div>
                 <TransactionCard />
             </div>
             <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>

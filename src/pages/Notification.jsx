@@ -12,7 +12,7 @@ const Notification = () => {
     return (
         <>
             <div className="container mx-auto p-4 sm:space-y-6 sm:px-16 md:px-32 lg:px-48 xl:px-64 2xl:px-80 3xl:px-96">
-                <h1 className="hidden text-xl font-bold sm:block">
+                <h1 className="hidden text-xl font-bold sm:block dark:text-white">
                     Notifikasi
                 </h1>
                 {loading === "pending" ? (

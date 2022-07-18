@@ -196,7 +196,7 @@ const EditProfile = () => {
                             <input
                                 className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                                 type="number"
-                                placeholder="contoh: 08123456789"
+                                placeholder="contoh: +628123456789"
                                 name="phone_number"
                                 value={formValue.phone_number || ""}
                                 onChange={(e) => {

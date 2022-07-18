@@ -58,6 +58,26 @@ const ProductTransaction = ({ notif }) => {
                             Ditawar {priceFormatter(notif?.transaction?.price)}
                         </div>
                     </>
+                ) : notif?.type === "TRANSACTION_REJECTED" ? (
+                    <>
+                        <div className="dark:text-white">
+                            {priceFormatter(notif?.transaction?.product?.price)}
+                        </div>
+                        <div className="dark:text-white">
+                            Gagal ditawar{" "}
+                            {priceFormatter(notif?.transaction?.price)}
+                        </div>
+                    </>
+                ) : notif?.type === "TRANSACTION_ACCEPTED" ? (
+                    <>
+                        <div className="line-through dark:text-white">
+                            {priceFormatter(notif?.transaction?.product?.price)}
+                        </div>
+                        <div className="dark:text-white">
+                            Berhasil ditawar{" "}
+                            {priceFormatter(notif?.transaction?.price)}
+                        </div>
+                    </>
                 ) : (
                     notif?.type === "TRANSACTION_COMPLETE" && (
                         <div className="dark:text-white">

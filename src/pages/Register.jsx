@@ -41,22 +41,22 @@ const Register = () => {
                     message={error?.message}
                 />
             )}
-            <div className="space-y-8 bg-white p-8 sm:p-14">
+            <div className="space-y-8 bg-white p-8 dark:bg-zinc-900 sm:p-14">
                 <FiArrowLeft
-                    className="h-6 w-6 cursor-pointer sm:hidden"
+                    className="h-6 w-6 cursor-pointer dark:text-white sm:hidden"
                     onClick={() => {
                         navigate(-1)
                     }}
                 />
                 <img className="sm:hidden" src={SecondHand} alt="" />
-                <div className="text-2xl font-bold">Daftar</div>
+                <div className="text-2xl font-bold dark:text-white">Daftar</div>
                 <form onSubmit={onSubmit}>
                     <div className="mb-4 space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Nama
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
+                            className="w-full rounded-2xl py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-0 dark:bg-zinc-800 dark:text-white dark:placeholder:text-zinc-400 dark:focus:shadow-sm dark:focus:shadow-zinc-700"
                             type="text"
                             name="name"
                             // value={name}
@@ -65,11 +65,11 @@ const Register = () => {
                         />
                     </div>
                     <div className="mb-4 space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Email
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
+                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-0 dark:bg-zinc-800 dark:text-white dark:placeholder:text-zinc-400 dark:focus:shadow-sm dark:focus:shadow-zinc-700"
                             type="email"
                             name="email"
                             // value={email}
@@ -78,11 +78,11 @@ const Register = () => {
                         />
                     </div>
                     <div className="mb-8 space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Password
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 focus:outline-none"
+                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-0 dark:bg-zinc-800 dark:text-white dark:placeholder:text-zinc-400 dark:focus:shadow-sm dark:focus:shadow-zinc-700"
                             type="password"
                             name="password"
                             // value={password}
@@ -93,10 +93,10 @@ const Register = () => {
                     <button
                         className={classNameJoin(
                             !formValue.email || !formValue.password
-                                ? "bg-neutral-02"
+                                ? "bg-neutral-02 dark:bg-zinc-500"
                                 : "",
                             loading === "pending" &&
-                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02 dark:bg-zinc-500",
                             formValue.email &&
                                 formValue.password &&
                                 loading === "idle" &&
@@ -123,7 +123,7 @@ const Register = () => {
                         )}
                     </button>
                 </form>
-                <p className="text-center text-sm">
+                <div className="text-center text-sm dark:text-white">
                     Sudah punya akun?{" "}
                     <Link
                         to="/login"
@@ -131,7 +131,7 @@ const Register = () => {
                     >
                         Masuk di sini
                     </Link>
-                </p>
+                </div>
             </div>
         </>
     )

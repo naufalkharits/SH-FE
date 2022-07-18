@@ -1,11 +1,11 @@
-import { Outlet } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Outlet } from "react-router-dom"
+import { GoogleOAuthProvider } from "@react-oauth/google"
 
 const Auth = () => {
     return (
         <div className="min-h-screen sm:flex sm:flex-row">
             <div className="hidden bg-cover bg-center bg-no-repeat sm:inline sm:w-1/2 sm:bg-[url('/public/img/auth.png')] xl:w-2/3">
-                <div className="flex h-full flex-col justify-center pl-8 text-4xl font-bold text-white">
+                <div className="flex h-full flex-col justify-center pl-8 text-4xl font-bold text-white dark:text-zinc-900">
                     Second <div>Hand.</div>
                 </div>
             </div>
@@ -15,7 +15,7 @@ const Auth = () => {
                 </GoogleOAuthProvider>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default Auth;
+export default Auth

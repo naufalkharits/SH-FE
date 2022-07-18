@@ -25,11 +25,11 @@ const SellerWishlistsCard = ({
                 alt=""
             />
             <div>
-                <div className="truncate font-medium">{name}</div>
-                <div className="text-sm text-neutral-03">{category}</div>
+                <div className="truncate font-medium dark:text-white">{name}</div>
+                <div className="text-sm text-neutral-03 dark:text-zinc-400">{category}</div>
             </div>
-            <div>{priceFormatter(price)}</div>
-            <div className="flex items-center gap-1 text-sm text-neutral-03">
+            <div className="dark:text-white">{priceFormatter(price)}</div>
+            <div className="flex items-center gap-1 text-sm text-neutral-03 dark:text-zinc-400">
                 <FaHeart /> <span>{count}</span>
             </div>
         </div>

@@ -58,8 +58,10 @@ const Purchase = () => {
                                     <div className="dark:text-white">{tx?.product.name}</div>
                                     <div
                                         className={classNameJoin(
-                                            tx?.status === "COMPLETED" &&
+                                            tx?.status === "COMPLETED" ?
                                                 "line-through dark:text-white"
+                                                :
+                                                "dark:text-white"
                                         )}
                                     >
                                         {priceFormatter(tx?.product.price)}

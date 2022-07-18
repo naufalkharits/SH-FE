@@ -96,7 +96,7 @@ const Sold = () => {
     return (
         <>
             <div className="mt-4 w-full space-y-5 px-5 sm:pl-10">
-                <p className="font-medium">Histori Penjualan Produk</p>
+                <p className="font-medium dark:text-white">Histori Penjualan Produk</p>
                 {loading === "pending" ? (
                     <TransactionSkeleton />
                 ) : transaction?.length === 0 ? (
@@ -123,7 +123,7 @@ const Sold = () => {
                                             )}
                                         </Swiper>
                                         <div className="w-full space-y-1">
-                                            <div className="flex justify-between text-xs text-neutral-03">
+                                            <div className="flex justify-between text-xs text-neutral-03 dark:text-zinc-400">
                                                 <span>Produk Terjual</span>
                                                 <span>
                                                     {dayjs(tx.updatedAt).format(
@@ -131,9 +131,9 @@ const Sold = () => {
                                                     )}
                                                 </span>
                                             </div>
-                                            <div>{tx?.product.name}</div>
+                                            <div className="dark:text-white">{tx?.product.name}</div>
                                             {tx?.product.price === tx?.price ? (
-                                                <div>
+                                                <div className="dark:text-white">
                                                     Berhasil terjual{" "}
                                                     {priceFormatter(
                                                         tx?.product.price
@@ -141,12 +141,12 @@ const Sold = () => {
                                                 </div>
                                             ) : (
                                                 <>
-                                                    <div className="line-through">
+                                                    <div className="line-through dark:text-white">
                                                         {priceFormatter(
                                                             tx?.product.price
                                                         )}
                                                     </div>
-                                                    <div>
+                                                    <div className="dark:text-white">
                                                         Berhasil terjual{" "}
                                                         {priceFormatter(
                                                             tx?.price

@@ -1,26 +1,26 @@
-import axios from "axios";
-import dayjs from "dayjs";
-import { setUser, logout } from "../redux/authSlice";
+import axios from "axios"
+import dayjs from "dayjs"
+import { setUser, logout } from "../../redux/authSlice"
 
-let store;
+let store
 
 export const injectOpenServer = (_store) => {
-    store = _store;
-};
+    store = _store
+}
 
-const baseURL = process.env.REACT_APP_SERVER_URL;
+const baseURL = process.env.REACT_APP_SERVER_URL
 
 // export
 const openServer = axios.create({
     baseURL,
-});
+})
 
 openServer.interceptors.request.use(async (config) => {
     if (store.getState().auth.user) {
         const isRefreshExpired =
-            dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs()) < 1;
+            dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs()) < 1
         const isAccessExpired =
-            dayjs.unix(store.getState().auth.unixAccessExp).diff(dayjs()) < 1;
+            dayjs.unix(store.getState().auth.unixAccessExp).diff(dayjs()) < 1
 
         if (isRefreshExpired) {
             // console.log(
@@ -30,8 +30,8 @@ openServer.interceptors.request.use(async (config) => {
             //             .diff(dayjs())
             // );
 
-            store.dispatch(logout());
-            return config;
+            store.dispatch(logout())
+            return config
         }
 
         if (isAccessExpired) {
@@ -44,9 +44,9 @@ openServer.interceptors.request.use(async (config) => {
 
             const response = await axios.post(`${baseURL}/auth/refresh`, {
                 refreshToken: store.getState().auth.user.refreshToken.token,
-            });
+            })
 
-            store.dispatch(setUser(response.data));
+            store.dispatch(setUser(response.data))
 
             // console.log(
             //     "New access: " +
@@ -57,17 +57,17 @@ openServer.interceptors.request.use(async (config) => {
 
             // console.log(response.data.accessToken.token);
 
-            config.headers.Authorization = response.data.accessToken.token;
+            config.headers.Authorization = response.data.accessToken.token
 
-            return config;
+            return config
         }
 
         // console.log("Not expired!!");
-        return config;
+        return config
     }
 
     // console.log("User not login");
-    return config;
-});
+    return config
+})
 
-export default openServer;
+export default openServer

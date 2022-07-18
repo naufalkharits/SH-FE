@@ -3,7 +3,7 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit"
-import closedServer from "../axios/closedServer"
+import closedServer from "../middlewares/axios/closedServer"
 
 export const getNotification = createAsyncThunk(
     "notification/getNotification",

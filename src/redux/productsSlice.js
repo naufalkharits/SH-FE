@@ -3,8 +3,8 @@ import {
     createEntityAdapter,
     createSlice,
 } from "@reduxjs/toolkit"
-import openServer from "../axios/openServer"
-import closedServer from "../axios/closedServer"
+import openServer from "../middlewares/axios/openServer"
+import closedServer from "../middlewares/axios/closedServer"
 
 const params = new URLSearchParams(document.location.search)
 const page = Number(params.get("page"))

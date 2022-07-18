@@ -1,25 +1,25 @@
-import axios from "axios";
-import dayjs from "dayjs";
-import { setUser, logout } from "../redux/authSlice";
+import axios from "axios"
+import dayjs from "dayjs"
+import { setUser, logout } from "../../redux/authSlice"
 
-let store;
+let store
 
 export const injectClosedServer = (_store) => {
-    store = _store;
-};
+    store = _store
+}
 
-const baseURL = process.env.REACT_APP_SERVER_URL;
+const baseURL = process.env.REACT_APP_SERVER_URL
 
 // export
 const closedServer = axios.create({
     baseURL,
-});
+})
 
 closedServer.interceptors.request.use(async (config) => {
     const isRefreshExpired =
-        dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs()) < 1;
+        dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs()) < 1
     const isAccessExpired =
-        dayjs.unix(store.getState().auth.unixAccessExp).diff(dayjs()) < 1;
+        dayjs.unix(store.getState().auth.unixAccessExp).diff(dayjs()) < 1
 
     if (isRefreshExpired) {
         // console.log(
@@ -27,8 +27,8 @@ closedServer.interceptors.request.use(async (config) => {
         //         dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs())
         // );
 
-        store.dispatch(logout());
-        return config;
+        store.dispatch(logout())
+        return config
     }
 
     if (isAccessExpired) {
@@ -39,9 +39,9 @@ closedServer.interceptors.request.use(async (config) => {
 
         const response = await axios.post(`${baseURL}/auth/refresh`, {
             refreshToken: store.getState().auth.user.refreshToken.token,
-        });
+        })
 
-        store.dispatch(setUser(response.data));
+        store.dispatch(setUser(response.data))
 
         // console.log(
         //     "New access: " +
@@ -50,9 +50,9 @@ closedServer.interceptors.request.use(async (config) => {
 
         // console.log(response.data.accessToken.token);
 
-        config.headers.Authorization = response.data.accessToken.token;
+        config.headers.Authorization = response.data.accessToken.token
 
-        return config;
+        return config
     }
 
     // console.log(
@@ -62,8 +62,8 @@ closedServer.interceptors.request.use(async (config) => {
     //         dayjs.unix(store.getState().auth.unixRefreshExp).diff(dayjs())
     // );
 
-    config.headers.Authorization = store.getState().auth.user.accessToken.token;
-    return config;
-});
+    config.headers.Authorization = store.getState().auth.user.accessToken.token
+    return config
+})
 
-export default closedServer;
+export default closedServer

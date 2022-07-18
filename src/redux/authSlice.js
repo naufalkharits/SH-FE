@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import jwtDecode from "jwt-decode"
 import dayjs from "dayjs"
-import openServer from "../axios/openServer"
-import closedServer from "../axios/closedServer"
+import openServer from "../middlewares/axios/openServer"
+import closedServer from "../middlewares/axios/closedServer"
 import ioClient from "../socket/ioClient"
 
 // Get user from localStorage

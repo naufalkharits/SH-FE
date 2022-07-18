@@ -3,7 +3,7 @@ import {
     createSlice,
     createEntityAdapter,
 } from "@reduxjs/toolkit"
-import closedServer from "../axios/closedServer"
+import closedServer from "../middlewares/axios/closedServer"
 
 // POST transaction
 export const postTransaction = createAsyncThunk(

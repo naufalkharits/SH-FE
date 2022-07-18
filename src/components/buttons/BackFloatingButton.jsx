@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { FiChevronLeft } from "react-icons/fi"
 
-const BackButton = () => {
+const BackFloatingButton = () => {
     const navigate = useNavigate()
 
     return (
@@ -14,4 +14,4 @@ const BackButton = () => {
     )
 }
 
-export default BackButton
+export default BackFloatingButton

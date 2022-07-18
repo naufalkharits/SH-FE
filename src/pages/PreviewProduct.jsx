@@ -10,7 +10,7 @@ import {
 } from "../redux/productsSlice"
 import ProfileCard from "../components/ProfileCard"
 import PublishButton from "../components/buttons/PublishButton"
-import BackButton from "../components/buttons/BackButton"
+import BackFloatingButton from "../components/buttons/BackFloatingButton"
 import { FaHeart, FaRegHeart } from "react-icons/fa"
 import { CgSpinner } from "react-icons/cg"
 
@@ -55,7 +55,7 @@ const PreviewProduct = () => {
 
     return (
         <>
-            <BackButton />
+            <BackFloatingButton />
             <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">
                 <div className="flex flex-col gap-4 sm:flex-row">
                     <div className="space-y-4 sm:w-2/3 lg:w-3/4">

@@ -14,7 +14,7 @@ import {
     getFilteredTransaction,
     setIsModalOn,
 } from "../redux/transactionSlice"
-import BackButton from "../components/buttons/BackButton"
+import BackFloatingButton from "../components/buttons/BackFloatingButton"
 import ModalTawar from "../components/modals/ModalTawar"
 import WishlistButton from "../components/buttons/WishlistButton"
 import SellerCard from "../components/SellerCard"
@@ -79,7 +79,7 @@ const DetailProduct = () => {
                             onSubmit={onSubmit}
                         />
                     )}
-                    <BackButton />
+                    <BackFloatingButton />
                     <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">
                         <div className="flex flex-col gap-4 sm:flex-row">
                             <div

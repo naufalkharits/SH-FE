@@ -61,8 +61,8 @@ function App() {
                         </Route>
                         <Route element={<UserProfile />}>
                             <Route path="user" element={<ProfileMenu />} />
-                            <Route path="/order-list" element={<Purchase />} />
-                            <Route path="/wishlist" element={<Wishlist />} />
+                            <Route path="/user/order-list" element={<Purchase />} />
+                            <Route path="/user/wishlist" element={<Wishlist />} />
                         </Route>
                         <Route
                             path="/notification"

@@ -9,7 +9,7 @@ const Topbar = () => {
 
     return (
         <>
-            <nav className="flex h-[84px] items-center bg-white sm:shadow">
+            <nav className="flex h-[84px] items-center bg-white sm:shadow dark:bg-zinc-900 sm:dark:shadow-zinc-800">
                 <div className="container mx-auto flex items-center justify-between p-4">
                     <img
                         className="hidden h-8 cursor-pointer sm:inline"
@@ -24,12 +24,12 @@ const Topbar = () => {
                     />
 
                     <FiArrowLeft
-                        className="h-6 w-6 cursor-pointer sm:hidden"
+                        className="h-6 w-6 cursor-pointer sm:hidden dark:text-white"
                         onClick={() => {
                             navigate(-1)
                         }}
                     />
-                    <div className="font-medium">
+                    <div className="font-medium dark:text-white">
                         {location.pathname === "/user/infopenawar"
                             ? "Info Penawar"
                             : location.pathname === "/user/profile"

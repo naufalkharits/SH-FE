@@ -74,7 +74,7 @@ const EditProfile = () => {
         <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
             <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                 <FiArrowLeft
-                    className="cursor-pointer text-3xl"
+                    className="cursor-pointer text-3xl dark:text-white"
                     onClick={() => {
                         navigate(-1)
                     }}
@@ -117,9 +117,9 @@ const EditProfile = () => {
                     <div className="space-y-2">
                         {/* Nama */}
                         <label className="space-y-2">
-                            <span className="block">Nama</span>
+                            <span className="block dark:text-white">Nama</span>
                             <input
-                                className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
+                                className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                                 type="text"
                                 placeholder="Nama"
                                 name="name"
@@ -132,13 +132,13 @@ const EditProfile = () => {
                     <div className="">
                         {/* Kota */}
                         <label className="space-y-2">
-                            <span className="block">Kota</span>
+                            <span className="block dark:text-white">Kota</span>
                             <label className="relative block">
                                 <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
                                     <FiChevronDown />
                                 </span>
                                 <select
-                                    className="bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
+                                    className="bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                                     name="city"
                                     value={formValue.city || ""}
                                     onChange={onChange}
@@ -172,10 +172,10 @@ const EditProfile = () => {
                     <div className="">
                         {/* Alamat */}
                         <label className="space-y-2">
-                            <span className="block">Alamat</span>
+                            <span className="block dark:text-white">Alamat</span>
                             <textarea
                                 rows="2"
-                                className="bg-neutral-01 h-20 w-full resize-none rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
+                                className="bg-neutral-01 h-20 w-full resize-none rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                                 type="text"
                                 placeholder="Contoh: Jalan Ikan Hiu 33"
                                 name="address"
@@ -192,9 +192,9 @@ const EditProfile = () => {
                     <div className="space-y-2">
                         {/* No Handphone */}
                         <label className="space-y-2">
-                            <span className="block">No Handphone</span>
+                            <span className="block dark:text-white">No Handphone</span>
                             <input
-                                className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none"
+                                className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                                 type="number"
                                 placeholder="contoh: 08123456789"
                                 name="phone_number"

@@ -10,9 +10,9 @@ const DesktopUserMenu = () => {
         <div className="mt-4 hidden h-fit rounded-2xl p-6 shadow-md sm:block ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 dark:shadow-zinc-800 dark:text-white">
             <div className="mb-6 font-medium">Menu</div>
             <Link
-                to="/wishlist"
+                to="/user/wishlist"
                 className={classNameJoin(
-                    location.pathname === "/wishlist"
+                    location.pathname === "/user/wishlist"
                         ? "text-primary-purple-04"
                         : "",
                     "flex cursor-pointer items-center gap-2 hover:text-primary-purple-05"
@@ -23,9 +23,9 @@ const DesktopUserMenu = () => {
             </Link>
             <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-02 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-02"></div>
             <Link
-                to="/order-list"
+                to="/user/order-list"
                 className={classNameJoin(
-                    location.pathname === "/order-list"
+                    location.pathname === "/user/order-list"
                         ? "text-primary-purple-04"
                         : "",
                     "flex cursor-pointer items-center gap-2 hover:text-primary-purple-05"

@@ -17,10 +17,10 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
         <>
             <div className="fixed inset-0 z-50 bg-gray-bg">
                 <div className="flex h-screen items-center justify-center">
-                    <div className="h-fit w-96 rounded-2xl bg-white p-8">
+                    <div className="h-fit w-96 rounded-2xl bg-white p-8 dark:bg-zinc-900">
                         <div className="mb-4 flex justify-end">
                             <FiX
-                                className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray"
+                                className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
                                 onClick={handleCancelClick}
                             />
                         </div>
@@ -29,7 +29,7 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
                             id="updateStatus"
                             onSubmit={onSubmit}
                         >
-                            <div className="font-medium">
+                            <div className="font-medium dark:text-white">
                                 Perbarui status penjualan produkmu
                             </div>
                             <div className="flex">
@@ -48,10 +48,10 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
                                     />
                                 </div>
                                 <div className="ml-4 space-y-2 text-sm">
-                                    <label className="text-neutral-05">
+                                    <label className="text-neutral-05 dark:text-zinc-50">
                                         Berhasil terjual
                                     </label>
-                                    <p className="text-xs text-neutral-03">
+                                    <p className="text-xs text-neutral-03 dark:text-zinc-400">
                                         Kamu telah sepakat menjual produk ini
                                         kepada pembeli
                                     </p>
@@ -73,10 +73,10 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
                                     />
                                 </div>
                                 <div className="ml-4 space-y-2 text-sm">
-                                    <label className="text-neutral-05">
+                                    <label className="text-neutral-05 dark:text-zinc-50">
                                         Batalkan transaksi
                                     </label>
-                                    <p className="text-xs text-neutral-03">
+                                    <p className="text-xs text-neutral-03 dark:text-zinc-400">
                                         Kamu membatalkan transaksi produk ini
                                         dengan pembeli
                                     </p>
@@ -86,9 +86,10 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
                         <button
                             form="updateStatus"
                             className={classNameJoin(
-                                !update?.status && "bg-neutral-02",
+                                !update?.status &&
+                                    "bg-neutral-02 dark:bg-zinc-500",
                                 spinner &&
-                                    "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                    "flex cursor-wait items-center justify-center gap-2 bg-neutral-02 dark:bg-zinc-500",
                                 update?.status &&
                                     !spinner &&
                                     "bg-primary-purple-04 hover:bg-primary-purple-05",

@@ -12,22 +12,22 @@ const ModalBerhasil = ({ setModalOn, setChoice }) => {
             <div className="fixed inset-0 z-50 bg-gray-bg">
                 <div className="flex h-screen items-center justify-center">
                     {/* modal */}
-                    <div className="h-fit w-96 rounded-2xl bg-white p-8">
+                    <div className="h-fit w-96 rounded-2xl bg-white p-8 dark:bg-zinc-900">
                         <div className="mb-6 space-y-4">
                             <div className="flex justify-end">
                                 <FiX
-                                    className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray"
+                                    className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
                                     onClick={handleCancelClick}
                                 />
                             </div>
-                            <h3 className="font-medium">
+                            <h3 className="font-medium dark:text-white">
                                 Yeay kamu berhasil mendapat harga yang sesuai
                             </h3>
-                            <h3 className="text-sm text-neutral-03">
+                            <h3 className="text-sm text-neutral-03 dark:text-zinc-400">
                                 Segera hubungi pembeli melalui whatsapp untuk
                                 transaksi selanjutnya
                             </h3>
-                            <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 sm:bg-gray sm:shadow-none sm:ring-0">
+                            <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5 sm:bg-gray sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
                                 <div className="text-center text-sm font-medium">
                                     Product Match
                                 </div>
@@ -38,10 +38,10 @@ const ModalBerhasil = ({ setModalOn, setChoice }) => {
                                         alt=""
                                     />
                                     <div className="space-y-1">
-                                        <div className="text-sm font-medium">
+                                        <div className="text-sm font-medium dark:text-white">
                                             Nama Pembeli
                                         </div>
-                                        <div className="text-xs text-neutral-03">
+                                        <div className="text-xs text-neutral-03 dark:text-zinc-400">
                                             Kota
                                         </div>
                                     </div>

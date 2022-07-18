@@ -86,7 +86,7 @@ const TransactionCard = () => {
                                         ))}
                                     </Swiper>
                                     <div className="w-full space-y-1">
-                                        <div className="flex justify-between text-xs text-neutral-03">
+                                        <div className="flex justify-between text-xs text-neutral-03 dark:text-zinc-400">
                                             <span>{tx?.status}</span>
                                             <span>
                                                 {dayjs(tx?.updatedAt).format(
@@ -94,16 +94,22 @@ const TransactionCard = () => {
                                                 )}
                                             </span>
                                         </div>
-                                        <div>{tx?.product.name}</div>
-                                        <div>
+                                        <div className="dark:text-white">
+                                            {tx?.product.name}
+                                        </div>
+                                        <div className="dark:text-white">
                                             {priceFormatter(tx?.product.price)}
                                         </div>
                                         <div>
-                                            Ditawar{" "}
+                                            <span className="dark:text-white">
+                                                Ditawar{" "}
+                                            </span>
                                             <span className="text-primary-purple-04">
                                                 {priceFormatter(tx?.price)}
                                             </span>{" "}
-                                            oleh
+                                            <span className="dark:text-white">
+                                                oleh
+                                            </span>
                                         </div>
                                         <div className="flex items-center gap-2">
                                             <img
@@ -112,10 +118,10 @@ const TransactionCard = () => {
                                                 alt=""
                                             />
                                             <div className="">
-                                                <div className="text-xs text-neutral-05">
+                                                <div className="text-xs  dark:text-zinc-50">
                                                     {tx?.buyer?.name}
                                                 </div>
-                                                <div className="text-xs text-neutral-04">
+                                                <div className="text-xs text-neutral-04 dark:text-zinc-100">
                                                     {tx?.buyer?.city}
                                                 </div>
                                             </div>
@@ -182,7 +188,7 @@ const TransactionCard = () => {
                                         </button>
                                     </div>
                                 )}
-                                <div className="h-px bg-neutral-200"></div>
+                                <div className="h-px bg-neutral-200 dark:bg-zinc-800"></div>
                             </div>
                         ))
                     ) : (

@@ -90,16 +90,10 @@ const Login = () => {
                     </div>
                     <button
                         className={classNameJoin(
-                            !formValue.email || !formValue.password
-                                ? "bg-neutral-02 dark:bg-zinc-500"
-                                : "",
-                            loading === "pending" &&
-                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02 dark:bg-zinc-500",
-                            formValue.email &&
-                                formValue.password &&
-                                loading === "idle" &&
-                                "bg-primary-purple-04 hover:bg-primary-purple-05",
-                            "w-full rounded-2xl py-3 px-4 font-bold text-white"
+                            loading === "pending"
+                                ? "flex cursor-wait items-center justify-center gap-2"
+                                : "bg-primary-purple-04 hover:bg-primary-purple-05",
+                            "w-full rounded-2xl py-3 px-4 font-bold text-white disabled:bg-neutral-02 disabled:dark:bg-zinc-500"
                         )}
                         type="submit"
                         disabled={

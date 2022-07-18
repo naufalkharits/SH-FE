@@ -26,6 +26,7 @@ const EditProfile = () => {
 
     const onPictChange = (e) => {
         const file = e.target.files
+        formData.delete('picture');
         for (let index of file) {
             formData.append("picture", index)
         }

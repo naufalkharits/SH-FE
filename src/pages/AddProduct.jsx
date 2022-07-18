@@ -18,16 +18,19 @@ const AddProduct = () => {
         price: 0,
         category: "",
         description: "",
+        pictures: [],
     })
     const [formData, setFormData] = useState("")
     const [formCategory, setFormCategory] = useState([])
-    const [picture, setPicture] = useState([])
     const [show, setShow] = useState(false)
     const [alert, setAlert] = useState("")
 
     const onFileChange = (e) => {
         const file = e.target.files
         const fileArray = Array.from(file)
+        if (formData.has("pictures")) {
+            formData.delete('pictures');
+        }
         if (file.length > 4) {
             e.target.value = null
             setShow(true)
@@ -39,7 +42,10 @@ const AddProduct = () => {
             for (let index of file) {
                 formData.append("pictures", index)
             }
-            setPicture(imageArray)
+            setFormValue({
+                ...formValue,
+                pictures: imageArray,
+            })
         }
     }
 
@@ -84,19 +90,19 @@ const AddProduct = () => {
             <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft
-                        className="cursor-pointer text-3xl"
+                        className="cursor-pointer text-3xl dark:text-white"
                         onClick={() => {
                             navigate(-1)
                         }}
                     />
                 </div>
-                <form className="w-full space-y-4 px-5" onSubmit={onSubmit}>
+                <form className="mb-8 w-full space-y-4 px-5" onSubmit={onSubmit}>
                     <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Nama Produk
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
+                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                             type="text"
                             placeholder="Nama Produk"
                             name="name"
@@ -104,11 +110,11 @@ const AddProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Harga Produk
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
+                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                             type="number"
                             placeholder="Rp 0,00"
                             name="price"
@@ -116,7 +122,7 @@ const AddProduct = () => {
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Kategori
                         </label>
                         <label className="relative block">
@@ -124,7 +130,7 @@ const AddProduct = () => {
                                 <FiChevronDown />
                             </span>
                             <select
-                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3 pr-10 pl-3 focus:outline-none"
+                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3 pr-10 pl-3 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                                 name="category"
                                 onChange={onChange}
                             >
@@ -138,24 +144,24 @@ const AddProduct = () => {
                         </label>
                     </div>
                     <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Deskripsi
                         </label>
                         <textarea
                             name="description"
                             rows="2"
-                            className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none"
+                            className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
                             placeholder="Contoh: Jalan Ikan Hiu 33"
                             onChange={onChange}
                         />
                     </div>
                     <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*']">
+                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Foto Produk
                         </label>
                         <div className="flex flex-wrap">
-                            {picture &&
-                                picture.map((image) => (
+                            {formValue.pictures &&
+                                formValue.pictures.map((image) => (
                                     <img
                                         key={image}
                                         src={image}
@@ -191,17 +197,17 @@ const AddProduct = () => {
                                     !formValue.category ||
                                     !formValue.description ||
                                     formData.has("pictures") === false
-                                    ? "bg-neutral-02"
+                                    ? "bg-neutral-02 dark:bg-zinc-500"
                                     : "",
                                 spinner &&
-                                    "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
                                 formValue.name &&
-                                    formValue.price &&
-                                    formValue.category &&
-                                    formValue.description &&
-                                    formData.has("pictures") === true &&
-                                    !spinner &&
-                                    "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                formValue.price &&
+                                formValue.category &&
+                                formValue.description &&
+                                formData.has("pictures") === true &&
+                                !spinner &&
+                                "bg-primary-purple-04 hover:bg-primary-purple-05",
                                 "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white"
                             )}
                             type="submit"

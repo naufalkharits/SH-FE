@@ -14,6 +14,7 @@ import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
 import Tawar404 from "../unfound/Tawar404"
 import { priceFormatter } from "../utils/priceFormatter"
+import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 
 const TransactionCard = () => {
     const dispatch = useDispatch()
@@ -65,7 +66,9 @@ const TransactionCard = () => {
                     onSubmit={onSubmit}
                 />
             )}
-            {loading === "idle" && (
+            {loading === "pending" ? (
+                <TransactionSkeleton />
+            ) : (
                 <>
                     {transaction.length !== 0 ? (
                         transaction?.map((tx) => (

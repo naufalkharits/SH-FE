@@ -34,11 +34,11 @@ const NewProduct = ({ notif }) => {
             </Swiper>
             <div className="w-full space-y-1">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs text-neutral-03">
+                    <span className="text-xs text-neutral-03 dark:text-zinc-400">
                         {notif?.type}
                     </span>
                     <div className="flex items-center gap-2">
-                        <span className="text-xs text-neutral-03">
+                        <span className="text-xs text-neutral-03 dark:text-zinc-400">
                             {dayjs(notif?.createdAt).format("D MMM, HH:mm")}
                         </span>
                         {!notif?.read && (
@@ -46,8 +46,10 @@ const NewProduct = ({ notif }) => {
                         )}
                     </div>
                 </div>
-                <div>{notif?.product?.name}</div>
-                <div>{priceFormatter(notif?.product?.price)}</div>
+                <div className="dark:text-white">{notif?.product?.name}</div>
+                <div className="dark:text-white">
+                    {priceFormatter(notif?.product?.price)}
+                </div>
             </div>
         </div>
     )

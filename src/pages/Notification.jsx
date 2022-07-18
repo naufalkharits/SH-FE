@@ -12,11 +12,11 @@ const Notification = () => {
     return (
         <>
             <div className="container mx-auto p-4 sm:space-y-6 sm:px-16 md:px-32 lg:px-48 xl:px-64 2xl:px-80 3xl:px-96">
-                <h1 className="hidden text-xl font-bold sm:block dark:text-white">
+                <h1 className="hidden text-xl font-bold dark:text-white sm:block">
                     Notifikasi
                 </h1>
                 {loading === "pending" ? (
-                    <div className="divide-y divide-neutral-200">
+                    <div className="divide-y divide-neutral-200 dark:divide-zinc-800">
                         <NotificationSkeleton />
                     </div>
                 ) : (
@@ -24,7 +24,7 @@ const Notification = () => {
                         {notification?.length === 0 ? (
                             <Notification404 />
                         ) : (
-                            <div className="divide-y divide-neutral-200">
+                            <div className="divide-y divide-neutral-200 dark:divide-zinc-800">
                                 {notification?.map((notif) =>
                                     notif?.type === "NEW_PRODUCT" ? (
                                         <NewProduct

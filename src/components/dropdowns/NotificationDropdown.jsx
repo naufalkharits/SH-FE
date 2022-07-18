@@ -81,7 +81,7 @@ const NotificationDropdown = () => {
                                     {notification?.length === 0 ? (
                                         <Notification404 />
                                     ) : (
-                                        <div className="divide-y divide-neutral-200">
+                                        <div className="divide-y divide-neutral-200 dark:divide-zinc-800">
                                             {notification
                                                 ?.slice(0, 3)
                                                 .map((notif) =>

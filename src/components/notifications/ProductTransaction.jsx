@@ -34,11 +34,11 @@ const ProductTransaction = ({ notif }) => {
             </Swiper>
             <div className="w-full space-y-1">
                 <div className="flex items-center justify-between">
-                    <span className="text-xs text-neutral-03">
+                    <span className="text-xs text-neutral-03 dark:text-zinc-400">
                         {notif?.type}
                     </span>
                     <div className="flex items-center gap-2">
-                        <span className="text-xs text-neutral-03">
+                        <span className="text-xs text-neutral-03 dark:text-zinc-400">
                             {dayjs(notif?.createdAt).format("D MMM, HH:mm")}
                         </span>
                         {!notif?.read && (
@@ -46,19 +46,21 @@ const ProductTransaction = ({ notif }) => {
                         )}
                     </div>
                 </div>
-                <div>{notif?.transaction?.product?.name}</div>
+                <div className="dark:text-white">
+                    {notif?.transaction?.product?.name}
+                </div>
                 {notif?.type === "NEW_OFFER" ? (
                     <>
-                        <div>
+                        <div className="dark:text-white">
                             {priceFormatter(notif?.transaction?.product?.price)}
                         </div>
-                        <div>
+                        <div className="dark:text-white">
                             Ditawar {priceFormatter(notif?.transaction?.price)}
                         </div>
                     </>
                 ) : (
                     notif?.type === "TRANSACTION_COMPLETE" && (
-                        <div>
+                        <div className="dark:text-white">
                             Berhasil dibeli{" "}
                             {priceFormatter(notif?.transaction?.price)}
                         </div>

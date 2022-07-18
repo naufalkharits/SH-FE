@@ -7,7 +7,7 @@ const DesktopUserMenu = () => {
     const location = useLocation()
 
     return (
-        <div className="mt-4 hidden h-fit rounded-2xl border border-neutral-200 p-6 shadow-md sm:block">
+        <div className="mt-4 hidden h-fit rounded-2xl p-6 shadow-md sm:block ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 dark:shadow-zinc-800 dark:text-white">
             <div className="mb-6 font-medium">Menu</div>
             <Link
                 to="/wishlist"

@@ -24,7 +24,7 @@ const Purchase = () => {
     return (
         <>
             <div className="mt-4 w-full space-y-5 px-5 sm:pl-10">
-                <p className="font-medium">Histori Pembelian</p>
+                <p className="font-medium dark:text-white">Histori Pembelian</p>
                 {loading === "pending" ? (
                     <TransactionSkeleton />
                 ) : transaction?.length === 0 ? (
@@ -47,7 +47,7 @@ const Purchase = () => {
                                     ))}
                                 </Swiper>
                                 <div className="w-full space-y-1">
-                                    <div className="flex justify-between text-xs text-neutral-03">
+                                    <div className="flex justify-between text-xs text-neutral-03 dark:text-zinc-400">
                                         <span>{tx?.status}</span>
                                         <span>
                                             {dayjs(tx.updatedAt).format(
@@ -55,27 +55,27 @@ const Purchase = () => {
                                             )}
                                         </span>
                                     </div>
-                                    <div className="">{tx?.product.name}</div>
+                                    <div className="dark:text-white">{tx?.product.name}</div>
                                     <div
                                         className={classNameJoin(
                                             tx?.status === "COMPLETED" &&
-                                                "line-through"
+                                                "line-through dark:text-white"
                                         )}
                                     >
                                         {priceFormatter(tx?.product.price)}
                                     </div>
                                     {tx?.status === "PENDING" ||
                                     tx?.status === "ACCEPTED" ? (
-                                        <div className="">
+                                        <div className="dark:text-white">
                                             Ditawar {priceFormatter(tx?.price)}
                                         </div>
                                     ) : tx?.status === "COMPLETED" ? (
-                                        <div className="">
+                                        <div className="dark:text-white">
                                             Berhasil ditawar{" "}
                                             {priceFormatter(tx?.price)}
                                         </div>
                                     ) : (
-                                        <div className="">
+                                        <div className="dark:text-white">
                                             Gagal ditawar{" "}
                                             {priceFormatter(tx?.price)}
                                         </div>

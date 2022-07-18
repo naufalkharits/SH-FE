@@ -7,7 +7,7 @@ const UserProfile = () => {
     return (
         <div className="container mx-auto p-4">
             <div className="mb-4 sm:mb-2 sm:space-y-6">
-                <h1 className="hidden text-xl font-bold sm:block">Akun Saya</h1>
+                <h1 className="hidden text-xl font-bold sm:block dark:text-white">Akun Saya</h1>
                 <ProfileCard />
             </div>
             <div className="flex flex-col sm:flex-row">

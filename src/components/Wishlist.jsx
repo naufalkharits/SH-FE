@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getWishlistBuyer } from "../redux/wishlistSlice";
-import ProductCard from "../components/ProductCard";
-import WishlistSkeleton from "../components/skeletons/WishlistSkeleton";
+import ProductCard from "./ProductCard";
+import WishlistSkeleton from "./skeletons/WishlistSkeleton";
 import Wishlist404 from "../unfound/Wishlist404";
 
 const Wishlist = () => {
@@ -15,7 +15,7 @@ const Wishlist = () => {
 
     return (
         <div className="w-full sm:pl-10 sm:pr-0 space-y-2 mt-4">
-            <p className="ml-4 sm:ml-0 font-medium">List Wishlist User</p>
+            <p className="ml-4 sm:ml-0 font-medium dark:text-white">List Wishlist User</p>
             <div className="sm:-ml-4 flex flex-wrap">
                 { loading === "pending" ? (
                     <WishlistSkeleton />

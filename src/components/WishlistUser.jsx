@@ -18,7 +18,7 @@ const WishlistUser = () => {
     return (
         <>
             <div className="mt-4 w-full space-y-2 px-5 sm:pl-10">
-                <p className="font-medium">List Wishlist User</p>
+                <p className="font-medium dark:text-white">List Wishlist User</p>
                 <div className="flex">
                     {loading === "pending" ? (
                         <WishlistProfileSkeleton />

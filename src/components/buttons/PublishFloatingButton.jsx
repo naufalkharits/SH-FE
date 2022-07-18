@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"
 
-const PublishButton = () => {
+const PublishFloatingButton = () => {
     return (
         <Link
             to={"/manage-product"}
@@ -8,7 +8,7 @@ const PublishButton = () => {
         >
             <span>Terbitkan</span>
         </Link>
-    );
-};
+    )
+}
 
-export default PublishButton;
+export default PublishFloatingButton

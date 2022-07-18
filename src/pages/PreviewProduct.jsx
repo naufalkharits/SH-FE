@@ -9,7 +9,7 @@ import {
     productsSelectors,
 } from "../redux/productsSlice"
 import ProfileCard from "../components/ProfileCard"
-import PublishButton from "../components/buttons/PublishButton"
+import PublishFloatingButton from "../components/buttons/PublishFloatingButton"
 import BackFloatingButton from "../components/buttons/BackFloatingButton"
 import { FaHeart, FaRegHeart } from "react-icons/fa"
 import { CgSpinner } from "react-icons/cg"
@@ -135,7 +135,7 @@ const PreviewProduct = () => {
                     </div>
                 </div>
             </div>
-            <PublishButton />
+            <PublishFloatingButton />
         </>
     )
 }

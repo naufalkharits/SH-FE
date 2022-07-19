@@ -89,7 +89,7 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
                                 spinner
                                     ? "flex cursor-wait items-center justify-center gap-2"
                                     : "bg-primary-purple-04 hover:bg-primary-purple-05",
-                                "w-full rounded-2xl py-3.5 px-6 font-medium text-white disabled:bg-neutral-02 disabled:dark:bg-zinc-500"
+                                "w-full rounded-2xl py-3.5 px-6 font-medium text-white disabled:bg-neutral-02 dark:disabled:bg-zinc-500"
                             )}
                             disabled={!update?.status || spinner}
                         >

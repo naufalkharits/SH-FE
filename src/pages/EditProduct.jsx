@@ -221,9 +221,9 @@ const EditProduct = () => {
                         <button
                             className={classNameJoin(
                                 spinner
-                                    ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
+                                    ? "flex cursor-wait items-center justify-center gap-2"
                                     : "bg-primary-purple-04 hover:bg-primary-purple-05",
-                                "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white"
+                                "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white disabled:bg-neutral-02 disabled:dark:bg-zinc-500"
                             )}
                             type="submit"
                             disabled={spinner}

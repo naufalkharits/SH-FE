@@ -88,14 +88,10 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                 </div>
                                 <button
                                     className={classNameJoin(
-                                        !price &&
-                                            "bg-neutral-02 dark:bg-zinc-500",
-                                        spinner &&
-                                            "flex cursor-wait items-center justify-center gap-2 bg-neutral-02 dark:bg-zinc-500",
-                                        price &&
-                                            !spinner &&
-                                            "bg-primary-purple-04 hover:bg-primary-purple-05",
-                                        "w-full rounded-2xl py-3.5 px-6 font-medium text-white"
+                                        spinner
+                                            ? "flex cursor-wait items-center justify-center gap-2"
+                                            : "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                        "w-full rounded-2xl py-3.5 px-6 font-medium text-white disabled:bg-neutral-02 disabled:dark:bg-zinc-500"
                                     )}
                                     type="submit"
                                     disabled={!price || spinner}

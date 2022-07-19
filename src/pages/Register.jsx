@@ -121,7 +121,7 @@ const Register = () => {
                     Sudah punya akun?{" "}
                     <Link
                         to="/login"
-                        className="font-semibold text-primary-purple-04 hover:text-primary-purple-05"
+                        className="font-semibold text-primary-purple-04 hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
                     >
                         Masuk di sini
                     </Link>

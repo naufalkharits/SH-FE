@@ -119,7 +119,7 @@ const Login = () => {
                     Belum punya akun?{" "}
                     <Link
                         to="/register"
-                        className="font-semibold text-primary-purple-04 hover:text-primary-purple-05"
+                        className="font-semibold text-primary-purple-04 hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
                     >
                         Daftar di sini
                     </Link>

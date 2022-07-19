@@ -47,7 +47,7 @@ const ProfileCard = () => {
                     <Link
                         to="/user/profile"
                         state={{ from: location }}
-                        className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white dark:bg-zinc-900"
+                        className="rounded-lg border border-primary-purple-04 bg-white py-1 px-3 hover:bg-primary-purple-05 hover:text-white dark:bg-zinc-900 dark:text-white dark:hover:bg-primary-purple-03"
                     >
                         Edit
                     </Link>

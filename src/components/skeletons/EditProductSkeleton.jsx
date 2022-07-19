@@ -30,7 +30,7 @@ const EditProductSkeleton = () => {
             </div>
             <div className="flex justify-between">
                 <div className="sm:w-74 w-[48%] h-12 rounded-2xl py-3 animate-pulse bg-gray dark:bg-zinc-800 border border-neutral-02 dark:border-zinc-600"></div>
-                <div className="sm:w-74 w-[48%] h-12 rounded-2xl py-3 animate-pulse bg-gray dark:bg-zinc-800 border border-neutral-02 dark:border-zinc-600"></div>
+                <div className="sm:w-74 w-[48%] h-12 rounded-2xl py-3 animate-pulse bg-gray dark:bg-zinc-800"></div>
             </div>
         </>
     )

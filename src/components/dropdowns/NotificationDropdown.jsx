@@ -36,7 +36,7 @@ const NotificationDropdown = () => {
 
     useEffect(() => {
         ioClient.emit("START", {
-            id: decodedAccess?.id,
+            user_id: decodedAccess?.id,
         })
 
         ioClient.on("NOTIFICATION", () => {

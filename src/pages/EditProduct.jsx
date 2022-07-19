@@ -11,6 +11,7 @@ import {
 import { fetchCategories } from "../redux/categoriesSlice"
 import DangerToast from "../components/toasts/DangerToast"
 import { classNameJoin } from "../utils/classNameJoin"
+import EditProductSkeleton from "../components/skeletons/EditProductSkeleton"
 
 const EditProduct = () => {
     const { productId } = useParams()
@@ -19,7 +20,7 @@ const EditProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     )
-    const { spinner, error } = useSelector((state) => state.products)
+    const { spinner, error, loading } = useSelector((state) => state.products)
     const { categories } = useSelector((state) => state.categories)
     const [formValue, setFormValue] = useState({
         name: "",
@@ -121,126 +122,132 @@ const EditProduct = () => {
                     className="mb-8 w-full space-y-4 px-5"
                     onSubmit={onSubmit}
                 >
-                    <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-                            Nama Produk
-                        </label>
-                        <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
-                            type="text"
-                            placeholder="Nama Produk"
-                            name="name"
-                            value={formValue.name}
-                            onChange={onChange}
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-                            Harga Produk
-                        </label>
-                        <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
-                            type="number"
-                            placeholder="Rp 0,00"
-                            name="price"
-                            value={formValue.price}
-                            onChange={onChange}
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-                            Kategori
-                        </label>
-                        <label className="relative block">
-                            <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
-                                <FiChevronDown />
-                            </span>
-                            <select
-                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3.5 pr-10 pl-3 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
-                                name="category"
-                                value={formValue.category}
-                                onChange={onChange}
-                            >
-                                <option value="">Pilih Kategori</option>
-                                {formCategory.map((category) => (
-                                    <option value={category} key={category}>
-                                        {category}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                    </div>
-                    <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-                            Deskripsi
-                        </label>
-                        <textarea
-                            rows="2"
-                            className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
-                            placeholder="Contoh: Jalan Ikan Hiu 33"
-                            name="description"
-                            value={formValue.description}
-                            onChange={onChange}
-                        />
-                    </div>
-                    <div className="space-y-2">
-                        <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-                            Foto Produk
-                        </label>
-                        <div className="flex flex-wrap">
-                            {formValue.pictures &&
-                                formValue.pictures.map((image) => (
-                                    <img
-                                        key={image}
-                                        src={image}
-                                        alt=""
-                                        className="mr-4 h-24 w-24 object-contain"
-                                    />
-                                ))}
-                            <label
-                                className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
-                                htmlFor="file"
-                            >
+                    {loading === "pending" ? (
+                        <EditProductSkeleton />
+                    ) : (
+                        <>
+                            <div className="space-y-2">
+                                <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
+                                    Nama Produk
+                                </label>
                                 <input
-                                    className="hidden h-full w-full"
-                                    type="file"
-                                    id="file"
-                                    name="pictures"
-                                    accept="image/png, image/jpeg, image/jpg"
-                                    multiple
-                                    onChange={onFileChange}
+                                    className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
+                                    type="text"
+                                    placeholder="Nama Produk"
+                                    name="name"
+                                    value={formValue.name}
+                                    onChange={onChange}
                                 />
-                                <FiPlus />
-                            </label>
-                        </div>
-                    </div>
-                    <div className="flex justify-between">
-                        <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium hover:bg-primary-purple-05 hover:text-white dark:text-white">
-                            Preview
-                        </div>
-                        <button
-                            className={classNameJoin(
-                                spinner
-                                    ? "flex cursor-wait items-center justify-center gap-2"
-                                    : "bg-primary-purple-04 hover:bg-primary-purple-05",
-                                "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white disabled:bg-neutral-02 dark:disabled:bg-zinc-500"
-                            )}
-                            type="submit"
-                            disabled={spinner}
-                            onClick={() => {
-                                setShow(true)
-                            }}
-                        >
-                            {spinner ? (
-                                <>
-                                    <CgSpinner className="animate-spin" />
-                                    <span>Processing...</span>
-                                </>
-                            ) : (
-                                <span>Terbitkan</span>
-                            )}
-                        </button>
-                    </div>
+                            </div>
+                            <div className="space-y-2">
+                                <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
+                                    Harga Produk
+                                </label>
+                                <input
+                                    className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
+                                    type="number"
+                                    placeholder="Rp 0,00"
+                                    name="price"
+                                    value={formValue.price}
+                                    onChange={onChange}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
+                                    Kategori
+                                </label>
+                                <label className="relative block">
+                                    <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
+                                        <FiChevronDown />
+                                    </span>
+                                    <select
+                                        className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3.5 pr-10 pl-3 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
+                                        name="category"
+                                        value={formValue.category}
+                                        onChange={onChange}
+                                    >
+                                        <option value="">Pilih Kategori</option>
+                                        {formCategory.map((category) => (
+                                            <option value={category} key={category}>
+                                                {category}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </label>
+                            </div>
+                            <div className="space-y-2">
+                                <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
+                                    Deskripsi
+                                </label>
+                                <textarea
+                                    rows="2"
+                                    className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
+                                    placeholder="Contoh: Jalan Ikan Hiu 33"
+                                    name="description"
+                                    value={formValue.description}
+                                    onChange={onChange}
+                                />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
+                                    Foto Produk
+                                </label>
+                                <div className="flex flex-wrap">
+                                    {formValue.pictures &&
+                                        formValue.pictures.map((image) => (
+                                            <img
+                                                key={image}
+                                                src={image}
+                                                alt=""
+                                                className="mr-4 mb-4 h-24 w-24 object-contain"
+                                            />
+                                        ))}
+                                    <label
+                                        className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
+                                        htmlFor="file"
+                                    >
+                                        <input
+                                            className="hidden h-full w-full"
+                                            type="file"
+                                            id="file"
+                                            name="pictures"
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            multiple
+                                            onChange={onFileChange}
+                                        />
+                                        <FiPlus />
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="flex justify-between">
+                                <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium hover:bg-primary-purple-05 hover:text-white dark:text-white">
+                                    Preview
+                                </div>
+                                <button
+                                    className={classNameJoin(
+                                        spinner
+                                            ? "flex cursor-wait items-center justify-center gap-2"
+                                            : "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                        "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white disabled:bg-neutral-02 dark:disabled:bg-zinc-500"
+                                    )}
+                                    type="submit"
+                                    disabled={spinner}
+                                    onClick={() => {
+                                        setShow(true)
+                                    }}
+                                >
+                                    {spinner ? (
+                                        <>
+                                            <CgSpinner className="animate-spin" />
+                                            <span>Processing...</span>
+                                        </>
+                                    ) : (
+                                        <span>Terbitkan</span>
+                                    )}
+                                </button>
+                            </div>
+                        </>
+                    )}
                 </form>
                 <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>
             </div>

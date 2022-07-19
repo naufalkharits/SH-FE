@@ -21,9 +21,9 @@ const UserDropdown = ({ profile, loading }) => {
                         <Menu.Button
                             className={classNameJoin(
                                 open
-                                    ? "text-primary-purple-04 hover:text-primary-purple-05"
+                                    ? "text-primary-purple-04"
                                     : "dark:text-white",
-                                "flex justify-center hover:text-primary-purple-05 focus:outline-none"
+                                "flex justify-center hover:text-primary-purple-05 focus:outline-none dark:hover:text-primary-purple-03"
                             )}
                         >
                             <FiUser className="h-6 w-6" />
@@ -71,7 +71,7 @@ const UserDropdown = ({ profile, loading }) => {
                                         <button
                                             className={classNameJoin(
                                                 active
-                                                    ? "hover:text-primary-purple-05"
+                                                    ? "hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
                                                     : "",
                                                 "flex w-full items-center gap-2 dark:text-white"
                                             )}

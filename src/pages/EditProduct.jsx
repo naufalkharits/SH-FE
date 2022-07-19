@@ -36,7 +36,7 @@ const EditProduct = () => {
     const onFileChange = (e) => {
         const file = e.target.files
         const fileArray = Array.from(file)
-        formData.delete('pictures');
+        formData.delete("pictures")
         if (file.length > 4) {
             e.target.value = null
             setShow(true)
@@ -117,13 +117,16 @@ const EditProduct = () => {
                         }}
                     />
                 </div>
-                <form className="mb-8 w-full space-y-4 px-5" onSubmit={onSubmit}>
+                <form
+                    className="mb-8 w-full space-y-4 px-5"
+                    onSubmit={onSubmit}
+                >
                     <div className="space-y-2">
                         <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Nama Produk
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                            className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                             type="text"
                             placeholder="Nama Produk"
                             name="name"
@@ -136,7 +139,7 @@ const EditProduct = () => {
                             Harga Produk
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                            className="w-full rounded-2xl border border-neutral-02 py-3.5 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                             type="number"
                             placeholder="Rp 0,00"
                             name="price"
@@ -153,7 +156,7 @@ const EditProduct = () => {
                                 <FiChevronDown />
                             </span>
                             <select
-                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3.5 pr-10 pl-3 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3.5 pr-10 pl-3 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                                 name="category"
                                 value={formValue.category}
                                 onChange={onChange}
@@ -173,7 +176,7 @@ const EditProduct = () => {
                         </label>
                         <textarea
                             rows="2"
-                            className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                            className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                             placeholder="Contoh: Jalan Ikan Hiu 33"
                             name="description"
                             value={formValue.description}
@@ -212,7 +215,7 @@ const EditProduct = () => {
                         </div>
                     </div>
                     <div className="flex justify-between">
-                        <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white">
+                        <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium hover:bg-primary-purple-05 hover:text-white dark:text-white">
                             Preview
                         </div>
                         <button

@@ -211,7 +211,7 @@ const DetailProduct = () => {
                                                         className={classNameJoin(
                                                             spinner
                                                                 ? "flex cursor-wait items-center justify-center gap-2 bg-neutral-02"
-                                                                : "border border-primary-purple-04 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white",
+                                                                : "border border-primary-purple-04 hover:bg-primary-purple-05 hover:text-white dark:text-white",
                                                             "mt-6 w-full rounded-2xl p-2 sm:mt-0"
                                                         )}
                                                         type="submit"

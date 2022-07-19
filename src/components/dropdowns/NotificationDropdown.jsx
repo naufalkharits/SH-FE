@@ -54,9 +54,9 @@ const NotificationDropdown = () => {
                         <Popover.Button
                             className={classNameJoin(
                                 open
-                                    ? "text-primary-purple-04 hover:text-primary-purple-05"
+                                    ? "text-primary-purple-04"
                                     : "dark:text-white",
-                                "flex justify-center hover:text-primary-purple-05 focus:outline-none"
+                                "flex justify-center hover:text-primary-purple-05 focus:outline-none dark:hover:text-primary-purple-03"
                             )}
                         >
                             {ping?.length !== 0 ? (
@@ -86,7 +86,7 @@ const NotificationDropdown = () => {
                                     ) : (
                                         <>
                                             <div
-                                                className="mb-2 cursor-pointer text-end text-primary-purple-04 hover:text-primary-purple-05"
+                                                className="mb-2 cursor-pointer text-end text-primary-purple-04 hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
                                                 onClick={() => {
                                                     dispatch(putNotification())
                                                 }}
@@ -117,7 +117,7 @@ const NotificationDropdown = () => {
                             )}
                             <Link
                                 to="/notification"
-                                className="inline-block cursor-pointer text-primary-purple-04 hover:text-primary-purple-05"
+                                className="inline-block cursor-pointer text-primary-purple-04 hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
                             >
                                 Lihat Selengkapnya
                             </Link>

@@ -49,7 +49,7 @@ const SellerCard = ({ loading, id, name, picture, city }) => {
                         <Link
                             to="/user/profile"
                             state={{ from: location }}
-                            className="rounded-lg border border-primary-purple-04 bg-white p-1 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white dark:bg-zinc-900"
+                            className="rounded-lg border border-primary-purple-04 bg-white p-1 hover:bg-primary-purple-05 hover:text-white dark:bg-zinc-900 dark:text-white dark:hover:bg-primary-purple-03"
                         >
                             <FiEdit2 />
                         </Link>

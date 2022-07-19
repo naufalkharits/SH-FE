@@ -12,10 +12,8 @@ const ListDropdown = () => {
                 <>
                     <Menu.Button
                         className={classNameJoin(
-                            open
-                                ? "text-primary-purple-04 hover:text-primary-purple-05"
-                                : "dark:text-white",
-                            "flex justify-center hover:text-primary-purple-05 focus:outline-none"
+                            open ? "text-primary-purple-04" : "dark:text-white",
+                            "flex justify-center hover:text-primary-purple-05 focus:outline-none dark:hover:text-primary-purple-03"
                         )}
                     >
                         <FiList className="h-6 w-6" />
@@ -47,7 +45,7 @@ const ListDropdown = () => {
                                             to="/user/infopenawar"
                                             className={classNameJoin(
                                                 active
-                                                    ? "hover:text-primary-purple-05"
+                                                    ? "hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
                                                     : "",
                                                 "block text-sm dark:text-white"
                                             )}

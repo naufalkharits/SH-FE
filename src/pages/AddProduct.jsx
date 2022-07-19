@@ -29,7 +29,7 @@ const AddProduct = () => {
         const file = e.target.files
         const fileArray = Array.from(file)
         if (formData.has("pictures")) {
-            formData.delete('pictures');
+            formData.delete("pictures")
         }
         if (file.length > 4) {
             e.target.value = null
@@ -96,13 +96,16 @@ const AddProduct = () => {
                         }}
                     />
                 </div>
-                <form className="mb-8 w-full space-y-4 px-5" onSubmit={onSubmit}>
+                <form
+                    className="mb-8 w-full space-y-4 px-5"
+                    onSubmit={onSubmit}
+                >
                     <div className="space-y-2">
                         <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
                             Nama Produk
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                             type="text"
                             placeholder="Nama Produk"
                             name="name"
@@ -114,7 +117,7 @@ const AddProduct = () => {
                             Harga Produk
                         </label>
                         <input
-                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                            className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                             type="number"
                             placeholder="Rp 0,00"
                             name="price"
@@ -130,7 +133,7 @@ const AddProduct = () => {
                                 <FiChevronDown />
                             </span>
                             <select
-                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3 pr-10 pl-3 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                                className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3 pr-10 pl-3 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                                 name="category"
                                 onChange={onChange}
                             >
@@ -150,7 +153,7 @@ const AddProduct = () => {
                         <textarea
                             name="description"
                             rows="2"
-                            className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-white dark:border-zinc-600"
+                            className="bg-neutral-01 w-full resize-none rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                             placeholder="Contoh: Jalan Ikan Hiu 33"
                             onChange={onChange}
                         />
@@ -187,7 +190,7 @@ const AddProduct = () => {
                         </div>
                     </div>
                     <div className="flex justify-between">
-                        <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white">
+                        <div className="sm:w-74 w-[48%] rounded-2xl border border-primary-purple-04 py-3 text-center font-medium hover:bg-primary-purple-05 hover:text-white dark:text-white">
                             Preview
                         </div>
                         <button
@@ -200,14 +203,14 @@ const AddProduct = () => {
                                     ? "bg-neutral-02 dark:bg-zinc-500"
                                     : "",
                                 spinner &&
-                                "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
+                                    "flex cursor-wait items-center justify-center gap-2 bg-neutral-02",
                                 formValue.name &&
-                                formValue.price &&
-                                formValue.category &&
-                                formValue.description &&
-                                formData.has("pictures") === true &&
-                                !spinner &&
-                                "bg-primary-purple-04 hover:bg-primary-purple-05",
+                                    formValue.price &&
+                                    formValue.category &&
+                                    formValue.description &&
+                                    formData.has("pictures") === true &&
+                                    !spinner &&
+                                    "bg-primary-purple-04 hover:bg-primary-purple-05",
                                 "sm:w-74 w-[48%] rounded-2xl py-3 font-medium text-white"
                             )}
                             type="submit"

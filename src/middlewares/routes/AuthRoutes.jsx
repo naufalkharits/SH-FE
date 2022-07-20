@@ -1,12 +1,17 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { logout } from "../../redux/authSlice"
+import { fetchToken, onMessageListener } from "../../firebase/firebase"
 
 const AuthRoutes = () => {
     const location = useLocation()
     const { productId } = useParams()
-    const { user } = useSelector((state) => state.auth)
+    const { user, decodedAccess } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        decodedAccess && fetchToken(decodedAccess?.id)
+    }, [decodedAccess])
 
     // useEffect(() => {
     //     if (user) {

@@ -2,12 +2,6 @@ import { initializeApp } from "firebase/app"
 import { getMessaging, getToken, onMessage } from "firebase/messaging"
 import ioClient from "../socket/ioClient"
 
-let store
-
-export const injectFirebase = (_store) => {
-    store = _store
-}
-
 var firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -20,23 +14,23 @@ var firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig)
 const messaging = getMessaging(firebaseApp)
 
-export const fetchToken = (setTokenFound) => {
+export const fetchToken = (user_id) => {
     return getToken(messaging, {
         vapidKey: process.env.REACT_APP_FIREBASE_MESSAGING_KEY,
     })
-        .then((currentToken) => {
-            if (currentToken) {
-                console.log("current token for client: ", currentToken)
-                setTokenFound(true)
+        .then((fcm_token) => {
+            if (fcm_token) {
+                console.log("current token for client: ", fcm_token)
+                // setTokenFound(true)
                 ioClient.emit("FCM", {
-                    user_id: store.getState().auth?.decodedAccess?.id,
-                    fcm_token: currentToken,
+                    user_id,
+                    fcm_token,
                 })
             } else {
                 console.log(
                     "No registration token available. Request permission to generate one."
                 )
-                setTokenFound(false)
+                // setTokenFound(false)
                 // shows on the UI that permission is required
             }
         })

@@ -2,10 +2,15 @@ import { useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../../redux/authSlice"
+import { fetchToken } from "../../firebase/firebase"
 
 const PublicRoutes = () => {
     const dispatch = useDispatch()
-    const { user } = useSelector((state) => state.auth)
+    const { user, decodedAccess } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        decodedAccess && fetchToken(decodedAccess?.id)
+    }, [decodedAccess])
 
     // useEffect(() => {
     //     if (user) {

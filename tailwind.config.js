@@ -27,6 +27,21 @@ module.exports = {
         'gray' : '#EEEEEE',
         'gray-bg' : 'rgba(0, 0, 0, 0.6)'
       },
+      animation: {
+        slide: 'slide 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+      },
+      keyframes: {
+        slide: {
+          '0%': {
+            transform: 'translateX(100%)',
+            opacity: 0
+          },
+          '100%': {
+            transform: 'translateX(0%)',
+            opacity: 1
+          },
+        }
+      }
     },
   },
   plugins: [],

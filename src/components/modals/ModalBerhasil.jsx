@@ -27,7 +27,7 @@ const ModalBerhasil = ({ setModalOn, setChoice }) => {
                                 Segera hubungi pembeli melalui whatsapp untuk
                                 transaksi selanjutnya
                             </h3>
-                            <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5 sm:bg-gray sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
+                            <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-gray sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
                                 <div className="text-center text-sm font-medium">
                                     Product Match
                                 </div>

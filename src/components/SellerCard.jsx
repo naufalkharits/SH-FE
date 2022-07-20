@@ -8,7 +8,7 @@ const SellerCard = ({ loading, id, name, picture, city }) => {
     const { profile } = useSelector((state) => state.auth)
 
     return (
-        <div className="flex items-center justify-between rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5">
+        <div className="flex items-center justify-between rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
             <div className="flex items-center gap-4">
                 {loading === "pending" ? (
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray dark:bg-zinc-800"></div>

@@ -160,7 +160,7 @@ const Sold = () => {
                                             )}
                                         </div>
                                     </div>
-                                    <div className="h-px bg-neutral-200"></div>
+                                    <div className="h-px bg-neutral-200 dark:bg-zinc-800"></div>
                                 </div>
                             )
                     )

@@ -123,7 +123,9 @@ const EditProfile = () => {
                             <div className="space-y-2">
                                 {/* Nama */}
                                 <label className="space-y-2">
-                                    <span className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">Nama</span>
+                                    <span className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
+                                        Nama
+                                    </span>
                                     <input
                                         className="w-full rounded-2xl border border-neutral-02 py-2 px-4 text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                                         type="text"
@@ -138,7 +140,9 @@ const EditProfile = () => {
                             <div className="">
                                 {/* Kota */}
                                 <label className="space-y-2">
-                                    <span className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">Kota</span>
+                                    <span className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
+                                        Kota
+                                    </span>
                                     <label className="relative block">
                                         <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
                                             <FiChevronDown />
@@ -155,18 +159,32 @@ const EditProfile = () => {
                                             <option value="Banda Aceh">
                                                 Banda Aceh
                                             </option>
-                                            <option value="Bandung">Bandung</option>
+                                            <option value="Bandung">
+                                                Bandung
+                                            </option>
                                             <option value="Batam">Batam</option>
-                                            <option value="Denpasar">Denpasar</option>
+                                            <option value="Denpasar">
+                                                Denpasar
+                                            </option>
                                             <option value="Jambi">Jambi</option>
-                                            <option value="Jakarta">Jakarta</option>
-                                            <option value="Jayapura">Jayapura</option>
-                                            <option value="Palembang">Palembang</option>
+                                            <option value="Jakarta">
+                                                Jakarta
+                                            </option>
+                                            <option value="Jayapura">
+                                                Jayapura
+                                            </option>
+                                            <option value="Palembang">
+                                                Palembang
+                                            </option>
                                             <option value="Palangka Raya">
                                                 Palangka Raya
                                             </option>
-                                            <option value="Semarang">Semarang</option>
-                                            <option value="Surabaya">Surabaya</option>
+                                            <option value="Semarang">
+                                                Semarang
+                                            </option>
+                                            <option value="Surabaya">
+                                                Surabaya
+                                            </option>
                                             <option value="Yogyakarta">
                                                 Yogyakarta
                                             </option>
@@ -212,9 +230,10 @@ const EditProfile = () => {
                                         onChange={(e) => {
                                             setFormValue({
                                                 ...formValue,
-                                                [e.target.name]: phoneNumberFormatter(
-                                                    e.target.value
-                                                ),
+                                                [e.target.name]:
+                                                    phoneNumberFormatter(
+                                                        e.target.value
+                                                    ),
                                             })
                                         }}
                                     />

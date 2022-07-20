@@ -28,7 +28,7 @@ const ListDropdown = () => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                     >
-                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
+                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-10">
                             <Menu.Item as="div" className="space-y-4 p-4">
                                 {({ active }) => (
                                     <>

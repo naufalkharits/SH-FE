@@ -7,7 +7,7 @@ const ProductCard = ({ id, name, price, category, pictures }) => {
 
     return (
         <div
-            className="cursor-pointer space-y-2 rounded-md p-2 shadow ring-1 ring-black ring-opacity-5 hover:shadow-md dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5 dark:hover:shadow-zinc-700"
+            className="cursor-pointer space-y-2 rounded-md p-2 shadow ring-1 ring-black ring-opacity-5 hover:shadow-md dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-10 dark:hover:shadow-zinc-700"
             onClick={() => {
                 navigate(`/product/${id}`)
             }}

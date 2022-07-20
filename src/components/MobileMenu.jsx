@@ -72,7 +72,7 @@ const MobileMenu = ({ profile }) => {
                                 <div className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow dark:shadow-zinc-800">
                                     <Link
                                         to="/user"
-                                        className="flex items-center gap-2"
+                                        className="flex items-center gap-2.5"
                                     >
                                         {loading === "pending" ? (
                                             <>

@@ -173,7 +173,7 @@ const AddProduct = () => {
                                     />
                                 ))}
                             <label
-                                className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03"
+                                className="flex h-24 w-24 cursor-pointer items-center justify-center rounded-xl border border-dashed border-neutral-02 text-2xl text-neutral-03 dark:border-zinc-400 dark:text-zinc-400"
                                 htmlFor="file"
                             >
                                 <input

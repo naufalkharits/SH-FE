@@ -138,7 +138,7 @@ const TransactionCard = () => {
                                                     price: tx?.price,
                                                 })
                                             }}
-                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white md:w-[35%] lg:w-[30%]"
+                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 hover:bg-primary-purple-05 hover:text-white dark:text-white md:w-[35%] lg:w-[30%]"
                                         >
                                             Tolak
                                         </button>
@@ -166,7 +166,7 @@ const TransactionCard = () => {
                                                 })
                                                 dispatch(setIsModalOn(true))
                                             }}
-                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white md:w-[35%] lg:w-[30%]"
+                                            className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 hover:bg-primary-purple-05 hover:text-white dark:text-white md:w-[35%] lg:w-[30%]"
                                         >
                                             Status
                                         </button>

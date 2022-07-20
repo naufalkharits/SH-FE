@@ -47,7 +47,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                         jika penjual cocok kamu akan segera
                                         dihubungi penjual.
                                     </div>
-                                    <div className="flex items-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5 sm:bg-gray sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
+                                    <div className="flex items-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-gray sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
                                         <div>
                                             <Swiper className="h-14 w-14 rounded-xl">
                                                 {product?.pictures?.map(
@@ -80,7 +80,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                         Harga Tawar
                                     </div>
                                     <input
-                                        className="w-full rounded-2xl py-3.5 px-4 text-neutral-03 shadow-md ring-1 ring-black ring-opacity-5 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:ring-white dark:ring-opacity-5 dark:placeholder:text-zinc-400"
+                                        className="w-full rounded-2xl py-3.5 px-4 text-neutral-03 shadow-md ring-1 ring-black ring-opacity-5 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:ring-white dark:ring-opacity-10 dark:placeholder:text-zinc-400"
                                         type="number"
                                         placeholder="Rp 0,00"
                                         onChange={onChange}

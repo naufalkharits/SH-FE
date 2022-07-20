@@ -111,7 +111,7 @@ const DetailProduct = () => {
                                         ))}
                                     </Swiper>
                                 )}
-                                <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5 sm:block">
+                                <div className="hidden space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:block">
                                     {loading === "pending" ? (
                                         <div className="h-4 w-20 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
                                     ) : (
@@ -142,7 +142,7 @@ const DetailProduct = () => {
                                     "relative z-10 -mt-16 space-y-4 px-4 sm:z-0 sm:-mt-0 sm:space-y-6 sm:px-0"
                                 )}
                             >
-                                <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
+                                <div className="rounded-2xl bg-white p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-10">
                                     <div className="mb-4 space-y-2">
                                         <div
                                             className={
@@ -295,7 +295,7 @@ const DetailProduct = () => {
                                 />
                             </div>
                             <div className="mb-8 px-4 sm:hidden sm:px-0">
-                                <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-5">
+                                <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10">
                                     {loading === "pending" ? (
                                         <div className="h-4 w-20 animate-pulse rounded-md bg-gray dark:bg-zinc-800"></div>
                                     ) : (
@@ -341,7 +341,7 @@ const DetailProduct = () => {
                                     <button
                                         className={classNameJoin(
                                             isModalOn ? "hidden" : "sm:hidden",
-                                            "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05"
+                                            "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05 dark:shadow-primary-purple-04 dark:hover:shadow-primary-purple-05"
                                         )}
                                         onClick={() => {
                                             dispatch(setIsModalOn(true))

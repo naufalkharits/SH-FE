@@ -6,7 +6,7 @@ const BackFloatingButton = () => {
 
     return (
         <FiChevronLeft
-            className="absolute left-8 top-8 z-50 h-8 w-8 cursor-pointer rounded-full bg-white p-2 shadow-lg ring-1 ring-black ring-opacity-5 hover:bg-gray dark:bg-zinc-900 dark:text-white dark:ring-white dark:ring-opacity-5 dark:hover:bg-zinc-800 sm:hidden"
+            className="absolute left-8 top-8 z-50 h-8 w-8 cursor-pointer rounded-full bg-white p-2 shadow-lg ring-1 ring-black ring-opacity-5 hover:bg-gray dark:bg-zinc-900 dark:text-white dark:ring-white dark:ring-opacity-10 dark:hover:bg-zinc-800 sm:hidden"
             onClick={() => {
                 navigate(-1)
             }}

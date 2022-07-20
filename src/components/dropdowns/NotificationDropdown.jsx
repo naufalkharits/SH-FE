@@ -82,7 +82,7 @@ const NotificationDropdown = () => {
                         leaveFrom="transform scale-100 opacity-100"
                         leaveTo="transform scale-95 opacity-0"
                     >
-                        <Popover.Panel className="absolute right-0 mt-5 w-[32rem] space-y-4 rounded-t rounded-b-2xl bg-white p-6 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
+                        <Popover.Panel className="absolute right-0 mt-5 w-[32rem] space-y-4 rounded-t rounded-b-2xl bg-white p-6 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-10">
                             {loading === "pending" ? (
                                 <NotificationDropdownSkeleton />
                             ) : (

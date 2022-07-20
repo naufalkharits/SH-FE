@@ -39,13 +39,13 @@ const UserDropdown = ({ profile, loading }) => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                     >
-                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-5">
+                        <Menu.Items className="absolute right-0 mt-5 w-56 overflow-hidden rounded-t rounded-b-2xl bg-white shadow-md ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-10">
                             <Menu.Item as="div" className="space-y-4 p-4">
                                 {({ active }) => (
                                     <>
                                         <Link
                                             to="/user"
-                                            className="flex w-full items-center gap-2 rounded-md p-2 shadow dark:shadow-zinc-800"
+                                            className="flex w-full items-center gap-2.5 rounded-md p-2 shadow dark:shadow-zinc-800"
                                         >
                                             {loading === "pending" ? (
                                                 <>
@@ -70,9 +70,8 @@ const UserDropdown = ({ profile, loading }) => {
                                         </Link>
                                         <button
                                             className={classNameJoin(
-                                                active
-                                                    ? "hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
-                                                    : "",
+                                                active &&
+                                                    "hover:text-primary-purple-05 dark:hover:text-primary-purple-03",
                                                 "flex w-full items-center gap-2 dark:text-white"
                                             )}
                                             onClick={() => {

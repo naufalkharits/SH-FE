@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { useEffect } from "react"
 
 const DangerToast = ({ show, setShow, alert, setAlert, message }) => {
     useEffect(() => {
         setTimeout(() => {
-            show && setShow(false);
-            alert && setAlert("");
-        }, 1500);
-    }, []);
+            show && setShow(false)
+            alert && setAlert("")
+        }, 1500)
+    }, [show, alert, message])
 
     return (
         <>
@@ -18,7 +18,7 @@ const DangerToast = ({ show, setShow, alert, setAlert, message }) => {
                 <></>
             )}
         </>
-    );
-};
+    )
+}
 
-export default DangerToast;
+export default DangerToast

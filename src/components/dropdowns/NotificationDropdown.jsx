@@ -62,7 +62,7 @@ const NotificationDropdown = () => {
                             {ping?.length !== 0 ? (
                                 <div className="relative">
                                     <span className="absolute top-[2px] right-[2px] flex items-center justify-center">
-                                        <span className="absolute h-3 w-3 animate-ping rounded-full bg-primary-purple-03 opacity-75"></span>
+                                        <span className="absolute h-2.5 w-2.5 animate-ping rounded-full bg-primary-purple-03 opacity-75"></span>
                                         <span className="relative h-2 w-2 rounded-full bg-primary-purple-04 shadow ring-1 ring-primary-purple-05 ring-opacity-90"></span>
                                     </span>
                                     <VscBellDot className="h-6 w-6" />

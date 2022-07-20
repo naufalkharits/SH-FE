@@ -42,7 +42,12 @@ const ProductTransactions = ({ notif }) => {
                             {dayjs(notif?.createdAt).format("D MMM, HH:mm")}
                         </span>
                         {!notif?.read && (
-                            <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500"></div>
+                            <div className="relative">
+                                <span className="flex items-center justify-center">
+                                    <span className="absolute h-2.5 w-2.5 animate-ping rounded-full bg-red-300 opacity-75"></span>
+                                    <span className="relative h-2.5 w-2.5 rounded-full bg-red-500 shadow ring-1 ring-red-600 ring-opacity-90"></span>
+                                </span>
+                            </div>
                         )}
                     </div>
                 </div>

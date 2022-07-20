@@ -42,7 +42,13 @@ const NewProduct = ({ notif }) => {
                             {dayjs(notif?.createdAt).format("D MMM, HH:mm")}
                         </span>
                         {!notif?.read && (
-                            <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500"></div>
+                            <div className="relative">
+                                <span className="absolute top-[2px] right-[2px] flex items-center justify-center">
+                                    <span className="absolute h-3 w-3 animate-ping rounded-full bg-primary-purple-03 opacity-75"></span>
+                                    <span className="relative h-2 w-2 rounded-full bg-primary-purple-04 shadow ring-1 ring-primary-purple-05 ring-opacity-90"></span>
+                                </span>
+                                <div className="h-2.5 w-2.5 cursor-pointer rounded-full bg-red-500"></div>
+                            </div>
                         )}
                     </div>
                 </div>

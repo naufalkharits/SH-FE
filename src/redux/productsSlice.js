@@ -116,8 +116,18 @@ const productsSlice = createSlice({
         keyword: "",
         category: "",
         offset: page ? page * 10 - 10 : 0,
+        notification: null,
+        showNotification: false,
     }),
     reducers: {
+        setShowNotification: (state, action) => {
+            console.log(action.payload)
+            state.setShowNotification = action.payload
+        },
+        setNotification: (state, action) => {
+            console.log(action.payload)
+            state.notification = action.payload
+        },
         resetError: (state) => {
             state.error = null
         },
@@ -244,6 +254,8 @@ export const {
     offsetDecrement,
     resetOffset,
     resetProductState,
+    setNotification,
+    setShowNotification,
 } = productsSlice.actions
 
 export default productsSlice.reducer

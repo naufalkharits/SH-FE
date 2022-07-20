@@ -27,12 +27,14 @@ const Home = () => {
     const limit = 10
 
     useEffect(() => {
-        if (
-            Number(searchParams.get("page")) === 1 ||
-            Number(searchParams.get("page")) <= 0
-        ) {
-            setSearchParams()
-            dispatch(resetOffset())
+        if (searchParams.get("page")) {
+            if (
+                Number(searchParams.get("page")) === 1 ||
+                Number(searchParams.get("page")) <= 0
+            ) {
+                setSearchParams()
+                dispatch(resetOffset())
+            }
         }
         dispatch(
             getProducts({
@@ -61,7 +63,7 @@ const Home = () => {
                         )}
                         disabled={
                             Number(searchParams.get("page")) === 1 ||
-                            Number(searchParams.get("page")) <= 0
+                                Number(searchParams.get("page")) <= 0
                                 ? true
                                 : false
                         }
@@ -89,7 +91,7 @@ const Home = () => {
                         )}
                         disabled={
                             products.length !== 0 &&
-                            products.length % limit === 0
+                                products.length % limit === 0
                                 ? false
                                 : true
                         }

@@ -34,9 +34,9 @@ const InfoPenawar = () => {
                 <TransactionCard />
             </div>
             <div className="hidden h-[30px] w-[30px] sm:ml-10 sm:mr-10 sm:block lg:ml-20"></div>
-            {modalOn && (
+            {/* {modalOn && (
                 <ModalBerhasil setModalOn={setModalOn} setChoice={setChoice} />
-            )}
+            )} */}
         </div>
     );
 };

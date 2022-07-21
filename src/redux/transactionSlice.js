@@ -96,12 +96,16 @@ export const transactionSlice = createSlice({
         addedTx: null,
         updatedTx: null,
         isModalOn: false,
+        modalOn: false,
         loading: "idle",
         error: null,
     }),
     reducers: {
         setIsModalOn: (state, action) => {
             state.isModalOn = action.payload
+        },
+        modalOn: (state, action) => {
+            state.modalOn = action.payload
         },
     },
     extraReducers: {
@@ -176,6 +180,9 @@ export const transactionSlice = createSlice({
             })
             state.updatedTx = action.payload.updatedTransaction
             state.isModalOn = false
+            if (action.payload.updatedTransaction.status === "ACCEPTED") {
+                state.modalOn = true
+            }
         },
         [putTransaction.rejected]: (state, action) => {
             state.loading = "idle"
@@ -189,6 +196,6 @@ export const transactionSelectors = transactionAdapter.getSelectors(
     (state) => state.transaction
 )
 
-export const { setIsModalOn } = transactionSlice.actions
+export const { setIsModalOn, modalOn } = transactionSlice.actions
 
 export default transactionSlice.reducer

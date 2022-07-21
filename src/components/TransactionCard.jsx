@@ -12,6 +12,7 @@ import dayjs from "dayjs"
 import { TbBrandWhatsapp } from "react-icons/tb"
 import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
+import ModalBerhasil from "./modals/ModalBerhasil"
 import Tawar404 from "./unfound/Tawar404"
 import { priceFormatter } from "../utils/priceFormatter"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
@@ -20,13 +21,19 @@ const TransactionCard = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const transaction = useSelector(transactionSelectors.selectAll)
-    const { isModalOn, updatedTx, loading } = useSelector(
+    const { isModalOn, modalOn, updatedTx, loading } = useSelector(
         (state) => state.transaction
     )
+
     const [update, setUpdate] = useState({
         id: null,
         status: "",
         price: 0,
+    })
+
+    const [berhasil] = useState({
+        buyer: "",
+        price: null,
     })
 
     // step-1
@@ -39,6 +46,7 @@ const TransactionCard = () => {
             })
         )
     }
+
 
     // step-2
     const onSubmit = (e) => {
@@ -66,6 +74,12 @@ const TransactionCard = () => {
                     onSubmit={onSubmit}
                 />
             )}
+
+            {modalOn && (
+                <ModalBerhasil
+                />
+            )}
+
             {loading === "pending" ? (
                 <TransactionSkeleton />
             ) : (
@@ -147,8 +161,9 @@ const TransactionCard = () => {
                                                 onClick({
                                                     id: tx?.id,
                                                     status: "ACCEPTED",
-                                                    price: tx?.price,
+                                                    price: tx?.price
                                                 })
+                                                dispatch(modalOn(true))
                                             }}
                                             className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white hover:bg-primary-purple-05 md:w-[35%] lg:w-[30%]"
                                         >

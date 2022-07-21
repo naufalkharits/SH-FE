@@ -1,16 +1,21 @@
-import { Link, useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { ScrollingCarousel } from "@trendyol-js/react-carousel"
 import { FiBox, FiDollarSign, FiHeart } from "react-icons/fi"
 import { classNameJoin } from "../utils/classNameJoin"
 
 const CategorySeller = () => {
     const location = useLocation()
+    const navigate = useNavigate()
+
+    const navigation = (link) => {
+        navigate(link)
+    }
 
     return (
-        <div className="mb-4 sm:hidden">
+        <div className="sm:hidden">
             <ScrollingCarousel leftIcon={false} rightIcon={false}>
-                <Link
-                    to="/manage-product"
+                <div
+                    onClick={() => navigation("/manage-product")}
                     className={classNameJoin(
                         location.pathname === "/manage-product"
                             ? "bg-primary-purple-04 text-white"
@@ -20,9 +25,9 @@ const CategorySeller = () => {
                 >
                     <FiBox />
                     <span>Semua Produk</span>
-                </Link>
-                <Link
-                    to="wishlisted"
+                </div>
+                <div
+                    onClick={() => navigation("wishlisted")}
                     className={classNameJoin(
                         location.pathname === "/manage-product/wishlisted"
                             ? "bg-primary-purple-04 text-white"
@@ -32,9 +37,9 @@ const CategorySeller = () => {
                 >
                     <FiHeart />
                     <span>Diminati</span>
-                </Link>
-                <Link
-                    to="sold"
+                </div>
+                <div
+                    onClick={() => navigation("sold")}
                     className={classNameJoin(
                         location.pathname === "/manage-product/sold"
                             ? "bg-primary-purple-04 text-white"
@@ -44,7 +49,7 @@ const CategorySeller = () => {
                 >
                     <FiDollarSign />
                     <span>Terjual</span>
-                </Link>
+                </div>
             </ScrollingCarousel>
         </div>
     )

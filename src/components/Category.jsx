@@ -17,7 +17,7 @@ const Category = () => {
     const [formValue, setFormValue] = useState([])
 
     const onClick = (query) => {
-        setSearchParams()
+        setSearchParams("", { replace: true })
         dispatch(resetOffset())
         dispatch(categoryQuery(query))
     }

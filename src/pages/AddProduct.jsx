@@ -3,7 +3,11 @@ import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { FiPlus, FiChevronDown, FiArrowLeft } from "react-icons/fi"
 import { CgSpinner } from "react-icons/cg"
-import { insertProduct } from "../redux/productsSlice"
+import {
+    insertProduct,
+    setProductsError,
+    setShowProductsError,
+} from "../redux/productsSlice"
 import { fetchCategories } from "../redux/categoriesSlice"
 import DangerToast from "../components/toasts/DangerToast"
 import { classNameJoin } from "../utils/classNameJoin"
@@ -11,7 +15,7 @@ import { classNameJoin } from "../utils/classNameJoin"
 const AddProduct = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { spinner, error } = useSelector((state) => state.products)
+    const { spinner } = useSelector((state) => state.products)
     const { categories } = useSelector((state) => state.categories)
     const [formValue, setFormValue] = useState({
         name: "",
@@ -22,8 +26,6 @@ const AddProduct = () => {
     })
     const [formData, setFormData] = useState("")
     const [formCategory, setFormCategory] = useState([])
-    const [show, setShow] = useState(false)
-    const [alert, setAlert] = useState("")
 
     const onFileChange = (e) => {
         const file = e.target.files
@@ -33,8 +35,10 @@ const AddProduct = () => {
         }
         if (file.length > 4) {
             e.target.value = null
-            setShow(true)
-            setAlert("Gambar Tidak Boleh Lebih Dari 4")
+            dispatch(
+                setProductsError({ message: "Gambar Tidak Boleh Lebih Dari 4" })
+            )
+            dispatch(setShowProductsError(true))
         } else {
             const imageArray = fileArray.map((file) => {
                 return URL.createObjectURL(file)
@@ -78,15 +82,7 @@ const AddProduct = () => {
 
     return (
         <>
-            {show && (
-                <DangerToast
-                    show={show}
-                    setShow={setShow}
-                    alert={alert}
-                    setAlert={setAlert}
-                    message={error?.message}
-                />
-            )}
+            <DangerToast />
             <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft
@@ -209,9 +205,6 @@ const AddProduct = () => {
                                 formData.has("pictures") === false ||
                                 spinner
                             }
-                            onClick={() => {
-                                setShow(true)
-                            }}
                         >
                             {spinner ? (
                                 <>

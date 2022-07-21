@@ -6,6 +6,8 @@ import { CgSpinner } from "react-icons/cg"
 import {
     getProductById,
     productsSelectors,
+    setProductsError,
+    setShowProductsError,
     updateProduct,
 } from "../redux/productsSlice"
 import { fetchCategories } from "../redux/categoriesSlice"
@@ -20,7 +22,7 @@ const EditProduct = () => {
     const product = useSelector((state) =>
         productsSelectors.selectById(state, productId)
     )
-    const { spinner, error, loading } = useSelector((state) => state.products)
+    const { spinner, loading } = useSelector((state) => state.products)
     const { categories } = useSelector((state) => state.categories)
     const [formValue, setFormValue] = useState({
         name: "",
@@ -31,8 +33,6 @@ const EditProduct = () => {
     })
     const [formData, setFormData] = useState("")
     const [formCategory, setFormCategory] = useState([])
-    const [show, setShow] = useState(false)
-    const [alert, setAlert] = useState("")
 
     const onFileChange = (e) => {
         const file = e.target.files
@@ -40,8 +40,10 @@ const EditProduct = () => {
         formData.delete("pictures")
         if (file.length > 4) {
             e.target.value = null
-            setShow(true)
-            setAlert("Gambar Tidak Boleh Lebih Dari 4")
+            dispatch(
+                setProductsError({ message: "Gambar Tidak Boleh Lebih Dari 4" })
+            )
+            dispatch(setShowProductsError(true))
         } else {
             const imageArray = fileArray.map((file) => {
                 return URL.createObjectURL(file)
@@ -100,15 +102,7 @@ const EditProduct = () => {
 
     return (
         <>
-            {show && (
-                <DangerToast
-                    show={show}
-                    setShow={setShow}
-                    alert={alert}
-                    setAlert={setAlert}
-                    message={error?.message}
-                />
-            )}
+            <DangerToast />
             <div className="mx-auto mt-4 flex w-full justify-between sm:mt-10 md:w-full lg:w-[1024px]">
                 <div className="hidden sm:ml-10 sm:mr-10 sm:block lg:mr-20">
                     <FiArrowLeft
@@ -235,9 +229,6 @@ const EditProduct = () => {
                                     )}
                                     type="submit"
                                     disabled={spinner}
-                                    onClick={() => {
-                                        setShow(true)
-                                    }}
                                 >
                                     {spinner ? (
                                         <>

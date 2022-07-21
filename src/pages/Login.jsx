@@ -13,12 +13,11 @@ import SecondHand from "../images/SecondHand.png"
 const Login = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { loading, error } = useSelector((state) => state.auth)
+    const { loading } = useSelector((state) => state.auth)
     const [formValue, setFormValue] = useState({
         email: "",
         password: "",
     })
-    const [show, setShow] = useState(false)
 
     const LoginGoogle = useGoogleLogin({
         flow: "auth-code",
@@ -45,13 +44,7 @@ const Login = () => {
 
     return (
         <>
-            {show && (
-                <DangerToast
-                    show={show}
-                    setShow={setShow}
-                    message={error?.message}
-                />
-            )}
+            <DangerToast />
             <div className="space-y-8 bg-white p-8 dark:bg-zinc-900 sm:p-14">
                 <FiArrowLeft
                     className="h-6 w-6 cursor-pointer dark:text-white sm:hidden"
@@ -101,9 +94,6 @@ const Login = () => {
                             !formValue.password ||
                             loading === "pending"
                         }
-                        onClick={() => {
-                            setShow(true)
-                        }}
                     >
                         {loading === "pending" ? (
                             <>

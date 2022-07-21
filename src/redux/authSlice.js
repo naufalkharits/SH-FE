@@ -101,8 +101,12 @@ export const authSlice = createSlice({
         loading: "idle",
         spinner: false,
         error: null,
+        showError: false,
     },
     reducers: {
+        setShowAuthError: (state, action) => {
+            state.showError = action.payload
+        },
         resetError: (state) => {
             state.error = null
         },
@@ -182,6 +186,7 @@ export const authSlice = createSlice({
         [register.rejected]: (state, action) => {
             state.loading = "idle"
             state.error = action.payload
+            state.showError = true
         },
 
         // login
@@ -205,6 +210,7 @@ export const authSlice = createSlice({
         [login.rejected]: (state, action) => {
             state.loading = "idle"
             state.error = action.payload
+            state.showError = true
         },
 
         // get biodata
@@ -265,6 +271,7 @@ export const authSlice = createSlice({
     },
 })
 
-export const { resetError, setUser, logout } = authSlice.actions
+export const { setShowAuthError, resetError, setUser, logout } =
+    authSlice.actions
 
 export default authSlice.reducer

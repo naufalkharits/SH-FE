@@ -11,13 +11,12 @@ import { classNameJoin } from "../utils/classNameJoin"
 const Register = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const { loading, error } = useSelector((state) => state.auth)
+    const { loading } = useSelector((state) => state.auth)
     const [formValue, setFormValue] = useState({
         name: "",
         email: "",
         password: "",
     })
-    const [show, setShow] = useState(false)
 
     const onChange = (e) => {
         setFormValue({
@@ -34,13 +33,7 @@ const Register = () => {
 
     return (
         <>
-            {show && (
-                <DangerToast
-                    show={show}
-                    setShow={setShow}
-                    message={error?.message}
-                />
-            )}
+            <DangerToast />
             <div className="space-y-8 bg-white p-8 dark:bg-zinc-900 sm:p-14">
                 <FiArrowLeft
                     className="h-6 w-6 cursor-pointer dark:text-white sm:hidden"
@@ -103,9 +96,6 @@ const Register = () => {
                             !formValue.password ||
                             loading === "pending"
                         }
-                        onClick={() => {
-                            setShow(true)
-                        }}
                     >
                         {loading === "pending" ? (
                             <>

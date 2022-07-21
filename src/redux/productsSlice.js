@@ -118,8 +118,15 @@ const productsSlice = createSlice({
         offset: page ? page * 10 - 10 : 0,
         notification: null,
         showNotification: false,
+        showError: false,
     }),
     reducers: {
+        setProductsError: (state, action) => {
+            state.error = action.payload
+        },
+        setShowProductsError: (state, action) => {
+            state.showError = action.payload
+        },
         setShowNotification: (state, action) => {
             console.log(action.payload)
             state.setShowNotification = action.payload
@@ -209,6 +216,7 @@ const productsSlice = createSlice({
         [insertProduct.rejected]: (state, action) => {
             state.spinner = false
             state.error = action.payload || "SOMETHING WRONG!!"
+            state.showError = true
         },
 
         // PUT product
@@ -223,6 +231,7 @@ const productsSlice = createSlice({
         [updateProduct.rejected]: (state, action) => {
             state.spinner = false
             state.error = action.payload || "SOMETHING WRONG!!"
+            state.showError = true
         },
 
         // DELETE product
@@ -256,6 +265,8 @@ export const {
     resetProductState,
     setNotification,
     setShowNotification,
+    setShowProductsError,
+    setProductsError,
 } = productsSlice.actions
 
 export default productsSlice.reducer

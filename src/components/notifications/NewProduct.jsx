@@ -45,7 +45,7 @@ const NewProduct = ({ notif }) => {
                             <div className="relative">
                                 <span className="absolute top-[2px] right-[2px] flex items-center justify-center">
                                     <span className="absolute h-2.5 w-2.5 animate-ping rounded-full bg-primary-purple-03 opacity-75"></span>
-                                    <span className="relative h-2.5 w-2.5 rounded-full bg-primary-purple-04 shadow ring-1 ring-primary-purple-05 ring-opacity-90"></span>
+                                    <span className="relative h-2.5 w-2.5 rounded-full bg-primary-purple-04 shadow ring-1 ring-primary-purple-03 ring-opacity-90 dark:ring-primary-purple-05 dark:ring-opacity-90"></span>
                                 </span>
                             </div>
                         )}

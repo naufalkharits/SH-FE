@@ -21,3 +21,13 @@
         -moz-appearance: textfield;
     }
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+    @apply text-primary-purple-04 !important;
+}
+
+.swiper-pagination-bullet,
+.swiper-pagination-bullet-active {
+    @apply bg-primary-purple-04 !important;
+}

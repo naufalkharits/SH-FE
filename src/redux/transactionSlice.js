@@ -99,8 +99,12 @@ export const transactionSlice = createSlice({
         modalOn: false,
         loading: "idle",
         error: null,
+        showError: false,
     }),
     reducers: {
+        setShowTransactionError: (state, action) => {
+            state.showError = action.payload
+        },
         setIsModalOn: (state, action) => {
             state.isModalOn = action.payload
         },
@@ -123,6 +127,7 @@ export const transactionSlice = createSlice({
         [postTransaction.rejected]: (state, action) => {
             state.loading = "idle"
             state.error = action.payload
+            state.showError = true
         },
 
         // GET transaction by product id
@@ -196,6 +201,7 @@ export const transactionSelectors = transactionAdapter.getSelectors(
     (state) => state.transaction
 )
 
-export const { setIsModalOn, modalOn } = transactionSlice.actions
+export const { setIsModalOn, modalOn, setShowTransactionError } =
+    transactionSlice.actions
 
 export default transactionSlice.reducer

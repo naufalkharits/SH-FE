@@ -2,16 +2,15 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { FiX } from "react-icons/fi"
+import { CgSpinner } from "react-icons/cg"
 import { setIsModalOn } from "../../redux/transactionSlice"
 import DangerToast from "../toasts/DangerToast"
 import { priceFormatter } from "../../utils/priceFormatter"
-import { CgSpinner } from "react-icons/cg"
 import { classNameJoin } from "../../utils/classNameJoin"
 
 const Modal = ({ price, product, onChange, onSubmit }) => {
     const dispatch = useDispatch()
-    const { spinner, error } = useSelector((state) => state.transaction)
-    const [show, setShow] = useState(false)
+    const { spinner } = useSelector((state) => state.transaction)
 
     const handleCancelClick = () => {
         dispatch(setIsModalOn(false))
@@ -19,13 +18,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
 
     return (
         <>
-            {show && (
-                <DangerToast
-                    show={show}
-                    setShow={setShow}
-                    message={error?.message}
-                />
-            )}
+            <DangerToast />
             <div className="fixed inset-0 z-40 bg-gray-bg">
                 <div className="flex h-screen items-center justify-center">
                     {/* modal */}
@@ -95,9 +88,6 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                     )}
                                     type="submit"
                                     disabled={!price || spinner}
-                                    onClick={() => {
-                                        setShow(true)
-                                    }}
                                 >
                                     {spinner ? (
                                         <>

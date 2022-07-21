@@ -36,7 +36,7 @@ const AddProduct = () => {
         if (file.length > 4) {
             e.target.value = null
             dispatch(
-                setProductsError({ message: "Gambar Tidak Boleh Lebih Dari 4" })
+                setProductsError({ message: "Images cannot be more than 4" })
             )
             dispatch(setShowProductsError(true))
         } else {

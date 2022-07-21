@@ -11,7 +11,7 @@ const DangerToast = ({ show, setShow, alert, setAlert, message }) => {
     return (
         <>
             {alert || message ? (
-                <div className="absolute inset-x-0 top-8 z-50 mx-auto w-fit animate-bounce rounded-xl bg-alert-danger px-6 py-4 text-center text-white shadow-lg">
+                <div className="absolute inset-x-0 top-8 z-50 mx-auto w-fit animate-fade rounded-xl bg-alert-danger px-6 py-4 text-center text-white shadow-lg">
                     {alert || message}
                 </div>
             ) : (

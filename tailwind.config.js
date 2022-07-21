@@ -28,16 +28,27 @@ module.exports = {
         'gray-bg' : 'rgba(0, 0, 0, 0.6)'
       },
       animation: {
-        slide: 'slide 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        fade: 'fade 0.5s',
+        slide: 'slide 0.5s',
       },
       keyframes: {
+        fade: {
+          from: {
+            transform: 'translateY(-100%)',
+            opacity: 0
+          },
+          to: {
+            transform: 'translateY(0)',
+            opacity: 1
+          },
+        },
         slide: {
-          '0%': {
+          from: {
             transform: 'translateX(100%)',
             opacity: 0
           },
-          '100%': {
-            transform: 'translateX(0%)',
+          to: {
+            transform: 'translateX(0)',
             opacity: 1
           },
         }

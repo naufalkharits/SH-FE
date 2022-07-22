@@ -29,16 +29,18 @@ const Navbar = () => {
                 </div>
                 {location.pathname === "/" && (
                     <>
-                        <div className="container mx-auto flex justify-center gap-4 px-4 sm:hidden">
+                        <div className="container mx-auto mt-4 flex justify-center gap-4 px-4 sm:hidden">
                             <div className="w-full">
-                                <div className="text-xl font-bold">
+                                <div className="text-xl font-bold text-neutral-05">
                                     Bulan Ramadhan
+                                    <div>Banyak diskon!</div>
                                 </div>
-                                <div className="text-xl font-bold">
-                                    Banyak diskon!
+                                <div className="mt-4 mb-1 text-neutral-05">
+                                    Diskon Hingga
                                 </div>
-                                <div>Diskon Hingga</div>
-                                <div>60%</div>
+                                <div className="text-lg font-medium text-alert-danger">
+                                    60%
+                                </div>
                             </div>
                             <img
                                 className="w-full"

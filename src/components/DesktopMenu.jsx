@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { Link, useNavigate, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { FiLogIn } from "react-icons/fi"
 import { me } from "../redux/authSlice"
@@ -25,11 +25,7 @@ const DesktopMenu = () => {
     return (
         <>
             <div className="flex items-center gap-8">
-                <Link
-                    className="hidden sm:block"
-                    to="/"
-                    // replace={location.pathname === "/" && { replace: true }}
-                >
+                <Link className="hidden sm:block" to="/">
                     <img className="h-8" src={SecondHand} alt="" />
                 </Link>
                 <MobileMenu profile={profile} />

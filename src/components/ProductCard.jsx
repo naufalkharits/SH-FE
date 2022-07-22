@@ -1,8 +1,7 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { priceFormatter } from "../utils/priceFormatter"
 
 const ProductCard = ({ id, name, price, category, pictures }) => {
-    const location = useLocation()
     const navigate = useNavigate()
 
     return (

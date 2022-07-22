@@ -10,7 +10,6 @@ export const injectOpenServer = (_store) => {
 
 const baseURL = process.env.REACT_APP_SERVER_URL
 
-// export
 const openServer = axios.create({
     baseURL,
 })

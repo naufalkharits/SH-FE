@@ -1,6 +1,5 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Pagination } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { getWishlistBuyer } from "../redux/wishlistSlice"
 import ProductCard from "../components/ProductCard"
@@ -31,9 +30,7 @@ const WishlistUser = () => {
                     ) : (
                         <Swiper
                             className="w-full"
-                            // modules={[Pagination]}
                             slidesPerView={1}
-                            // pagination={{ dynamicBullets: true, clickable: true }}
                             breakpoints={{
                                 640: {
                                     slidesPerView: 2,

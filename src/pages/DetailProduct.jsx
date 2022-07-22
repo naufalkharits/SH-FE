@@ -321,7 +321,6 @@ const DetailProduct = () => {
                         </div>
                     </div>
                     {user && product?.seller?.user_id === profile?.id ? (
-                        // <PublishFloatingButton />
                         <EditFloatingButton productId={productId} />
                     ) : (
                         loading === "idle" &&

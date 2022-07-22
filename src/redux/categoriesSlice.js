@@ -31,7 +31,6 @@ const categoriesSlice = createSlice({
         // fetch all category
         [fetchCategories.pending]: (state) => {
             state.loading = "pending"
-            // state.error = null;
         },
         [fetchCategories.fulfilled]: (state, action) => {
             state.loading = "idle"

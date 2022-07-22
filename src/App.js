@@ -9,7 +9,6 @@ import Home from "./pages/Home"
 import UserProfile from "./pages/UserProfile"
 import EditProduct from "./pages/EditProduct"
 import Notification from "./pages/Notification"
-import PreviewProduct from "./pages/PreviewProduct"
 import AddProduct from "./pages/AddProduct"
 import EditProfile from "./pages/EditProfile"
 import ManageProduct from "./pages/ManageProduct"
@@ -83,10 +82,6 @@ function App() {
                         <Route
                             path="/manage-product/edit/:productId"
                             element={<EditProduct />}
-                        />
-                        <Route
-                            path="/manage-product/preview/:productId"
-                            element={<PreviewProduct />}
                         />
                         <Route path="/user/profile" element={<EditProfile />} />
                         <Route

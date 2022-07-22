@@ -69,43 +69,45 @@ const MobileMenu = ({ profile }) => {
                             </div>
                             {location.pathname === "/" && <Search />}
                             <div className="mt-4 space-y-1 font-medium">
-                                <div className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow dark:shadow-zinc-800">
-                                    <Link
-                                        to="/user"
-                                        className="flex items-center gap-2.5"
-                                    >
-                                        {loading === "pending" ? (
-                                            <>
-                                                <div className="h-8 w-8 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
-                                                <span className="h-3 w-24 animate-pulse rounded bg-gray dark:bg-zinc-800"></span>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <img
-                                                    className="h-8 w-8 rounded-full object-cover object-center"
-                                                    src={
-                                                        profile?.picture ||
-                                                        AltFoto
-                                                    }
-                                                    alt=""
-                                                />
-                                                <span className="font-bold dark:text-white">
-                                                    {profile?.name}
-                                                </span>
-                                            </>
-                                        )}
-                                    </Link>
-                                    {loading === "pending" ? (
-                                        <div className="h-10 w-10 animate-pulse rounded-md bg-gray dark:bg-zinc-800 dark:shadow-zinc-800"></div>
-                                    ) : (
+                                {user && (
+                                    <div className="mb-2 flex items-center justify-between rounded-md px-2 py-3 shadow dark:shadow-zinc-800">
                                         <Link
-                                            to="/manage-product"
-                                            className="rounded-md p-2 shadow hover:bg-gray dark:text-white dark:shadow-zinc-800 dark:hover:bg-zinc-800"
+                                            to="/user"
+                                            className="flex items-center gap-2.5"
                                         >
-                                            <BiStore className="h-6 w-6" />
+                                            {loading === "pending" ? (
+                                                <>
+                                                    <div className="h-8 w-8 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
+                                                    <span className="h-3 w-24 animate-pulse rounded bg-gray dark:bg-zinc-800"></span>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <img
+                                                        className="h-8 w-8 rounded-full object-cover object-center"
+                                                        src={
+                                                            profile?.picture ||
+                                                            AltFoto
+                                                        }
+                                                        alt=""
+                                                    />
+                                                    <span className="font-bold dark:text-white">
+                                                        {profile?.name}
+                                                    </span>
+                                                </>
+                                            )}
                                         </Link>
-                                    )}
-                                </div>
+                                        {loading === "pending" ? (
+                                            <div className="h-10 w-10 animate-pulse rounded-md bg-gray dark:bg-zinc-800 dark:shadow-zinc-800"></div>
+                                        ) : (
+                                            <Link
+                                                to="/manage-product"
+                                                className="rounded-md p-2 shadow hover:bg-gray dark:text-white dark:shadow-zinc-800 dark:hover:bg-zinc-800"
+                                            >
+                                                <BiStore className="h-6 w-6" />
+                                            </Link>
+                                        )}
+                                    </div>
+                                )}
                                 <Link
                                     to="/notification"
                                     className="block rounded-md p-2 hover:bg-gray dark:text-white dark:hover:bg-zinc-800"

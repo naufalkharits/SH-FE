@@ -129,7 +129,7 @@ const productsSlice = createSlice({
         },
         setShowNotification: (state, action) => {
             console.log(action.payload)
-            state.setShowNotification = action.payload
+            state.showNotification = action.payload
         },
         setNotification: (state, action) => {
             console.log(action.payload)

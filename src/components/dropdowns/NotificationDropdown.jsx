@@ -19,9 +19,8 @@ import { classNameJoin } from "../../utils/classNameJoin"
 const NotificationDropdown = () => {
     const dispatch = useDispatch()
     const notification = useSelector(notificationSelectors.selectAll)
-    const { updatedNotif, readAll, loading } = useSelector(
-        (state) => state.notification
-    )
+    const { updatedNotif, readAll, filteredNotification, loading } =
+        useSelector((state) => state.notification)
     const { user, decodedAccess } = useSelector((state) => state.auth)
 
     const [ping, setPing] = useState(null)
@@ -91,14 +90,19 @@ const NotificationDropdown = () => {
                                         <Notification404 />
                                     ) : (
                                         <>
-                                            <div
-                                                className="mb-2 cursor-pointer text-end text-primary-purple-04 hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
-                                                onClick={() => {
-                                                    dispatch(putNotification())
-                                                }}
-                                            >
-                                                Read All
-                                            </div>
+                                            {filteredNotification?.length !==
+                                                0 && (
+                                                <div
+                                                    className="mb-2 cursor-pointer text-end text-primary-purple-04 hover:text-primary-purple-05 dark:hover:text-primary-purple-03"
+                                                    onClick={() => {
+                                                        dispatch(
+                                                            putNotification()
+                                                        )
+                                                    }}
+                                                >
+                                                    Read All
+                                                </div>
+                                            )}
                                             <div className="divide-y divide-neutral-200 dark:divide-zinc-800">
                                                 {notification
                                                     ?.slice(0, 3)

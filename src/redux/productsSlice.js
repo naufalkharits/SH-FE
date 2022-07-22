@@ -56,9 +56,6 @@ export const getProducts = createAsyncThunk(
 export const insertProduct = createAsyncThunk(
     "products/insertProduct",
     async ({ formData, navigate }, thunkAPI) => {
-        // for (const pair of formData.entries()) {
-        //     console.log(`${pair[0]}, ${pair[1]}`);
-        // }
         try {
             const response = await closedServer.post("/product", formData)
             navigate(`/product/${response.data.product.id}`)
@@ -73,9 +70,6 @@ export const insertProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
     async ({ productId, formData, navigate }, thunkAPI) => {
-        // for (const pair of formData.entries()) {
-        //     console.log(`${pair[0]}, ${pair[1]}`);
-        // }
         try {
             const response = await closedServer.put(
                 `/product/${productId}`,
@@ -128,11 +122,9 @@ const productsSlice = createSlice({
             state.showError = action.payload
         },
         setShowNotification: (state, action) => {
-            console.log(action.payload)
             state.showNotification = action.payload
         },
         setNotification: (state, action) => {
-            console.log(action.payload)
             state.notification = action.payload
         },
         resetError: (state) => {

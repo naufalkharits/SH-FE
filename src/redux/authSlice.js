@@ -61,9 +61,6 @@ export const getBiodata = createAsyncThunk(
 export const updateBiodata = createAsyncThunk(
     "biodata/updateBiodata",
     async ({ formData, navigate, location }, thunkAPI) => {
-        // for (const pair of formData.entries()) {
-        //     console.log(`${pair[0]}, ${pair[1]}`);
-        // }
         try {
             const response = await closedServer.put(`/biodata`, formData)
             navigate(location.state?.from?.pathname || "/user")
@@ -130,26 +127,9 @@ export const authSlice = createSlice({
             state.profile = null
             state.bio = null
             ioClient.disconnect()
-            // console.log(ioClient)
         },
     },
     extraReducers: {
-        // refresh
-        // [refresh.pending]: (state) => {
-        //     state.loading = "pending";
-        //     state.error = null;
-        // },
-        // [refresh.fulfilled]: (state, action) => {
-        //     state.loading = "idle";
-        //     state.error = null;
-        //     localStorage.setItem("user", JSON.stringify(action.payload));
-        //     state.user = action.payload;
-        // },
-        // [refresh.rejected]: (state, action) => {
-        //     state.loading = "idle";
-        //     state.error = action.payload;
-        // },
-
         // checkMe
         [me.pending]: (state) => {
             state.loading = "pending"

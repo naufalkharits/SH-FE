@@ -18,8 +18,6 @@ const Sold = () => {
         dispatch(getTransaction({ status: "COMPLETED", as: "seller" }))
     }, [dispatch])
 
-    console.log(transaction)
-
     return (
         <div className="mt-4 w-full space-y-5 px-5 sm:pl-10">
             <p className="font-medium dark:text-white">

@@ -98,6 +98,7 @@ export const transactionSlice = createSlice({
         isModalOn: false,
         modalOn: false,
         loading: "idle",
+        spinner: false,
         error: null,
         showError: false,
     }),
@@ -116,16 +117,19 @@ export const transactionSlice = createSlice({
         // POST transaction
         [postTransaction.pending]: (state) => {
             state.loading = "pending"
+            state.spinner = true
             state.error = null
         },
         [postTransaction.fulfilled]: (state, action) => {
             state.loading = "idle"
+            state.spinner = false
             state.error = null
             state.addedTx = action.payload
             state.isModalOn = false
         },
         [postTransaction.rejected]: (state, action) => {
             state.loading = "idle"
+            state.spinner = false
             state.error = action.payload
             state.showError = true
         },

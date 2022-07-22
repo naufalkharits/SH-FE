@@ -1,5 +1,4 @@
 import { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
 import {
     getTransaction,
     setIsModalOn,
@@ -19,21 +18,14 @@ import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 
 const TransactionCard = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const transaction = useSelector(transactionSelectors.selectAll)
     const { isModalOn, modalOn, updatedTx, loading } = useSelector(
         (state) => state.transaction
     )
-
     const [update, setUpdate] = useState({
         id: null,
         status: "",
         price: 0,
-    })
-
-    const [berhasil] = useState({
-        buyer: "",
-        price: null,
     })
 
     // step-1
@@ -46,7 +38,6 @@ const TransactionCard = () => {
             })
         )
     }
-
 
     // step-2
     const onSubmit = (e) => {
@@ -75,10 +66,7 @@ const TransactionCard = () => {
                 />
             )}
 
-            {modalOn && (
-                <ModalBerhasil
-                />
-            )}
+            {modalOn && <ModalBerhasil />}
 
             {loading === "pending" ? (
                 <TransactionSkeleton />
@@ -161,9 +149,8 @@ const TransactionCard = () => {
                                                 onClick({
                                                     id: tx?.id,
                                                     status: "ACCEPTED",
-                                                    price: tx?.price
+                                                    price: tx?.price,
                                                 })
-                                                dispatch(modalOn(true))
                                             }}
                                             className="w-[45%] rounded-2xl bg-primary-purple-04 py-2 text-white hover:bg-primary-purple-05 md:w-[35%] lg:w-[30%]"
                                         >
@@ -189,7 +176,7 @@ const TransactionCard = () => {
                                             className="flex w-[45%] items-center justify-center gap-2 rounded-2xl bg-primary-purple-04 py-2 px-6 text-white hover:bg-primary-purple-05 md:w-[35%] lg:w-[30%]"
                                             onClick={() => {
                                                 window.open(
-                                                    `https://api.whatsapp.com/send?phone=62${tx?.buyer?.phone_number}`
+                                                    `https://api.whatsapp.com/send?phone=${tx?.buyer?.phone_number}`
                                                 )
                                             }}
                                         >

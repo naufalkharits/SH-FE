@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { FiX } from "react-icons/fi"
@@ -11,10 +10,6 @@ import { classNameJoin } from "../../utils/classNameJoin"
 const Modal = ({ price, product, onChange, onSubmit }) => {
     const dispatch = useDispatch()
     const { spinner } = useSelector((state) => state.transaction)
-
-    const handleCancelClick = () => {
-        dispatch(setIsModalOn(false))
-    }
 
     return (
         <>
@@ -29,7 +24,9 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                     <div className="flex justify-end">
                                         <FiX
                                             className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
-                                            onClick={handleCancelClick}
+                                            onClick={() => {
+                                                dispatch(setIsModalOn(false))
+                                            }}
                                         />
                                     </div>
                                     <div className="font-medium dark:text-white">

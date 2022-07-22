@@ -173,7 +173,7 @@ const DetailProduct = () => {
                                     {loading === "pending" ||
                                     loadingTx === "pending" ||
                                     loadingAuth === "pending" ? (
-                                        <div className="mt-6 h-12 w-full animate-pulse rounded-2xl bg-gray dark:bg-zinc-800"></div>
+                                        <div className="mt-6 hidden h-12 w-full animate-pulse rounded-2xl bg-gray dark:bg-zinc-800 sm:block"></div>
                                     ) : user ? (
                                         <>
                                             {product?.seller?.user_id ===
@@ -321,7 +321,11 @@ const DetailProduct = () => {
                         </div>
                     </div>
                     {user && product?.seller?.user_id === profile?.id ? (
-                        <EditFloatingButton productId={productId} />
+                        <>
+                            {loading === "idle" && loadingTx === "idle" && (
+                                <EditFloatingButton productId={productId} />
+                            )}
+                        </>
                     ) : (
                         loading === "idle" &&
                         loadingTx === "idle" && (

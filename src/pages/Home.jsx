@@ -39,11 +39,11 @@ const Home = () => {
         dispatch(
             getProducts({
                 keyword,
-                category,
+                category: searchParams.get("category") || "",
                 offset,
             })
         )
-    }, [searchParams, keyword, category, offset, dispatch])
+    }, [keyword, searchParams, offset, dispatch])
 
     return (
         <>

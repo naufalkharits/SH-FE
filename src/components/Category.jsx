@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom"
-import { ScrollingCarousel } from "@trendyol-js/react-carousel"
 import { useDispatch, useSelector } from "react-redux"
-import { resetOffset } from "../redux/productsSlice"
-import { fetchCategories, categoryQuery } from "../redux/categoriesSlice"
+import { ScrollingCarousel } from "@trendyol-js/react-carousel"
 import { FiSearch } from "react-icons/fi"
-import CategorySkeleton from "./skeletons/CategorySkeleton"
+import { fetchCategories } from "../redux/categoriesSlice"
 import { classNameJoin } from "../utils/classNameJoin"
+import CategorySkeleton from "./skeletons/CategorySkeleton"
 
 const Category = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const dispatch = useDispatch()
-    const { categories, category, loading } = useSelector(
-        (state) => state.categories
-    )
-    const [formValue, setFormValue] = useState([])
+    const { categories, loading } = useSelector((state) => state.categories)
+    const [cat, setCat] = useState([])
 
     const onClick = (query) => {
-        setSearchParams("", { replace: true })
-        dispatch(resetOffset())
-        dispatch(categoryQuery(query))
+        setSearchParams(query ? { category: query } : "")
     }
 
     useEffect(() => {
@@ -27,7 +22,7 @@ const Category = () => {
     }, [dispatch])
 
     useEffect(() => {
-        categories && setFormValue(categories)
+        categories && setCat(categories)
     }, [categories])
 
     return (
@@ -42,7 +37,7 @@ const Category = () => {
                     <>
                         <div
                             className={classNameJoin(
-                                category === ""
+                                !searchParams.get("category")
                                     ? "bg-primary-purple-04 text-white"
                                     : "bg-primary-purple-01 hover:text-white",
                                 "flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"
@@ -54,11 +49,11 @@ const Category = () => {
                             <FiSearch />
                             <span>Semua</span>
                         </div>
-                        {formValue.map((cat) => (
+                        {cat.map((cat) => (
                             <div
                                 key={cat}
                                 className={classNameJoin(
-                                    category === cat
+                                    searchParams.get("category") === cat
                                         ? "bg-primary-purple-04 text-white"
                                         : "bg-primary-purple-01 hover:text-white",
                                     "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"

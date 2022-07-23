@@ -23,7 +23,6 @@ const Home = () => {
     const dispatch = useDispatch()
     const products = useSelector(productsSelectors.selectAll)
     const { keyword, offset, loading } = useSelector((state) => state.products)
-    const { category } = useSelector((state) => state.categories)
     const [limit] = useState(10)
 
     if (searchParams.get("page")) {

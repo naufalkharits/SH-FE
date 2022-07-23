@@ -124,7 +124,7 @@ const Login = () => {
                     onClick={() => LoginGoogle()}
                 >
                     <FcGoogle className="text-2xl" />
-                    <span className="font-bold text-[#1976d2]">
+                    <span className="font-bold text-google-blue">
                         Sign In With Google
                     </span>
                 </button>

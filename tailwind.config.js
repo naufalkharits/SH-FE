@@ -7,6 +7,7 @@ module.exports = {
         '3xl': '1600px',
       },
       colors: {
+        'google-blue': '#4285F4',
         'primary-purple-05' : '#4B1979',
         'primary-purple-04' : '#7126B5',
         'primary-purple-03' : '#A06ECE',

@@ -8,7 +8,7 @@ import { FiArrowLeft } from "react-icons/fi"
 import { authResponse, login } from "../redux/authSlice"
 import DangerToast from "../components/toasts/DangerToast"
 import { classNameJoin } from "../utils/classNameJoin"
-import SecondHand from "../images/SecondHand.png"
+import SecondHand from "../images/brand/SecondHand.png"
 
 const Login = () => {
     const navigate = useNavigate()

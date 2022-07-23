@@ -9,7 +9,7 @@ import ListDropdown from "./dropdowns/ListDropdown"
 import NotificationDropdown from "./dropdowns/NotificationDropdown"
 import UserDropdown from "./dropdowns/UserDropdown"
 import TitlePerPage from "./TitlePerPage"
-import SecondHand from "../images/SecondHand.png"
+import SecondHand from "../images/brand/SecondHand.png"
 
 const DesktopMenu = () => {
     const location = useLocation()

@@ -5,7 +5,7 @@ import { FiArrowLeft } from "react-icons/fi"
 import { CgSpinner } from "react-icons/cg"
 import { register } from "../redux/authSlice"
 import DangerToast from "../components/toasts/DangerToast"
-import SecondHand from "../images/SecondHand.png"
+import SecondHand from "../images/brand/SecondHand.png"
 import { classNameJoin } from "../utils/classNameJoin"
 
 const Register = () => {

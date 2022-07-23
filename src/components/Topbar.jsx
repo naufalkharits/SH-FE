@@ -1,6 +1,6 @@
 import { FiArrowLeft } from "react-icons/fi"
 import { useNavigate, Outlet, useLocation, useParams } from "react-router-dom"
-import SecondHand from "../images/SecondHand.png"
+import SecondHand from "../images/brand/SecondHand.png"
 
 const Topbar = () => {
     const navigate = useNavigate()
@@ -9,7 +9,7 @@ const Topbar = () => {
 
     return (
         <>
-            <nav className="flex h-[84px] items-center bg-white sm:shadow dark:bg-zinc-900 sm:dark:shadow-zinc-800">
+            <nav className="flex h-[84px] items-center bg-white dark:bg-zinc-900 sm:shadow sm:dark:shadow-zinc-800">
                 <div className="container mx-auto flex items-center justify-between p-4">
                     <img
                         className="hidden h-8 cursor-pointer sm:inline"
@@ -24,7 +24,7 @@ const Topbar = () => {
                     />
 
                     <FiArrowLeft
-                        className="h-6 w-6 cursor-pointer sm:hidden dark:text-white"
+                        className="h-6 w-6 cursor-pointer dark:text-white sm:hidden"
                         onClick={() => {
                             navigate(-1)
                         }}

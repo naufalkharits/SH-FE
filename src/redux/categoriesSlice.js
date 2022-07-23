@@ -18,15 +18,10 @@ const categoriesSlice = createSlice({
     name: "categories",
     initialState: {
         categories: null,
-        category: "",
         loading: "idle",
         error: null,
     },
-    reducers: {
-        categoryQuery: (state, action) => {
-            state.category = action.payload
-        },
-    },
+    reducers: {},
     extraReducers: {
         // fetch all category
         [fetchCategories.pending]: (state) => {
@@ -42,7 +37,5 @@ const categoriesSlice = createSlice({
         },
     },
 })
-
-export const { categoryQuery } = categoriesSlice.actions
 
 export default categoriesSlice.reducer

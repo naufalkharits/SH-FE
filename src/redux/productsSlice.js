@@ -108,7 +108,6 @@ const productsSlice = createSlice({
         spinner: false,
         error: null,
         keyword: "",
-        category: "",
         offset: page ? page * 10 - 10 : 0,
         notification: null,
         showNotification: false,
@@ -132,9 +131,6 @@ const productsSlice = createSlice({
         },
         keywordQuery: (state, action) => {
             state.keyword = action.payload
-        },
-        categoryQuery: (state, action) => {
-            state.category = action.payload
         },
         offsetIncrement: (state, action) => {
             state.offset = state.offset + action.payload
@@ -250,7 +246,6 @@ export const productsSelectors = productsAdapter.getSelectors(
 export const {
     resetError,
     keywordQuery,
-    categoryQuery,
     offsetIncrement,
     offsetDecrement,
     resetOffset,

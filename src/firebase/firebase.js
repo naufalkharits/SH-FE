@@ -13,7 +13,7 @@ var firebaseConfig = {
 }
 
 const firebaseApp = initializeApp(firebaseConfig)
-const messaging = getMessaging(firebaseApp)
+export const messaging = getMessaging(firebaseApp)
 
 export const fetchToken = (user_id) => {
     return getToken(messaging, {

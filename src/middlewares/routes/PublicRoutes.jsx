@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { Outlet } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchToken, onMessageListener } from "../../firebase/firebase"
+import { onMessage } from "firebase/messaging"
+import { fetchToken, messaging } from "../../firebase/firebase"
 import { setNotification, setShowNotification } from "../../redux/productsSlice"
 import NotificationToast from "../../components/toasts/NotificationToast"
 
@@ -13,7 +14,7 @@ const PublicRoutes = () => {
         decodedAccess && fetchToken(decodedAccess?.id)
     }, [decodedAccess])
 
-    onMessageListener().then((payload) => {
+    onMessage(messaging, (payload) => {
         dispatch(
             setNotification({
                 title: payload.notification.title,

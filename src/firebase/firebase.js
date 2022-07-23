@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getMessaging, getToken, onMessage } from "firebase/messaging"
+import { getMessaging, getToken } from "firebase/messaging"
 import ioClient from "../socket/ioClient"
 
 var firebaseConfig = {
@@ -27,10 +27,3 @@ export const fetchToken = (user_id) => {
         }
     })
 }
-
-export const onMessageListener = () =>
-    new Promise((resolve) => {
-        onMessage(messaging, (payload) => {
-            resolve(payload)
-        })
-    })

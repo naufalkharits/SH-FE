@@ -114,6 +114,9 @@ const productsSlice = createSlice({
         showError: false,
     }),
     reducers: {
+        setOffset: (state, action) => {
+            state.offset = action.payload * 10 - 10
+        },
         setProductsError: (state, action) => {
             state.error = action.payload
         },
@@ -254,6 +257,7 @@ export const {
     setShowNotification,
     setShowProductsError,
     setProductsError,
+    setOffset,
 } = productsSlice.actions
 
 export default productsSlice.reducer

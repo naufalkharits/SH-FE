@@ -14,7 +14,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
     return (
         <>
             <DangerToast />
-            <div className="fixed inset-0 z-40 bg-gray-bg">
+            <div className="fixed inset-0 z-40 bg-pearl">
                 <div className="flex h-screen items-center justify-center">
                     {/* modal */}
                     <div className="h-fit w-96 rounded-2xl bg-white p-8 dark:bg-zinc-900">
@@ -23,7 +23,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                 <div className="space-y-4">
                                     <div className="flex justify-end">
                                         <FiX
-                                            className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
+                                            className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-smoke dark:text-white dark:hover:bg-zinc-800"
                                             onClick={() => {
                                                 dispatch(setIsModalOn(false))
                                             }}
@@ -37,7 +37,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                                         jika penjual cocok kamu akan segera
                                         dihubungi penjual.
                                     </div>
-                                    <div className="flex items-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-gray sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
+                                    <div className="flex items-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-smoke sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
                                         <div>
                                             <Swiper className="h-14 w-14 rounded-xl">
                                                 {product?.pictures?.map(

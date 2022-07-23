@@ -23,7 +23,7 @@ const Notification = () => {
                         Notifikasi
                     </h1>
                     {loading === "pending" ? (
-                        <div className="h-3.5 w-16 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
+                        <div className="h-3.5 w-16 animate-pulse rounded bg-smoke dark:bg-zinc-800"></div>
                     ) : (
                         filteredNotification?.length !== 0 && (
                             <div

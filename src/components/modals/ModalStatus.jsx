@@ -9,12 +9,12 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
     const { spinner } = useSelector((state) => state.transaction)
 
     return (
-        <div className="fixed inset-0 z-50 bg-gray-bg">
+        <div className="fixed inset-0 z-50 bg-pearl">
             <div className="flex h-screen items-center justify-center">
                 <div className="h-fit w-96 rounded-2xl bg-white p-8 dark:bg-zinc-900">
                     <div className="mb-4 flex justify-end">
                         <FiX
-                            className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
+                            className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-smoke dark:text-white dark:hover:bg-zinc-800"
                             onClick={() => {
                                 dispatch(setIsModalOn(false))
                             }}

@@ -25,8 +25,8 @@ module.exports = {
         'neutral-04' : '#3C3C3C',
         'neutral-03' : '#8A8A8A',
         'neutral-02' : '#D0D0D0',
-        'gray' : '#EEEEEE',
-        'gray-bg' : 'rgba(0, 0, 0, 0.6)'
+        'smoke' : '#EEEEEE',
+        'pearl' : 'rgba(0, 0, 0, 0.6)'
       },
       animation: {
         fade: 'fade 0.5s',

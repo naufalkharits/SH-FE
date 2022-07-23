@@ -10,7 +10,7 @@ const ProfileCard = () => {
         <div className="flex items-center justify-between rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:shadow-zinc-800 dark:ring-white dark:ring-opacity-10">
             <Link to="/user" className="flex items-center gap-4">
                 {loading === "pending" ? (
-                    <div className="h-12 w-12 animate-pulse rounded-xl bg-gray dark:bg-zinc-800"></div>
+                    <div className="h-12 w-12 animate-pulse rounded-xl bg-smoke dark:bg-zinc-800"></div>
                 ) : (
                     <img
                         src={profile?.picture || AltPhoto}
@@ -23,7 +23,7 @@ const ProfileCard = () => {
                     <div
                         className={
                             loading === "pending"
-                                ? "h-3 w-16 animate-pulse rounded-md bg-gray dark:bg-zinc-800"
+                                ? "h-3 w-16 animate-pulse rounded-md bg-smoke dark:bg-zinc-800"
                                 : "dark:text-white"
                         }
                     >
@@ -32,7 +32,7 @@ const ProfileCard = () => {
                     <div
                         className={
                             loading === "pending"
-                                ? "h-2 w-12 animate-pulse rounded-md bg-gray dark:bg-zinc-800"
+                                ? "h-2 w-12 animate-pulse rounded-md bg-smoke dark:bg-zinc-800"
                                 : "text-xs text-neutral-03 dark:text-zinc-400"
                         }
                     >
@@ -41,7 +41,7 @@ const ProfileCard = () => {
                 </div>
             </Link>
             {loading === "pending" ? (
-                <div className="h-8 w-14 animate-pulse rounded-lg bg-gray dark:bg-zinc-800"></div>
+                <div className="h-8 w-14 animate-pulse rounded-lg bg-smoke dark:bg-zinc-800"></div>
             ) : (
                 <>
                     <Link

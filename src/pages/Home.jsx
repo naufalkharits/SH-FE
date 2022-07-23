@@ -61,8 +61,8 @@ const Home = () => {
                         className={classNameJoin(
                             searchParams.get("page") === "1" ||
                                 Number(searchParams.get("page")) <= 0
-                                ? "text-gray dark:text-zinc-700"
-                                : "hover:bg-gray dark:hover:bg-zinc-800",
+                                ? "text-smoke dark:text-zinc-700"
+                                : "hover:bg-smoke dark:hover:bg-zinc-800",
                             "rounded-md p-1 shadow dark:text-white dark:shadow-zinc-800"
                         )}
                         disabled={
@@ -89,8 +89,8 @@ const Home = () => {
                         className={classNameJoin(
                             products.length !== 0 &&
                                 products.length % limit === 0
-                                ? "hover:bg-gray dark:hover:bg-zinc-800"
-                                : "text-gray dark:text-zinc-700",
+                                ? "hover:bg-smoke dark:hover:bg-zinc-800"
+                                : "text-smoke dark:text-zinc-700",
                             "rounded-md p-1 shadow dark:text-white dark:shadow-zinc-800"
                         )}
                         disabled={

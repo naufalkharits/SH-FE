@@ -17,8 +17,8 @@ const Search = () => {
             <input
                 className={classNameJoin(
                     location.pathname === "/"
-                        ? "sm:bg-gray sm:dark:bg-zinc-800"
-                        : "bg-gray dark:bg-zinc-800",
+                        ? "sm:bg-smoke sm:dark:bg-zinc-800"
+                        : "bg-smoke dark:bg-zinc-800",
                     "w-full rounded-2xl py-3 pl-6 pr-14 text-neutral-03 placeholder:text-neutral-03 focus:shadow-sm focus:outline-none dark:bg-zinc-900 dark:text-zinc-400 dark:placeholder:text-zinc-400 dark:focus:shadow-zinc-700"
                 )}
                 placeholder="Cari di sini ..."

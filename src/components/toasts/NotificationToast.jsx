@@ -13,7 +13,7 @@ const NotificationToast = () => {
     return (
         notification !== null && (
             <div className="absolute right-8 top-8 z-50 mx-auto w-fit animate-slide overflow-hidden rounded bg-white shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-zinc-900 dark:text-white dark:ring-white dark:ring-opacity-10">
-                <div className="bg-gray py-2 px-4 dark:bg-zinc-800">
+                <div className="bg-smoke py-2 px-4 dark:bg-zinc-800">
                     {notification.title}
                 </div>
                 <div className="p-4">{notification.body}</div>

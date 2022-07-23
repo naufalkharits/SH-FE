@@ -77,8 +77,8 @@ const MobileMenu = ({ profile }) => {
                                         >
                                             {loading === "pending" ? (
                                                 <>
-                                                    <div className="h-8 w-8 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
-                                                    <span className="h-3 w-24 animate-pulse rounded bg-gray dark:bg-zinc-800"></span>
+                                                    <div className="h-8 w-8 animate-pulse rounded bg-smoke dark:bg-zinc-800"></div>
+                                                    <span className="h-3 w-24 animate-pulse rounded bg-smoke dark:bg-zinc-800"></span>
                                                 </>
                                             ) : (
                                                 <>
@@ -97,11 +97,11 @@ const MobileMenu = ({ profile }) => {
                                             )}
                                         </Link>
                                         {loading === "pending" ? (
-                                            <div className="h-10 w-10 animate-pulse rounded-md bg-gray dark:bg-zinc-800 dark:shadow-zinc-800"></div>
+                                            <div className="h-10 w-10 animate-pulse rounded-md bg-smoke dark:bg-zinc-800 dark:shadow-zinc-800"></div>
                                         ) : (
                                             <Link
                                                 to="/manage-product"
-                                                className="rounded-md p-2 shadow hover:bg-gray dark:text-white dark:shadow-zinc-800 dark:hover:bg-zinc-800"
+                                                className="rounded-md p-2 shadow hover:bg-smoke dark:text-white dark:shadow-zinc-800 dark:hover:bg-zinc-800"
                                             >
                                                 <BiStore className="h-6 w-6" />
                                             </Link>
@@ -110,13 +110,13 @@ const MobileMenu = ({ profile }) => {
                                 )}
                                 <Link
                                     to="/notification"
-                                    className="block rounded-md p-2 hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
+                                    className="block rounded-md p-2 hover:bg-smoke dark:text-white dark:hover:bg-zinc-800"
                                 >
                                     Notifikasi
                                 </Link>
                                 <Link
                                     to="/user/infopenawar"
-                                    className="block rounded-md p-2 hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
+                                    className="block rounded-md p-2 hover:bg-smoke dark:text-white dark:hover:bg-zinc-800"
                                 >
                                     Cek Penawaran
                                 </Link>

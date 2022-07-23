@@ -9,14 +9,14 @@ const ModalBerhasil = () => {
     const { updatedTx } = useSelector((state) => state.transaction)
 
     return (
-        <div className="fixed inset-0 z-50 bg-gray-bg">
+        <div className="fixed inset-0 z-50 bg-pearl">
             <div className="flex h-screen items-center justify-center">
                 {/* modal */}
                 <div className="h-fit w-96 rounded-2xl bg-white p-8 dark:bg-zinc-900">
                     <div className="mb-6 space-y-4">
                         <div className="flex justify-end">
                             <FiX
-                                className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-gray dark:text-white dark:hover:bg-zinc-800"
+                                className="h-7 w-7 cursor-pointer rounded-full p-1 shadow hover:bg-smoke dark:text-white dark:hover:bg-zinc-800"
                                 onClick={() => {
                                     dispatch(modalOn(false))
                                 }}
@@ -29,7 +29,7 @@ const ModalBerhasil = () => {
                             Segera hubungi pembeli melalui whatsapp untuk
                             transaksi selanjutnya
                         </h3>
-                        <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-gray sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
+                        <div className="space-y-4 rounded-2xl p-4 shadow ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-smoke sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
                             <div className="text-center text-sm font-medium dark:text-white">
                                 Product Match
                             </div>

@@ -16,7 +16,7 @@ const UserDropdown = ({ profile, loading }) => {
             {({ open }) => (
                 <>
                     {loading === "pending" ? (
-                        <div className="h-6 w-6 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
+                        <div className="h-6 w-6 animate-pulse rounded bg-smoke dark:bg-zinc-800"></div>
                     ) : (
                         <Menu.Button
                             className={classNameJoin(
@@ -49,8 +49,8 @@ const UserDropdown = ({ profile, loading }) => {
                                         >
                                             {loading === "pending" ? (
                                                 <>
-                                                    <div className="h-8 w-8 animate-pulse rounded bg-gray dark:bg-zinc-800"></div>
-                                                    <span className="h-3 w-24 animate-pulse rounded bg-gray dark:bg-zinc-800"></span>
+                                                    <div className="h-8 w-8 animate-pulse rounded bg-smoke dark:bg-zinc-800"></div>
+                                                    <span className="h-3 w-24 animate-pulse rounded bg-smoke dark:bg-zinc-800"></span>
                                                 </>
                                             ) : (
                                                 <>

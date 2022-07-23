@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { ScrollingCarousel } from "@trendyol-js/react-carousel"
 import { FiSearch } from "react-icons/fi"
 import { fetchCategories } from "../redux/categoriesSlice"
+import { resetOffset } from "../redux/productsSlice"
 import { classNameJoin } from "../utils/classNameJoin"
 import CategorySkeleton from "./skeletons/CategorySkeleton"
 
@@ -14,6 +15,7 @@ const Category = () => {
     const [cat, setCat] = useState([])
 
     const onClick = (query) => {
+        dispatch(resetOffset())
         setSearchParams(query ? { category: query } : "")
     }
 

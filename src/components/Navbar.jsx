@@ -3,6 +3,7 @@ import { Popover } from "@headlessui/react"
 import Category from "./Category"
 import DesktopMenu from "./DesktopMenu"
 import { classNameJoin } from "../utils/classNameJoin"
+import Box from "../images/Box.png"
 
 const Navbar = () => {
     const { productId } = useParams()
@@ -42,11 +43,7 @@ const Navbar = () => {
                                     60%
                                 </div>
                             </div>
-                            <img
-                                className="w-full"
-                                src="/img/hero.png"
-                                alt=""
-                            />
+                            <img className="w-full" src={Box} alt="" />
                         </div>
                         <div className="container mx-auto p-4 sm:hidden">
                             <Category />

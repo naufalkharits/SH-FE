@@ -1,5 +1,5 @@
 import Light404 from "../../images/404/MyWishlist404.png"
-import Dark404 from "../../images/404/darkMode/WishlistDark404.png"
+import Dark404 from "../../images/404/darkMode/MyWishlistDark404.png"
 
 const MyWishlist404 = () => {
     return (

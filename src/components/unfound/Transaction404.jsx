@@ -1,15 +1,11 @@
-import terjual_404 from "../../images/terjual-404.png"
-import terjualDark_404 from "../../images/terjualDark-404.png"
+import Light404 from "../../images/404/Transaction404.png"
+import Dark404 from "../../images/404/darkMode/TransactionDark404.png"
 
 const Transaction404 = () => {
     return (
         <>
-            <img className="mx-auto dark:hidden" src={terjual_404} alt="" />
-            <img
-                className="mx-auto hidden dark:block"
-                src={terjualDark_404}
-                alt=""
-            />
+            <img className="mx-auto dark:hidden" src={Light404} alt="" />
+            <img className="mx-auto hidden dark:block" src={Dark404} alt="" />
         </>
     )
 }

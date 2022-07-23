@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { FiEdit2 } from "react-icons/fi"
-import AltFoto from "../images/AltFoto.png"
+import AltPhoto from "../images/alts/AltPhoto.png"
 
 const SellerCard = ({ loading, id, name, picture, city }) => {
     const location = useLocation()
@@ -14,7 +14,7 @@ const SellerCard = ({ loading, id, name, picture, city }) => {
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray dark:bg-zinc-800"></div>
                 ) : (
                     <img
-                        src={picture || AltFoto}
+                        src={picture || AltPhoto}
                         alt=""
                         className="h-12 w-12 rounded-xl"
                     />

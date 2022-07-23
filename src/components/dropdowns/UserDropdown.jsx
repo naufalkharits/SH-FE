@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { Menu, Transition } from "@headlessui/react"
 import { FiLogOut, FiUser } from "react-icons/fi"
 import { logout } from "../../redux/authSlice"
-import AltFoto from "../../images/AltFoto.png"
+import AltPhoto from "../../images/alts/AltPhoto.png"
 import { resetProductState } from "../../redux/productsSlice"
 import { classNameJoin } from "../../utils/classNameJoin"
 
@@ -58,7 +58,7 @@ const UserDropdown = ({ profile, loading }) => {
                                                         className="h-8 w-8 rounded-full object-cover object-center"
                                                         src={
                                                             profile?.picture ||
-                                                            AltFoto
+                                                            AltPhoto
                                                         }
                                                         alt=""
                                                     />

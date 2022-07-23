@@ -7,7 +7,7 @@ import { BiStore } from "react-icons/bi"
 import { logout } from "../redux/authSlice"
 import Search from "./Search"
 import SecondHand from "../images/brand/SecondHand.png"
-import AltFoto from "../images/AltFoto.png"
+import AltPhoto from "../images/alts/AltPhoto.png"
 import { resetProductState } from "../redux/productsSlice"
 import { classNameJoin } from "../utils/classNameJoin"
 
@@ -86,7 +86,7 @@ const MobileMenu = ({ profile }) => {
                                                         className="h-8 w-8 rounded-full object-cover object-center"
                                                         src={
                                                             profile?.picture ||
-                                                            AltFoto
+                                                            AltPhoto
                                                         }
                                                         alt=""
                                                     />

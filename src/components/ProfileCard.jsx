@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom"
 import { useSelector } from "react-redux"
-import AltFoto from "../images/AltFoto.png"
+import AltPhoto from "../images/alts/AltPhoto.png"
 
 const ProfileCard = () => {
     const location = useLocation()
@@ -13,7 +13,7 @@ const ProfileCard = () => {
                     <div className="h-12 w-12 animate-pulse rounded-xl bg-gray dark:bg-zinc-800"></div>
                 ) : (
                     <img
-                        src={profile?.picture || AltFoto}
+                        src={profile?.picture || AltPhoto}
                         alt=""
                         className="h-12 w-12 rounded-xl"
                     />

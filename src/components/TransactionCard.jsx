@@ -12,7 +12,7 @@ import { TbBrandWhatsapp } from "react-icons/tb"
 import { putTransaction } from "../redux/transactionSlice"
 import ModalStatus from "../components/modals/ModalStatus"
 import ModalBerhasil from "./modals/ModalBerhasil"
-import Tawar404 from "./unfound/Tawar404"
+import Offer404 from "./unfound/Offer404"
 import { priceFormatter } from "../utils/priceFormatter"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 
@@ -194,7 +194,7 @@ const TransactionCard = () => {
                             </div>
                         ))
                     ) : (
-                        <Tawar404 />
+                        <Offer404 />
                     )}
                 </>
             )}

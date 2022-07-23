@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { getWishlistSeller } from "../redux/wishlistSlice"
 import SellerWishlistsCard from "./SellerWishlistsCard"
 import WishlistSkeleton from "./skeletons/WishlistSkeleton"
-import Wishlisted404 from "./unfound/Wishlisted404"
+import Wishlist404 from "./unfound/Wishlist404"
 
 const Wishlisted = () => {
     const dispatch = useDispatch()
@@ -31,7 +31,7 @@ const Wishlisted = () => {
                     <WishlistSkeleton />
                 ) : sellerwishlists?.length === 0 ? (
                     <div className="my-16 w-full">
-                        <Wishlisted404 />
+                        <Wishlist404 />
                     </div>
                 ) : (
                     result?.map((sellwish, id) => (

@@ -1,7 +1,7 @@
-import Light404 from "../../images/404/Wishlist404.png"
+import Light404 from "../../images/404/MyWishlist404.png"
 import Dark404 from "../../images/404/darkMode/WishlistDark404.png"
 
-const Wishlisted404 = () => {
+const MyWishlist404 = () => {
     return (
         <>
             <img className="mx-auto dark:hidden" src={Light404} alt="" />
@@ -10,4 +10,4 @@ const Wishlisted404 = () => {
     )
 }
 
-export default Wishlisted404
+export default MyWishlist404

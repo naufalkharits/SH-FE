@@ -1,7 +1,7 @@
 import Light404 from "../../images/404/Offer404.png"
 import Dark404 from "../../images/404/darkMode/OfferDark404.png"
 
-const Tawar404 = () => {
+const Offer404 = () => {
     return (
         <>
             <img className="mx-auto dark:hidden" src={Light404} alt="" />
@@ -10,4 +10,4 @@ const Tawar404 = () => {
     )
 }
 
-export default Tawar404
+export default Offer404

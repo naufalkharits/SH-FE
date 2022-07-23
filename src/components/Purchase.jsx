@@ -5,7 +5,7 @@ import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import { priceFormatter } from "../utils/priceFormatter"
 import { Swiper, SwiperSlide } from "swiper/react"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
-import Transaction404 from "./unfound/Transaction404"
+import MyTransaction404 from "./unfound/MyTransaction404"
 import { classNameJoin } from "../utils/classNameJoin"
 
 const Purchase = () => {
@@ -29,7 +29,7 @@ const Purchase = () => {
                     <TransactionSkeleton />
                 ) : transaction?.length === 0 ? (
                     <div className="my-16 w-full">
-                        <Transaction404 />
+                        <MyTransaction404 />
                     </div>
                 ) : (
                     transaction?.map((tx) => (

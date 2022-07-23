@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { getWishlistBuyer } from "../redux/wishlistSlice"
 import ProductCard from "../components/ProductCard"
 import WishlistProfileSkeleton from "./skeletons/WishlistProfileSkeleton"
-import Wishlist404 from "./unfound/Wishlist404"
+import MyWishlist404 from "./unfound/MyWishlist404"
 
 const WishlistUser = () => {
     const dispatch = useDispatch()
@@ -25,7 +25,7 @@ const WishlistUser = () => {
                         <WishlistProfileSkeleton />
                     ) : wishlists?.length === 0 ? (
                         <div className="my-16 w-full">
-                            <Wishlist404 />
+                            <MyWishlist404 />
                         </div>
                     ) : (
                         <Swiper

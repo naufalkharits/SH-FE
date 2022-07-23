@@ -31,7 +31,7 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
                         <div className="flex">
                             <div className="flex h-5 items-center">
                                 <input
-                                    className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
+                                    className="h-4 w-4 appearance-none rounded-full bg-silver checked:bg-primary-purple-04 hover:bg-primary-purple-05"
                                     type="radio"
                                     name="radio"
                                     value="COMPLETED"
@@ -56,7 +56,7 @@ const ModalStatus = ({ update, setUpdate, onSubmit }) => {
                         <div className="flex">
                             <div className="flex h-5 items-center">
                                 <input
-                                    className="h-4 w-4 appearance-none rounded-full bg-[#C4C4C4] checked:bg-primary-purple-04 hover:bg-primary-purple-05"
+                                    className="h-4 w-4 appearance-none rounded-full bg-silver checked:bg-primary-purple-04 hover:bg-primary-purple-05"
                                     type="radio"
                                     name="radio"
                                     value="REJECTED"

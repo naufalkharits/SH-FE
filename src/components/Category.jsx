@@ -55,7 +55,9 @@ const Category = () => {
                             <div
                                 key={cat}
                                 className={classNameJoin(
-                                    searchParams.get("category") === cat
+                                    searchParams
+                                        .get("category")
+                                        .toLowerCase() === cat.toLowerCase()
                                         ? "bg-primary-purple-04 text-white"
                                         : "bg-primary-purple-01 hover:text-white",
                                     "ml-4 flex w-fit cursor-pointer items-center gap-2 rounded-xl py-3 px-6 hover:bg-primary-purple-05"

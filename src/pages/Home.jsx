@@ -23,7 +23,13 @@ const Home = () => {
 
     if (searchParams.get("page")) {
         if (Number(searchParams.get("page")) <= 1) {
-            setSearchParams()
+            // searchParams.delete("page")
+            if (searchParams.get("category")) {
+                setSearchParams({ category: searchParams.get("category") })
+            } else {
+                setSearchParams()
+            }
+
             dispatch(resetOffset())
         }
         if (Number(searchParams.get("page")) * 10 - 10 !== offset) {

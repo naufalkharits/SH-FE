@@ -73,12 +73,21 @@ const Home = () => {
                         }
                         onClick={() => {
                             if (searchParams.get("page") === "2") {
-                                setSearchParams()
+                                if (searchParams.get("category")) {
+                                    searchParams.delete("page")
+                                    setSearchParams(searchParams)
+                                } else {
+                                    setSearchParams()
+                                }
                                 dispatch(resetOffset())
                             } else {
-                                setSearchParams({
-                                    page: Number(searchParams.get("page")) - 1,
-                                })
+                                setSearchParams([
+                                    ...searchParams?.entries(),
+                                    [
+                                        "page",
+                                        Number(searchParams.get("page")) - 1,
+                                    ],
+                                ])
                                 dispatch(offsetDecrement(10))
                             }
                         }}
@@ -101,14 +110,19 @@ const Home = () => {
                         }
                         onClick={() => {
                             if (!searchParams.get("page")) {
-                                setSearchParams({
-                                    page: 2,
-                                })
+                                setSearchParams([
+                                    ...searchParams?.entries(),
+                                    ["page", 2],
+                                ])
                                 dispatch(offsetIncrement(10))
                             } else {
-                                setSearchParams({
-                                    page: Number(searchParams.get("page")) + 1,
-                                })
+                                setSearchParams([
+                                    ...searchParams?.entries(),
+                                    [
+                                        "page",
+                                        Number(searchParams.get("page")) + 1,
+                                    ],
+                                ])
                                 dispatch(offsetIncrement(10))
                             }
                         }}

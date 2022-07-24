@@ -42,10 +42,11 @@ const PaginationButton = () => {
                         }
                         dispatch(resetOffset())
                     } else {
-                        setSearchParams([
-                            ...searchParams?.entries(),
-                            ["page", Number(searchParams.get("page")) - 1],
-                        ])
+                        searchParams.set(
+                            "page",
+                            Number(searchParams.get("page")) - 1
+                        )
+                        setSearchParams(searchParams)
                         dispatch(offsetDecrement(10))
                     }
                 }}
@@ -65,17 +66,18 @@ const PaginationButton = () => {
                         : true
                 }
                 onClick={() => {
-                    if (!searchParams.get("page")) {
+                    if (!searchParams.has("page")) {
                         setSearchParams([
                             ...searchParams?.entries(),
                             ["page", 2],
                         ])
                         dispatch(offsetIncrement(10))
                     } else {
-                        setSearchParams([
-                            ...searchParams?.entries(),
-                            ["page", Number(searchParams.get("page")) + 1],
-                        ])
+                        searchParams.set(
+                            "page",
+                            Number(searchParams.get("page")) + 1
+                        )
+                        setSearchParams(searchParams)
                         dispatch(offsetIncrement(10))
                     }
                 }}

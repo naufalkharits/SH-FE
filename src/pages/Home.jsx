@@ -21,10 +21,10 @@ const Home = () => {
     const products = useSelector(productsSelectors.selectAll)
     const { keyword, offset, loading } = useSelector((state) => state.products)
 
-    if (searchParams.get("page")) {
+    if (searchParams.has("page")) {
         if (Number(searchParams.get("page")) <= 1) {
             // searchParams.delete("page")
-            if (searchParams.get("category")) {
+            if (searchParams.has("category")) {
                 setSearchParams({ category: searchParams.get("category") })
             } else {
                 setSearchParams()

@@ -23,7 +23,6 @@ const Home = () => {
 
     if (searchParams.has("page")) {
         if (Number(searchParams.get("page")) <= 1) {
-            // searchParams.delete("page")
             if (searchParams.has("category")) {
                 setSearchParams({ category: searchParams.get("category") })
             } else {
@@ -49,7 +48,7 @@ const Home = () => {
                 offset,
             })
         )
-    }, [keyword, searchParams, offset, dispatch])
+    }, [keyword, searchParams, setSearchParams, offset, dispatch])
 
     return (
         <>

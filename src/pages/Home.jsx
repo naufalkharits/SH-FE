@@ -45,10 +45,12 @@ const Home = () => {
             getProducts({
                 keyword,
                 category: searchParams.get("category") || "",
-                offset,
+                offset: Number(searchParams.get("page"))
+                    ? Number(searchParams.get("page")) * 10 - 10
+                    : "",
             })
         )
-    }, [keyword, searchParams, setSearchParams, offset, dispatch])
+    }, [keyword, searchParams, dispatch])
 
     return (
         <>

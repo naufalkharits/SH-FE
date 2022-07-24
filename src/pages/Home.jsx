@@ -35,9 +35,9 @@ const Home = () => {
             dispatch(setOffset(Number(searchParams.get("page"))))
         }
     } else {
-        // if (Number(searchParams.get("page")) * 10 - 10 !== offset) {
-        dispatch(resetOffset())
-        // }
+        if (Number(searchParams.get("page")) !== offset) {
+            dispatch(resetOffset())
+        }
     }
 
     useEffect(() => {

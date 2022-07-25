@@ -285,6 +285,7 @@ const DetailProduct = () => {
                                     )}
                                 </div>
                                 {user &&
+                                    loading === "idle" &&
                                     product?.seller?.user_id !==
                                         profile?.id && <WishlistButton />}
                                 <SellerCard

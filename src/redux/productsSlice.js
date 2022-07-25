@@ -211,15 +211,18 @@ const productsSlice = createSlice({
 
         // DELETE product
         [deleteProduct.pending]: (state) => {
+            state.loading = "pending"
             state.spinner = true
             productsAdapter.removeAll(state)
         },
         [deleteProduct.fulfilled]: (state, action) => {
+            state.loading = "idle"
             state.spinner = false
             state.error = null
             productsAdapter.removeOne(state, action.payload)
         },
         [deleteProduct.rejected]: (state, action) => {
+            state.loading = "idle"
             state.spinner = false
             state.error = action.payload || "SOMETHING WRONG!!"
         },

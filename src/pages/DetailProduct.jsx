@@ -67,7 +67,8 @@ const DetailProduct = () => {
 
     return (
         <>
-            {error?.message === "Valid Product ID is required" ? (
+            {error?.message === "Product not found" ||
+            error?.message === "Valid Product ID is required" ? (
                 <Navigate to="/404" replace />
             ) : (
                 <>

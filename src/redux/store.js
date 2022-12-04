@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit"
 import authReducer from "./authSlice"
 import categoriesReducer from "./categoriesSlice"
+import courierReducer from "./courierSlice"
 import notificationReducer from "./notificationSlice"
 import productsReducer from "./productsSlice"
 import transactionReducer from "./transactionSlice"
@@ -14,6 +15,7 @@ export const store = configureStore({
     wishlist: wishlistReducer,
     transaction: transactionReducer,
     notification: notificationReducer,
+    courier: courierReducer,
   },
   devTools: false,
 })

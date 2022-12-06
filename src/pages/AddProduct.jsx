@@ -115,7 +115,7 @@ const AddProduct = () => {
           </div>
           <div className="space-y-2">
             <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-              Kategori
+              Kategori Produk
             </label>
             <label className="relative block">
               <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-neutral-03">
@@ -136,7 +136,7 @@ const AddProduct = () => {
           </div>
           <div className="space-y-2">
             <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-              Bobot
+              Bobot Produk
             </label>
             <input
               className="w-full rounded-2xl border border-neutral-02 py-3 px-4 placeholder:text-neutral-03 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
@@ -148,7 +148,7 @@ const AddProduct = () => {
           </div>
           <div className="space-y-2">
             <label className="block after:ml-0.5 after:text-red-500 after:content-['*'] dark:text-white">
-              Deskripsi
+              Deskripsi Produk
             </label>
             <textarea
               name="description"

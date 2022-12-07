@@ -291,7 +291,7 @@ const DetailProduct = () => {
             loading === "idle" &&
             loadingTx === "idle" && (
               <>
-                {filteredTx[0].status === "PENDING" ? (
+                {filteredTx[0]?.status === "PENDING" ? (
                   <button
                     className={classNameJoin(
                       isModalOn ? "hidden" : "sm:hidden",
@@ -300,7 +300,7 @@ const DetailProduct = () => {
                     disabled>
                     <span>Menunggu respon penjual</span>
                   </button>
-                ) : filteredTx[0].status === "ACCEPTED" ? (
+                ) : filteredTx[0]?.status === "ACCEPTED" ? (
                   <button
                     className={classNameJoin(
                       isModalOn ? "hidden" : "sm:hidden",

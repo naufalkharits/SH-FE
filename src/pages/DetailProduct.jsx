@@ -157,18 +157,15 @@ const DetailProduct = () => {
                       {product?.seller?.user_id === profile?.id ? (
                         <>
                           {/* <button className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block">
-                                                Terbitkan
-                                            </button> */}
-                          {/* <button
-                                                className="mb-4 mt-6 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
-                                                onClick={() => {
-                                                    navigate(
-                                                        `/manage-product/edit/${productId}`
-                                                    );
-                                                }}
-                                            >
-                                                Edit
-                                            </button> */}
+                            Terbitkan
+                          </button>
+                          <button
+                            className="mb-4 mt-6 hidden w-full rounded-2xl border border-primary-purple-04 p-2 text-primary-purple-04 hover:bg-primary-purple-05 hover:text-white sm:block"
+                            onClick={() => {
+                              navigate(`/manage-product/edit/${productId}`)
+                            }}>
+                            Edit
+                          </button> */}
                           <button
                             className="mb-4 mt-6 hidden w-full rounded-2xl bg-primary-purple-04 p-2 text-white hover:bg-primary-purple-05 sm:block"
                             onClick={() => {
@@ -201,25 +198,29 @@ const DetailProduct = () => {
                         </>
                       ) : (
                         <>
-                          {product?.status === "IN ORDER" ? (
+                          {filteredTx[0].status === "PENDING" ? (
                             <button
                               className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
                               disabled>
-                              IN ORDER
+                              Menunggu respon penjual
                             </button>
-                          ) : product?.status === "SOLD" ? (
-                            <button
-                              className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
-                              disabled>
-                              SOLD OUT
+                          ) : filteredTx[0].status === "ACCEPTED" ? (
+                            <button className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block">
+                              Bayar
                             </button>
                           ) : (
                             <>
-                              {filteredTx?.length !== 0 ? (
+                              {product?.status === "IN ORDER" ? (
                                 <button
                                   className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
                                   disabled>
-                                  Menunggu respon penjual
+                                  IN ORDER
+                                </button>
+                              ) : product?.status === "SOLD" ? (
+                                <button
+                                  className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
+                                  disabled>
+                                  SOLD OUT
                                 </button>
                               ) : (
                                 <button
@@ -290,7 +291,7 @@ const DetailProduct = () => {
             loading === "idle" &&
             loadingTx === "idle" && (
               <>
-                {filteredTx?.length !== 0 ? (
+                {filteredTx[0].status === "PENDING" ? (
                   <button
                     className={classNameJoin(
                       isModalOn ? "hidden" : "sm:hidden",
@@ -298,6 +299,15 @@ const DetailProduct = () => {
                     )}
                     disabled>
                     <span>Menunggu respon penjual</span>
+                  </button>
+                ) : filteredTx[0].status === "ACCEPTED" ? (
+                  <button
+                    className={classNameJoin(
+                      isModalOn ? "hidden" : "sm:hidden",
+                      "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05 dark:shadow-primary-purple-04 dark:hover:shadow-primary-purple-05"
+                    )}
+                    disabled>
+                    <span>Bayar</span>
                   </button>
                 ) : (
                   <>

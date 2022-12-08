@@ -65,7 +65,9 @@ export const getFilteredTransaction = createAsyncThunk(
     try {
       const response = await closedServer.get(`/transaction?status=${status}&as=${as}`)
       return response.data.transactions.filter(
-        (tx) => tx.product.id === Number(productId) && tx.status === "PENDING"
+        (tx) =>
+          tx.product.id === Number(productId) &&
+          (tx.status === "PENDING" || tx.status === "ACCEPTED")
       )
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)

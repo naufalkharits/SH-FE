@@ -47,6 +47,9 @@ export const courierSlice = createSlice({
     loading: "idle",
   },
   reducers: {
+    resetCosts: (state) => {
+      state.costs = {}
+    },
     setIsModalCourierOn: (state, action) => {
       state.isModalCourierOn = action.payload
     },
@@ -93,6 +96,6 @@ export const courierSlice = createSlice({
   },
 })
 
-export const { setIsModalCourierOn, setIsModalPaymentOn } = courierSlice.actions
+export const { resetCosts, setIsModalCourierOn, setIsModalPaymentOn } = courierSlice.actions
 
 export default courierSlice.reducer

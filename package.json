@@ -15,7 +15,7 @@
     "axios": "^1.1.2",
     "cra-append-sw": "^2.7.0",
     "dayjs": "^1.11.5",
-    "firebase": "^9.9.0",
+    "firebase": "^9.15.0",
     "jwt-decode": "^3.1.2",
     "postcss": "^8.4.19",
     "prettier": "^2.7.1",

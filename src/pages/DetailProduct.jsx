@@ -198,14 +198,18 @@ const DetailProduct = () => {
                         </>
                       ) : (
                         <>
-                          {filteredTx[0].status === "PENDING" ? (
+                          {filteredTx[0]?.status === "PENDING" ? (
                             <button
                               className="mt-6 hidden w-full rounded-2xl bg-neutral-02 py-3.5 px-6 text-sm text-white dark:bg-zinc-500 sm:block"
                               disabled>
                               Menunggu respon penjual
                             </button>
-                          ) : filteredTx[0].status === "ACCEPTED" ? (
-                            <button className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block">
+                          ) : filteredTx[0]?.status === "ACCEPTED" ? (
+                            <button
+                              className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                              onClick={() => {
+                                dispatch(setIsModalCourierOn(true))
+                              }}>
                               Bayar
                             </button>
                           ) : (
@@ -223,13 +227,15 @@ const DetailProduct = () => {
                                   SOLD OUT
                                 </button>
                               ) : (
-                                <button
-                                  className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
-                                  onClick={() => {
-                                    dispatch(setIsModalOn(true))
-                                  }}>
-                                  Saya tertarik dan ingin nego
-                                </button>
+                                <>
+                                  <button
+                                    className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                                    onClick={() => {
+                                      dispatch(setIsModalOn(true))
+                                    }}>
+                                    Saya tertarik dan ingin nego
+                                  </button>
+                                </>
                               )}
                             </>
                           )}
@@ -303,10 +309,12 @@ const DetailProduct = () => {
                 ) : filteredTx[0]?.status === "ACCEPTED" ? (
                   <button
                     className={classNameJoin(
-                      isModalOn ? "hidden" : "sm:hidden",
+                      isModalCourierOn ? "hidden" : "sm:hidden",
                       "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05 dark:shadow-primary-purple-04 dark:hover:shadow-primary-purple-05"
                     )}
-                    disabled>
+                    onClick={() => {
+                      dispatch(setIsModalCourierOn(true))
+                    }}>
                     <span>Bayar</span>
                   </button>
                 ) : (

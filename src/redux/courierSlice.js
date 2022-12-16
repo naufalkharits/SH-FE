@@ -43,7 +43,6 @@ export const courierSlice = createSlice({
     cities: {},
     costs: {},
     isModalCourierOn: false,
-    isModalPaymentOn: false,
     loading: "idle",
   },
   reducers: {
@@ -52,9 +51,6 @@ export const courierSlice = createSlice({
     },
     setIsModalCourierOn: (state, action) => {
       state.isModalCourierOn = action.payload
-    },
-    setIsModalPaymentOn: (state, action) => {
-      state.isModalPaymentOn = action.payload
     },
   },
   extraReducers: {

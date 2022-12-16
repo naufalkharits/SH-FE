@@ -1,5 +1,6 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit"
 import closedServer from "../middlewares/axios/closedServer"
+import openServer from "../middlewares/axios/openServer"
 
 // POST transaction
 export const postTransaction = createAsyncThunk(
@@ -58,7 +59,26 @@ export const putTransaction = createAsyncThunk(
   }
 )
 
-// GET filtered transaction
+// createInvoice
+export const createInvoice = createAsyncThunk(
+  "transaction/createInvoice",
+  async ({ external_id, amount, email, mobile_number, redirect_url }, thunkAPI) => {
+    const invoiceData = {
+      external_id,
+      amount,
+      email,
+      mobile_number,
+      redirect_url,
+    }
+    try {
+      const response = await openServer.post("/payment/invoice", invoiceData)
+      return response.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data)
+    }
+  }
+)
+
 export const getFilteredTransaction = createAsyncThunk(
   "transaction/getFilteredTransaction",
   async ({ status, as, productId }, thunkAPI) => {
@@ -80,6 +100,7 @@ const transactionAdapter = createEntityAdapter()
 export const transactionSlice = createSlice({
   name: "transaction",
   initialState: transactionAdapter.getInitialState({
+    invoiceUrl: {},
     txById: null,
     filteredTx: null,
     addedTx: null,
@@ -147,6 +168,19 @@ export const transactionSlice = createSlice({
       transactionAdapter.setAll(state, action.payload.transactions)
     },
     [getTransaction.rejected]: (state, action) => {
+      state.loading = "idle"
+      state.error = action.payload
+    },
+
+    // createInvoice
+    [createInvoice.pending]: (state) => {
+      state.loading = "pending"
+    },
+    [createInvoice.fulfilled]: (state, action) => {
+      state.loading = "idle"
+      state.invoiceUrl = action.payload
+    },
+    [createInvoice.rejected]: (state, action) => {
       state.loading = "idle"
       state.error = action.payload
     },

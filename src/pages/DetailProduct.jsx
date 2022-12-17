@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import BackFloatingButton from "../components/buttons/BackFloatingButton"
 import EditFloatingButton from "../components/buttons/EditFloatingButton"
 import WishlistButton from "../components/buttons/WishlistButton"
+import ModalCourier from "../components/modals/ModalCourier"
 import ModalTawar from "../components/modals/ModalTawar"
 import SellerCard from "../components/SellerCard"
 import { deleteProduct, getProductById, productsSelectors } from "../redux/productsSlice"
@@ -69,6 +70,7 @@ const DetailProduct = () => {
           {isModalOn && (
             <ModalTawar price={price} product={product} onChange={onChange} onSubmit={onSubmit} />
           )}
+          {isModalCourierOn && <ModalCourier />}
           <BackFloatingButton />
           <div className="container mx-auto sm:p-4 xl:px-32 2xl:px-64">
             <div className="flex flex-col gap-4 sm:flex-row">

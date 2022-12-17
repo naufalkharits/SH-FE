@@ -10,7 +10,12 @@ import WishlistButton from "../components/buttons/WishlistButton"
 import ModalTawar from "../components/modals/ModalTawar"
 import SellerCard from "../components/SellerCard"
 import { deleteProduct, getProductById, productsSelectors } from "../redux/productsSlice"
-import { getFilteredTransaction, postTransaction, setIsModalOn } from "../redux/transactionSlice"
+import {
+  getFilteredTransaction,
+  postTransaction,
+  setIsModalCourierOn,
+  setIsModalOn,
+} from "../redux/transactionSlice"
 import { getWishlistById } from "../redux/wishlistSlice"
 import { classNameJoin } from "../utils/classNameJoin"
 import { priceFormatter } from "../utils/priceFormatter"
@@ -25,6 +30,7 @@ const DetailProduct = () => {
   const loadingTx = useSelector((state) => state.transaction.loading)
   const loadingAuth = useSelector((state) => state.auth.loading)
   const { loading, spinner, error } = useSelector((state) => state.products)
+  const { isModalCourierOn } = useSelector((state) => state.transaction)
   const product = useSelector((state) => productsSelectors.selectById(state, productId))
   const [status] = useState("")
   const [as] = useState("buyer")

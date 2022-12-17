@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { FiChevronDown, FiX } from "react-icons/fi"
 import { TiArrowRightOutline } from "react-icons/ti"
 import { useDispatch, useSelector } from "react-redux"
-import { getCosts, resetCosts, setIsModalCourierOn } from "../../redux/courierSlice"
+import { createInvoice, setIsModalCourierOn } from "../../redux/transactionSlice"
 
 const ModalCourier = () => {
   const dispatch = useDispatch()

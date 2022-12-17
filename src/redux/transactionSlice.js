@@ -106,6 +106,7 @@ export const transactionSlice = createSlice({
     addedTx: null,
     updatedTx: null,
     isModalOn: false,
+    isModalCourierOn: false,
     modalOn: false,
     loading: "idle",
     spinner: false,
@@ -121,6 +122,9 @@ export const transactionSlice = createSlice({
     },
     modalOn: (state, action) => {
       state.modalOn = action.payload
+    },
+    setIsModalCourierOn: (state, action) => {
+      state.isModalCourierOn = action.payload
     },
   },
   extraReducers: {
@@ -178,6 +182,7 @@ export const transactionSlice = createSlice({
     },
     [createInvoice.fulfilled]: (state, action) => {
       state.loading = "idle"
+      state.isModalCourierOn = false
       state.invoiceUrl = action.payload
     },
     [createInvoice.rejected]: (state, action) => {
@@ -226,6 +231,7 @@ export const transactionSlice = createSlice({
 
 export const transactionSelectors = transactionAdapter.getSelectors((state) => state.transaction)
 
-export const { setIsModalOn, modalOn, setShowTransactionError } = transactionSlice.actions
+export const { setIsModalOn, modalOn, setIsModalCourierOn, setShowTransactionError } =
+  transactionSlice.actions
 
 export default transactionSlice.reducer

@@ -42,15 +42,11 @@ export const courierSlice = createSlice({
     provinces: {},
     cities: {},
     costs: {},
-    isModalCourierOn: false,
     loading: "idle",
   },
   reducers: {
     resetCosts: (state) => {
       state.costs = {}
-    },
-    setIsModalCourierOn: (state, action) => {
-      state.isModalCourierOn = action.payload
     },
   },
   extraReducers: {
@@ -92,6 +88,6 @@ export const courierSlice = createSlice({
   },
 })
 
-export const { resetCosts, setIsModalCourierOn, setIsModalPaymentOn } = courierSlice.actions
+export const { resetCosts } = courierSlice.actions
 
 export default courierSlice.reducer

@@ -2,8 +2,8 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import dayjs from "dayjs"
+import { getTransactions, transactionSelectors } from "../redux/transactionSlice"
 import { priceFormatter } from "../utils/priceFormatter"
-import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import Transaction404 from "./unfound/Transaction404"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 
@@ -14,9 +14,9 @@ const Sold = () => {
 
     const { loading } = useSelector((state) => state.transaction)
 
-    useEffect(() => {
-        dispatch(getTransaction({ status: "COMPLETED", as: "seller" }))
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(getTransactions({ status: "COMPLETED", as: "seller" }))
+  }, [dispatch])
 
     return (
         <div className="mt-4 w-full space-y-5 px-5 sm:pl-10">

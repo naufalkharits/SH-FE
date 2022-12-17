@@ -31,8 +31,8 @@ export const getTransactionById = createAsyncThunk(
 )
 
 // GET all transactions
-export const getTransaction = createAsyncThunk(
-  "transaction/getTransaction",
+export const getTransactions = createAsyncThunk(
+  "transaction/getTransactions",
   async ({ status, as }, thunkAPI) => {
     try {
       const response = await closedServer.get(`/transaction?status=${status}&as=${as}`)
@@ -163,16 +163,16 @@ export const transactionSlice = createSlice({
     },
 
     // GET all transactions
-    [getTransaction.pending]: (state) => {
+    [getTransactions.pending]: (state) => {
       state.loading = "pending"
       state.error = null
       transactionAdapter.removeAll(state)
     },
-    [getTransaction.fulfilled]: (state, action) => {
+    [getTransactions.fulfilled]: (state, action) => {
       state.loading = "idle"
       transactionAdapter.setAll(state, action.payload.transactions)
     },
-    [getTransaction.rejected]: (state, action) => {
+    [getTransactions.rejected]: (state, action) => {
       state.loading = "idle"
       state.error = action.payload
     },

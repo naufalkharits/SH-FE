@@ -1,9 +1,9 @@
 import dayjs from "dayjs"
 import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getTransaction, transactionSelectors } from "../redux/transactionSlice"
 import { priceFormatter } from "../utils/priceFormatter"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { getTransactions, transactionSelectors } from "../redux/transactionSlice"
 import TransactionSkeleton from "./skeletons/TransactionSkeleton"
 import MyTransaction404 from "./unfound/MyTransaction404"
 import { classNameJoin } from "../utils/classNameJoin"
@@ -13,7 +13,7 @@ const Purchase = () => {
     const [status] = useState("")
     const [as] = useState("buyer")
 
-    const transaction = useSelector(transactionSelectors.selectAll)
+  const transaction = useSelector(transactionSelectors.selectAll)
 
     const { loading } = useSelector((state) => state.transaction)
 

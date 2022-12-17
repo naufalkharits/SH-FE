@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import ModalStatus from "../components/modals/ModalStatus"
 import {
-  getTransaction,
+  getTransactions,
   putTransaction,
   setIsModalOn,
   transactionSelectors,
@@ -50,7 +50,7 @@ const TransactionCard = () => {
   }
 
   useEffect(() => {
-    dispatch(getTransaction({ status: "", as: "seller" }))
+    dispatch(getTransactions({ status: "", as: "seller" }))
   }, [updatedTx, dispatch])
 
   return (

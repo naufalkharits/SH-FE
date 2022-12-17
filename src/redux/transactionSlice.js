@@ -72,6 +72,7 @@ export const createInvoice = createAsyncThunk(
     }
     try {
       const response = await openServer.post("/payment/invoice", invoiceData)
+      window.location.replace(`${response.data.invoice.invoice_url}`)
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)

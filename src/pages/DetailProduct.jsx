@@ -214,8 +214,10 @@ const DetailProduct = () => {
                             <button
                               className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
                               onClick={() => {
-                                dispatch(setIsModalCourierOn(true))
-                              }}>
+                                filteredTx[0]?.status !== "WAIT FOR PAYMENT"
+                                  ? dispatch(setIsModalCourierOn(true))
+                                  : window.location.replace(`${filteredTx[0]?.invoice_url}`)
+                              }}
                               Bayar
                             </button>
                           ) : (
@@ -319,8 +321,12 @@ const DetailProduct = () => {
                       "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05 dark:shadow-primary-purple-04 dark:hover:shadow-primary-purple-05"
                     )}
                     onClick={() => {
-                      dispatch(setIsModalCourierOn(true))
-                    }}>
+                      filteredTx[0]?.status !== "WAIT FOR PAYMENT"
+                        ? dispatch(setIsModalCourierOn(true))
+                        : window.location.replace(
+                            `https://checkout-staging.xendit.co/web/639bee415feb6dff9e79b5bf`
+                          )
+                    }}
                     <span>Bayar</span>
                   </button>
                 ) : (

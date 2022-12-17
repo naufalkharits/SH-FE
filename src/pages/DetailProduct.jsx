@@ -212,7 +212,7 @@ const DetailProduct = () => {
                             </button>
                           ) : filteredTx[0]?.status === "ACCEPTED" ? (
                             <button
-                              className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 sm:block"
+                              className="mt-6 hidden w-full rounded-2xl bg-primary-purple-04 py-3.5 px-6 text-sm text-white hover:bg-primary-purple-05 disabled:bg-neutral-02 sm:block "
                               onClick={() => {
                                 filteredTx[0]?.status !== "WAIT FOR PAYMENT"
                                   ? dispatch(setIsModalCourierOn(true))
@@ -318,7 +318,7 @@ const DetailProduct = () => {
                   <button
                     className={classNameJoin(
                       isModalCourierOn ? "hidden" : "sm:hidden",
-                      "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05 dark:shadow-primary-purple-04 dark:hover:shadow-primary-purple-05"
+                      "fixed inset-x-0 bottom-8 z-50 mx-auto w-fit rounded-2xl bg-primary-purple-04 px-6 py-3.5 text-white shadow-lg shadow-primary-purple-03 hover:bg-primary-purple-05 disabled:bg-neutral-02 dark:shadow-primary-purple-04 dark:hover:shadow-primary-purple-05 "
                     )}
                     onClick={() => {
                       filteredTx[0]?.status !== "WAIT FOR PAYMENT"

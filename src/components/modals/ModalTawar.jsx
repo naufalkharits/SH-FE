@@ -2,14 +2,19 @@ import { CgSpinner } from "react-icons/cg"
 import { FiX } from "react-icons/fi"
 import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { setIsModalOn } from "../../redux/transactionSlice"
+import { postTransaction, setIsModalOn } from "../../redux/transactionSlice"
 import { classNameJoin } from "../../utils/classNameJoin"
 import { priceFormatter } from "../../utils/priceFormatter"
 import DangerToast from "../toasts/DangerToast"
 
-const Modal = ({ price, product, onChange, onSubmit }) => {
+const Modal = ({ params, product, price, setPrice }) => {
   const dispatch = useDispatch()
   const { spinner } = useSelector((state) => state.transaction)
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    dispatch(postTransaction({ productId: params, price }))
+  }
 
   return (
     <>
@@ -60,7 +65,7 @@ const Modal = ({ price, product, onChange, onSubmit }) => {
                     className="w-full rounded-2xl py-3.5 px-4 text-neutral-03 shadow-md ring-1 ring-black ring-opacity-5 placeholder:text-neutral-03 focus:outline-none dark:bg-zinc-800 dark:text-zinc-400 dark:ring-white dark:ring-opacity-10 dark:placeholder:text-zinc-400"
                     type="number"
                     placeholder="Rp 0,00"
-                    onChange={onChange}
+                    onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
                 <button

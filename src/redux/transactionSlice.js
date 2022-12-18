@@ -80,22 +80,6 @@ export const createInvoice = createAsyncThunk(
   }
 )
 
-export const getFilteredTransaction = createAsyncThunk(
-  "transaction/getFilteredTransaction",
-  async ({ status, as, productId }, thunkAPI) => {
-    try {
-      const response = await closedServer.get(`/transaction?status=${status}&as=${as}`)
-      return response.data.transactions.filter(
-        (tx) =>
-          tx.product.id === Number(productId) &&
-          (tx.status === "PENDING" || tx.status === "ACCEPTED")
-      )
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.response.data)
-    }
-  }
-)
-
 const transactionAdapter = createEntityAdapter()
 
 export const transactionSlice = createSlice({
@@ -103,7 +87,6 @@ export const transactionSlice = createSlice({
   initialState: transactionAdapter.getInitialState({
     invoiceUrl: {},
     txById: null,
-    filteredTx: null,
     addedTx: null,
     updatedTx: null,
     isModalOn: false,
@@ -187,19 +170,6 @@ export const transactionSlice = createSlice({
       state.invoiceUrl = action.payload
     },
     [createInvoice.rejected]: (state, action) => {
-      state.loading = "idle"
-      state.error = action.payload
-    },
-
-    // GET filtered transaction
-    [getFilteredTransaction.pending]: (state) => {
-      state.loading = "pending"
-    },
-    [getFilteredTransaction.fulfilled]: (state, action) => {
-      state.loading = "idle"
-      state.filteredTx = action.payload
-    },
-    [getFilteredTransaction.rejected]: (state, action) => {
       state.loading = "idle"
       state.error = action.payload
     },

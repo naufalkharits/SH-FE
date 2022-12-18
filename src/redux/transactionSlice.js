@@ -87,7 +87,7 @@ export const transactionSlice = createSlice({
   initialState: transactionAdapter.getInitialState({
     invoiceUrl: {},
     txById: null,
-    addedTx: null,
+    newTransaction: null,
     updatedTx: null,
     isModalOn: false,
     isModalCourierOn: false,
@@ -122,7 +122,7 @@ export const transactionSlice = createSlice({
       state.loading = "idle"
       state.spinner = false
       state.error = null
-      state.addedTx = action.payload
+      state.newTransaction = action.payload.transaction
       state.isModalOn = false
     },
     [postTransaction.rejected]: (state, action) => {

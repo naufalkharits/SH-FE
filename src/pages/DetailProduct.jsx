@@ -27,11 +27,11 @@ const DetailProduct = () => {
   const { productId } = useParams()
   const dispatch = useDispatch()
   const { user, profile } = useSelector((state) => state.auth)
-  const { filteredTx, addedTx, isModalOn } = useSelector((state) => state.transaction)
   const loadingTx = useSelector((state) => state.transaction.loading)
   const loadingAuth = useSelector((state) => state.auth.loading)
   const { loading, spinner, error } = useSelector((state) => state.products)
   const { isModalCourierOn } = useSelector((state) => state.transaction)
+  const { newTransaction, isModalOn } = useSelector((state) => state.transaction)
   const product = useSelector((state) => productsSelectors.selectById(state, productId))
   const [status] = useState("")
   const [as] = useState("buyer")
@@ -52,13 +52,12 @@ const DetailProduct = () => {
   }
 
   useEffect(() => {
-    user && dispatch(getFilteredTransaction({ status, as, productId }))
-  }, [user, addedTx, status, as, productId, dispatch])
+    authState.user && dispatch(getWishlistById(productId))
+  }, [authState.user, productId, dispatch])
 
   useEffect(() => {
-    dispatch(getProductById(productId))
-    user && dispatch(getWishlistById(productId))
-  }, [user, productId, dispatch])
+    authState.user && dispatch(getTransactions({ status: "", as: "buyer" }))
+  }, [authState.user, newTransaction, dispatch])
 
   return (
     <>

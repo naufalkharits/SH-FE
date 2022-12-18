@@ -168,9 +168,11 @@ const EditProfile = () => {
                       onChange={onChange}>
                       <option value="">Pilih Provinsi</option>
                       {Array.isArray(provinces) &&
-                        provinces.map((p) => (
-                          <option key={p.province_id} value={[p.province_id, p.province]}>
-                            {p.province}
+                        provinces.map((province) => (
+                          <option
+                            key={province.province_id}
+                            value={[province.province_id, province.province]}>
+                            {province.province}
                           </option>
                         ))}
                     </select>
@@ -197,9 +199,9 @@ const EditProfile = () => {
                       <option value="">Pilih Kota/Kabupaten</option>
                       {formValue.province &&
                         Array.isArray(cities) &&
-                        cities.map((c) => (
-                          <option key={c.city_id} value={[c.city_id, c.city_name]}>
-                            {c.city_name}
+                        cities.map((city) => (
+                          <option key={city.city_id} value={[city.city_id, city.city_name]}>
+                            {city.city_name}
                           </option>
                         ))}
                     </select>

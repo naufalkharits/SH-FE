@@ -151,7 +151,7 @@ const EditProduct = () => {
                     <FiChevronDown />
                   </span>
                   <select
-                    className=" bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3.5 pr-10 pl-3 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
+                    className="bg-neutral-01 w-full appearance-none rounded-2xl border border-neutral-02 bg-white py-3.5 pr-10 pl-3 focus:outline-none dark:border-zinc-600 dark:bg-zinc-800 dark:text-white"
                     name="category"
                     value={formValue.category}
                     onChange={onChange}>

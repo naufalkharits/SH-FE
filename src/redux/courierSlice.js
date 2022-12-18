@@ -19,14 +19,36 @@ export const getCities = createAsyncThunk("courier/getCities", async (provinceId
   }
 })
 
+export const getCosts = createAsyncThunk(
+  "courier/getCosts",
+  async ({ from, destination, weight, courier }, thunkAPI) => {
+    try {
+      const response = await openServer.post(`/courier/cost`, {
+        origin: from,
+        destination: destination,
+        weight: weight,
+        courier: courier,
+      })
+      return response.data
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.response.data)
+    }
+  }
+)
+
 export const courierSlice = createSlice({
   name: "courier",
   initialState: {
     provinces: {},
     cities: {},
+    costs: {},
     loading: "idle",
   },
-  reducers: {},
+  reducers: {
+    resetCosts: (state) => {
+      state.costs = {}
+    },
+  },
   extraReducers: {
     [getProvinces.pending]: (state) => {
       state.loading = "pending"
@@ -39,12 +61,25 @@ export const courierSlice = createSlice({
       state.loading = "idle"
       state.error = action.payload
     },
+
+    [getCosts.pending]: (state) => {
+      state.loading = "pending"
+    },
+    [getCosts.fulfilled]: (state, action) => {
+      state.loading = "idle"
+      state.costs = Object.assign({}, ...action.payload.rajaongkir.results)
+    },
+    [getCosts.rejected]: (state, action) => {
+      state.loading = "idle"
+      state.error = action.payload
+    },
+
     [getCities.pending]: (state) => {
       state.loading = "pending"
     },
     [getCities.fulfilled]: (state, action) => {
       state.loading = "idle"
-      state.cities = action.payload.rajaongkir.results
+      state.cities = Object.assign({}, ...action.payload.rajaongkir.results)
     },
     [getCities.rejected]: (state, action) => {
       state.loading = "idle"
@@ -52,5 +87,7 @@ export const courierSlice = createSlice({
     },
   },
 })
+
+export const { resetCosts } = courierSlice.actions
 
 export default courierSlice.reducer

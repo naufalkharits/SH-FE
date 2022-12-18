@@ -1,5 +1,6 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from "@reduxjs/toolkit"
 import closedServer from "../middlewares/axios/closedServer"
+import openServer from "../middlewares/axios/openServer"
 
 // POST transaction
 export const postTransaction = createAsyncThunk(
@@ -30,8 +31,8 @@ export const getTransactionById = createAsyncThunk(
 )
 
 // GET all transactions
-export const getTransaction = createAsyncThunk(
-  "transaction/getTransaction",
+export const getTransactions = createAsyncThunk(
+  "transaction/getTransactions",
   async ({ status, as }, thunkAPI) => {
     try {
       const response = await closedServer.get(`/transaction?status=${status}&as=${as}`)
@@ -58,15 +59,21 @@ export const putTransaction = createAsyncThunk(
   }
 )
 
-// GET filtered transaction
-export const getFilteredTransaction = createAsyncThunk(
-  "transaction/getFilteredTransaction",
-  async ({ status, as, productId }, thunkAPI) => {
+// createInvoice
+export const createInvoice = createAsyncThunk(
+  "transaction/createInvoice",
+  async ({ external_id, amount, email, mobile_number, redirect_url }, thunkAPI) => {
+    const invoiceData = {
+      external_id,
+      amount,
+      email,
+      mobile_number,
+      redirect_url,
+    }
     try {
-      const response = await closedServer.get(`/transaction?status=${status}&as=${as}`)
-      return response.data.transactions.filter(
-        (tx) => tx.product.id === Number(productId) && tx.status === "PENDING"
-      )
+      const response = await openServer.post("/payment/invoice", invoiceData)
+      window.location.replace(`${response.data.invoice.invoice_url}`)
+      return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)
     }
@@ -78,9 +85,9 @@ const transactionAdapter = createEntityAdapter()
 export const transactionSlice = createSlice({
   name: "transaction",
   initialState: transactionAdapter.getInitialState({
+    invoiceUrl: {},
     txById: null,
-    filteredTx: null,
-    addedTx: null,
+    newTransaction: null,
     updatedTx: null,
     isModalOn: false,
     modalOn: false,
@@ -110,8 +117,7 @@ export const transactionSlice = createSlice({
     [postTransaction.fulfilled]: (state, action) => {
       state.loading = "idle"
       state.spinner = false
-      state.error = null
-      state.addedTx = action.payload
+      state.newTransaction = action.payload.transaction
       state.isModalOn = false
     },
     [postTransaction.rejected]: (state, action) => {
@@ -135,29 +141,30 @@ export const transactionSlice = createSlice({
     },
 
     // GET all transactions
-    [getTransaction.pending]: (state) => {
+    [getTransactions.pending]: (state) => {
       state.loading = "pending"
       state.error = null
       transactionAdapter.removeAll(state)
     },
-    [getTransaction.fulfilled]: (state, action) => {
+    [getTransactions.fulfilled]: (state, action) => {
       state.loading = "idle"
       transactionAdapter.setAll(state, action.payload.transactions)
     },
-    [getTransaction.rejected]: (state, action) => {
+    [getTransactions.rejected]: (state, action) => {
       state.loading = "idle"
       state.error = action.payload
     },
 
-    // GET filtered transaction
-    [getFilteredTransaction.pending]: (state) => {
+    // createInvoice
+    [createInvoice.pending]: (state) => {
       state.loading = "pending"
     },
-    [getFilteredTransaction.fulfilled]: (state, action) => {
+    [createInvoice.fulfilled]: (state, action) => {
       state.loading = "idle"
-      state.filteredTx = action.payload
+      state.isModalOn = false
+      state.invoiceUrl = action.payload
     },
-    [getFilteredTransaction.rejected]: (state, action) => {
+    [createInvoice.rejected]: (state, action) => {
       state.loading = "idle"
       state.error = action.payload
     },

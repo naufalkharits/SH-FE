@@ -67,7 +67,7 @@ export const courierSlice = createSlice({
     },
     [getCosts.fulfilled]: (state, action) => {
       state.loading = "idle"
-      state.costs = action.payload.rajaongkir.results
+      state.costs = Object.assign({}, ...action.payload.rajaongkir.results)
     },
     [getCosts.rejected]: (state, action) => {
       state.loading = "idle"
@@ -79,7 +79,7 @@ export const courierSlice = createSlice({
     },
     [getCities.fulfilled]: (state, action) => {
       state.loading = "idle"
-      state.cities = action.payload.rajaongkir.results
+      state.cities = Object.assign({}, ...action.payload.rajaongkir.results)
     },
     [getCities.rejected]: (state, action) => {
       state.loading = "idle"

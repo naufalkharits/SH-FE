@@ -9,7 +9,7 @@ import {
     notificationSelectors,
     putNotification,
 } from "../../redux/notificationSlice"
-import ioClient from "../../socket/ioClient"
+// import ioClient from "../../socket/ioClient"
 import NewProduct from "../notifications/NewProduct"
 import NotificationDropdownSkeleton from "../skeletons/NotificationDropdownSkeleton"
 import Notification404 from "../unfound/Notification404"
@@ -33,15 +33,15 @@ const NotificationDropdown = () => {
         setPing(notification.filter((notif) => notif.read === false))
     }, [notification])
 
-    useEffect(() => {
-        ioClient.emit("START", {
-            user_id: decodedAccess?.id,
-        })
+    // useEffect(() => {
+    //     ioClient.emit("START", {
+    //         user_id: decodedAccess?.id,
+    //     })
 
-        ioClient.on("NOTIFICATION", () => {
-            dispatch(getNotification())
-        })
-    }, [decodedAccess, dispatch])
+    //     ioClient.on("NOTIFICATION", () => {
+    //         dispatch(getNotification())
+    //     })
+    // }, [decodedAccess, dispatch])
 
     return (
         <Popover className="relative z-10 hidden sm:inline-block">

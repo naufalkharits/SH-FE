@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import jwtDecode from "jwt-decode"
 import closedServer from "../middlewares/axios/closedServer"
 import openServer from "../middlewares/axios/openServer"
-import ioClient from "../socket/ioClient"
+// import ioClient from "../socket/ioClient"
 
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"))
@@ -113,7 +113,7 @@ export const authSlice = createSlice({
       state.unixAccessExp = null
       state.profile = null
       state.bio = null
-      ioClient.disconnect()
+      // ioClient.disconnect()
     },
   },
   extraReducers: {

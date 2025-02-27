@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { useGoogleLogin } from "@react-oauth/google"
+// import { useGoogleLogin } from "@react-oauth/google"
 import { FcGoogle } from "react-icons/fc"
 import { CgSpinner } from "react-icons/cg"
 import { FiArrowLeft } from "react-icons/fi"
@@ -19,15 +19,15 @@ const Login = () => {
         password: "",
     })
 
-    const LoginGoogle = useGoogleLogin({
-        flow: "auth-code",
-        scope: "profile",
-        onSuccess: async (response) => {
-            const code = { code: response.code }
+    // const LoginGoogle = useGoogleLogin({
+    //     flow: "auth-code",
+    //     scope: "profile",
+    //     onSuccess: async (response) => {
+    //         const code = { code: response.code }
 
-            dispatch(authResponse({ code }))
-        },
-    })
+    //         dispatch(authResponse({ code }))
+    //     },
+    // })
 
     const onChange = (e) => {
         setFormValue({
@@ -121,7 +121,7 @@ const Login = () => {
                 </div>
                 <button
                     className="flex w-full items-center justify-center gap-4"
-                    onClick={() => LoginGoogle()}
+                    // onClick={() => LoginGoogle()}
                 >
                     <FcGoogle className="text-2xl" />
                     <span className="font-bold text-google-blue">

@@ -12,7 +12,7 @@ export const getProvinces = createAsyncThunk("courier/getProvinces", async (thun
 
 export const getCities = createAsyncThunk("courier/getCities", async (provinceId, thunkAPI) => {
   try {
-    const response = await openServer.post("/courier/city", { provinceId })
+    const response = await openServer.post("/courier/city", { 'provinceId':provinceId })
     return response.data
   } catch (error) {
     thunkAPI.rejectWithValue(error.response.data)
@@ -79,7 +79,7 @@ export const courierSlice = createSlice({
     },
     [getCities.fulfilled]: (state, action) => {
       state.loading = "idle"
-      state.cities = Object.assign({}, ...action.payload.rajaongkir.results)
+      state.cities = Object.assign(action.payload.rajaongkir.results)
     },
     [getCities.rejected]: (state, action) => {
       state.loading = "idle"

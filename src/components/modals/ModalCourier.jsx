@@ -79,7 +79,7 @@ const ModalCourier = (props) => {
                   />
                 </div>
                 <div className="font-medium dark:text-white">Pengiriman</div>
-                <div className="flex items-center justify-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-smoke sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
+                <div className="dark:text-white flex items-center justify-center gap-4 rounded-2xl p-4 shadow-md ring-1 ring-black ring-opacity-5 dark:ring-white dark:ring-opacity-10 sm:bg-smoke sm:shadow-none sm:ring-0 sm:dark:bg-zinc-800">
                   <div>{props.tx.product.seller.city.replace(/[^a-zA-Z\s]/g, "")}</div>
                   <TiArrowRightOutline />
                   <div>{props.tx.buyer.city.replace(/[^a-zA-Z\s]/g, "")}</div>
@@ -113,7 +113,7 @@ const ModalCourier = (props) => {
                       onChange={onChangeCourierProduct}>
                       <option value="">Pilih Produk Kurir</option>
                       {courierState.costs?.costs?.map((cost) => (
-                        <option key={cost.description} value={cost.description}>
+                        <option key={cost.service} value={cost.description}>
                           {cost.description}
                         </option>
                       ))}

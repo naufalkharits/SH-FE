@@ -59,6 +59,26 @@ export const putTransaction = createAsyncThunk(
   }
 )
 
+// createSnap
+export const createSnap = createAsyncThunk(
+  "transaction/createSnap",
+  async ({ order_id, amount, email, mobile_number }, thunkAPI) => {
+    const snapData = {
+      order_id,
+      amount,
+      email,
+      mobile_number
+    }
+    try {
+      const response = await openServer.post("/payment/snap", snapData)
+      console.log(response.data)
+      return response.data
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data)
+    }
+  }
+)
+
 // createInvoice
 export const createInvoice = createAsyncThunk(
   "transaction/createInvoice",
@@ -151,6 +171,20 @@ export const transactionSlice = createSlice({
       transactionAdapter.setAll(state, action.payload.transactions)
     },
     [getTransactions.rejected]: (state, action) => {
+      state.loading = "idle"
+      state.error = action.payload
+    },
+
+    // createSnap
+    [createSnap.pending]: (state) => {
+      state.loading = "pending"
+    },
+    [createSnap.fulfilled]: (state, action) => {
+      state.loading = "idle"
+      state.isModalOn = false
+      window.snap.pay(action.payload.transactionToken)
+    },
+    [createSnap.rejected]: (state, action) => {
       state.loading = "idle"
       state.error = action.payload
     },

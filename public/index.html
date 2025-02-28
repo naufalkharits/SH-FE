@@ -18,26 +18,32 @@
     </style>
     <title>Second Hand</title>
 
+    <!-- Midtrans pop up -->
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key=process.env.MIDTRANS_CLIENT_KEY></script>
+
+    <!-- Maze live testing -->
     <script>
-    (function (m, a, z, e) {
-      var s, t;
-      try {
-        t = m.sessionStorage.getItem('maze-us');
-      } catch (err) {}
-
-      if (!t) {
-        t = new Date().getTime();
+      (function (m, a, z, e) {
+        var s, t;
         try {
-          m.sessionStorage.setItem('maze-us', t);
+          t = m.sessionStorage.getItem('maze-us');
         } catch (err) {}
-      }
 
-      s = a.createElement('script');
-      s.src = z + '?apiKey=' + e;
-      s.async = true;
-      a.getElementsByTagName('head')[0].appendChild(s);
-      m.mazeUniversalSnippetApiKey = e;
-    })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', '68867625-0e28-47eb-9bf2-9133c6c571b4');
+        if (!t) {
+          t = new Date().getTime();
+          try {
+            m.sessionStorage.setItem('maze-us', t);
+          } catch (err) {}
+        }
+
+        s = a.createElement('script');
+        s.src = z + '?apiKey=' + e;
+        s.async = true;
+        a.getElementsByTagName('head')[0].appendChild(s);
+        m.mazeUniversalSnippetApiKey = e;
+      })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', '68867625-0e28-47eb-9bf2-9133c6c571b4');
     </script>
   </head>
   <body>

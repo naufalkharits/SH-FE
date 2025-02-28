@@ -3,7 +3,7 @@ import { FiChevronDown, FiX } from "react-icons/fi"
 import { TiArrowRightOutline } from "react-icons/ti"
 import { useDispatch, useSelector } from "react-redux"
 import { getCosts, resetCosts } from "../../redux/courierSlice"
-import { createInvoice, setIsModalOn } from "../../redux/transactionSlice"
+import { createSnap, createInvoice, setIsModalOn } from "../../redux/transactionSlice"
 
 const ModalCourier = (props) => {
   const dispatch = useDispatch()
@@ -48,8 +48,8 @@ const ModalCourier = (props) => {
   const onSubmit = (e) => {
     e.preventDefault()
     dispatch(
-      createInvoice({
-        external_id: `${props.tx.id}`,
+      createSnap({
+        order_id: `${props.tx.id}`,
         amount: props.tx.price + courier.price,
         email: authState.profile.email,
         mobile_number: authState.profile.phone_number,

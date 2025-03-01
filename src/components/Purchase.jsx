@@ -20,9 +20,11 @@ const Purchase = () => {
     dispatch(getTransactions({ status: "", as: "buyer" }))
   }, [dispatch])
 
-  useEffect(() => {
-    console.log(tx)
-  }, [tx])
+  // useEffect(() => {
+  //   console.log(tx)
+  // }, [tx])
+
+  // console.log(transactions)
 
   return (
     <>
@@ -51,7 +53,8 @@ const Purchase = () => {
                     <div>
                       <span>{tx?.status}</span>
                       {
-                        tx?.status === "PAID" || tx?.status === "DELIVERY" && (<span> - Resi: {tx?.resi || "MENUNGGU DIKIRIM"}</span>)
+                        tx?.status === "PAID" ? <span> - Resi: MENUNGGU DIKIRIM</span>
+                        : tx?.status === "DELIVERY" && <span> - Resi: {tx?.resi}</span>
                       }
                     </div>
                     <span>{dayjs(tx.updatedAt).format("D MMM, HH:mm")}</span>
@@ -79,17 +82,24 @@ const Purchase = () => {
                         </div>
                       )}
                     </div>
-                    {(tx?.status === "ACCEPTED" || tx?.status === "WAIT FOR PAYMENT") && (
+                    {(tx?.status === "ACCEPTED" ? (
                       <PayButton
                         className="hidden self-end sm:inline-block"
                         tx={tx}
                         setTx={setTx}
                       />
+                    ) : tx?.status === "WAIT FOR PAYMENT" &&
+                      <PayButton className="hidden self-end sm:inline-block"
+                        tx={tx}
+                        setTx={setTx}
+                      />
                     )}
                   </div>
-                  {(tx?.status === "ACCEPTED" || tx?.status === "WAIT FOR PAYMENT") && (
+                  {(tx?.status === "ACCEPTED" ? (
                     <PayButton className="w-full sm:hidden" tx={tx} setTx={setTx} />
-                  )}
+                  ) : tx?.status === "WAIT FOR PAYMENT") &&
+                    <PayButton className="w-full sm:hidden" tx={tx} setTx={setTx} />                    
+                   }
                 </div>
               </div>
               <div className="h-px bg-neutral-200 dark:bg-zinc-800"></div>

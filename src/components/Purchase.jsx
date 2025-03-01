@@ -51,7 +51,7 @@ const Purchase = () => {
                     <div>
                       <span>{tx?.status}</span>
                       {
-                        tx?.status === "PAID" && (<span> - Resi: MENUNGGU DIKIRIM</span>)
+                        tx?.status === "PAID" || tx?.status === "DELIVERY" && (<span> - Resi: {tx?.resi || "MENUNGGU DIKIRIM"}</span>)
                       }
                     </div>
                     <span>{dayjs(tx.updatedAt).format("D MMM, HH:mm")}</span>
@@ -69,7 +69,7 @@ const Purchase = () => {
                       </div>
                       {tx?.status === "PENDING" || tx?.status === "ACCEPTED" ? (
                         <div className="dark:text-white">Ditawar {priceFormatter(tx?.price)}</div>
-                      ) : tx?.status === "PAID" || tx?.status === "COMPLETED" ? (
+                      ) : tx?.status === "PAID" || tx?.status === "DELIVERY" || tx?.status === "COMPLETED" ? (
                         <div className="dark:text-white">
                           Berhasil ditawar {priceFormatter(tx?.price)}
                         </div>

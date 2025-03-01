@@ -58,7 +58,7 @@ const TransactionCard = () => {
     dispatch(
       putTransaction({
         id: update.id,
-        status: update.status,
+        status: "DELIVERY",
         resi: update.resi
       })
     )
@@ -176,7 +176,7 @@ const TransactionCard = () => {
                     </button>
                   </div>
                 )}
-                {tx.status === "PAID" && (
+                {tx.status === "PAID" && !tx.resi && (
                   <div className="flex justify-evenly sm:justify-end">
                     <button
                       onClick={() => {

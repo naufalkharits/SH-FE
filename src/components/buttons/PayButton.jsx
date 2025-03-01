@@ -19,7 +19,7 @@ export const PayButton = (props) => {
         props.tx.status === "WAIT FOR PAYMENT" && window.snap.pay(props.tx.snap_token);
         // && window.location.replace(props.tx.invoice_url)
       }}>
-      <span>Bayar</span>
+      <span>{props?.buttonName || "Bayar"}</span>
     </button>
   )
 }

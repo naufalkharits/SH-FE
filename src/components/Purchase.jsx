@@ -92,13 +92,14 @@ const Purchase = () => {
                       <PayButton className="hidden self-end sm:inline-block"
                         tx={tx}
                         setTx={setTx}
+                        buttonName="Lanjut Bayar"
                       />
                     )}
                   </div>
                   {(tx?.status === "ACCEPTED" ? (
                     <PayButton className="w-full sm:hidden" tx={tx} setTx={setTx} />
                   ) : tx?.status === "WAIT FOR PAYMENT") &&
-                    <PayButton className="w-full sm:hidden" tx={tx} setTx={setTx} />                    
+                    <PayButton className="w-full sm:hidden" tx={tx} setTx={setTx} buttonName="Lanjut Bayar" />                    
                    }
                 </div>
               </div>

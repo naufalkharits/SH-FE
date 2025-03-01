@@ -4,10 +4,12 @@ import { TbBrandWhatsapp } from "react-icons/tb"
 import { useDispatch, useSelector } from "react-redux"
 import { Swiper, SwiperSlide } from "swiper/react"
 import ModalStatus from "../components/modals/ModalStatus"
+import ModalResi from "../components/modals/ModalResi"
 import {
   getTransactions,
   putTransaction,
   setIsModalOn,
+  setModalResi,
   transactionSelectors,
 } from "../redux/transactionSlice"
 import { priceFormatter } from "../utils/priceFormatter"
@@ -18,11 +20,12 @@ import Offer404 from "./unfound/Offer404"
 const TransactionCard = () => {
   const dispatch = useDispatch()
   const transaction = useSelector(transactionSelectors.selectAll)
-  const { isModalOn, modalOn, updatedTx, loading } = useSelector((state) => state.transaction)
+  const { modalResi, isModalOn, modalOn, updatedTx, loading } = useSelector((state) => state.transaction)
   const [update, setUpdate] = useState({
     id: null,
     status: "",
     price: 0,
+    resi: ""
   })
 
   // step-1
@@ -49,6 +52,21 @@ const TransactionCard = () => {
     )
   }
 
+  const putResi = (e) => {
+    e.preventDefault()
+
+    dispatch(
+      putTransaction({
+        id: update.id,
+        status: update.status,
+        resi: update.resi
+      })
+    )
+  }
+
+  console.log(`modal resi: ${modalResi}`)
+  console.log(`modal: ${isModalOn}`)
+
   useEffect(() => {
     dispatch(getTransactions({ status: "", as: "seller" }))
   }, [updatedTx, dispatch])
@@ -56,6 +74,8 @@ const TransactionCard = () => {
   return (
     <>
       {isModalOn && <ModalStatus update={update} setUpdate={setUpdate} onSubmit={onSubmit} />}
+
+      {modalResi && <ModalResi update={update} setUpdate={setUpdate} onSubmit={putResi} />}
 
       {modalOn && <ModalBerhasil />}
 
@@ -154,6 +174,33 @@ const TransactionCard = () => {
                       </span>
                       <TbBrandWhatsapp />
                     </button>
+                  </div>
+                )}
+                {tx.status === "PAID" && (
+                  <div className="flex justify-evenly sm:justify-end">
+                    <button
+                      onClick={() => {
+                        setUpdate({
+                          id: tx?.id,
+                          price: tx?.price,
+                        })
+                        dispatch(setModalResi(true))
+                      }}
+                      className="mr-4 w-[45%] rounded-2xl border border-primary-purple-04 py-2 hover:bg-primary-purple-05 hover:text-white dark:text-white md:w-[35%] lg:w-[30%]">
+                      Input Resi
+                    </button>
+                    {/* <button
+                      className="flex w-[45%] items-center justify-center gap-2 rounded-2xl bg-primary-purple-04 py-2 px-6 text-white hover:bg-primary-purple-05 md:w-[35%] lg:w-[30%]"
+                      onClick={() => {
+                        window.open(
+                          `https://api.whatsapp.com/send?phone=${tx?.buyer?.phone_number}`
+                        )
+                      }}>
+                      <span>
+                        Hubungi <span className="hidden sm:inline">via</span>
+                      </span>
+                      <TbBrandWhatsapp />
+                    </button> */}
                   </div>
                 )}
                 <div className="h-px bg-neutral-200 dark:bg-zinc-800"></div>

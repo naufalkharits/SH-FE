@@ -48,7 +48,12 @@ const Purchase = () => {
                 </Swiper>
                 <div className="w-full space-y-1">
                   <div className="flex justify-between text-xs text-neutral-03 dark:text-zinc-400">
-                    <span>{tx?.status}</span>
+                    <div>
+                      <span>{tx?.status}</span>
+                      {
+                        tx?.status === "PAID" && (<span> - Resi: MENUNGGU DIKIRIM</span>)
+                      }
+                    </div>
                     <span>{dayjs(tx.updatedAt).format("D MMM, HH:mm")}</span>
                   </div>
                   <div className="flex justify-between">
@@ -64,7 +69,7 @@ const Purchase = () => {
                       </div>
                       {tx?.status === "PENDING" || tx?.status === "ACCEPTED" ? (
                         <div className="dark:text-white">Ditawar {priceFormatter(tx?.price)}</div>
-                      ) : tx?.status === "COMPLETED" ? (
+                      ) : tx?.status === "PAID" || tx?.status === "COMPLETED" ? (
                         <div className="dark:text-white">
                           Berhasil ditawar {priceFormatter(tx?.price)}
                         </div>

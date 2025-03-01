@@ -46,11 +46,12 @@ export const getTransactions = createAsyncThunk(
 // PUT status transaction
 export const putTransaction = createAsyncThunk(
   "transaction/putTransaction",
-  async ({ id, status, price }, thunkAPI) => {
+  async ({ id, status, price, resi }, thunkAPI) => {
     try {
       const response = await closedServer.put(`/transaction/${id}`, {
         status,
         price,
+        resi
       })
       return response.data
     } catch (error) {
@@ -71,7 +72,6 @@ export const createSnap = createAsyncThunk(
     }
     try {
       const response = await openServer.post("/payment/snap", snapData)
-      console.log(response.data)
       return response.data
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data)
@@ -110,6 +110,7 @@ export const transactionSlice = createSlice({
     newTransaction: null,
     updatedTx: null,
     isModalOn: false,
+    modalResi: false,
     modalOn: false,
     loading: "idle",
     spinner: false,
@@ -122,6 +123,9 @@ export const transactionSlice = createSlice({
     },
     setIsModalOn: (state, action) => {
       state.isModalOn = action.payload
+    },
+    setModalResi: (state, action) => {
+      state.modalResi = action.payload
     },
     modalOn: (state, action) => {
       state.modalOn = action.payload
@@ -139,6 +143,7 @@ export const transactionSlice = createSlice({
       state.spinner = false
       state.newTransaction = action.payload.transaction
       state.isModalOn = false
+      state.modalResi = false
     },
     [postTransaction.rejected]: (state, action) => {
       state.loading = "idle"
@@ -217,6 +222,7 @@ export const transactionSlice = createSlice({
       })
       state.updatedTx = action.payload.updatedTransaction
       state.isModalOn = false
+      state.modalResi = false
       if (action.payload.updatedTransaction.status === "ACCEPTED") {
         state.modalOn = true
       }
@@ -231,6 +237,6 @@ export const transactionSlice = createSlice({
 
 export const transactionSelectors = transactionAdapter.getSelectors((state) => state.transaction)
 
-export const { setIsModalOn, modalOn, setShowTransactionError } = transactionSlice.actions
+export const { setModalResi, setIsModalOn, modalOn, setShowTransactionError } = transactionSlice.actions
 
 export default transactionSlice.reducer
